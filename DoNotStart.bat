@@ -1,5 +1,5 @@
 @echo off
-title Du sollst mehr mit denken!
+title Nope
 color 0A
 start DoNotStart.bat
 cd C:\
