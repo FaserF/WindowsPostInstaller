@@ -38,11 +38,9 @@ cd C:\Program Files\7-Zip\
 7z x C:\Users\%username%\Downloads\Threshold-Skin-master.zip -oC:\Users\%username%\Downloads\
 robocopy "C:\Users\%username%\Downloads\Threshold-Skin-master" "C:\Program Files (x86)\Steam\skins\Threshold" /MIR
 xcopy /s /y "C:\Program Files (x86)\Steam\skins\Threshold\Customization\Sidebar Width\Collapsed Sidebar\resource" "C:\Program Files (x86)\Steam\skins\Threshold\resource"
-echo Installation abgeschlossen und Dialog schließt sich in 5 Sekunden
 rd /s /q C:\Users\%username%\Downloads\Threshold-Skin-master
 del /q C:\Users\%username%\Downloads\Threshold-Skin-master.zip
-ping -n 6 127.0.0.1 > nul
-exit
+goto :Start
 
 :Start
 cd C:\Users\%username%\Downloads\
