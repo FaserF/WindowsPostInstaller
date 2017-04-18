@@ -115,8 +115,9 @@ start EpicGamesLauncherInstaller.msi
 taskkill /IM MicrosoftEdge.exe
 echo Installationen gestartet.
 echo Dialog schließt sich in 5 Sekunden und loescht Installationsfiles.
-del /q C:\Users\%username%\Downloads\*.exe
 ping -n 6 127.0.0.1 > nul
+del /q C:\Users\%username%\Downloads\*.exe
+del /q C:\Users\%username%\Downloads\*.msi
 exit
 
 :Clevo
