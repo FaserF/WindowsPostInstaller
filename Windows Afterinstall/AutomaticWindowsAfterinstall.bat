@@ -73,8 +73,6 @@ if %asw%==2 goto :Clevo
 if %asw%==3 goto :T5500
 if %asw%==4 goto :M6500
 
-if %asw%==C goto :Chrome
-if %asw%==S goto :Settings
 if %asw%==0 exit
 if %asw%==exit exit
 
