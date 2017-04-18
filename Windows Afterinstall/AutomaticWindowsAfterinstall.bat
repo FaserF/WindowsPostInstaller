@@ -95,6 +95,7 @@ start *.exe
 echo Bitte entpackte Treiber manuell Installieren, anschließend ...
 pause
 del /q C:\Users\%username%\Downloads\*.exe
+del /q C:\Users\%username%\Downloads\*.zip
 start https://www.unifiedremote.com/download/windows
 start https://update.pushbullet.com/pushbullet_installer.exe
 start http://ubi.li/4vxt9
