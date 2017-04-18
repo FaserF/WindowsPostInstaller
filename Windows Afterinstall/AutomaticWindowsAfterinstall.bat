@@ -30,7 +30,7 @@ start driver_booster_setup.exe /verysilent
 start DisordSetup.exe
 start setup-lightshot.exe
 taskkill /IM MicrosoftEdge.exe
-echo Driver Booster Lizenz (läuft ab: Juni 2017): AEA62-9AB38-55C75-339B4 > "C:\Users\%username%\Downloads\DriverBoosterKey.txt"
+echo Driver Booster Lizenz (lÃ¤uft ab: Juni 2017): AEA62-9AB38-55C75-339B4 > "C:\Users\%username%\Downloads\DriverBoosterKey.txt"
 echo Installationen gestartet. Warte auf Abschluss ALLER Installationen, dann ...
 pause
 del /q C:\Users\%username%\Downloads\*.exe
@@ -38,7 +38,7 @@ cd C:\Program Files\7-Zip\
 7z x C:\Users\%username%\Downloads\Threshold-Skin-master.zip -oC:\Users\%username%\Downloads\
 robocopy "C:\Users\%username%\Downloads\Threshold-Skin-master" "C:\Program Files (x86)\Steam\skins\Threshold" /MIR
 xcopy /s /y "C:\Program Files (x86)\Steam\skins\Threshold\Customization\Sidebar Width\Collapsed Sidebar\resource" "C:\Program Files (x86)\Steam\skins\Threshold\resource"
-echo Installation abgeschlossen und Dialog schließt sich in 5 Sekunden
+echo Installation abgeschlossen und Dialog schlieÃŸt sich in 5 Sekunden
 rd /s /q C:\Users\%username%\Downloads\Threshold-Skin-master
 del /q C:\Users\%username%\Downloads\Threshold-Skin-master.zip
 ping -n 6 127.0.0.1 > nul
@@ -78,7 +78,7 @@ if %asw%==S goto :Settings
 if %asw%==0 exit
 if %asw%==exit exit
 
-echo Nächste Auswahl? Bitte eine Zahl von oben waehlen!
+echo NÃ¤chste Auswahl? Bitte eine Zahl von oben waehlen!
 goto:Auswahl
 
 :Z97-AR
@@ -96,7 +96,7 @@ cd C:\Program Files\7-Zip\
 7z x C:\Users\%username%\Downloads\Turbo_LAN_Win7-8-81-10_V10700.zip -oC:\Users\%username%\Downloads\
 cd C:\Users\%username%\Downloads\
 start *.exe
-echo Bitte entpackte Treiber manuell Installieren, anschließend ...
+echo Bitte entpackte Treiber manuell Installieren, anschlieÃŸend ...
 pause
 del /q C:\Users\%username%\Downloads\*.exe
 start https://www.unifiedremote.com/download/windows
@@ -117,7 +117,7 @@ start *.exe
 start EpicGamesLauncherInstaller.msi
 taskkill /IM MicrosoftEdge.exe
 echo Installationen gestartet.
-echo Dialog schließt sich in 5 Sekunden und loescht Installationsfiles.
+echo Dialog schlieÃŸt sich in 5 Sekunden und loescht Installationsfiles.
 del /q C:\Users\%username%\Downloads\*.exe
 ping -n 6 127.0.0.1 > nul
 exit
@@ -141,7 +141,7 @@ start C:\Users\%username%\Downloads\v11_1100f_Win10RS1_logo_11012016\SETUP.EXE
 start *.exe
 taskkill /IM MicrosoftEdge.exe
 echo Installationen gestartet.
-echo Dialog schließt sich in 5 Sekunden und loescht Installationsfiles.
+echo Dialog schlieÃŸt sich in 5 Sekunden und loescht Installationsfiles.
 del /q C:\Users\%username%\Downloads\*.exe
 ping -n 6 127.0.0.1 > nul
 exit
@@ -157,19 +157,24 @@ pause
 start *.exe
 taskkill /IM MicrosoftEdge.exe
 echo Installationen gestartet.
-echo Dialog schließt sich in 5 Sekunden und loescht Installationsfiles.
+echo Dialog schlieÃŸt sich in 5 Sekunden und loescht Installationsfiles.
 del /q C:\Users\%username%\Downloads\*.exe
 ping -n 6 127.0.0.1 > nul
 exit
 
 :T5500
 start http://www.nvidia.de/content/DriverDownload-March2009/confirmation.php?url=/Windows/Quadro_Certified/377.11/377.11-quadro-grid-desktop-notebook-win10-64bit-international-whql.exe&lang=de&type=Quadro
+start http://download.msi.com/uti_exe/vga/MSIAfterburnerSetup.zip
 echo Warte auf Beendigung des Downloads, dann ...
 pause
+cd C:\Program Files\7-Zip\
+7z x C:\Users\%username%\Downloads\MSIAfterburnerSetup.zip -oC:\Users\%username%\Downloads\
+7z x C:\Users\%username%\Downloads\4.3.0\MSIAfterburnerSetup430.rar -oC:\Users\%username%\Downloads\
+cd C:\Users\%username%\Downloads\
 start *.exe
 taskkill /IM MicrosoftEdge.exe
 echo Installationen gestartet.
-echo Dialog schließt sich in 5 Sekunden und loescht Installationsfiles.
+echo Dialog schlieÃŸt sich in 5 Sekunden und loescht Installationsfiles.
 del /q C:\Users\%username%\Downloads\*.exe
 ping -n 6 127.0.0.1 > nul
 exit
