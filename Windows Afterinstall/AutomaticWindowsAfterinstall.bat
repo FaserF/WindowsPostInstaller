@@ -6,9 +6,9 @@ color 89
 cd C:\Users\%username%\Downloads\
 cls
 echo             ============================================================
-echo                                    "Automatische"
-echo                   "Treiber und Programm Installation by Fabian Seitz"
-echo                                      Windows 10
+echo                                    Automatische
+echo                   Treiber und Programm Installation by Fabian Seitz
+echo                         ----> Thanks to @KaiSMR & Luis
 echo             ============================================================
 echo.
 echo            Initialisiere Standard Installation
@@ -53,7 +53,8 @@ cd C:\Users\%username%\Downloads\
 cls
 echo             ============================================================
 echo                   Treiber & Programm Installation by Fabian Seitz
-echo                                      Windows 10
+echo                             ----> Thanks to @KaiSMR & Luis
+echo                                     NUR fuer Windows 10
 echo             ============================================================
 echo.
 echo            Bitte Geraet auswaehlen! (Internet Verbindung benoetigt!)
