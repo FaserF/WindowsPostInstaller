@@ -7,9 +7,10 @@ cls
 echo             ================================================
 echo                               Automatische
 echo                   Treiber Installation by Fabian Seitz
-echo                              Für Windows 7
+echo                              Fuer Windows 7
 echo             ================================================
 echo.
+echo            !!!!!!!INTERNET VERBINDUNG WIRD BENOETIGT!!!!!!!
 echo            Bitte Geraet auswaehlen!
 echo.
 echo.
@@ -19,6 +20,7 @@ echo   [3]    Precision M6500 / CAD Notebook
 echo   [4]    Precision T5500 / CAD PC
 echo.
 echo   [C]    Google Chrome
+echo   [U]    Windows 7 Update Pack
 echo   [0]    EXIT / Abbruch
 echo.
 echo.
@@ -33,9 +35,10 @@ if %asw%==3 goto :M6500
 if %asw%==4 goto :T5500
 
 if %asw%==C goto :Chrome
+if %asw%==U goto :Update
 if %asw%==S goto :Settings
-if %asw%==0 exit
-if %asw%==exit exit
+if %asw%==0 goto :exit
+if %asw%==exit goto :exit
 
 echo Nächste Auswahl? Bitte eine Zahl von oben waehlen!
 goto:Auswahl
@@ -109,6 +112,10 @@ echo Chrome wird im Hintergrund installiert
 pause
 goto :Start
 
+:Update
+start http://winfuture.de/downloadvorschalt,2671.html
+goto :Start
+
 :exit
-msg * "Installationen abgeschlossen!"
+msg * "Installationen abgeschlossen! Windows ist NICHT aktiviert. Bitte Key auf Rückseite / unterhalb des Akkus von dem Notebook nutzen!"
 exit
