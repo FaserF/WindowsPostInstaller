@@ -14,19 +14,24 @@ echo.
 echo            Initialisiere Standard Installation
 echo.
 echo.
+start https://ninite.com/7zip-chrome-steam/ninite.exe
+echo Warte auf Beendigung des Downloads, dann ...
+pause
+echo Warte auf Fertigstellung von Chrome Installation! Wichtig!, dann ...
+Ren "C:\Users\%username%\Downloads\Ninite 7Zip Chrome Steam Installer.exe" Ninite-Chrome-7zip-Steam.exe
+start Ninite-Chrome-7zip-Steam.exe
+msg * "Bitte Standard Browser auf Chrome ändern! -> Einstellungen -> Apps -> Standard-Apps"
+pause
 start https://github.com/Edgarware/Threshold-Skin/archive/master.zip
-start https://ninite.com/7zip-steam/ninite.exe
 start http://de.download.nvidia.com/GFE/GFEClient/3.5.0.70/GeForce_Experience_v3.5.0.70.exe
-start https://dl.google.com/tag/s/appguid%3D%7B8A69D345-D564-463C-AFF1-A69D9E530F96%7D%26iid%3D%7B3A60215A-36F6-43BF-B717-7EC844B44C7F%7D%26lang%3Dde%26browser%3D4%26usagestats%3D1%26appname%3DGoogle%2520Chrome%26needsadmin%3Dprefers%26ap%3Dx64-stable-statsdef_1%26installdataindex%3Ddefaultbrowser/update2/installers/ChromeSetup.exe
 start https://www.netzwelt.de/software-download/38551-driver-booster.html
 start https://discordapp.com/api/download?platform=win
 start https://app.prntscr.com/build/setup-lightshot.exe
+start https://central.bitdefender.com/
 echo Warte auf Beendigung der Downloads, dann ...
 pause
 Ren "C:\Users\%username%\Downloads\Ninite 7Zip Steam Installer.exe" Ninite-7zip-Steam.exe
-start ChromeSetup.exe /silent /install
 start GeForce_Experience_v3.5.0.70.exe /s
-start Ninite-7zip-Steam.exe
 start driver_booster_setup.exe /verysilent
 start DiscordSetup.exe
 start setup-lightshot.exe
