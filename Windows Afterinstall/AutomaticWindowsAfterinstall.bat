@@ -18,6 +18,7 @@ start https://ninite.com/7zip-chrome-steam/ninite.exe
 echo Warte auf Beendigung des Downloads, dann ...
 pause
 echo Warte auf Fertigstellung von Chrome Installation! Wichtig!, dann ...
+REM *********Umbenennung da Leerzeichen im Namen********
 Ren "C:\Users\%username%\Downloads\Ninite 7Zip Chrome Steam Installer.exe" Ninite-Chrome-7zip-Steam.exe
 start Ninite-Chrome-7zip-Steam.exe
 pause
@@ -42,8 +43,6 @@ dir /b C:\Users\%username%\Downloads\ | find "GeForce" > nvidiainstall.tmp
 for /f %%f IN ('findstr GeForce nvidiainstall.tmp') do (
 start C:\Users\%username%\Downloads\%%f /s
 del nvidiainstall.tmp )
-REM *********Umbenennung da Leerzeichen im Namen********
-Ren "C:\Users\%username%\Downloads\Ninite 7Zip Steam Installer.exe" Ninite-7zip-Steam.exe
 start DiscordSetup.exe
 start setup-lightshot.exe
 taskkill /IM MicrosoftEdge.exe
