@@ -7,9 +7,10 @@ cls
 echo             ================================================
 echo                               Automatische
 echo                   Treiber Installation by Fabian Seitz
-echo                              Für Windows 10
+echo                              Fuer Windows 10
 echo             ================================================
 echo.
+echo            !!!!!!!INTERNET VERBINDUNG WIRD BENOETIGT!!!!!!!
 echo            Bitte Geraet auswaehlen!
 echo.
 echo.
@@ -33,8 +34,8 @@ if %asw%==3 goto :M6500
 if %asw%==4 goto :T5500
 
 if %asw%==C goto :Chrome
-if %asw%==0 exit
-if %asw%==exit exit
+if %asw%==0 goto :exit
+if %asw%==exit goto :exit
 
 echo Nächste Auswahl? Bitte eine Zahl von oben waehlen!
 goto:Auswahl
@@ -106,5 +107,5 @@ pause
 goto :Start
 
 :exit
-msg * "Installationen abgeschlossen!"
+msg * "Installationen abgeschlossen! Windows sollte aktiviert sein - bitte überprüfen!"
 exit
