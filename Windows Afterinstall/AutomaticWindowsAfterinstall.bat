@@ -3,7 +3,6 @@ title Windows Driver & Programm Installer by FaserF
 color 89
 
 :Default
-cd C:\Users\%username%\Downloads\
 cls
 echo             ============================================================
 echo                                    Automatische
@@ -20,10 +19,11 @@ pause
 echo Warte auf Fertigstellung von Chrome Installation! Wichtig!, dann ...
 REM *********Umbenennung da Leerzeichen im Namen********
 Ren "C:\Users\%username%\Downloads\Ninite 7Zip Chrome Steam Installer.exe" Ninite-Chrome-7zip-Steam.exe
-start Ninite-Chrome-7zip-Steam.exe
+start C:\Users\%username%\Downloads\Ninite-Chrome-7zip-Steam.exe
 pause
 REM *********Default Browser wird in Chrome geändert und anschließende Wartezeit von ca 3 Sekunden********
 start ChromeDefaultBrowser.vbs
+echo Bei Fehlermeldung konnte nicht gefunden werden bitte Chrome manuell als Standard Browser einstellen! Einstellungen -> Apps -> Standard-Apps
 ping -n 3 127.0.0.1 > nul
 start https://central.bitdefender.com/
 start https://github.com/Edgarware/Threshold-Skin/archive/master.zip
@@ -33,6 +33,7 @@ start https://discordapp.com/api/download?platform=win
 start https://app.prntscr.com/build/setup-lightshot.exe
 echo Warte auf Beendigung der Downloads, dann ...
 pause
+cd C:\Users\%username%\Downloads\
 REM *********Starten der Driver Booster Installation, da driverbooster Version im Namen trägt********
 dir /b C:\Users\%username%\Downloads\ | find "booster" > driverbstr.tmp
 for /f %%f IN ('findstr booster driverbstr.tmp') do (
@@ -45,10 +46,7 @@ start C:\Users\%username%\Downloads\%%f /s
 del nvidiainstall.tmp )
 start DiscordSetup.exe
 start setup-lightshot.exe
-taskkill /IM MicrosoftEdge.exe
 echo Driver Booster Lizenz (läuft ab: Juni 2017): AEA62-9AB38-55C75-339B4 > "C:\Users\%username%\Downloads\DriverBoosterKey.txt"
-echo Installationen gestartet. Warte auf Abschluss ALLER Installationen, dann ...
-pause
 del /q C:\Users\%username%\Downloads\*.exe
 cd C:\Program Files\7-Zip\
 7z x C:\Users\%username%\Downloads\Threshold-Skin-master.zip -oC:\Users\%username%\Downloads\
@@ -167,8 +165,7 @@ ping -n 6 127.0.0.1 > nul
 goto :exit
 
 :M6500
-start http://www.driverscape.com/files/DriverToolkitInstaller.exe
-start https://www2.ati.com/drivers/firepro/mobile/dell-mobile-radeon-pro-software-enterprise-17.q1.1-apr3.exe
+start http://support.amd.com/en-us/download/workstation/mobile?oem=Dell&os=Windows+8.1+-+64#pro-driver
 start https://downloads.dell.com/input/PREM6500_DRVR_WIN_R280879.EXE
 start https://downloads.dell.com/FOLDER01694314M/2/Network_Driver_3MNPT_WN_15.10.0.10_A06.EXE
 start https://downloadcenter.intel.com/de/downloads/eula/20775/Intel-Chipsatz-Ger-tesoftware-INF-Update-Utility-?httpDown=https%3A%2F%2Fdownloadmirror.intel.com%2F20775%2Feng%2FSetupChipset.exe
