@@ -28,7 +28,7 @@ start ChromeSetup.exe /silent /install
 start GeForce_Experience_v3.5.0.70.exe /s
 start Ninite-7zip-Steam.exe
 start driver_booster_setup.exe /verysilent
-start DisordSetup.exe
+start DiscordSetup.exe
 start setup-lightshot.exe
 taskkill /IM MicrosoftEdge.exe
 echo Driver Booster Lizenz (läuft ab: Juni 2017): AEA62-9AB38-55C75-339B4 > "C:\Users\%username%\Downloads\DriverBoosterKey.txt"
