@@ -25,12 +25,12 @@ pause
 REM *********Default Browser wird in Chrome geändert und anschließende Wartezeit von ca 3 Sekunden********
 start ChromeDefaultBrowser.vbs
 ping -n 3 127.0.0.1 > nul
+start https://central.bitdefender.com/
 start https://github.com/Edgarware/Threshold-Skin/archive/master.zip
 start http://de.download.nvidia.com/GFE/GFEClient/3.5.0.70/GeForce_Experience_v3.5.0.70.exe
 start https://www.netzwelt.de/software-download/38551-driver-booster.html
 start https://discordapp.com/api/download?platform=win
 start https://app.prntscr.com/build/setup-lightshot.exe
-start https://central.bitdefender.com/
 echo Warte auf Beendigung der Downloads, dann ...
 pause
 REM *********Starten der Driver Booster Installation, da driverbooster Version im Namen trägt********
