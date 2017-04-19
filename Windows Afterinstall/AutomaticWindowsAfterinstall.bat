@@ -8,7 +8,7 @@ cls
 echo             ============================================================
 echo                                    Automatische
 echo                   Treiber und Programm Installation by Fabian Seitz
-echo                         ----> Thanks to @KaiSMR & Luis
+echo                         ----> Thanks to @KaiSMR und Luis
 echo             ============================================================
 echo.
 echo            Initialisiere Standard Installation
@@ -63,7 +63,7 @@ cd C:\Users\%username%\Downloads\
 cls
 echo             ============================================================
 echo                   Treiber & Programm Installation by Fabian Seitz
-echo                             ----> Thanks to @KaiSMR & Luis
+echo                             ----> Thanks to @KaiSMR und Luis
 echo                                     NUR fuer Windows 10
 echo             ============================================================
 echo.
