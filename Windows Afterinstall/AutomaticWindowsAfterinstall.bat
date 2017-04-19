@@ -6,7 +6,8 @@ color 89
 cd C:\Users\%username%\Downloads\
 cls
 echo             ============================================================
-echo                   Treiber & Programm Installation by Fabian Seitz
+echo                                    "Automatische"
+echo                   "Treiber und Programm Installation by Fabian Seitz"
 echo                                      Windows 10
 echo             ============================================================
 echo.
@@ -17,15 +18,15 @@ start https://github.com/Edgarware/Threshold-Skin/archive/master.zip
 start https://ninite.com/7zip-steam/ninite.exe
 start http://de.download.nvidia.com/GFE/GFEClient/3.5.0.70/GeForce_Experience_v3.5.0.70.exe
 start https://dl.google.com/tag/s/appguid%3D%7B8A69D345-D564-463C-AFF1-A69D9E530F96%7D%26iid%3D%7B3A60215A-36F6-43BF-B717-7EC844B44C7F%7D%26lang%3Dde%26browser%3D4%26usagestats%3D1%26appname%3DGoogle%2520Chrome%26needsadmin%3Dprefers%26ap%3Dx64-stable-statsdef_1%26installdataindex%3Ddefaultbrowser/update2/installers/ChromeSetup.exe
-start https://www.netzwelt.de/software-download/38551_2-driver-booster.html?sig=5ff4c740896c73e8f4f15d6844022c5e
+start https://www.netzwelt.de/software-download/38551-driver-booster.html
 start https://discordapp.com/api/download?platform=win
 start https://app.prntscr.com/build/setup-lightshot.exe
 echo Warte auf Beendigung der Downloads, dann ...
 pause
-Ren "C:\Users\%username%\Downloads\Ninite 7Zip Steam Installer.exe" Ninite.exe
+Ren "C:\Users\%username%\Downloads\Ninite 7Zip Steam Installer.exe" Ninite-7zip-Steam.exe
 start ChromeSetup.exe /silent /install
 start GeForce_Experience_v3.5.0.70.exe /s
-start Ninite.exe
+start Ninite-7zip-Steam.exe
 start driver_booster_setup.exe /verysilent
 start DisordSetup.exe
 start setup-lightshot.exe
@@ -84,7 +85,7 @@ start http://dlcdnet.asus.com/pub/ASUS/misc/utils/Turbo_LAN_Win7-8-81-10_V10700.
 start http://dlgbit.winfuture.de/21d53ef186363366551a0c51f5c7363e/58f5f505/software/realtek/2.81/0008-64bit_Win7_Win8_Win81_Win10_R281.exe
 start https://downloadcenter.intel.com/de/downloads/eula/26653/Intel-PROSet-Wireless-Software-und-Treiber-f-r-Windows-10?httpDown=https%3A%2F%2Fdownloadmirror.intel.com%2F26653%2Feng%2FWireless_19.50.1_PROSet64_Win10.exe
 start https://downloadcenter.intel.com/de/downloads/eula/26667/Intel-Bluetooth-Wireless-Software-f-r-Windows-10?httpDown=https%3A%2F%2Fdownloadmirror.intel.com%2F26667%2Feng%2FBT_19.50.1_64_Win10.exe
-echo 1. Treiber Installation. Warte auf Beendigung des Downloads, dann ...
+echo 1. Treiber Installation. Warte auf Beendigung der Downloads, dann ...
 pause
 cd C:\Program Files\7-Zip\
 7z x C:\Users\%username%\Downloads\AISuite_III_V10149_for_Z97.rar -oC:\Users\%username%\Downloads\
@@ -92,7 +93,10 @@ cd C:\Program Files\7-Zip\
 7z x C:\Users\%username%\Downloads\Turbo_LAN_Win7-8-81-10_V10700.zip -oC:\Users\%username%\Downloads\
 cd C:\Users\%username%\Downloads\
 start *.exe
-echo Bitte entpackte Treiber manuell Installieren, anschließend ...
+start C:\Users\%username%\Downloads\Asmedia_USB3_V116351\AsusSetup.exe
+start C:\Users\%username%\Downloads\Turbo_LAN_Win7-8-81-10_V10700\Turbo_LAN_Win7-8-81-10_V10700\AsusSetup.exe
+start C:\Users\%username%\Downloads\AISuite_III_V10149_for_Z97\AsusSetup.exe
+echo Bitte Treiber installieren, anschließend ...
 pause
 del /q C:\Users\%username%\Downloads\*.exe
 del /q C:\Users\%username%\Downloads\*.zip
@@ -108,8 +112,10 @@ start https://launcher-public-service-prod06.ol.epicgames.com/launcher/api/insta
 start http://www.phoner.de/PhonerLiteSetup.exe
 start http://www.evga.com/EVGA/GeneralDownloading.aspx?file=EVGA_PrecisionX_OC_Setup_v6.1.2.exe&survey=16.1.2
 start https://download01.logi.com/web/ftp/pub/techsupport/gaming/LGS_8.91.48_x64_Logitech.exe
-echo 2. Anwendungsinstallation. Warte auf Beendigung des Downloads, dann ...
+start https://ninite.com/notepadplusplus-putty/ninite.exe
+echo 2. Anwendungsinstallation. Warte auf Beendigung der Downloads, dann ...
 pause
+Ren "C:\Users\%username%\Downloads\Ninite Notepad PuTTY Installer.exe" Ninite-Putty-Notepad.exe
 start *.exe
 start EpicGamesLauncherInstaller.msi
 taskkill /IM MicrosoftEdge.exe
@@ -118,7 +124,7 @@ echo Dialog schließt sich in 5 Sekunden und loescht Installationsfiles.
 ping -n 6 127.0.0.1 > nul
 del /q C:\Users\%username%\Downloads\*.exe
 del /q C:\Users\%username%\Downloads\*.msi
-exit
+goto :exit
 
 :Clevo
 start https://d34vhvz8ul1ifj.cloudfront.net/Driver/VIA_HD_Audio_v11_1100f_Win10RS1_logo_11012016.zip
@@ -142,7 +148,7 @@ echo Installationen gestartet.
 echo Dialog schließt sich in 5 Sekunden und loescht Installationsfiles.
 del /q C:\Users\%username%\Downloads\*.exe
 ping -n 6 127.0.0.1 > nul
-exit
+goto :exit
 
 :M6500
 start http://www.driverscape.com/files/DriverToolkitInstaller.exe
@@ -158,7 +164,7 @@ echo Installationen gestartet.
 echo Dialog schließt sich in 5 Sekunden und loescht Installationsfiles.
 del /q C:\Users\%username%\Downloads\*.exe
 ping -n 6 127.0.0.1 > nul
-exit
+goto :exit
 
 :T5500
 start http://www.nvidia.de/content/DriverDownload-March2009/confirmation.php?url=/Windows/Quadro_Certified/377.11/377.11-quadro-grid-desktop-notebook-win10-64bit-international-whql.exe&lang=de&type=Quadro
@@ -175,4 +181,8 @@ echo Installationen gestartet.
 echo Dialog schließt sich in 5 Sekunden und loescht Installationsfiles.
 del /q C:\Users\%username%\Downloads\*.exe
 ping -n 6 127.0.0.1 > nul
+goto :exit
+
+:exit
+msg * "Installationen abgeschlossen! Office muss ggf. noch installiert werden."
 exit
