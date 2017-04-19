@@ -20,8 +20,10 @@ pause
 echo Warte auf Fertigstellung von Chrome Installation! Wichtig!, dann ...
 Ren "C:\Users\%username%\Downloads\Ninite 7Zip Chrome Steam Installer.exe" Ninite-Chrome-7zip-Steam.exe
 start Ninite-Chrome-7zip-Steam.exe
-msg * "Bitte Standard Browser auf Chrome ändern! -> Einstellungen -> Apps -> Standard-Apps"
 pause
+REM *********Default Browser wird in Chrome geändert und anschließende Wartezeit von ca 3 Sekunden********
+start ChromeDefaultBrowser.vbs
+ping -n 3 127.0.0.1 > nul
 start https://github.com/Edgarware/Threshold-Skin/archive/master.zip
 start http://de.download.nvidia.com/GFE/GFEClient/3.5.0.70/GeForce_Experience_v3.5.0.70.exe
 start https://www.netzwelt.de/software-download/38551-driver-booster.html
@@ -30,9 +32,18 @@ start https://app.prntscr.com/build/setup-lightshot.exe
 start https://central.bitdefender.com/
 echo Warte auf Beendigung der Downloads, dann ...
 pause
+REM *********Starten der Driver Booster Installation, da driverbooster Version im Namen trägt********
+dir /b C:\Users\%username%\Downloads\ | find "booster" > driverbstr.tmp
+for /f %%f IN ('findstr booster driverbstr.tmp') do (
+start C:\Users\%username%\Downloads\%%f /verysilent
+del driverbstr.tmp )
+REM *********Starten der NVIDIA Installation, da Geforce Version im Namen trägt********
+dir /b C:\Users\%username%\Downloads\ | find "GeForce" > nvidiainstall.tmp
+for /f %%f IN ('findstr GeForce nvidiainstall.tmp') do (
+start C:\Users\%username%\Downloads\%%f /s
+del nvidiainstall.tmp )
+REM *********Umbenennung da Leerzeichen im Namen********
 Ren "C:\Users\%username%\Downloads\Ninite 7Zip Steam Installer.exe" Ninite-7zip-Steam.exe
-start GeForce_Experience_v3.5.0.70.exe /s
-start driver_booster_setup.exe /verysilent
 start DiscordSetup.exe
 start setup-lightshot.exe
 taskkill /IM MicrosoftEdge.exe
@@ -191,4 +202,5 @@ goto :exit
 
 :exit
 msg * "Installationen abgeschlossen! Office muss ggf. noch installiert werden."
+del /q ChromeDefaultBrowser.vbs
 exit
