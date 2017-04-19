@@ -1,379 +1,207 @@
 @echo off
-title FaserF's Quick Tools V1.4.0
+title Windows Driver & Programm Installer by FaserF
 color 89
-:Start
+
+:Default
+cd C:\Users\%username%\Downloads\
 cls
-echo             ================================
-echo                   FaserF's Quick Tools
-echo             ================================
+echo             ============================================================
+echo                                    "Automatische"
+echo                   "Treiber und Programm Installation by Fabian Seitz"
+echo                                    Fuer Windows 10
+echo             ============================================================
 echo.
-echo   [1]    Meine Website
-echo   [2]    
-echo   [3]    Regestrierungs Editor
-echo   [4]    Rechner :D
-echo   [5]    Kopiere auf USB Stick
-echo   [6]    Besuche mich auf Steam!
-echo   [7]    WinKeyViewer (Wird mir waaaahrscheinlich zugesandt ;D)
-echo   [8]    Datentraegerbereinigung
-echo   [9]    Passwort Generator
-echo   [10]   DDOS Tool (Max Ping)
-echo   [11]   ADB und Fast-b00t
-echo   [12]   Easteregg #2
-echo   [13]   Playlist
-echo   [S]  Settings
-echo   [0]    EXIT
+echo            Initialisiere Standard Installation
 echo.
-echo            INFO: Herzlich willkommen zu meiner Mini Tool Sammlung :)
+echo.
+start https://github.com/Edgarware/Threshold-Skin/archive/master.zip
+start https://ninite.com/7zip-steam/ninite.exe
+start http://de.download.nvidia.com/GFE/GFEClient/3.5.0.70/GeForce_Experience_v3.5.0.70.exe
+start https://dl.google.com/tag/s/appguid%3D%7B8A69D345-D564-463C-AFF1-A69D9E530F96%7D%26iid%3D%7B3A60215A-36F6-43BF-B717-7EC844B44C7F%7D%26lang%3Dde%26browser%3D4%26usagestats%3D1%26appname%3DGoogle%2520Chrome%26needsadmin%3Dprefers%26ap%3Dx64-stable-statsdef_1%26installdataindex%3Ddefaultbrowser/update2/installers/ChromeSetup.exe
+start https://www.netzwelt.de/software-download/38551-driver-booster.html
+start https://discordapp.com/api/download?platform=win
+start https://app.prntscr.com/build/setup-lightshot.exe
+echo Warte auf Beendigung der Downloads, dann ...
+pause
+Ren "C:\Users\%username%\Downloads\Ninite 7Zip Steam Installer.exe" Ninite-7zip-Steam.exe
+start ChromeSetup.exe /silent /install
+start GeForce_Experience_v3.5.0.70.exe /s
+start Ninite-7zip-Steam.exe
+start driver_booster_setup.exe /verysilent
+start DisordSetup.exe
+start setup-lightshot.exe
+taskkill /IM MicrosoftEdge.exe
+echo Driver Booster Lizenz (lÃ¤uft ab: Juni 2017): AEA62-9AB38-55C75-339B4 > "C:\Users\%username%\Downloads\DriverBoosterKey.txt"
+echo Installationen gestartet. Warte auf Abschluss ALLER Installationen, dann ...
+pause
+del /q C:\Users\%username%\Downloads\*.exe
+cd C:\Program Files\7-Zip\
+7z x C:\Users\%username%\Downloads\Threshold-Skin-master.zip -oC:\Users\%username%\Downloads\
+robocopy "C:\Users\%username%\Downloads\Threshold-Skin-master" "C:\Program Files (x86)\Steam\skins\Threshold" /MIR
+xcopy /s /y "C:\Program Files (x86)\Steam\skins\Threshold\Customization\Sidebar Width\Collapsed Sidebar\resource" "C:\Program Files (x86)\Steam\skins\Threshold\resource"
+rd /s /q C:\Users\%username%\Downloads\Threshold-Skin-master
+del /q C:\Users\%username%\Downloads\Threshold-Skin-master.zip
+goto :Start
+
+:Start
+cd C:\Users\%username%\Downloads\
+cls
+echo             ============================================================
+echo                   Treiber und Programm Installation by Fabian Seitz
+echo                                      Windows 10
+echo             ============================================================
+echo.
+echo            Bitte Geraet auswaehlen! (Internet Verbindung benoetigt!)
+echo.
+echo.
+echo   [1]    Asus Z97-AR / PC
+echo   [2]    Clevo W650SJ / Notebook
+echo   [3]    Dell Precision T5500 / CAD PC
+echo   [4]    Dell Precision M6500 / CAD Notebook
+echo   [5]    Asus N53SN / Notebook
+echo.
+echo   [0]    EXIT / Abbruch
+echo.
 echo.
 
 :Auswahl
 set asw=0
 set /p asw="Bitte Auswahl eingeben: "
 
-if %asw%==1 start "" http://www.faserf.github.io
-if %asw%==2 
-if %asw%==3 start regedit.exe
-if %asw%==4 start calc.exe
-if %asw%==5 goto STICK
-if %asw%==6 start "" http://www.steamcommunity.com/id/FaserF
-if %asw%==7 goto WinKeyViewer
-if %asw%==8 start cleanmgr /sageset:1
-if %asw%==9 goto :PasswordGenerator
-if %asw%==10 goto :DDOS
-if %asw%==11 goto :AD
-if %asw%==12 goto :EA
-if %asw%==13 goto :Playlist
+if %asw%==1 goto :Z97-AR
+if %asw%==2 goto :Clevo
+if %asw%==3 goto :T5500
+if %asw%==4 goto :M6500
+if %asw%==5 goto :N53SN
 
-if %asw%==S goto :Settings
-if %asw%==0 goto :Exit
-if %asw%==exit goto :Exit
+if %asw%==0 exit
+if %asw%==exit exit
 
-echo Nächste Auswahl? Bitte eine Zahl von oben waehlen!
+echo NÃ¤chste Auswahl? Bitte eine Zahl von oben waehlen!
 goto:Auswahl
 
-:STICK
-cls
-echo.
-echo             ========================
-echo             USB Stick Syncronisation
-echo             ========================
-echo.
-echo   [1] Syncronisiere Musik (Komprimiert)
-echo   [2] Syncronisiere Musik
-echo   [3] Syncronisiere Spiele
-echo   [0] Zurueck
-
-set asw=0
-set /p asw="Bitte Auswahl eingeben: "
-
-if %asw%==1 echo "Funktioniert nur bei installiertem 7ZIP!"
-	call 7z -t7z -mx=1 -ms=off -slp a "C:\Programmierung\dev_%date%.7z" "e:\" -x!"e:\RECYCLER"
-	-x!"C:\Daten\%username%\Documents\My Music" -x!"e:\Backup"
-if %asw%==2 xcopy C:\Daten\%username%\Documents\My Music E:\Backup
-if %asw%==3 echo Leider noch nicht verfügbar!
-if %asw%==0 goto :Start
-goto Start
-
-:WinKeyViewer
-start WinKeyViewer.vbs
-echo Warte ca 7 Sek. um mir den WinKey zuzusenden :D
-ping 192.0.2.2 -n 1 -w 10000 > nul
-goto :Start
-
-:PasswordGenerator
-cls
-echo Waehle die Anzahl an zufaelligen Passwoertern:
-echo ----------------------------------------­-----------------------
-echo 1) 1 Random Password
-echo 2) 5 Random Passwords
-echo 3) 10 Random Passwords
-echo Input your choice
-set input=
-set /p input= Choice:
-if %input%==1 goto Eins if NOT goto Start2
-if %input%==2 goto Fuenf if NOT goto Start2
-if %input%==5 goto Fuenf if NOT goto Start2
-if %input%==3 goto Zehn if NOT goto Start2
-if %input%==10 goto Zehn if NOT goto Start2
-:Eins
-cls
-echo Ein zufaelliges Passwort waere %random%%random%
-echo Was als naechstes?
-echo 1) Zurueck zur Startseite
-echo 0) Exit
-set input=
-set /p input= Choice:
-if %input%==1 goto :Start
-if %input%==0 goto :Exit
-:Fuenf
-cls
-echo Hier sind 5 zufaellige Passwoerter %random%%random%, %random%, %random%%random%%random%, %random%%random%, %random%.
-echo Was als naechstes?
-echo 1) Zurueck zur Startseite
-echo 0) Exit
-set input=
-set /p input= Choice:
-if %input%==1 goto :Start
-if %input%==0 goto :Exit
-:Zehn
-cls
-echo Die 10 zufaelligen Passwoerter lauten %random%, %random%, %random%, %random%, %random%, %random%, %random%, %random%, %random%, %random%
-echo Was als naechstes?
-echo 1) Zurueck zur Startseite
-echo 0) Exit
-set input=
-set /p input= Choice:
-if %input%==1 goto :Start
-if %input%==0 goto :Exit
-
-:DDOS
-set input=
-set /p input= Tippe nun eine URL (z.B. www.google.de) oder IP (z.B. 88.217.135.44) ein, die du mit dem maximum anpingen willst:
-if %input%==goto A if NOT B
-echo Starte...
-ping localhost>nul
-echo Um den DDOS zu stoppen nutze CTRL + C
-echo Wenn es crashed hast du eine ungueltige Adresse eingegeben!
-ping localhost>nul
-ping %input% -t -l 6550
-
-:AD
-echo WIP - Work in Progress. Bald verfuegbar!
+:Z97-AR
+start http://dlcdnet.asus.com/pub/ASUS/misc/utils/AISuite_III_V10149_for_Z97.rar
+start http://dlcdnet.asus.com/pub/ASUS/misc/usb30/Asmedia_USB3_V116351.zip
+start http://dlcdnet.asus.com/pub/ASUS/misc/utils/Turbo_LAN_Win7-8-81-10_V10700.zip
+start http://dlgbit.winfuture.de/21d53ef186363366551a0c51f5c7363e/58f5f505/software/realtek/2.81/0008-64bit_Win7_Win8_Win81_Win10_R281.exe
+start https://downloadcenter.intel.com/de/downloads/eula/26653/Intel-PROSet-Wireless-Software-und-Treiber-f-r-Windows-10?httpDown=https%3A%2F%2Fdownloadmirror.intel.com%2F26653%2Feng%2FWireless_19.50.1_PROSet64_Win10.exe
+start https://downloadcenter.intel.com/de/downloads/eula/26667/Intel-Bluetooth-Wireless-Software-f-r-Windows-10?httpDown=https%3A%2F%2Fdownloadmirror.intel.com%2F26667%2Feng%2FBT_19.50.1_64_Win10.exe
+echo 1. Treiber Installation. Warte auf Beendigung der Downloads, dann ...
 pause
-goto :Start
-
-:EA
-echo Wie lautet das Passwort? (Tippe "exit" um zurueck zu gelangen!)
-set/p "pass=>"
-if not %pass% == BitteSehr goto :check
-msg * "Passwort ist richtig!!!"
-goto :correct
-:check
-if not %pass% == exit goto :fail
-goto :Start
-:fail
-msg * "Passwort ist falsch!!!"
-goto :EA
-:correct
-msg * "Easter-EGG! :)"
-echo "Let's Party
+cd C:\Program Files\7-Zip\
+7z x C:\Users\%username%\Downloads\AISuite_III_V10149_for_Z97.rar -oC:\Users\%username%\Downloads\
+7z x C:\Users\%username%\Downloads\Asmedia_USB3_V116351.zip -oC:\Users\%username%\Downloads\
+7z x C:\Users\%username%\Downloads\Turbo_LAN_Win7-8-81-10_V10700.zip -oC:\Users\%username%\Downloads\
+cd C:\Users\%username%\Downloads\
+start *.exe
+start C:\Users\%username%\Downloads\Asmedia_USB3_V116351\AsusSetup.exe
+start C:\Users\%username%\Downloads\Turbo_LAN_Win7-8-81-10_V10700\Turbo_LAN_Win7-8-81-10_V10700\AsusSetup.exe
+start C:\Users\%username%\Downloads\AISuite_III_V10149_for_Z97\AsusSetup.exe
+echo Bitte Treiber installieren, anschlieÃŸend ...
 pause
-goto :Party
-:Party
-cls
-color 08
-echo "P-A-R-T-Y HARD - ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ - PARTY"
-color 09
-echo "P-A-R-T-Y HARD - ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ - PARTY"
-color 0A
-echo "P-A-R-T-Y HARD - ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ - PARTY"
-color 0B
-echo "P-A-R-T-Y HARD - ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ - PARTY"
-color 0C
-echo "P-A-R-T-Y HARD - ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ - PARTY"
-color 0D
-echo "P-A-R-T-Y HARD - ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ - PARTY"
-color 08
-echo "P-A-R-T-Y HARD - ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ - PARTY"
-color 09
-echo "P-A-R-T-Y HARD - ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ - PARTY"
-color 0A
-echo "P-A-R-T-Y HARD - ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ - PARTY"
-color 0B
-echo "P-A-R-T-Y HARD - ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ - PARTY"
-color 0C
-echo "P-A-R-T-Y HARD - ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ - PARTY"
-color 0D
-echo "P-A-R-T-Y HARD - ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ - PARTY"
-color 08
-echo "P-A-R-T-Y HARD - ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ - PARTY"
-color 09
-echo "P-A-R-T-Y HARD - ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ - PARTY"
-color 0A
-echo "P-A-R-T-Y HARD - ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ - PARTY"
-color 0B
-echo "P-A-R-T-Y HARD - ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ - PARTY"
-color 0C
-echo "P-A-R-T-Y HARD - ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ - PARTY"
-color 0D
-echo "P-A-R-T-Y HARD - ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ - PARTY"
-color 09
-echo "P-A-R-T-Y HARD - ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ - PARTY"
-color 0A
-echo "P-A-R-T-Y HARD - ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ - PARTY"
-color 0B
-echo "P-A-R-T-Y HARD - ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ - PARTY"
-color 0C
-echo "P-A-R-T-Y HARD - ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ - PARTY"
-color 0D
-echo "P-A-R-T-Y HARD - ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ - PARTY"
-color 78
-echo "P-A-R-T-Y HARD - ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ - PARTY"
-color 79
-echo "P-A-R-T-Y HARD - ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ - PARTY"
-color 7A
-echo "P-A-R-T-Y HARD - ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ - PARTY"
-color 7B
-echo "P-A-R-T-Y HARD - ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ - PARTY"
-color 7C
-echo "P-A-R-T-Y HARD - ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ - PARTY"
-color 7D
-echo "P-A-R-T-Y HARD - ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ - PARTY"
-color 78
-echo "P-A-R-T-Y HARD - ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ - PARTY"
-color 79
-echo "P-A-R-T-Y HARD - ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ - PARTY"
-color 7A
-echo "P-A-R-T-Y HARD - ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ - PARTY"
-color 7B
-echo "P-A-R-T-Y HARD - ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ - PARTY"
-color 7C
-echo "P-A-R-T-Y HARD - ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ - PARTY"
-color 7D
-echo "P-A-R-T-Y HARD - ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ - PARTY"
-goto :Party
-
-:Settings
-cls
-echo             =======================================
-echo                   FaserF's Quick Tools Settings
-echo             =======================================
-echo.
-echo   [1]   Aendere die Farbe
-echo   [2]   DIE Html Website schlecht hin?
-echo   [3]   Eigenwerbung mit SPAM?
-echo   [4]   Zeige *DAS* Bild
-echo   [5]   Zeig mir das EasterEgg Passwort
-echo   [6]   Werde der Herrscher!
-echo   [7]   Schau dir das Changelog an
-echo   [8]   "Hardware" Test???
-echo   [S] 	Reload Settings
-echo   [0]   EXIT
-echo.
-echo        Tipp: Es existierrn zwei Easter Eggs.
-echo.
-
-set asw=0
-set /p asw="Bitte Auswahl eingeben: "
-if %asw%==1 goto :Color
-if %asw%==2 start FaserF.html
-if %asw%==3 goto :SPAM
-if %asw%==4 goto :PIC
-if %asw%==5 goto :Herrscher
-if %asw%==6 goto :Herrscher
-if %asw%==7 goto :Changelog
-if %asw%==8 goto :DenkMehrMit
-if %asw%==S goto :Settings
-if %asw%==0 goto :Start
-if %asw%==exit goto :Start
-:Color
-cls
-echo             ================================
-echo                   Waehle deine Farbe
-echo             ================================
-
-echo.
-echo   [1]   Schwarz - Dunkelgrau
-echo   [2]   Schwarz - Blau
-echo   [3]   Schwarz - Gruen
-echo   [4]   Schwarz - Weiss
-echo   [5]   Hellgrau - Magenta
-echo   [6]   Hellgrau - Gruen
-echo   [7]   Hellgrau - Blau (Standard)
-echo   [S] Reload Settings
-echo   [0]   EXIT
-echo.
-echo        ACHTUNG: Scheinbar noch verbuggt!
-echo.
-
-set asw=0
-set /p asw="Bitte Auswahl eingeben: "
-if %asw%==1 color 08 goto :Start
-if %asw%==2 color 09 goto :Start
-if %asw%==3 color 0A goto :Start
-if %asw%==1 color 0F goto :Start
-if %asw%==2 color 7D goto :Start
-if %asw%==3 color 7A goto :Start
-if %asw%==1 color 79 goto :Start
-if %asw%==S goto :Settings
-if %asw%==0 goto :Start
-if %asw%==exit goto :Start
-:Changelog
-cls
-echo WAS GIBT ES NEUES?
-echo.
-echo.
-echo V1.4.X:
-echo - Playlist Generator
-echo - Settings: Bug fixes
-echo - Code Optimierung
-echo.
-echo.
-echo V1.3.X:
-echo - Neues Easteregg #2
-echo - Neu: Settings
-echo - Easteregg bug fixes
-echo - mehrere neue Settings Optionen
-echo.
-echo V1.2.X
-echo - Bug fixes
-echo - Keine Ahnung, viele neue Features
-echo.
-echo V1.0.X - V1.1.X
-echo - Keine Ahnung, first release
-echo - Bug fixes
-echo.
-echo.
+del /q C:\Users\%username%\Downloads\*.exe
+del /q C:\Users\%username%\Downloads\*.zip
+start https://www.unifiedremote.com/download/windows
+start https://update.pushbullet.com/pushbullet_installer.exe
+start http://ubi.li/4vxt9
+start http://www.dm.origin.com/download
+start https://www.xdlab.ru/files/tagscan-6.0.20-setup.exe
+start https://sourceforge.net/projects/album-art/files/latest/download
+start https://web.whatsapp.com/desktop/windows/release/x64/WhatsAppSetup.exe
+start https://www.battle.net/download/getInstallerForGame?os=win&locale=deDE&version=LIVE&gameProgram=BATTLENET_APP
+start https://launcher-public-service-prod06.ol.epicgames.com/launcher/api/installer/download/EpicGamesLauncherInstaller.msi
+start http://www.phoner.de/PhonerLiteSetup.exe
+start http://www.evga.com/EVGA/GeneralDownloading.aspx?file=EVGA_PrecisionX_OC_Setup_v6.1.2.exe&survey=16.1.2
+start https://download01.logi.com/web/ftp/pub/techsupport/gaming/LGS_8.91.48_x64_Logitech.exe
+start https://ninite.com/notepadplusplus-putty/ninite.exe
+echo 2. Anwendungsinstallation. Warte auf Beendigung der Downloads, dann ...
 pause
-goto :Settings
-:Herrscher
-runas /user:Admnistrator Systemsteuerung.exe
-set asw=0
-set /p asw="Geben Sie das Kennwort fuer "%username%" ein:"
-echo Das Passwd von %username% lautet "%asw%" und wurde nun direkt an mich gesandt! > C:\Users\%username%\Desktop\IchHabDeinUserPW.txt
-set asw=0
-set /p asw1="Geben Sie das Kennwort fuer "Administrator" ein:"
-echo Das Admin Passwort lautet "%asw%" und wurde nun direkt an mich gesandt! > C:\Users\%username%\Desktop\IchHabDeinAdminPW.txt
-msg * "Das EasterEgg Passwort lautet 'BitteSehr' du fauler Sack! Aber vergiss nicht das andere Easter Egg (auch in den Settings :). P.S. Schau mal auf den Desktop!"
-goto :Start
-:PIC
-start Pic.jpg
-goto :Start
-:SPAM
-start "" http://www.steamcommunity.com/id/FaserF
-start "" http://www.youtube.com/FaserF11
-start "" http://www.facebook.com/FaserF11
-start "" http://www.twitter.com/FaserF11
-start FaserF.html
-goto :PIC
-:DenkMehrMit
-color 0A
-start DoNotStart.bat
-msg * "Lass uns einen kleinen Hardware Test machen. Kleiner Tipp: 10 Sekunden lang den Power Button drücken :D"
-echo DenkMehrMit > C:\Users\%username%\Desktop\DenkMehrMit%random%.txt
-echo SPAM > C:\Users\%username%\Desktop\SPAM\DasIstKeinSpam%random%.txt
-echo "Woooohooooooooooo"
-goto :DenkMehrMit
+Ren "C:\Users\%username%\Downloads\Ninite Notepad PuTTY Installer.exe" Ninite-Putty-Notepad.exe
+start *.exe
+start EpicGamesLauncherInstaller.msi
+taskkill /IM MicrosoftEdge.exe
+echo Installationen gestartet.
+echo Dialog schlieÃŸt sich in 5 Sekunden und loescht Installationsfiles.
+ping -n 6 127.0.0.1 > nul
+del /q C:\Users\%username%\Downloads\*.exe
+del /q C:\Users\%username%\Downloads\*.msi
+goto :exit
 
-:Playlist
-:HowTo
-
-echo             ======================================
-echo                 FaserF's Quick Playlist Writer
-echo             ======================================
-echo.
-echo		Kopiere diese Batch Datei in einen Ordner in 
-echo		dem all deine Lieder, welche in die Playlist 
-echo		sollen sind.
-echo.
+:Clevo
+start https://d34vhvz8ul1ifj.cloudfront.net/Driver/VIA_HD_Audio_v11_1100f_Win10RS1_logo_11012016.zip
+start https://downloadmirror.intel.com/24345/a08/Intel%20Driver%20Update%20Utility%20Installer.exe
+start https://www.unifiedremote.com/download/windows
+start https://update.pushbullet.com/pushbullet_installer.exe
+start http://ubi.li/4vxt9
+start http://www.dm.origin.com/download
+start https://www.xdlab.ru/files/tagscan-6.0.20-setup.exe
+start https://sourceforge.net/projects/album-art/files/latest/download
+start https://web.whatsapp.com/desktop/windows/release/x64/WhatsAppSetup.exe
+echo Warte auf Beendigung des Downloads, dann ...
 pause
-Pushd "%1"
-chcp 1252
-dir /b /o:n *.mp* *.ogg *.fla* *.ape *.aac *.wv *.wav >MixedPlaylist.m3u
-copy MixedPlaylist.m3u > C:\Users\%username%\OneDrive\Musik\Wiedergabelisten
-start MixedPlaylist.m3u
-goto :Start
+cd C:\Program Files\7-Zip\
+7z x C:\Users\%username%\Downloads\VIA_HD_Audio_v11_1100f_Win10RS1_logo_11012016.zip -oC:\Users\%username%\Downloads\
+cd C:\Users\%username%\Downloads\
+start C:\Users\%username%\Downloads\v11_1100f_Win10RS1_logo_11012016\SETUP.EXE
+start *.exe
+taskkill /IM MicrosoftEdge.exe
+echo Installationen gestartet.
+echo Dialog schlieÃŸt sich in 5 Sekunden und loescht Installationsfiles.
+del /q C:\Users\%username%\Downloads\*.exe
+ping -n 6 127.0.0.1 > nul
+goto :exit
 
-:Exit
-msg * "Vielen Dank fuer die Nutzung von FaserF Quick Tools. Einen schoenen Tag wuenscht dir FaserF ÜÜÜäöü ÄÖÜÜÜ"
+:M6500
+start http://www.driverscape.com/files/DriverToolkitInstaller.exe
+start https://www2.ati.com/drivers/firepro/mobile/dell-mobile-radeon-pro-software-enterprise-17.q1.1-apr3.exe
+start https://downloads.dell.com/input/PREM6500_DRVR_WIN_R280879.EXE
+start https://downloads.dell.com/FOLDER01694314M/2/Network_Driver_3MNPT_WN_15.10.0.10_A06.EXE
+start https://downloadcenter.intel.com/de/downloads/eula/20775/Intel-Chipsatz-Ger-tesoftware-INF-Update-Utility-?httpDown=https%3A%2F%2Fdownloadmirror.intel.com%2F20775%2Feng%2FSetupChipset.exe
+echo Warte auf Beendigung der Downloads, dann ...
+pause
+start *.exe
+taskkill /IM MicrosoftEdge.exe
+echo Installationen gestartet.
+echo Dialog schlieÃŸt sich in 5 Sekunden und loescht Installationsfiles.
+del /q C:\Users\%username%\Downloads\*.exe
+ping -n 6 127.0.0.1 > nul
+goto :exit
+
+:T5500
+start http://www.nvidia.de/content/DriverDownload-March2009/confirmation.php?url=/Windows/Quadro_Certified/377.11/377.11-quadro-grid-desktop-notebook-win10-64bit-international-whql.exe&lang=de&type=Quadro
+start http://download.msi.com/uti_exe/vga/MSIAfterburnerSetup.zip
+echo Warte auf Beendigung der Downloads, dann ...
+pause
+cd C:\Program Files\7-Zip\
+7z x C:\Users\%username%\Downloads\MSIAfterburnerSetup.zip -oC:\Users\%username%\Downloads\
+7z x C:\Users\%username%\Downloads\4.3.0\MSIAfterburnerSetup430.rar -oC:\Users\%username%\Downloads\
+cd C:\Users\%username%\Downloads\
+start *.exe
+taskkill /IM MicrosoftEdge.exe
+echo Installationen gestartet.
+echo Dialog schlieÃŸt sich in 5 Sekunden und loescht Installationsfiles.
+del /q C:\Users\%username%\Downloads\*.exe
+ping -n 6 127.0.0.1 > nul
+goto :exit
+
+:N53SN
+start http://dlcdnet.asus.com/pub/ASUS/nb/Apps_for_Win10/ATKPackage/ATKPackage_Win10_64_VER100039.zip
+start http://dlcdnet.asus.com/pub/ASUS/nb/Apps_for_Win10/SmartGesture/SmartGesture_WIN10_64_VER405.zip
+start http://dlgbit.winfuture.de/21d53ef186363366551a0c51f5c7363e/58f5f505/software/realtek/2.81/0008-64bit_Win7_Win8_Win81_Win10_R281.exe
+start http://dlcdnet.asus.com/pub/ASUS/nb/Drivers/USB3.0/USB_Fresco_Win7_64_Z301163.zip
+start http://dlcdnet.asus.com/pub/ASUS/DigitalHome/DAV/Driver_for_Win8_1/Bluetooth/Bluetooth_AW-CB161H_Win81_VER3787787111413.zip
+start http://www.realtek.com/downloads/downloadsView.aspx?Langid=1&PNid=13&PFid=5&Level=5&Conn=4&DownTypeID=3&GetDown=false
+echo Warte auf Beendigung der Downloads, dann bitte Treiber selber entpacken und installieren ...
+pause
+start *.exe
+taskkill /IM MicrosoftEdge.exe
+echo Installationen gestartet. Ggf. KÃ¶nnte eine neuere Version von ATKPackage funktionieren (VER100050)!
+echo Dialog schlieÃŸt sich in 5 Sekunden und loescht Installationsfiles.
+del /q C:\Users\%username%\Downloads\*.exe
+ping -n 6 127.0.0.1 > nul
+goto :exit
+
+:exit
+msg * "Installationen abgeschlossen! Office muss ggf. noch installiert werden. Windows sollte aktiviert sein!"
 exit
