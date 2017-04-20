@@ -1,13 +1,13 @@
-Automatische Windows After Installation
+************Automatische Windows After Installation*********
 
-About
+-----About-----
 
 Dieses Tool wurde erstellt um Windows Neu Installationen zu vereinfachen.
 Es gibt eine Auswahl an Geräten, unter welchem man sein Gerät nenn, anschließend lädt es alle benötigten Programme für diesen PC herunter und installiert diese. Bei so vielen wie möglich wird die Installation im silent mode gestartet, sprich keine Aufforderungen um Installationspfad etc anzugeben. Es werden zudem auch die Treiber heruntergeladen und deren Installation gestartet.
 .zip Files werden automatisch extrahiert und gestartet. Der Steam Skin wird automatisch heruntergeladen und in den richtigen Steam Ordner kopiert.
 Div. Probleme bei automatischen downloads und Installationen wurden gefixt.
 
-Nutzung
+-----Nutzung-----
 
 1. Windows Installationsdatenträger erstellen (am besten mit NTLite, um auch hier eine automatische Installation zu erhalten),
 2. Anschließend auf den Installationsstick zugreifen und dort in den Ordner 
@@ -23,12 +23,12 @@ del /q /f "%0"
 3. Nun noch die Dateien "AutomaticWindowsAfterinstall.bat" und "ChromeDefaultBrowser.vbs" von diesem Github (https://github.com/FaserF/FaserFQuickTools/releases) herunterladen und auf den Stick unter 
 "\sources\$OEM$\$$\Setup\Files" kopieren
 
-Unterstützte Geräte
+-----Unterstützte Geräte-----
 
 - ASUS: Z97-AR; N53SN
 - Dell: T5500, M6500, E6510, E6520
 - Clevo: 
 
-Weiteres
+-----Weiteres-----
 
 Unterstützte Sprachen: Deutsch-German
