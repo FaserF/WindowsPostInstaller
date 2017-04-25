@@ -99,6 +99,7 @@ start http://dlcdnet.asus.com/pub/ASUS/misc/utils/Turbo_LAN_Win7-8-81-10_V10700.
 start http://dlgbit.winfuture.de/21d53ef186363366551a0c51f5c7363e/58f5f505/software/realtek/2.81/0008-64bit_Win7_Win8_Win81_Win10_R281.exe
 start https://downloadcenter.intel.com/de/downloads/eula/26653/Intel-PROSet-Wireless-Software-und-Treiber-f-r-Windows-10?httpDown=https%3A%2F%2Fdownloadmirror.intel.com%2F26653%2Feng%2FWireless_19.50.1_PROSet64_Win10.exe
 start https://downloadcenter.intel.com/de/downloads/eula/26667/Intel-Bluetooth-Wireless-Software-f-r-Windows-10?httpDown=https%3A%2F%2Fdownloadmirror.intel.com%2F26667%2Feng%2FBT_19.50.1_64_Win10.exe
+start http://download.lenovo.com/consumer/monitor/y27g_win10.zip
 echo 1. Treiber Installation. Warte auf Beendigung der Downloads, dann ...
 pause
 cd C:\Program Files\7-Zip\
@@ -127,6 +128,7 @@ start http://www.phoner.de/PhonerLiteSetup.exe
 start http://www.evga.com/EVGA/GeneralDownloading.aspx?file=EVGA_PrecisionX_OC_Setup_v6.1.2.exe&survey=16.1.2
 start https://download01.logi.com/web/ftp/pub/techsupport/gaming/LGS_8.91.48_x64_Logitech.exe
 start https://ninite.com/notepadplusplus-putty/ninite.exe
+start http://download.lenovo.com/consumer/monitor/lenovo_artery_setup.exe
 echo 2. Anwendungsinstallation. Warte auf Beendigung der Downloads, dann ...
 pause
 Ren "C:\Users\%username%\Downloads\Ninite Notepad PuTTY Installer.exe" Ninite-Putty-Notepad.exe
