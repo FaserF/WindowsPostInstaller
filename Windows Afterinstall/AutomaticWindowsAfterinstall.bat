@@ -7,7 +7,7 @@ cls
 echo             ============================================================
 echo                                    Automatische
 echo                   Treiber und Programm Installation by Fabian Seitz
-echo                         ----> Thanks to @KaiSMR und Luis
+echo                         ----> Thanks to @KaiSMR und @Luis
 echo             ============================================================
 echo.
 echo            Initialisiere Standard Installation
@@ -60,7 +60,7 @@ goto :Start
 cd C:\Users\%username%\Downloads\
 cls
 echo             ============================================================
-echo                   Treiber & Programm Installation by Fabian Seitz
+echo                   Treiber und Programm Installation by Fabian Seitz
 echo                             ----> Thanks to @KaiSMR und Luis
 echo                                     NUR fuer Windows 10
 echo             ============================================================
@@ -171,6 +171,7 @@ start http://support.amd.com/en-us/download/workstation/mobile?oem=Dell&os=Windo
 start https://downloads.dell.com/input/PREM6500_DRVR_WIN_R280879.EXE
 start https://downloads.dell.com/FOLDER01694314M/2/Network_Driver_3MNPT_WN_15.10.0.10_A06.EXE
 start https://downloadcenter.intel.com/de/downloads/eula/20775/Intel-Chipsatz-Ger-tesoftware-INF-Update-Utility-?httpDown=https%3A%2F%2Fdownloadmirror.intel.com%2F20775%2Feng%2FSetupChipset.exe
+start http://www.driverscape.com/files/misc/USB3.0_allOS_2.1.28.1_PV.exe
 echo Warte auf Beendigung des Downloads, dann ...
 pause
 start *.exe
