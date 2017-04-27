@@ -171,7 +171,7 @@ start http://support.amd.com/en-us/download/workstation/mobile?oem=Dell&os=Windo
 start https://downloads.dell.com/input/PREM6500_DRVR_WIN_R280879.EXE
 start https://downloads.dell.com/FOLDER01694314M/2/Network_Driver_3MNPT_WN_15.10.0.10_A06.EXE
 start https://downloadcenter.intel.com/de/downloads/eula/20775/Intel-Chipsatz-Ger-tesoftware-INF-Update-Utility-?httpDown=https%3A%2F%2Fdownloadmirror.intel.com%2F20775%2Feng%2FSetupChipset.exe
-start http://www.driverscape.com/files/misc/USB3.0_allOS_2.1.28.1_PV.exe
+start http://www.driverscape.com/download/nec-electronics-usb-3.0-host-controller
 echo Warte auf Beendigung des Downloads, dann ...
 pause
 start *.exe
