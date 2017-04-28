@@ -1,13 +1,14 @@
-@echo off
 title Windows Driver & Programm Installer by FaserF
 color 89
 
+@echo off
 :Default
+cd C:\Users\%username%\Downloads\
 cls
 echo             ============================================================
 echo                                    Automatische
 echo                   Treiber und Programm Installation by Fabian Seitz
-echo                         ----> Thanks to @KaiSMR und @Luis
+echo                         ----> Thanks to @KaiSMR und Luis
 echo             ============================================================
 echo.
 echo            Initialisiere Standard Installation
@@ -19,21 +20,19 @@ pause
 echo Warte auf Fertigstellung von Chrome Installation! Wichtig!, dann ...
 REM *********Umbenennung da Leerzeichen im Namen********
 Ren "C:\Users\%username%\Downloads\Ninite 7Zip Chrome Steam Installer.exe" Ninite-Chrome-7zip-Steam.exe
-start C:\Users\%username%\Downloads\Ninite-Chrome-7zip-Steam.exe
+start Ninite-Chrome-7zip-Steam.exe
 pause
 REM *********Default Browser wird in Chrome geändert und anschließende Wartezeit von ca 3 Sekunden********
 start ChromeDefaultBrowser.vbs
-echo Bei Fehlermeldung konnte nicht gefunden werden bitte Chrome manuell als Standard Browser einstellen! Einstellungen -> Apps -> Standard-Apps
 ping -n 3 127.0.0.1 > nul
-start https://central.bitdefender.com/
 start https://github.com/Edgarware/Threshold-Skin/archive/master.zip
 start http://de.download.nvidia.com/GFE/GFEClient/3.5.0.70/GeForce_Experience_v3.5.0.70.exe
 start https://www.netzwelt.de/software-download/38551-driver-booster.html
 start https://discordapp.com/api/download?platform=win
 start https://app.prntscr.com/build/setup-lightshot.exe
+start https://central.bitdefender.com/
 echo Warte auf Beendigung der Downloads, dann ...
 pause
-cd C:\Users\%username%\Downloads\
 REM *********Starten der Driver Booster Installation, da driverbooster Version im Namen trägt********
 dir /b C:\Users\%username%\Downloads\ | find "booster" > driverbstr.tmp
 for /f %%f IN ('findstr booster driverbstr.tmp') do (
@@ -46,7 +45,10 @@ start C:\Users\%username%\Downloads\%%f /s
 del nvidiainstall.tmp )
 start DiscordSetup.exe
 start setup-lightshot.exe
+taskkill /IM MicrosoftEdge.exe
 echo Driver Booster Lizenz (läuft ab: Juni 2017): AEA62-9AB38-55C75-339B4 > "C:\Users\%username%\Downloads\DriverBoosterKey.txt"
+echo Installationen gestartet. Warte auf Abschluss ALLER Installationen, dann ...
+pause
 del /q C:\Users\%username%\Downloads\*.exe
 cd C:\Program Files\7-Zip\
 7z x C:\Users\%username%\Downloads\Threshold-Skin-master.zip -oC:\Users\%username%\Downloads\
@@ -97,15 +99,14 @@ start http://dlcdnet.asus.com/pub/ASUS/misc/utils/AISuite_III_V10149_for_Z97.rar
 start http://dlcdnet.asus.com/pub/ASUS/misc/usb30/Asmedia_USB3_V116351.zip
 start http://dlcdnet.asus.com/pub/ASUS/misc/utils/Turbo_LAN_Win7-8-81-10_V10700.zip
 start http://dlgbit.winfuture.de/21d53ef186363366551a0c51f5c7363e/58f5f505/software/realtek/2.81/0008-64bit_Win7_Win8_Win81_Win10_R281.exe
-start https://downloadcenter.intel.com/de/downloads/eula/26653/Intel-PROSet-Wireless-Software-und-Treiber-f-r-Windows-10?httpDown=https%3A%2F%2Fdownloadmirror.intel.com%2F26653%2Feng%2FWireless_19.50.1_PROSet64_Win10.exe
-start https://downloadcenter.intel.com/de/downloads/eula/26667/Intel-Bluetooth-Wireless-Software-f-r-Windows-10?httpDown=https%3A%2F%2Fdownloadmirror.intel.com%2F26667%2Feng%2FBT_19.50.1_64_Win10.exe
-start http://download.lenovo.com/consumer/monitor/y27g_win10.zip
+start http://www.intel.de/content/www/de/de/support/network-and-i-o/wireless-networking/intel-wireless-products/intel-wireless-7200-series/intel-dual-band-wireless-ac-7260.html
+start http://pcsupport.lenovo.com/de/de/products/monitors-and-projectors/lcd-monitors/lenovo-y27g-monitor/downloads
 echo 1. Treiber Installation. Warte auf Beendigung der Downloads, dann ...
 pause
 cd C:\Program Files\7-Zip\
-7z x C:\Users\%username%\Downloads\AISuite_III_V10149_for_Z97.rar -oC:\Users\%username%\Downloads\
-7z x C:\Users\%username%\Downloads\Asmedia_USB3_V116351.zip -oC:\Users\%username%\Downloads\
-7z x C:\Users\%username%\Downloads\Turbo_LAN_Win7-8-81-10_V10700.zip -oC:\Users\%username%\Downloads\
+7z x C:\Users\%username%\Downloads\AISuite_III_V10149_for_Z97.rar -oC:\Users\%username%\Downloads\AISuite_III_V10149_for_Z97\
+7z x C:\Users\%username%\Downloads\Asmedia_USB3_V116351.zip -oC:\Users\%username%\Downloads\Asmedia_USB3_V116351\
+7z x C:\Users\%username%\Downloads\Turbo_LAN_Win7-8-81-10_V10700.zip -oC:\Users\%username%\Downloads\Turbo_LAN_Win7-8-81-10_V10700\
 cd C:\Users\%username%\Downloads\
 start *.exe
 start C:\Users\%username%\Downloads\Asmedia_USB3_V116351\AsusSetup.exe
@@ -115,6 +116,7 @@ echo Bitte Treiber installieren, anschließend ...
 pause
 del /q C:\Users\%username%\Downloads\*.exe
 del /q C:\Users\%username%\Downloads\*.zip
+del /q C:\Users\%username%\Downloads\*.rar
 start https://www.unifiedremote.com/download/windows
 start https://update.pushbullet.com/pushbullet_installer.exe
 start http://ubi.li/4vxt9
@@ -128,7 +130,6 @@ start http://www.phoner.de/PhonerLiteSetup.exe
 start http://www.evga.com/EVGA/GeneralDownloading.aspx?file=EVGA_PrecisionX_OC_Setup_v6.1.2.exe&survey=16.1.2
 start https://download01.logi.com/web/ftp/pub/techsupport/gaming/LGS_8.91.48_x64_Logitech.exe
 start https://ninite.com/notepadplusplus-putty/ninite.exe
-start http://download.lenovo.com/consumer/monitor/lenovo_artery_setup.exe
 echo 2. Anwendungsinstallation. Warte auf Beendigung der Downloads, dann ...
 pause
 Ren "C:\Users\%username%\Downloads\Ninite Notepad PuTTY Installer.exe" Ninite-Putty-Notepad.exe
@@ -167,11 +168,11 @@ ping -n 6 127.0.0.1 > nul
 goto :exit
 
 :M6500
-start http://support.amd.com/en-us/download/workstation/mobile?oem=Dell&os=Windows+8.1+-+64#pro-driver
+start http://www.driverscape.com/files/DriverToolkitInstaller.exe
+start https://www2.ati.com/drivers/firepro/mobile/dell-mobile-radeon-pro-software-enterprise-17.q1.1-apr3.exe
 start https://downloads.dell.com/input/PREM6500_DRVR_WIN_R280879.EXE
 start https://downloads.dell.com/FOLDER01694314M/2/Network_Driver_3MNPT_WN_15.10.0.10_A06.EXE
 start https://downloadcenter.intel.com/de/downloads/eula/20775/Intel-Chipsatz-Ger-tesoftware-INF-Update-Utility-?httpDown=https%3A%2F%2Fdownloadmirror.intel.com%2F20775%2Feng%2FSetupChipset.exe
-start http://www.driverscape.com/download/nec-electronics-usb-3.0-host-controller
 echo Warte auf Beendigung des Downloads, dann ...
 pause
 start *.exe
@@ -185,7 +186,6 @@ goto :exit
 :T5500
 start http://www.nvidia.de/content/DriverDownload-March2009/confirmation.php?url=/Windows/Quadro_Certified/377.11/377.11-quadro-grid-desktop-notebook-win10-64bit-international-whql.exe&lang=de&type=Quadro
 start http://download.msi.com/uti_exe/vga/MSIAfterburnerSetup.zip
-start https://mega.nz/#!v40mXSwL!LvUypoxUe_3ZkIYESWNqzbPvfvYjRuXDk0m01-odJ0k
 echo Warte auf Beendigung des Downloads, dann ...
 pause
 cd C:\Program Files\7-Zip\
