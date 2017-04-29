@@ -5,15 +5,15 @@ color 89
 :Default
 cd C:\Users\%username%\Downloads\
 REM *********Erstellung Scripts um Google Chrome Standard Browser zu machen********
-echo Set WshShell = WScript.CreateObject("WScript.Shell") > "C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs"
-echo WshShell.Run "%windir%\system32\control.exe /name Microsoft.DefaultPrograms /page pageDefaultProgram\pageAdvancedSettings?pszAppName=google%20chrome" >> "C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs"
-echo WScript.Sleep 1200 >> "C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs"
-echo WshShell.SendKeys "{TAB}" >> "C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs"
-echo WshShell.SendKeys " " >> "C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs"
-echo WshShell.SendKeys "{TAB}" >> "C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs"
-echo WshShell.SendKeys "{TAB}" >> "C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs"
-echo WshShell.SendKeys " " >> "C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs"
-echo WScript.Quit >> "C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs"
+echo Set WshShell = WScript.CreateObject("WScript.Shell")> "C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs"
+echo WshShell.Run "%windir%\system32\control.exe /name Microsoft.DefaultPrograms /page pageDefaultProgram\pageAdvancedSettings?pszAppName=google%20chrome">> "C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs"
+echo WScript.Sleep 1200>> "C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs"
+echo WshShell.SendKeys "{TAB}">> "C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs"
+echo WshShell.SendKeys " ">> "C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs"
+echo WshShell.SendKeys "{TAB}">> "C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs"
+echo WshShell.SendKeys "{TAB}">> "C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs"
+echo WshShell.SendKeys " ">> "C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs"
+echo|set /p="WScript.Quit">> "C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs"
 cls
 echo             ============================================================
 echo                                    Automatische
