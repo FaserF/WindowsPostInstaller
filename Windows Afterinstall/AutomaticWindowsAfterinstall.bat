@@ -4,6 +4,16 @@ color 89
 @echo off
 :Default
 cd C:\Users\%username%\Downloads\
+REM *********Erstellung Scripts um Google Chrome Standard Browser zu machen********
+echo Set WshShell = WScript.CreateObject("WScript.Shell") > "C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs"
+echo WshShell.Run "%windir%\system32\control.exe /name Microsoft.DefaultPrograms /page pageDefaultProgram\pageAdvancedSettings?pszAppName=google%20chrome" >> "C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs"
+echo WScript.Sleep 1200 >> "C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs"
+echo WshShell.SendKeys "{TAB}" >> "C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs"
+echo WshShell.SendKeys " " >> "C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs"
+echo WshShell.SendKeys "{TAB}" >> "C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs"
+echo WshShell.SendKeys "{TAB}" >> "C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs"
+echo WshShell.SendKeys " " >> "C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs"
+echo WScript.Quit >> "C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs"
 cls
 echo             ============================================================
 echo                                    Automatische
@@ -23,7 +33,7 @@ Ren "C:\Users\%username%\Downloads\Ninite 7Zip Chrome Steam Installer.exe" Ninit
 start Ninite-Chrome-7zip-Steam.exe
 pause
 REM *********Default Browser wird in Chrome geändert und anschließende Wartezeit von ca 3 Sekunden********
-start ChromeDefaultBrowser.vbs
+start C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs
 ping -n 3 127.0.0.1 > nul
 start https://github.com/Edgarware/Threshold-Skin/archive/master.zip
 start http://de.download.nvidia.com/GFE/GFEClient/3.5.0.70/GeForce_Experience_v3.5.0.70.exe
