@@ -76,6 +76,7 @@ echo   [1]    Asus Z97-AR / PC
 echo   [2]    Clevo W650SJ / Notebook
 echo   [3]    Dell Precision T5500 / CAD PC
 echo   [4]    Dell Precision M6500 / CAD Notebook
+echo   [5]    Asus Maximus Ranger VIII / PC
 echo.
 echo   [0]    EXIT / Abbruch
 echo.
@@ -89,6 +90,7 @@ if %asw%==1 goto :Z97-AR
 if %asw%==2 goto :Clevo
 if %asw%==3 goto :T5500
 if %asw%==4 goto :M6500
+if %asw%==5 goto :VIII
 
 if %asw%==0 exit
 if %asw%==exit exit
@@ -201,6 +203,44 @@ echo Dialog schließt sich in 5 Sekunden und loescht Installationsfiles.
 del /q C:\Users\%username%\Downloads\*.exe
 ping -n 6 127.0.0.1 > nul
 goto :exit
+
+:VIII
+start http://dlcdnet.asus.com/pub/ASUS/misc/utils/AISuite3_Win7-81-10_MaxVIII_Series_V10130.zip
+start http://dlcdnet.asus.com/pub/ASUS/misc/usb30/Asmedia_USB3_V116351.zip
+echo 1. Treiber Installation. Warte auf Beendigung der Downloads, dann ...
+pause
+cd C:\Program Files\7-Zip\
+7z x C:\Users\%username%\Downloads\AISuite3_Win7-81-10_MaxVIII_Series_V10130.zip -oC:\Users\%username%\Downloads\AISuite3_Win7-81-10_MaxVIII_Series_V10130\
+7z x C:\Users\%username%\Downloads\Asmedia_USB3_V116351.zip -oC:\Users\%username%\Downloads\Asmedia_USB3_V116351\
+cd C:\Users\%username%\Downloads\
+start *.exe
+start C:\Users\%username%\Downloads\Asmedia_USB3_V116351\AsusSetup.exe
+start C:\Users\%username%\Downloads\AISuite3_Win7-81-10_MaxVIII_Series_V10130\AsusSetup.exe
+echo Bitte Treiber installieren, anschließend ...
+pause
+del /q C:\Users\%username%\Downloads\*.exe
+del /q C:\Users\%username%\Downloads\*.zip
+del /q C:\Users\%username%\Downloads\*.rar
+start https://www.unifiedremote.com/download/windows
+start https://update.pushbullet.com/pushbullet_installer.exe
+start http://ubi.li/4vxt9
+start http://www.dm.origin.com/download
+start https://www.xdlab.ru/files/tagscan-6.0.20-setup.exe
+start https://web.whatsapp.com/desktop/windows/release/x64/WhatsAppSetup.exe
+start https://download01.logi.com/web/ftp/pub/techsupport/gaming/LGS_8.92.67_x86_Logitech.exe
+start https://ninite.com/notepadplusplus-putty/ninite.exe
+echo 2. Anwendungsinstallation. Warte auf Beendigung der Downloads, dann ...
+pause
+Ren "C:\Users\%username%\Downloads\Ninite Notepad PuTTY Installer.exe" Ninite-Putty-Notepad.exe
+start *.exe
+taskkill /IM MicrosoftEdge.exe
+echo Installationen gestartet.
+echo Dialog schließt sich in 5 Sekunden und loescht Installationsfiles.
+ping -n 6 127.0.0.1 > nul
+del /q C:\Users\%username%\Downloads\*.exe
+del /q C:\Users\%username%\Downloads\*.msi
+goto :exit
+
 
 :exit
 msg * "Installationen abgeschlossen! Office muss ggf. noch installiert werden."
