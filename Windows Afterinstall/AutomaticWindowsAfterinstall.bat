@@ -48,24 +48,25 @@ start https://app.prntscr.com/build/setup-lightshot.exe
 start https://central.bitdefender.com/
 echo Warte auf Beendigung der Downloads, dann ...
 pause
-del /q C:\Users\%username%\Downloads\*.reg
-del /q C:\Users\%username%\Downloads\*.vbs
 REM *********Starten der Driver Booster Installation, da driverbooster Version im Namen trägt********
 dir /b C:\Users\%username%\Downloads\ | find "booster" > driverbstr.tmp
 for /f %%f IN ('findstr booster driverbstr.tmp') do (
-start C:\Users\%username%\Downloads\%%f /verysilent
-del driverbstr.tmp )
+start C:\Users\%username%\Downloads\%%f /verysilent )
+del driverbstr.tmp
 REM *********Starten der NVIDIA Installation, da Geforce Version im Namen trägt********
 dir /b C:\Users\%username%\Downloads\ | find "GeForce" > nvidiainstall.tmp
 for /f %%f IN ('findstr GeForce nvidiainstall.tmp') do (
-start C:\Users\%username%\Downloads\%%f /s
-del nvidiainstall.tmp )
+start C:\Users\%username%\Downloads\%%f /s )
+del nvidiainstall.tmp
 start DiscordSetup.exe
 start setup-lightshot.exe
 echo Driver Booster 4 Lizenz (läuft ab: 10.01.2018): 6BCA2-00A17-7B3E8-453B4 > "C:\Users\%username%\Downloads\DriverBoosterKey.txt"
 echo Installationen gestartet. Warte auf Abschluss ALLER Installationen, dann ...
 pause
 del /q C:\Users\%username%\Downloads\*.exe
+del /q C:\Users\%username%\Downloads\*.reg
+del /q C:\Users\%username%\Downloads\*.vbs
+del /q C:\Users\%username%\Downloads\thanks
 cd C:\Program Files\7-Zip\
 7z x C:\Users\%username%\Downloads\Threshold-Skin-master.zip -oC:\Users\%username%\Downloads\
 robocopy "C:\Users\%username%\Downloads\Threshold-Skin-master" "C:\Program Files (x86)\Steam\skins\Threshold" /MIR
@@ -258,5 +259,4 @@ goto :exit
 
 :exit
 msg * "Installationen abgeschlossen! MS Office muss ggf. noch installiert werden."
-del /q ChromeDefaultBrowser.vbs
 exit
