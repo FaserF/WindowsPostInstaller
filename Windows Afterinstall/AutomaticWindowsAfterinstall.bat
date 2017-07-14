@@ -61,12 +61,14 @@ del nvidiainstall.tmp
 start DiscordSetup.exe
 start setup-lightshot.exe
 echo Driver Booster 4 Lizenz (läuft ab: 10.01.2018): 6BCA2-00A17-7B3E8-453B4 > "C:\Users\%username%\Downloads\DriverBoosterKey.txt"
-echo Installationen gestartet. Warte auf Abschluss ALLER Installationen, dann ...
+echo Installationen gestartet. Warte auf Abschluss ALLER Installationen, dann werden Installations Files gelöscht und Steam Skin wird installiert ...
 pause
+REM *********Löschen aller Installationsfiles********
 del /q C:\Users\%username%\Downloads\*.exe
 del /q C:\Users\%username%\Downloads\*.reg
 del /q C:\Users\%username%\Downloads\*.vbs
 del /q C:\Users\%username%\Downloads\thanks
+REM *********Installation neuester Version des Steam Skins - muss nachträglich noch in Steam Einstellungen ausgewählt werden!********
 cd C:\Program Files\7-Zip\
 7z x C:\Users\%username%\Downloads\Threshold-Skin-master.zip -oC:\Users\%username%\Downloads\
 robocopy "C:\Users\%username%\Downloads\Threshold-Skin-master" "C:\Program Files (x86)\Steam\skins\Threshold" /MIR
@@ -258,5 +260,5 @@ goto :exit
 
 
 :exit
-msg * "Installationen abgeschlossen! MS Office muss ggf. noch installiert werden."
+msg * "Installationen abgeschlossen! MS Office muss ggf. noch installiert werden. Steam Skin muss in Steam Einstellungen noch ausgewaehlt werden."
 exit
