@@ -30,15 +30,15 @@ echo.
 start C:\Users\%username%\Downloads\EdgeAutoDownload.reg
 timeout /T 10
 start /min https://ninite.com/7zip-chrome-steam/ninite.exe
-timeout /T 8
+timeout /T 60
 REM *********Umbenennung da Leerzeichen im Namen********
 Ren "C:\Users\%username%\Downloads\Ninite 7Zip Chrome Steam Installer.exe" Ninite-Chrome-7zip-Steam.exe
 start Ninite-Chrome-7zip-Steam.exe
 echo Warte auf Fertigstellung von Chrome Installation! Wichtig!, dann
-timeout /T 20
-REM *********Default Browser wird in Chrome geändert und anschließende Wartezeit von ca 4 Sekunden********
+timeout /T 60
+REM *********Default Browser wird in Chrome geändert und anschließende Wartezeit von ca 6 Sekunden********
 start C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs
-timeout /T 8
+timeout /T 6
 taskkill /IM MicrosoftEdge.exe
 start /min https://github.com/Edgarware/Threshold-Skin/archive/master.zip
 start /min http://www.metroforsteam.com/downloads/4.2.4.zip
@@ -48,7 +48,7 @@ start /min https://discordapp.com/api/download?platform=win
 start /min https://app.prntscr.com/build/setup-lightshot.exe
 start /min https://central.bitdefender.com/
 echo Warte auf Beendigung der Downloads, dann ...
-timeout /T 60
+timeout /T 120
 REM *********Starten der Driver Booster Installation, da driverbooster Version im Namen trägt********
 dir /b C:\Users\%username%\Downloads\ | find "booster" > driverbstr.tmp
 for /f %%f IN ('findstr booster driverbstr.tmp') do (
