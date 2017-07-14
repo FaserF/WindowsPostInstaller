@@ -48,6 +48,8 @@ start https://app.prntscr.com/build/setup-lightshot.exe
 start https://central.bitdefender.com/
 echo Warte auf Beendigung der Downloads, dann ...
 pause
+del /q C:\Users\%username%\Downloads\*.reg
+del /q C:\Users\%username%\Downloads\*.vbs
 REM *********Starten der Driver Booster Installation, da driverbooster Version im Namen trägt********
 dir /b C:\Users\%username%\Downloads\ | find "booster" > driverbstr.tmp
 for /f %%f IN ('findstr booster driverbstr.tmp') do (
