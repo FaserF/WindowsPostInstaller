@@ -2,6 +2,20 @@
 title Windows Driver & Programm Installer by FaserF
 color 89
 :Default
+REM *********Erstelle reg Eintrag zur Deaktivierung der Edge Speichern Aufforderung********
+echo Windows Registry Editor Version 5.00 > "C:\Users\%username%\Downloads\EdgeAutoDownload.reg"
+echo [HKEY_CURRENT_USER\SOFTWARE\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\Download] >> "C:\Users\%username%\Downloads\EdgeAutoDownload.reg"
+echo "EnableSavePrompt"=dword:00000000 >> "C:\Users\%username%\Downloads\EdgeAutoDownload.reg"
+REM *********Erstelle reg Eintrag um Google Chrome Standard Browser zu machen********
+echo Set WshShell = WScript.CreateObject("WScript.Shell") > "C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs"
+echo WshShell.Run "%%windir%%\system32\control.exe /name Microsoft.DefaultPrograms /page pageDefaultProgram\pageAdvancedSettings?pszAppName=google%%20chrome" >> "C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs"
+echo WScript.Sleep 1200 >> "C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs"
+echo WshShell.SendKeys "{TAB}" >> "C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs"
+echo WshShell.SendKeys " " >> "C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs"
+echo WshShell.SendKeys "{TAB}" >> "C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs"
+echo WshShell.SendKeys "{TAB}" >> "C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs"
+echo WshShell.SendKeys " " >> "C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs"
+echo|set /p= "WScript.Quit" >> "C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs"
 cd C:\Users\%username%\Downloads\
 cls
 echo             ============================================================
@@ -13,9 +27,8 @@ echo.
 echo            Initialisiere Standard Installation
 echo.
 echo.
-REM *********Download Scripts um Google Chrome Standard Browser zu machen********
-start https://github.com/FaserF/FaserFQuickTools/releases/download/1.0/ChromeDefaultBrowser.vbs
-echo.
+start C:\Users\%username%\Downloads\EdgeAutoDownload.reg
+timeout /T 10
 start https://ninite.com/7zip-chrome-steam/ninite.exe
 timeout /T 10
 REM *********Umbenennung da Leerzeichen im Namen********
