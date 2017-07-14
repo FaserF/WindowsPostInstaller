@@ -41,6 +41,7 @@ start C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs
 timeout /T 8
 taskkill /IM MicrosoftEdge.exe
 start https://github.com/Edgarware/Threshold-Skin/archive/master.zip
+start http://www.metroforsteam.com/downloads/4.2.4.zip
 start http://de.download.nvidia.com/GFE/GFEClient/3.7.0.81/GeForce_Experience_v3.7.0.81.exe
 start https://www.netzwelt.de/software-download/38551-driver-booster.html
 start https://discordapp.com/api/download?platform=win
@@ -68,6 +69,27 @@ del /q C:\Users\%username%\Downloads\*.exe
 del /q C:\Users\%username%\Downloads\*.reg
 del /q C:\Users\%username%\Downloads\*.vbs
 del /q C:\Users\%username%\Downloads\thanks
+
+cls
+echo             ============================================================
+echo                                Steam Skin auswaehlen
+echo             ============================================================
+echo.
+echo              Hinweis: Skin muss anschließend in Steam Einstellungen ausgeaehlt werden!
+echo.
+echo   [1]    Threshold Skin [Windows 10 Style Theme]
+echo   [2]    Metro for Steam Skin [Windows 8 Style Theme]
+echo   [3]    keinen [Standard Steam Skin]
+echo.
+
+set asw=0
+set /p asw="Bitte Auswahl eingeben: "
+
+if %asw%==1 goto :Threshold
+if %asw%==2 goto :Metro
+if %asw%==3 goto :Start
+
+:Threshold
 REM *********Installation neuester Version des Steam Skins - muss nachträglich noch in Steam Einstellungen ausgewählt werden!********
 cd C:\Program Files\7-Zip\
 7z x C:\Users\%username%\Downloads\Threshold-Skin-master.zip -oC:\Users\%username%\Downloads\
@@ -77,13 +99,21 @@ rd /s /q C:\Users\%username%\Downloads\Threshold-Skin-master
 del /q C:\Users\%username%\Downloads\Threshold-Skin-master.zip
 goto :Start
 
+:Metro
+REM *********Installation des Steam Skins - muss nachträglich noch in Steam Einstellungen ausgewählt werden!********
+cd C:\Program Files\7-Zip\
+7z x C:\Users\%username%\Downloads\4.2.4.zip -oC:\Users\%username%\Downloads\
+robocopy "C:\Users\%username%\Downloads\Metro 4.2.4" "C:\Program Files (x86)\Steam\skins\Metro" /MIR
+rd /s /q C:\Users\%username%\Downloads\Metro*
+del /q C:\Users\%username%\Downloads\4.2.4.zip
+goto :Start
+
 :Start
 cd C:\Users\%username%\Downloads\
 cls
 echo             ============================================================
-echo                   Treiber und Programm Installation by Fabian Seitz
-echo                             ----> Thanks to @KaiSMR und Luis
-echo                                     NUR fuer Windows 10
+echo                           Hauptinstallation abgeschlossen!
+echo                Du kannst ab hier beenden oder dein Geraet auswaehlen.
 echo             ============================================================
 echo.
 echo            Bitte Geraet auswaehlen! (Internet Verbindung benoetigt!)
@@ -95,7 +125,7 @@ echo   [3]    Dell Precision T5500 / CAD PC
 echo   [4]    Dell Precision M6500 / CAD Notebook
 echo   [5]    Asus Maximus Ranger VIII / PC
 echo.
-echo   [0]    EXIT / Abbruch
+echo   [0]    EXIT / Beenden
 echo.
 echo.
 
@@ -109,8 +139,8 @@ if %asw%==3 goto :T5500
 if %asw%==4 goto :M6500
 if %asw%==5 goto :VIII
 
-if %asw%==0 exit
-if %asw%==exit exit
+if %asw%==0 goto :exit
+if %asw%==exit goto :exit
 
 echo Nächste Auswahl? Bitte eine Zahl von oben waehlen!
 goto:Auswahl
@@ -151,6 +181,7 @@ start http://www.phoner.de/PhonerLiteSetup.exe
 start http://www.evga.com/EVGA/GeneralDownloading.aspx?file=EVGA_PrecisionX_OC_Setup_v6.1.2.exe&survey=16.1.2
 start https://download01.logi.com/web/ftp/pub/techsupport/gaming/LGS_8.91.48_x64_Logitech.exe
 start https://ninite.com/notepadplusplus-putty/ninite.exe
+start https://chrome.google.com/webstore/detail/material-dark-mkbhd/iiplegjeipnjdpgkeccfccnahofbckad
 echo 2. Anwendungsinstallation. Warte auf Beendigung der Downloads, dann ...
 pause
 Ren "C:\Users\%username%\Downloads\Ninite Notepad PuTTY Installer.exe" Ninite-Putty-Notepad.exe
