@@ -30,7 +30,7 @@ echo.
 start C:\Users\%username%\Downloads\EdgeAutoDownload.reg
 timeout /T 10
 start /min https://ninite.com/7zip-chrome-steam/ninite.exe
-timeout /T 60
+timeout /T 10
 REM *********Umbenennung da Leerzeichen im Namen********
 Ren "C:\Users\%username%\Downloads\Ninite 7Zip Chrome Steam Installer.exe" Ninite-Chrome-7zip-Steam.exe
 start Ninite-Chrome-7zip-Steam.exe
