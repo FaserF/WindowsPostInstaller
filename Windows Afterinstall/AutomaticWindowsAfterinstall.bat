@@ -1,11 +1,8 @@
+@echo off
 title Windows Driver & Programm Installer by FaserF
 color 89
-
-@echo off
 :Default
 cd C:\Users\%username%\Downloads\
-REM *********Download Scripts um Google Chrome Standard Browser zu machen********
-start https://github.com/FaserF/FaserFQuickTools/releases/download/1.0/ChromeDefaultBrowser.vbs
 cls
 echo             ============================================================
 echo                                    Automatische
@@ -16,6 +13,8 @@ echo.
 echo            Initialisiere Standard Installation
 echo.
 echo.
+REM *********Download Scripts um Google Chrome Standard Browser zu machen********
+start https://github.com/FaserF/FaserFQuickTools/releases/download/1.0/ChromeDefaultBrowser.vbs
 start https://ninite.com/7zip-chrome-steam/ninite.exe
 echo Warte auf Beendigung des Downloads, dann ...
 pause
@@ -27,6 +26,7 @@ pause
 REM *********Default Browser wird in Chrome geändert und anschließende Wartezeit von ca 3 Sekunden********
 start C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs
 ping -n 3 127.0.0.1 > nul
+taskkill /IM MicrosoftEdge.exe
 start https://github.com/Edgarware/Threshold-Skin/archive/master.zip
 start http://de.download.nvidia.com/GFE/GFEClient/3.7.0.81/GeForce_Experience_v3.7.0.81.exe
 start https://www.netzwelt.de/software-download/38551-driver-booster.html
@@ -47,7 +47,6 @@ start C:\Users\%username%\Downloads\%%f /s
 del nvidiainstall.tmp )
 start DiscordSetup.exe
 start setup-lightshot.exe
-taskkill /IM MicrosoftEdge.exe
 echo Driver Booster 4 Lizenz (läuft ab: 10.01.2018): 6BCA2-00A17-7B3E8-453B4 > "C:\Users\%username%\Downloads\DriverBoosterKey.txt"
 echo Installationen gestartet. Warte auf Abschluss ALLER Installationen, dann ...
 pause
@@ -243,6 +242,6 @@ goto :exit
 
 
 :exit
-msg * "Installationen abgeschlossen! Office muss ggf. noch installiert werden."
+msg * "Installationen abgeschlossen! MS Office muss ggf. noch installiert werden."
 del /q ChromeDefaultBrowser.vbs
 exit
