@@ -29,7 +29,7 @@ echo.
 echo.
 start C:\Users\%username%\Downloads\EdgeAutoDownload.reg
 timeout /T 10
-start https://ninite.com/7zip-chrome-steam/ninite.exe
+start /min https://ninite.com/7zip-chrome-steam/ninite.exe
 timeout /T 10
 REM *********Umbenennung da Leerzeichen im Namen********
 Ren "C:\Users\%username%\Downloads\Ninite 7Zip Chrome Steam Installer.exe" Ninite-Chrome-7zip-Steam.exe
@@ -40,32 +40,31 @@ REM *********Default Browser wird in Chrome geändert und anschließende Warteze
 start C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs
 timeout /T 8
 taskkill /IM MicrosoftEdge.exe
-start https://github.com/Edgarware/Threshold-Skin/archive/master.zip
-start http://www.metroforsteam.com/downloads/4.2.4.zip
-start http://de.download.nvidia.com/GFE/GFEClient/3.7.0.81/GeForce_Experience_v3.7.0.81.exe
-start https://www.netzwelt.de/software-download/38551-driver-booster.html
-start https://discordapp.com/api/download?platform=win
-start https://app.prntscr.com/build/setup-lightshot.exe
-start https://central.bitdefender.com/
+start /min https://github.com/Edgarware/Threshold-Skin/archive/master.zip
+start /min http://www.metroforsteam.com/downloads/4.2.4.zip
+start /min http://de.download.nvidia.com/GFE/GFEClient/3.7.0.81/GeForce_Experience_v3.7.0.81.exe
+start /min https://www.netzwelt.de/software-download/38551-driver-booster.html
+start /min https://discordapp.com/api/download?platform=win
+start /min https://app.prntscr.com/build/setup-lightshot.exe
+start /min https://central.bitdefender.com/
 echo Warte auf Beendigung der Downloads, dann ...
 pause
 REM *********Starten der Driver Booster Installation, da driverbooster Version im Namen trägt********
 dir /b C:\Users\%username%\Downloads\ | find "booster" > driverbstr.tmp
 for /f %%f IN ('findstr booster driverbstr.tmp') do (
-start C:\Users\%username%\Downloads\%%f /verysilent )
+start C:\Users\%username%\Downloads\%%f /VERYSILENT /SUPPRESSMSGBOXES /NORESTART )
 del driverbstr.tmp
 REM *********Starten der NVIDIA Installation, da Geforce Version im Namen trägt********
 dir /b C:\Users\%username%\Downloads\ | find "GeForce" > nvidiainstall.tmp
 for /f %%f IN ('findstr GeForce nvidiainstall.tmp') do (
 start C:\Users\%username%\Downloads\%%f /s )
 del nvidiainstall.tmp
-start DiscordSetup.exe
-start setup-lightshot.exe
+start DiscordSetup.exe /ANYSWITCH
+start setup-lightshot.exe /VERYSILENT /SUPPRESSMSGBOXES /NORESTART
 echo Driver Booster 4 Lizenz (läuft ab: 10.01.2018): 6BCA2-00A17-7B3E8-453B4 > "C:\Users\%username%\Downloads\DriverBoosterKey.txt"
-echo Installationen gestartet. Warte auf Abschluss ALLER Installationen, dann werden Installations Files gelöscht und Steam Skin wird installiert ...
-pause
+start /min C:\Users\%username%\Downloads\DriverBoosterKey.txt
+echo Installationen gestartet. Abschluss aller Installationen geschieht im Hintergrund, nun werden Installations Files gelöscht und Steam Skin wird installiert ...
 REM *********Löschen aller Installationsfiles********
-del /q C:\Users\%username%\Downloads\*.exe
 del /q C:\Users\%username%\Downloads\*.reg
 del /q C:\Users\%username%\Downloads\*.vbs
 del /q C:\Users\%username%\Downloads\thanks
@@ -96,7 +95,6 @@ cd C:\Program Files\7-Zip\
 robocopy "C:\Users\%username%\Downloads\Threshold-Skin-master" "C:\Program Files (x86)\Steam\skins\Threshold" /MIR
 xcopy /s /y "C:\Program Files (x86)\Steam\skins\Threshold\Customization\Sidebar Width\Collapsed Sidebar\resource" "C:\Program Files (x86)\Steam\skins\Threshold\resource"
 rd /s /q C:\Users\%username%\Downloads\Threshold-Skin-master
-del /q C:\Users\%username%\Downloads\Threshold-Skin-master.zip
 goto :Start
 
 :Metro
@@ -105,10 +103,11 @@ cd C:\Program Files\7-Zip\
 7z x C:\Users\%username%\Downloads\4.2.4.zip -oC:\Users\%username%\Downloads\
 robocopy "C:\Users\%username%\Downloads\Metro 4.2.4" "C:\Program Files (x86)\Steam\skins\Metro" /MIR
 rd /s /q C:\Users\%username%\Downloads\Metro*
-del /q C:\Users\%username%\Downloads\4.2.4.zip
 goto :Start
 
 :Start
+start https://www.mydealz.de/search?q=Bitdefender
+del /q C:\Users\%username%\Downloads\*.zip
 cd C:\Users\%username%\Downloads\
 cls
 echo             ============================================================
@@ -172,19 +171,23 @@ start https://www.unifiedremote.com/download/windows
 start https://update.pushbullet.com/pushbullet_installer.exe
 start http://ubi.li/4vxt9
 start http://www.dm.origin.com/download
-start https://www.xdlab.ru/files/tagscan-6.0.20-setup.exe
+start https://www.xdlab.ru/files/tagscan-6.0.22-setup.exe
 start https://sourceforge.net/projects/album-art/files/latest/download
 start https://web.whatsapp.com/desktop/windows/release/x64/WhatsAppSetup.exe
 start https://www.battle.net/download/getInstallerForGame?os=win&locale=deDE&version=LIVE&gameProgram=BATTLENET_APP
 start https://launcher-public-service-prod06.ol.epicgames.com/launcher/api/installer/download/EpicGamesLauncherInstaller.msi
 start http://www.phoner.de/PhonerLiteSetup.exe
-start http://www.evga.com/EVGA/GeneralDownloading.aspx?file=EVGA_PrecisionX_OC_Setup_v6.1.2.exe&survey=16.1.2
+start https://de.evga.com/precisionxoc/#download
 start https://download01.logi.com/web/ftp/pub/techsupport/gaming/LGS_8.91.48_x64_Logitech.exe
 start https://ninite.com/notepadplusplus-putty/ninite.exe
 start https://chrome.google.com/webstore/detail/material-dark-mkbhd/iiplegjeipnjdpgkeccfccnahofbckad
 echo 2. Anwendungsinstallation. Warte auf Beendigung der Downloads, dann ...
 pause
 Ren "C:\Users\%username%\Downloads\Ninite Notepad PuTTY Installer.exe" Ninite-Putty-Notepad.exe
+REM UplayInstaller.exe /S
+REM OriginThinSetup.exe /VERYSILENT /SUPPRESSMSGBOXES /NORESTART
+REM tagscan-6.0.22-setup.exe /VERYSILENT /SUPPRESSMSGBOXES /NORESTART
+REM WhatsAppSetup.exe /VERYSILENT /SUPPRESSMSGBOXES /NORESTART
 start *.exe
 start EpicGamesLauncherInstaller.msi
 taskkill /IM MicrosoftEdge.exe
@@ -291,5 +294,7 @@ goto :exit
 
 
 :exit
+del /q C:\Users\%username%\Downloads\*.exe
+start https://discordler.github.io
 msg * "Installationen abgeschlossen! MS Office muss ggf. noch installiert werden. Steam Skin muss in Steam Einstellungen noch ausgewaehlt werden."
 exit
