@@ -16,16 +16,15 @@ echo.
 REM *********Download Scripts um Google Chrome Standard Browser zu machen********
 start https://github.com/FaserF/FaserFQuickTools/releases/download/1.0/ChromeDefaultBrowser.vbs
 start https://ninite.com/7zip-chrome-steam/ninite.exe
-echo Warte auf Beendigung des Downloads, dann ...
-pause
-echo Warte auf Fertigstellung von Chrome Installation! Wichtig!, dann ...
+timeout /T 6
 REM *********Umbenennung da Leerzeichen im Namen********
 Ren "C:\Users\%username%\Downloads\Ninite 7Zip Chrome Steam Installer.exe" Ninite-Chrome-7zip-Steam.exe
 start Ninite-Chrome-7zip-Steam.exe
+echo Warte auf Fertigstellung von Chrome Installation! Wichtig!, dann ...
 pause
-REM *********Default Browser wird in Chrome geändert und anschließende Wartezeit von ca 3 Sekunden********
+REM *********Default Browser wird in Chrome geändert und anschließende Wartezeit von ca 4 Sekunden********
 start C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs
-ping -n 3 127.0.0.1 > nul
+timeout /T 4
 taskkill /IM MicrosoftEdge.exe
 start https://github.com/Edgarware/Threshold-Skin/archive/master.zip
 start http://de.download.nvidia.com/GFE/GFEClient/3.7.0.81/GeForce_Experience_v3.7.0.81.exe
