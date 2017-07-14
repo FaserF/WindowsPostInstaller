@@ -15,13 +15,15 @@ Div. Probleme bei automatischen downloads und Installationen wurden gefixt.
 gehen. Hier erstellen wir eine Datei namens "SetupComplete.cmd", mit dem Inhalt:
 
 @echo off
-copy "%WINDIR%\Setup\Files\AutomaticWindowsAfterinstall.bat" "C:\Users\%username%\Downloads\AutomaticWindowsAfterinstall.bat"
 rd /q /s "%WINDIR%\Setup\Files"
 del /q /f "%0"
+echo D | xcopy /s /y "DownloadAutomaticWindowsAfterinstall.bat" "C:\Users\%username%\Downloads\DownloadAutomaticWindowsAfterinstall.bat"
+msg * "Um die Installation abzuschliessen bitte die Datei ~DownloadAutomaticWindowsAfterinstall.bat~ im Download Ordner ausfuehren."
+exit
 
-(Ist die Date bereits vorhanden, lediglich die 2. Zeile von oben hinzufügen!)
-3. Nun noch die Dateien "AutomaticWindowsAfterinstall.bat" und "ChromeDefaultBrowser.vbs" von diesem Github (https://github.com/FaserF/FaserFQuickTools/releases) herunterladen und auf den Stick unter 
-"\sources\$OEM$\$$\Setup\Files" kopieren
+(Ist die Datei bereits vorhanden, lediglich die 2. Zeile von oben hinzufügen!)
+3. Nun noch die Dateien "DownloadAutomaticWindowsAfterinstall.bat" von diesem Github (https://github.com/FaserF/FaserFQuickTools/blob/master/Windows%20Afterinstall/DownloadAutomaticWindowsAfterinstall.bat) herunterladen und auf den Stick unter 
+"\sources\$OEM$\$$\Setup\Scripts" kopieren
 
 ## Unterstützte Geräte
 
