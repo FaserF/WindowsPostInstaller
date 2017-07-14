@@ -28,7 +28,7 @@ REM *********Default Browser wird in Chrome geändert und anschließende Warteze
 start C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs
 ping -n 3 127.0.0.1 > nul
 start https://github.com/Edgarware/Threshold-Skin/archive/master.zip
-start http://de.download.nvidia.com/GFE/GFEClient/3.5.0.70/GeForce_Experience_v3.5.0.70.exe
+start http://de.download.nvidia.com/GFE/GFEClient/3.7.0.81/GeForce_Experience_v3.7.0.81.exe
 start https://www.netzwelt.de/software-download/38551-driver-booster.html
 start https://discordapp.com/api/download?platform=win
 start https://app.prntscr.com/build/setup-lightshot.exe
@@ -48,7 +48,7 @@ del nvidiainstall.tmp )
 start DiscordSetup.exe
 start setup-lightshot.exe
 taskkill /IM MicrosoftEdge.exe
-echo Driver Booster Lizenz (läuft ab: Juni 2017): AEA62-9AB38-55C75-339B4 > "C:\Users\%username%\Downloads\DriverBoosterKey.txt"
+echo Driver Booster 4 Lizenz (läuft ab: 10.01.2018): 6BCA2-00A17-7B3E8-453B4 > "C:\Users\%username%\Downloads\DriverBoosterKey.txt"
 echo Installationen gestartet. Warte auf Abschluss ALLER Installationen, dann ...
 pause
 del /q C:\Users\%username%\Downloads\*.exe
