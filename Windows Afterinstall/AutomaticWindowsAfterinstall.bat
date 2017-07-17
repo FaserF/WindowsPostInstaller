@@ -2,33 +2,38 @@
 title Windows Driver & Programm Installer by FaserF
 color 89
 :Default
+md C:\Users\%username%\Downloads\CustomInstall\
 REM *********Erstelle reg Eintrag zur Deaktivierung der Edge Speichern Aufforderung********
-echo Windows Registry Editor Version 5.00 > "C:\Users\%username%\Downloads\EdgeAutoDownload.reg"
-echo [HKEY_CURRENT_USER\SOFTWARE\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\Download] >> "C:\Users\%username%\Downloads\EdgeAutoDownload.reg"
-echo "EnableSavePrompt"=dword:00000000 >> "C:\Users\%username%\Downloads\EdgeAutoDownload.reg"
+echo Windows Registry Editor Version 5.00 > "C:\Users\%username%\Downloads\CustomInstall\EdgeAutoDownload.reg"
+echo [HKEY_CURRENT_USER\SOFTWARE\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\Download] >> "C:\Users\%username%\Downloads\CustomInstall\EdgeAutoDownload.reg"
+echo "EnableSavePrompt"=dword:00000000 >> "C:\Users\%username%\Downloads\CustomInstall\EdgeAutoDownload.reg"
 REM *********Erstelle reg Eintrag um Google Chrome Standard Browser zu machen********
-echo Set WshShell = WScript.CreateObject("WScript.Shell") > "C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs"
-echo WshShell.Run "%%windir%%\system32\control.exe /name Microsoft.DefaultPrograms /page pageDefaultProgram\pageAdvancedSettings?pszAppName=google%%20chrome" >> "C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs"
-echo WScript.Sleep 1200 >> "C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs"
-echo WshShell.SendKeys "{TAB}" >> "C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs"
-echo WshShell.SendKeys " " >> "C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs"
-echo WshShell.SendKeys "{TAB}" >> "C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs"
-echo WshShell.SendKeys "{TAB}" >> "C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs"
-echo WshShell.SendKeys " " >> "C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs"
-echo|set /p= "WScript.Quit" >> "C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs"
+echo Set WshShell = WScript.CreateObject("WScript.Shell") > "C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs"
+echo WshShell.Run "%%windir%%\system32\control.exe /name Microsoft.DefaultPrograms /page pageDefaultProgram\pageAdvancedSettings?pszAppName=google%%20chrome" >> "C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs"
+echo WScript.Sleep 1200 >> "C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs"
+echo WshShell.SendKeys "{TAB}" >> "C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs"
+echo WshShell.SendKeys " " >> "C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs"
+echo WshShell.SendKeys "{TAB}" >> "C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs"
+echo WshShell.SendKeys "{TAB}" >> "C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs"
+echo WshShell.SendKeys " " >> "C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs"
+echo|set /p= "WScript.Quit" >> "C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs"
+REM *********Erstelle Script Datei um ENTER als Eingabe zu verschicken***********
+echo >C:\Users\%username%\Downloads\CustomInstall\Enter.vbs set shell = CreateObject("WScript.Shell"):shell.SendKeys "{ENTER}"
 cd C:\Users\%username%\Downloads\
 cls
 echo             ============================================================
 echo                                    Automatische
 echo                   Treiber und Programm Installation by Fabian Seitz
-echo                         ----> Thanks to @KaiSMR und Luis
+echo                             Thanks to @KaiSMR und Luis
 echo             ============================================================
 echo.
 echo            Initialisiere Standard Installation
 echo.
 echo.
-start C:\Users\%username%\Downloads\EdgeAutoDownload.reg
-timeout /T 10
+start C:\Users\%username%\Downloads\CustomInstall\EdgeAutoDownload.reg
+timeout /T 1
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 start /min https://ninite.com/7zip-chrome-steam/ninite.exe
 timeout /T 10
 REM *********Umbenennung da Leerzeichen im Namen********
@@ -37,22 +42,22 @@ start Ninite-Chrome-7zip-Steam.exe
 echo Warte auf Fertigstellung von Chrome Installation! Wichtig!, dann
 timeout /T 60
 REM *********Default Browser wird in Chrome geändert und anschließende Wartezeit von ca 6 Sekunden********
-start C:\Users\%username%\Downloads\ChromeDefaultBrowser.vbs
-timeout /T 6
+start C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs
+timeout /T 4
 taskkill /IM MicrosoftEdge.exe
 start /min https://github.com/Edgarware/Threshold-Skin/archive/master.zip
 start /min http://www.metroforsteam.com/downloads/4.2.4.zip
-start /min http://de.download.nvidia.com/GFE/GFEClient/3.7.0.81/GeForce_Experience_v3.7.0.81.exe
-start /min https://www.netzwelt.de/software-download/38551-driver-booster.html
+start /min http://www.filehorse.com/download-nvidia-geforce-experience/download/
+start /min http://www.filehorse.com/download-driver-booster-free/download/
 start /min https://discordapp.com/api/download?platform=win
 start /min https://app.prntscr.com/build/setup-lightshot.exe
-start /min https://central.bitdefender.com/
 echo Warte auf Beendigung der Downloads, dann ...
 timeout /T 120
+taskkill /IM Chrome.exe /F
 REM *********Starten der Driver Booster Installation, da driverbooster Version im Namen trägt********
 dir /b C:\Users\%username%\Downloads\ | find "booster" > driverbstr.tmp
-for /f %%f IN ('findstr booster driverbstr.tmp') do (
-start C:\Users\%username%\Downloads\%%f /VERYSILENT /SUPPRESSMSGBOXES /NORESTART )
+for /f %%d IN ('findstr booster driverbstr.tmp') do (
+start C:\Users\%username%\Downloads\%%d /VERYSILENT /SUPPRESSMSGBOXES /NORESTART )
 del driverbstr.tmp
 REM *********Starten der NVIDIA Installation, da Geforce Version im Namen trägt********
 dir /b C:\Users\%username%\Downloads\ | find "GeForce" > nvidiainstall.tmp
@@ -65,9 +70,6 @@ echo Driver Booster 4 Lizenz (läuft ab: 10.01.2018): 6BCA2-00A17-7B3E8-453B4 > 
 start /min C:\Users\%username%\Downloads\DriverBoosterKey.txt
 echo Installationen gestartet. Abschluss aller Installationen geschieht im Hintergrund, nun werden Installations Files gelöscht und Steam Skin wird installiert ...
 REM *********Löschen aller Installationsfiles********
-del /q C:\Users\%username%\Downloads\*.reg
-del /q C:\Users\%username%\Downloads\*.vbs
-del /q C:\Users\%username%\Downloads\thanks
 
 cls
 echo             ============================================================
@@ -106,6 +108,7 @@ rd /s /q C:\Users\%username%\Downloads\Metro*
 goto :Start
 
 :Start
+start https://central.bitdefender.com/
 start https://www.mydealz.de/search?q=Bitdefender
 del /q C:\Users\%username%\Downloads\*.zip
 cd C:\Users\%username%\Downloads\
@@ -288,13 +291,14 @@ taskkill /IM MicrosoftEdge.exe
 echo Installationen gestartet.
 echo Dialog schließt sich in 5 Sekunden und loescht Installationsfiles.
 ping -n 6 127.0.0.1 > nul
-del /q C:\Users\%username%\Downloads\*.exe
 del /q C:\Users\%username%\Downloads\*.msi
 goto :exit
 
 
 :exit
 del /q C:\Users\%username%\Downloads\*.exe
+del /q C:\Users\%username%\Downloads\*.msi
+rd /s /q C:\Users\%username%\Downloads\CustomInstall\
 start https://discordler.github.io
 msg * "Installationen abgeschlossen! MS Office muss ggf. noch installiert werden. Steam Skin muss in Steam Einstellungen noch ausgewaehlt werden."
 exit
