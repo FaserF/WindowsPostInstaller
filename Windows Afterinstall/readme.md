@@ -1,4 +1,4 @@
-# AUTOMATISCHE WINDOWS AFTER INSTALLATION
+# AUTOMATISCHE WINDOWS POST INSTALLATION
 
 ## About
 
@@ -27,6 +27,7 @@ exit
 
 ## Unterstützte Geräte
 
+*Für Hauptinstallation werden alle Geräte unterstützt. Geräte Spezifische Features werden nur für folgende Geräte Supporte:
 - ASUS: Z97-AR; N53SN
 - Dell: T5500, M6500, E6510, E6520
 - Clevo: 
