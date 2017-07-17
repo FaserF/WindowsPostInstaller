@@ -1,6 +1,7 @@
 @echo off
 title Windows Driver & Programm Installer by FaserF
 color 89
+
 :Default
 md C:\Users\%username%\Downloads\CustomInstall\
 REM *********Erstelle reg Eintrag zur Deaktivierung der Edge Speichern Aufforderung********
@@ -41,7 +42,7 @@ Ren "C:\Users\%username%\Downloads\Ninite 7Zip Chrome Steam Installer.exe" Ninit
 start Ninite-Chrome-7zip-Steam.exe
 echo Warte auf Fertigstellung von Chrome Installation! Wichtig!, dann
 timeout /T 60
-REM *********Default Browser wird in Chrome geändert und anschließende Wartezeit von ca 6 Sekunden********
+REM *********Default Browser wird in Chrome geändert und anschließende Wartezeit von ca 4 Sekunden********
 start C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs
 timeout /T 4
 taskkill /IM MicrosoftEdge.exe
@@ -108,8 +109,10 @@ rd /s /q C:\Users\%username%\Downloads\Metro*
 goto :Start
 
 :Start
-start https://central.bitdefender.com/
-start https://www.mydealz.de/search?q=Bitdefender
+echo >C:\Users\%username%\Downloads\CustomInstall\Left.vbs set shell = CreateObject("WScript.Shell"):shell.SendKeys "{LEFT}"
+echo >C:\Users\%username%\Downloads\CustomInstall\Tab.vbs set shell = CreateObject("WScript.Shell"):shell.SendKeys "{TAB}"
+echo >C:\Users\%username%\Downloads\CustomInstall\Space.vbs set shell = CreateObject("WScript.Shell"):shell.SendKeys " "
+echo >C:\Users\%username%\Downloads\CustomInstall\AltF4.vbs set shell = CreateObject("WScript.Shell"):shell.SendKeys "%{f4}"
 del /q C:\Users\%username%\Downloads\*.zip
 cd C:\Users\%username%\Downloads\
 cls
@@ -153,9 +156,9 @@ start http://dlcdnet.asus.com/pub/ASUS/misc/usb30/Asmedia_USB3_V116351.zip
 start http://dlcdnet.asus.com/pub/ASUS/misc/utils/Turbo_LAN_Win7-8-81-10_V10700.zip
 start http://dlgbit.winfuture.de/21d53ef186363366551a0c51f5c7363e/58f5f505/software/realtek/2.81/0008-64bit_Win7_Win8_Win81_Win10_R281.exe
 start http://www.intel.de/content/www/de/de/support/network-and-i-o/wireless-networking/intel-wireless-products/intel-wireless-7200-series/intel-dual-band-wireless-ac-7260.html
-start http://pcsupport.lenovo.com/de/de/products/monitors-and-projectors/lcd-monitors/lenovo-y27g-monitor/downloads
+start http://download.lenovo.com/consumer/monitor/lenovo_artery_setup.exe
 echo 1. Treiber Installation. Warte auf Beendigung der Downloads, dann ...
-pause
+timeout /T 120
 cd C:\Program Files\7-Zip\
 7z x C:\Users\%username%\Downloads\AISuite_III_V10149_for_Z97.rar -oC:\Users\%username%\Downloads\AISuite_III_V10149_for_Z97\
 7z x C:\Users\%username%\Downloads\Asmedia_USB3_V116351.zip -oC:\Users\%username%\Downloads\Asmedia_USB3_V116351\
@@ -165,6 +168,7 @@ start *.exe
 start C:\Users\%username%\Downloads\Asmedia_USB3_V116351\AsusSetup.exe
 start C:\Users\%username%\Downloads\Turbo_LAN_Win7-8-81-10_V10700\Turbo_LAN_Win7-8-81-10_V10700\AsusSetup.exe
 start C:\Users\%username%\Downloads\AISuite_III_V10149_for_Z97\AsusSetup.exe
+start C:\Users\%username%\Downloads\lenovo_artery_setup.exe
 echo Bitte Treiber installieren, anschließend ...
 pause
 del /q C:\Users\%username%\Downloads\*.exe
@@ -175,35 +179,129 @@ start https://update.pushbullet.com/pushbullet_installer.exe
 start http://ubi.li/4vxt9
 start http://www.dm.origin.com/download
 start https://www.xdlab.ru/files/tagscan-6.0.22-setup.exe
-start https://sourceforge.net/projects/album-art/files/latest/download
+start https://downloads.sourceforge.net/project/album-art/album-art-xui/AlbumArtDownloaderXUI-1.02.exe?r=&ts=1500286400&use_mirror=netcologne
 start https://web.whatsapp.com/desktop/windows/release/x64/WhatsAppSetup.exe
 start https://www.battle.net/download/getInstallerForGame?os=win&locale=deDE&version=LIVE&gameProgram=BATTLENET_APP
 start https://launcher-public-service-prod06.ol.epicgames.com/launcher/api/installer/download/EpicGamesLauncherInstaller.msi
 start http://www.phoner.de/PhonerLiteSetup.exe
-start https://de.evga.com/precisionxoc/#download
 start https://download01.logi.com/web/ftp/pub/techsupport/gaming/LGS_8.91.48_x64_Logitech.exe
-start https://ninite.com/notepadplusplus-putty/ninite.exe
-start https://chrome.google.com/webstore/detail/material-dark-mkbhd/iiplegjeipnjdpgkeccfccnahofbckad
+start https://ninite.com/notepadplusplus/ninite.exe
 echo 2. Anwendungsinstallation. Warte auf Beendigung der Downloads, dann ...
-pause
-Ren "C:\Users\%username%\Downloads\Ninite Notepad PuTTY Installer.exe" Ninite-Putty-Notepad.exe
-REM UplayInstaller.exe /S
-REM OriginThinSetup.exe /VERYSILENT /SUPPRESSMSGBOXES /NORESTART
-REM tagscan-6.0.22-setup.exe /VERYSILENT /SUPPRESSMSGBOXES /NORESTART
-REM WhatsAppSetup.exe /VERYSILENT /SUPPRESSMSGBOXES /NORESTART
-start *.exe
-start EpicGamesLauncherInstaller.msi
-taskkill /IM MicrosoftEdge.exe
-echo Installationen gestartet.
-echo Dialog schließt sich in 5 Sekunden und loescht Installationsfiles.
-ping -n 6 127.0.0.1 > nul
-del /q C:\Users\%username%\Downloads\*.exe
-del /q C:\Users\%username%\Downloads\*.msi
+timeout /T 120
+
+start C:\Users\%username%\Downloads\UplayInstaller.exe /S
+start C:\Users\%username%\Downloads\OriginThinSetup.exe /VERYSILENT /SUPPRESSMSGBOXES /NORESTART
+start C:\Users\%username%\Downloads\tagscan-6.0.22-setup.exe /VERYSILENT /SUPPRESSMSGBOXES /NORESTART
+start C:\Users\%username%\Downloads\WhatsAppSetup.exe /VERYSILENT /SUPPRESSMSGBOXES /NORESTART
+REM *****Starte Unified Remote Automatische Installation*******
+dir /b C:\Users\%username%\Downloads\ | find "ServerSetup" > UnifiedRemote.tmp
+for /f %%u IN ('findstr ServerSetup UnifiedRemote.tmp') do (
+start C:\Users\%username%\Downloads\%%u )
+del UnifiedRemote.tmp
+timeout /T 1
+start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Tab.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+timeout /T 13
+start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+timeout /T 3
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+REM *******Starte Pushbullet Automatische Installation******
+start C:\Users\%username%\Downloads\pushbullet_installer.exe
+timeout /T 1
+start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+timeout /T 1
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+timeout /T 2
+start C:\Users\%username%\Downloads\CustomInstall\Space.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+REM *****Starte AlbumArt Automatische Installation*******
+start C:\Users\%username%\Downloads\AlbumArtDownloaderXUI-1.02.exe
+timeout /T 1
+start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+timeout /T 1
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+timeout /T 2
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+REM *****Starte Phoner Lite Installation*******
+start C:\Users\%username%\Downloads\PhonerLiteSetup.exe
+timeout /T 1
+start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+timeout /T 1
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Space.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+timeout /T 3
+start C:\Users\%username%\Downloads\CustomInstall\Space.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+REM *****Starte Epic Games Installation*******
+dir /b C:\Users\%username%\Downloads\ | find "EpicGamesLauncherInstaller" > EpicGamesLauncherInstaller.tmp
+for /f %%e IN ('findstr EpicGamesLauncherInstaller EpicGamesLauncherInstaller.tmp') do (
+start C:\Users\%username%\Downloads\%%e )
+del EpicGamesLauncherInstaller.tmp
+
+start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+timeout /T 1
+start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+timeout /T 1
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+timeout /T 15
+REM *****Starte Logitech Automatische Installation*******
+dir /b C:\Users\%username%\Downloads\ | find "Logitech" > Logitech.tmp
+for /f %%l IN ('findstr Logitech Logitech.tmp') do (
+start C:\Users\%username%\Downloads\%%l )
+del Logitech.tmp
+timeout /T 10
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+timeout /T 60
+start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Tab.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+timeout /T 1
+start C:\Users\%username%\Downloads\CustomInstall\AltF4.vbs
+
+Ren "C:\Users\%username%\Downloads\Ninite Notepad Installer.exe" Ninite-Notepad.exe
+start C:\Users\%username%\Downloads\Ninite-Notepad.exe
+
+REM *****Starte Battlenet Installation*******
+start C:\Users\%username%\Downloads\Battle.net_Setup.exe
+timeout /T 1
+start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+timeout /T 30
+
+taskkill /IM Chrome.exe /F
+echo Dialog schließt sich in wenigen Sekunden und loescht Installationsfiles.
+start https://de.evga.com/precisionxoc/#download
 goto :exit
 
 :Clevo
 start https://d34vhvz8ul1ifj.cloudfront.net/Driver/VIA_HD_Audio_v11_1100f_Win10RS1_logo_11012016.zip
-start https://downloadmirror.intel.com/24345/a08/Intel%20Driver%20Update%20Utility%20Installer.exe
 start https://www.unifiedremote.com/download/windows
 start https://update.pushbullet.com/pushbullet_installer.exe
 start http://ubi.li/4vxt9
@@ -212,17 +310,64 @@ start https://www.xdlab.ru/files/tagscan-6.0.20-setup.exe
 start https://sourceforge.net/projects/album-art/files/latest/download
 start https://web.whatsapp.com/desktop/windows/release/x64/WhatsAppSetup.exe
 echo Warte auf Beendigung des Downloads, dann ...
-pause
+timeout /T 120
 cd C:\Program Files\7-Zip\
 7z x C:\Users\%username%\Downloads\VIA_HD_Audio_v11_1100f_Win10RS1_logo_11012016.zip -oC:\Users\%username%\Downloads\
 cd C:\Users\%username%\Downloads\
+start C:\Users\%username%\Downloads\UplayInstaller.exe /S
+start C:\Users\%username%\Downloads\OriginThinSetup.exe /VERYSILENT /SUPPRESSMSGBOXES /NORESTART
+start C:\Users\%username%\Downloads\tagscan-6.0.22-setup.exe /VERYSILENT /SUPPRESSMSGBOXES /NORESTART
+start C:\Users\%username%\Downloads\WhatsAppSetup.exe /VERYSILENT /SUPPRESSMSGBOXES /NORESTART
+REM *****Starte Unified Remote Automatische Installation*******
+dir /b C:\Users\%username%\Downloads\ | find "ServerSetup" > UnifiedRemote.tmp
+for /f %%u IN ('findstr ServerSetup UnifiedRemote.tmp') do (
+start C:\Users\%username%\Downloads\%%u )
+del UnifiedRemote.tmp
+timeout /T 1
+start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Tab.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+timeout /T 13
+start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+timeout /T 3
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+REM *******Starte Pushbullet Automatische Installation******
+start C:\Users\%username%\Downloads\pushbullet_installer.exe
+timeout /T 1
+start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+timeout /T 1
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+timeout /T 2
+start C:\Users\%username%\Downloads\CustomInstall\Space.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+REM *****Starte AlbumArt Automatische Installation*******
+start C:\Users\%username%\Downloads\AlbumArtDownloaderXUI-1.02.exe
+timeout /T 1
+start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+timeout /T 1
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+timeout /T 2
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+
 start C:\Users\%username%\Downloads\v11_1100f_Win10RS1_logo_11012016\SETUP.EXE
-start *.exe
-taskkill /IM MicrosoftEdge.exe
-echo Installationen gestartet.
-echo Dialog schließt sich in 5 Sekunden und loescht Installationsfiles.
-del /q C:\Users\%username%\Downloads\*.exe
-ping -n 6 127.0.0.1 > nul
+taskkill /IM Chrome.exe /F
+echo Dialog schließt sich in wenigen Sekunden und loescht Installationsfiles.
 goto :exit
 
 :M6500
@@ -300,5 +445,7 @@ del /q C:\Users\%username%\Downloads\*.exe
 del /q C:\Users\%username%\Downloads\*.msi
 rd /s /q C:\Users\%username%\Downloads\CustomInstall\
 start https://discordler.github.io
+start https://central.bitdefender.com/
+start https://www.mydealz.de/search?q=Bitdefender
 msg * "Installationen abgeschlossen! MS Office muss ggf. noch installiert werden. Steam Skin muss in Steam Einstellungen noch ausgewaehlt werden."
 exit
