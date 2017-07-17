@@ -1,5 +1,5 @@
 @echo off
-title Windows Driver & Programm Installer by FaserF - V2.0.1
+title Windows Driver & Programm Installer by FaserF - V2.0.2
 color 89
 
 :Default
@@ -25,15 +25,17 @@ cls
 echo             ============================================================
 echo                                    Automatische
 echo                   Treiber und Programm Installation by Fabian Seitz
-echo                             Thanks to @KaiSMR und Luis
+echo                             Thanks to @KaiSMR und @Bilalui
 echo             ============================================================
 echo.
 echo            Initialisiere Standard Installation
+echo            WICHTIG: NICHTS TIPPEN/ANKLICKEN, nur bei Aufforderung! Ansonsten Abbruch der Automatik.
 echo.
 echo.
 start C:\Users\%username%\Downloads\CustomInstall\EdgeAutoDownload.reg
 timeout /T 1
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+timeout /T 1
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 start /min https://ninite.com/7zip-chrome-steam/ninite.exe
 timeout /T 10
@@ -42,6 +44,7 @@ Ren "C:\Users\%username%\Downloads\Ninite 7Zip Chrome Steam Installer.exe" Ninit
 start Ninite-Chrome-7zip-Steam.exe
 echo Warte auf Fertigstellung von Chrome Installation! Wichtig!, dann
 timeout /T 60
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 REM *********Default Browser wird in Chrome geändert und anschließende Wartezeit von ca 4 Sekunden********
 start C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs
 timeout /T 4
