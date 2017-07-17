@@ -1,5 +1,5 @@
 @echo off
-title Windows Driver & Programm Installer by FaserF
+title Windows Driver & Programm Installer by FaserF - V2.0.1
 color 89
 
 :Default
@@ -307,7 +307,7 @@ start https://update.pushbullet.com/pushbullet_installer.exe
 start http://ubi.li/4vxt9
 start http://www.dm.origin.com/download
 start https://www.xdlab.ru/files/tagscan-6.0.20-setup.exe
-start https://sourceforge.net/projects/album-art/files/latest/download
+start https://downloads.sourceforge.net/project/album-art/album-art-xui/AlbumArtDownloaderXUI-1.02.exe?r=&ts=1500286400&use_mirror=netcologne
 start https://web.whatsapp.com/desktop/windows/release/x64/WhatsAppSetup.exe
 echo Warte auf Beendigung des Downloads, dann ...
 timeout /T 120
