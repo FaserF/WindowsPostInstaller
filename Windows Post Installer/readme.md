@@ -14,11 +14,13 @@ Div. Probleme bei automatischen downloads und Installationen wurden gefixt.
 "\sources\$OEM$\$$\Setup\Scripts" 
 gehen. Hier erstellen wir eine Datei namens "SetupComplete.cmd", mit dem Inhalt (ohne 2.X ):
 
-2.1 @echo off 
-2.2 xcopy /s /y "%WINDIR%\Setup\Files\Get-WindowsPostInstaller.bat" "C:\Users\%username%\Downloads\Get-WindowsPostInstaller.bat"
-2.3 rd /q /s "%WINDIR%\Setup\Files" 
-2.4 del /q /f "%0"
-2.5 exit
+```
+@echo off 
+xcopy /s /y "%WINDIR%\Setup\Files\Get-WindowsPostInstaller.bat" "C:\Users\%username%\Downloads\Get-WindowsPostInstaller.bat"
+rd /q /s "%WINDIR%\Setup\Files" 
+del /q /f "%0"
+exit
+```
 
 3. Nun noch die Dateien "Get-WindowsPostInstaller.bat" von diesem Github ( https://github.com/FaserF/FaserFQuickTools/blob/master/Windows%20Post%20Installer/Get-WindowsPostInstaller.bat ) herunterladen und auf den Stick unter 
 "\sources\$OEM$\$$\Setup\Files" kopieren
