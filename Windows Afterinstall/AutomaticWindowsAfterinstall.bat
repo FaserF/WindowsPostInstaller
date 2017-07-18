@@ -1,5 +1,5 @@
 @echo off
-title Windows Driver & Programm Installer by FaserF - V3.1.0
+title Windows Driver & Programm Installer by FaserF - V3.1.1
 color 89
 
 :Default
@@ -95,13 +95,14 @@ SET /p Skin=<Skin.txt
 if "%Skin%"=="Threshold" goto :Threshold
 if "%Skin%"=="Metro" goto :Metro
 if "%Skin%"=="skip" goto :Start
-if "%SYSMODEL%"=="kein" goto :Start
+if "%Skin%"=="kein" goto :Start
 goto :SteamSkin
 
 :SteamSkin
 cls
 echo             ============================================================
-echo                                Steam Skin auswaehlen
+echo                               Manuelle Steam Skin Auswahl
+echo                                da Skin.txt nicht gefunden
 echo             ============================================================
 echo.
 echo              Hinweis: Skin muss anschließend in Steam Einstellungen ausgeaehlt werden!
@@ -117,6 +118,7 @@ set /p Skin="Bitte Auswahl eingeben: "
 if %Skin%==1 goto :Threshold
 if %Skin%==2 goto :Metro
 if %Skin%==3 goto :Start
+goto :Start
 
 :Threshold
 REM *********Installation neuester Version des Steam Skins - muss nachträglich noch in Steam Einstellungen ausgewählt werden!********
@@ -142,18 +144,19 @@ echo >C:\Users\%username%\Downloads\CustomInstall\Space.vbs set shell = CreateOb
 echo >C:\Users\%username%\Downloads\CustomInstall\AltF4.vbs set shell = CreateObject("WScript.Shell"):shell.SendKeys "%{f4}"
 del /q C:\Users\%username%\Downloads\*.zip
 cd C:\Users\%username%\Downloads\
-cls
+goto :Ermittelung
 
 :Ermittelung
 if "%SYSMODEL%"=="ASUS Z97-AR" goto :Z97-AR
-if "%SYSMODEL%"=="2" goto :Clevo
-if "%SYSMODEL%"=="3" goto :T5500
-if "%SYSMODEL%"=="4" goto :M6500
-if "%SYSMODEL%"=="5" goto :VIII
+if "%SYSMODEL%"=="Clevo" goto :Clevo
+if "%SYSMODEL%"=="Precision T5500" goto :T5500
+if "%SYSMODEL%"=="Precision M6500" goto :M6500
+if "%SYSMODEL%"=="ASUS VIII" goto :VIII
 if "%SYSMODEL%"=="Latitude 7480" goto :RenamePC
 goto :Auswahl
 
 :Auswahl
+cls
 echo             ========================================================================
 echo                               Hauptinstallation abgeschlossen!
 echo              Dein Geraet wurde leider nicht in der unterstuetzten Liste gefunden!
@@ -488,14 +491,20 @@ del /q C:\Users\%username%\Downloads\*.msi
 goto :RenamePC
 
 :RenamePC
+del /q C:\Users\%username%\Downloads\*.exe
+del /q C:\Users\%username%\Downloads\*.msi
+del /q C:\Users\%username%\Downloads\Skin.txt
 set NEWPCNAME=""
 set /p NEWPCNAME="Bitte neuen Computernamen eingeben: "
 
 start C:\Users\%username%\Downloads\CustomInstall\RenamePC.vbs %NEWPCNAME%
+timeout /T 1
+start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+timeout /T 1
+goto :Exit
 
 :Exit
-del /q C:\Users\%username%\Downloads\*.exe
-del /q C:\Users\%username%\Downloads\*.msi
 rd /s /q C:\Users\%username%\Downloads\CustomInstall\
 start https://discordler.github.io
 start https://central.bitdefender.com/
