@@ -1,5 +1,5 @@
 @echo off
-title Windows Driver & Programm Installer by FaserF - V2.0.2
+title Windows Driver & Programm Installer by FaserF - V3.1.0
 color 89
 
 :Default
@@ -20,6 +20,8 @@ echo WshShell.SendKeys " " >> "C:\Users\%username%\Downloads\CustomInstall\Chrom
 echo|set /p= "WScript.Quit" >> "C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs"
 REM *********Erstelle Script Datei um ENTER als Eingabe zu verschicken***********
 echo >C:\Users\%username%\Downloads\CustomInstall\Enter.vbs set shell = CreateObject("WScript.Shell"):shell.SendKeys "{ENTER}"
+REM ********Lese Modellnummer aus, um richtige Programme & Treiber zuzuordnen*********
+for /f "tokens=2 delims==" %%I in ('wmic computersystem get model /format:list') do set "SYSMODEL=%%I"
 cd C:\Users\%username%\Downloads\
 cls
 echo             ============================================================
@@ -32,6 +34,7 @@ echo            Initialisiere Standard Installation
 echo            WICHTIG: NICHTS TIPPEN/ANKLICKEN, nur bei Aufforderung! Ansonsten Abbruch der Automatik.
 echo.
 echo.
+echo           SYSTEM MODELL: %SYSMODEL%
 start C:\Users\%username%\Downloads\CustomInstall\EdgeAutoDownload.reg
 timeout /T 1
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
@@ -55,9 +58,20 @@ start /min http://www.filehorse.com/download-nvidia-geforce-experience/download/
 start /min http://www.filehorse.com/download-driver-booster-free/download/
 start /min https://discordapp.com/api/download?platform=win
 start /min https://app.prntscr.com/build/setup-lightshot.exe
+start /min https://github.com/FaserF/FaserFQuickTools/releases/download/1.0/RenamePC.vbs
 echo Warte auf Beendigung der Downloads, dann ...
+REM ****Überprüfe ob User Steam Skin bereits geaehlt hat******
+if not Exist "Skin.txt" (
+echo Schreibe in diesen File [beim naechsten mal] den gewünschten Steam Skin hinein, > Skin.txt
+echo um den Schritt waehrende der Installation ohne Nachfrage ablaufen zu lassen. >> Skin.txt
+echo Zur Auswahl stehen Metro , Threshold oder skip um keinen zu nehmen >> Skin.txt
+echo In dieser Datei darf nur ein Wort stehen, loesche also diesen Text Inhalt hinaus >> Skin.txt
+start /min Skin.txt
+)
+
 timeout /T 120
 taskkill /IM Chrome.exe /F
+move C:\Users\%username%\Downloads\RenamePC.vbs C:\Users\%username%\Downloads\CustomInstall\RenamePC.vbs
 REM *********Starten der Driver Booster Installation, da driverbooster Version im Namen trägt********
 dir /b C:\Users\%username%\Downloads\ | find "booster" > driverbstr.tmp
 for /f %%d IN ('findstr booster driverbstr.tmp') do (
@@ -75,6 +89,16 @@ start /min C:\Users\%username%\Downloads\DriverBoosterKey.txt
 echo Installationen gestartet. Abschluss aller Installationen geschieht im Hintergrund, nun werden Installations Files gelöscht und Steam Skin wird installiert ...
 REM *********Löschen aller Installationsfiles********
 
+:AutoSteamSkin
+SET /p Skin=<Skin.txt
+
+if "%Skin%"=="Threshold" goto :Threshold
+if "%Skin%"=="Metro" goto :Metro
+if "%Skin%"=="skip" goto :Start
+if "%SYSMODEL%"=="kein" goto :Start
+goto :SteamSkin
+
+:SteamSkin
 cls
 echo             ============================================================
 echo                                Steam Skin auswaehlen
@@ -87,12 +111,12 @@ echo   [2]    Metro for Steam Skin [Windows 8 Style Theme]
 echo   [3]    keinen [Standard Steam Skin]
 echo.
 
-set asw=0
-set /p asw="Bitte Auswahl eingeben: "
+set Skin=0
+set /p Skin="Bitte Auswahl eingeben: "
 
-if %asw%==1 goto :Threshold
-if %asw%==2 goto :Metro
-if %asw%==3 goto :Start
+if %Skin%==1 goto :Threshold
+if %Skin%==2 goto :Metro
+if %Skin%==3 goto :Start
 
 :Threshold
 REM *********Installation neuester Version des Steam Skins - muss nachträglich noch in Steam Einstellungen ausgewählt werden!********
@@ -119,12 +143,24 @@ echo >C:\Users\%username%\Downloads\CustomInstall\AltF4.vbs set shell = CreateOb
 del /q C:\Users\%username%\Downloads\*.zip
 cd C:\Users\%username%\Downloads\
 cls
-echo             ============================================================
-echo                           Hauptinstallation abgeschlossen!
-echo                Du kannst ab hier beenden oder dein Geraet auswaehlen.
-echo             ============================================================
+
+:Ermittelung
+if "%SYSMODEL%"=="ASUS Z97-AR" goto :Z97-AR
+if "%SYSMODEL%"=="2" goto :Clevo
+if "%SYSMODEL%"=="3" goto :T5500
+if "%SYSMODEL%"=="4" goto :M6500
+if "%SYSMODEL%"=="5" goto :VIII
+if "%SYSMODEL%"=="Latitude 7480" goto :RenamePC
+goto :Auswahl
+
+:Auswahl
+echo             ========================================================================
+echo                               Hauptinstallation abgeschlossen!
+echo              Dein Geraet wurde leider nicht in der unterstuetzten Liste gefunden!
+echo                     Du kannst ab hier beenden oder ein Geraet auswaehlen.
+echo             ========================================================================
 echo.
-echo            Bitte Geraet auswaehlen! (Internet Verbindung benoetigt!)
+echo            Dein Geraet lautet: %SYSMODEL%
 echo.
 echo.
 echo   [1]    Asus Z97-AR / PC
@@ -137,7 +173,6 @@ echo   [0]    EXIT / Beenden
 echo.
 echo.
 
-:Auswahl
 set asw=0
 set /p asw="Bitte Auswahl eingeben: "
 
@@ -147,13 +182,15 @@ if %asw%==3 goto :T5500
 if %asw%==4 goto :M6500
 if %asw%==5 goto :VIII
 
-if %asw%==0 goto :exit
-if %asw%==exit goto :exit
+if %asw%==0 goto :RenamePC
+if %asw%==exit goto :RenamePC
 
 echo Nächste Auswahl? Bitte eine Zahl von oben waehlen!
 goto:Auswahl
 
 :Z97-AR
+echo ASUS Z97-AR wurde ermittelt oder ausgewaehlt!
+echo.
 start http://dlcdnet.asus.com/pub/ASUS/misc/utils/AISuite_III_V10149_for_Z97.rar
 start http://dlcdnet.asus.com/pub/ASUS/misc/usb30/Asmedia_USB3_V116351.zip
 start http://dlcdnet.asus.com/pub/ASUS/misc/utils/Turbo_LAN_Win7-8-81-10_V10700.zip
@@ -301,9 +338,11 @@ timeout /T 30
 taskkill /IM Chrome.exe /F
 echo Dialog schließt sich in wenigen Sekunden und loescht Installationsfiles.
 start https://de.evga.com/precisionxoc/#download
-goto :exit
+goto :RenamePC
 
 :Clevo
+echo Clevo Notebook wurde ermittelt oder ausgewaehlt!
+echo.
 start https://d34vhvz8ul1ifj.cloudfront.net/Driver/VIA_HD_Audio_v11_1100f_Win10RS1_logo_11012016.zip
 start https://www.unifiedremote.com/download/windows
 start https://update.pushbullet.com/pushbullet_installer.exe
@@ -371,9 +410,11 @@ start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 start C:\Users\%username%\Downloads\v11_1100f_Win10RS1_logo_11012016\SETUP.EXE
 taskkill /IM Chrome.exe /F
 echo Dialog schließt sich in wenigen Sekunden und loescht Installationsfiles.
-goto :exit
+goto :RenamePC
 
 :M6500
+echo Dell Precision M6500 wurde ermittelt oder ausgewaehlt!
+echo.
 start http://www.driverscape.com/files/DriverToolkitInstaller.exe
 start https://www2.ati.com/drivers/firepro/mobile/dell-mobile-radeon-pro-software-enterprise-17.q1.1-apr3.exe
 start https://downloads.dell.com/input/PREM6500_DRVR_WIN_R280879.EXE
@@ -387,9 +428,11 @@ echo Installationen gestartet.
 echo Dialog schließt sich in 5 Sekunden und loescht Installationsfiles.
 del /q C:\Users\%username%\Downloads\*.exe
 ping -n 6 127.0.0.1 > nul
-goto :exit
+goto :RenamePC
 
 :T5500
+echo Dell Precision T5500 wurde ermittelt oder ausgewaehlt!
+echo.
 start http://www.nvidia.de/content/DriverDownload-March2009/confirmation.php?url=/Windows/Quadro_Certified/377.11/377.11-quadro-grid-desktop-notebook-win10-64bit-international-whql.exe&lang=de&type=Quadro
 start http://download.msi.com/uti_exe/vga/MSIAfterburnerSetup.zip
 echo Warte auf Beendigung des Downloads, dann ...
@@ -404,9 +447,11 @@ echo Installationen gestartet.
 echo Dialog schließt sich in 5 Sekunden und loescht Installationsfiles.
 del /q C:\Users\%username%\Downloads\*.exe
 ping -n 6 127.0.0.1 > nul
-goto :exit
+goto :RenamePC
 
 :VIII
+echo ASUS Maximus Ranger VIII wurde ermittelt oder ausgewaehlt!
+echo.
 start http://dlcdnet.asus.com/pub/ASUS/misc/utils/AISuite3_Win7-81-10_MaxVIII_Series_V10130.zip
 start http://dlcdnet.asus.com/pub/ASUS/misc/usb30/Asmedia_USB3_V116351.zip
 echo 1. Treiber Installation. Warte auf Beendigung der Downloads, dann ...
@@ -440,10 +485,15 @@ echo Installationen gestartet.
 echo Dialog schließt sich in 5 Sekunden und loescht Installationsfiles.
 ping -n 6 127.0.0.1 > nul
 del /q C:\Users\%username%\Downloads\*.msi
-goto :exit
+goto :RenamePC
 
+:RenamePC
+set NEWPCNAME=""
+set /p NEWPCNAME="Bitte neuen Computernamen eingeben: "
 
-:exit
+start C:\Users\%username%\Downloads\CustomInstall\RenamePC.vbs %NEWPCNAME%
+
+:Exit
 del /q C:\Users\%username%\Downloads\*.exe
 del /q C:\Users\%username%\Downloads\*.msi
 rd /s /q C:\Users\%username%\Downloads\CustomInstall\
