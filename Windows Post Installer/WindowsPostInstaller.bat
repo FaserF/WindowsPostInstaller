@@ -1,5 +1,5 @@
 @echo off
-title Automatic Windows Post Installer by FaserF - V3.1.1
+title Automatic Windows Post Installer by FaserF - V3.1.2
 color 89
 
 :Default
@@ -20,6 +20,9 @@ echo WshShell.SendKeys " " >> "C:\Users\%username%\Downloads\CustomInstall\Chrom
 echo|set /p= "WScript.Quit" >> "C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs"
 REM *********Erstelle Script Datei um ENTER als Eingabe zu verschicken***********
 echo >C:\Users\%username%\Downloads\CustomInstall\Enter.vbs set shell = CreateObject("WScript.Shell"):shell.SendKeys "{ENTER}"
+REM *********Erstelle Script zum Windows Update starten*********
+echo Set automaticUpdates = CreateObject("Microsoft.Update.AutoUpdate") > "C:\Users\%username%\Downloads\CustomInstall\WinUpdate.vbs"
+echo automaticUpdates.DetectNow() >> "C:\Users\%username%\Downloads\CustomInstall\WinUpdate.vbs"
 REM ********Lese Modellnummer aus, um richtige Programme & Treiber zuzuordnen*********
 for /f "tokens=2 delims==" %%I in ('wmic computersystem get model /format:list') do set "SYSMODEL=%%I"
 cd C:\Users\%username%\Downloads\
@@ -40,6 +43,13 @@ timeout /T 1
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 timeout /T 1
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+
+start C:\Users\%username%\Downloads\CustomInstall\WinUpdate.vbs
+timeout /T 1
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+timeout /T 1
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+
 start /min https://ninite.com/7zip-chrome-steam/ninite.exe
 timeout /T 10
 REM *********Umbenennung da Leerzeichen im Namen********
@@ -85,9 +95,9 @@ del nvidiainstall.tmp
 start DiscordSetup.exe /ANYSWITCH
 start setup-lightshot.exe /VERYSILENT /SUPPRESSMSGBOXES /NORESTART
 echo Driver Booster 4 Lizenz (läuft ab: 10.01.2018): 6BCA2-00A17-7B3E8-453B4 > "C:\Users\%username%\Downloads\DriverBoosterKey.txt"
+echo Alternative Driver Booster 4 Lizenz (läuft ab: 18.01.2018): 61B05-C956B-195E0-214B4 >> "C:\Users\%username%\Downloads\DriverBoosterKey.txt"
 start /min C:\Users\%username%\Downloads\DriverBoosterKey.txt
 echo Installationen gestartet. Abschluss aller Installationen geschieht im Hintergrund, nun werden Installations Files gelöscht und Steam Skin wird installiert ...
-REM *********Löschen aller Installationsfiles********
 
 :AutoSteamSkin
 SET /p Skin=<Skin.txt
@@ -430,7 +440,7 @@ taskkill /IM MicrosoftEdge.exe
 echo Installationen gestartet.
 echo Dialog schließt sich in 5 Sekunden und loescht Installationsfiles.
 del /q C:\Users\%username%\Downloads\*.exe
-ping -n 6 127.0.0.1 > nul
+timeout /T 5
 goto :RenamePC
 
 :T5500
@@ -449,7 +459,7 @@ taskkill /IM MicrosoftEdge.exe
 echo Installationen gestartet.
 echo Dialog schließt sich in 5 Sekunden und loescht Installationsfiles.
 del /q C:\Users\%username%\Downloads\*.exe
-ping -n 6 127.0.0.1 > nul
+timeout /T 5
 goto :RenamePC
 
 :VIII
@@ -486,7 +496,7 @@ start *.exe
 taskkill /IM MicrosoftEdge.exe
 echo Installationen gestartet.
 echo Dialog schließt sich in 5 Sekunden und loescht Installationsfiles.
-ping -n 6 127.0.0.1 > nul
+timeout /T 5
 del /q C:\Users\%username%\Downloads\*.msi
 goto :RenamePC
 
@@ -495,7 +505,7 @@ del /q C:\Users\%username%\Downloads\*.exe
 del /q C:\Users\%username%\Downloads\*.msi
 del /q C:\Users\%username%\Downloads\Skin.txt
 set NEWPCNAME=""
-set /p NEWPCNAME="Bitte neuen Computernamen eingeben: "
+set /p NEWPCNAME="Bitte neuen Computernamen eingeben: (Frei lassen um Namen zu behalten)"
 
 start C:\Users\%username%\Downloads\CustomInstall\RenamePC.vbs %NEWPCNAME%
 timeout /T 1
