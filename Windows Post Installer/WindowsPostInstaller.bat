@@ -1,9 +1,14 @@
 @echo off
-title Automatic Windows Post Installer by FaserF - V3.1.2
+title Automatic Windows Post Installer by FaserF - V3.2.0
 color 89
 
 :Default
 md C:\Users\%username%\Downloads\CustomInstall\
+echo                           Windows Post Installer - LOG > WPI_Log.txt
+echo             ============================================================ >> WPI_Log.txt
+echo %TIME% Programm ist gestartet >> WPI_Log.txt
+echo             Probleme? https://github.com/FaserF/FaserFQuickTools/issues >> WPI_Log.txt
+echo ######################################################################## >> WPI_Log.txt
 REM *********Erstelle reg Eintrag zur Deaktivierung der Edge Speichern Aufforderung********
 echo Windows Registry Editor Version 5.00 > "C:\Users\%username%\Downloads\CustomInstall\EdgeAutoDownload.reg"
 echo [HKEY_CURRENT_USER\SOFTWARE\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\Download] >> "C:\Users\%username%\Downloads\CustomInstall\EdgeAutoDownload.reg"
@@ -62,6 +67,7 @@ REM *********Default Browser wird in Chrome geändert und anschließende Warteze
 start C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs
 timeout /T 4
 taskkill /IM MicrosoftEdge.exe
+slmgr.vbs /ato
 start /min https://github.com/Edgarware/Threshold-Skin/archive/master.zip
 start /min http://www.metroforsteam.com/downloads/4.2.4.zip
 start /min http://www.filehorse.com/download-nvidia-geforce-experience/download/
@@ -72,12 +78,11 @@ start /min https://github.com/FaserF/FaserFQuickTools/releases/download/1.0/Rena
 echo Warte auf Beendigung der Downloads, dann ...
 REM ****Überprüfe ob User Steam Skin bereits geaehlt hat******
 if not Exist "Skin.txt" (
-echo Schreibe in diesen File [beim naechsten mal] den gewünschten Steam Skin hinein, > Skin.txt
-echo um den Schritt waehrende der Installation ohne Nachfrage ablaufen zu lassen. >> Skin.txt
-echo Zur Auswahl stehen Metro , Threshold oder skip um keinen zu nehmen >> Skin.txt
-echo In dieser Datei darf nur ein Wort stehen, loesche also diesen Text Inhalt hinaus >> Skin.txt
-start /min Skin.txt
-)
+echo %TIME% Skin.txt nicht gefunden >> WPI_Log.txt
+echo             Erstelle vor Start eine Skin.txt mit Inhalt des gewuenschten Steam Skins [Auswahl: Threshold , Metro , skip] >> WPI_Log.txt
+echo ######################################################################## >> WPI_Log.txt
+start /min WPI_Log.txt
+
 
 timeout /T 120
 taskkill /IM Chrome.exe /F
@@ -100,12 +105,15 @@ start /min C:\Users\%username%\Downloads\DriverBoosterKey.txt
 echo Installationen gestartet. Abschluss aller Installationen geschieht im Hintergrund, nun werden Installations Files gelöscht und Steam Skin wird installiert ...
 
 :AutoSteamSkin
+echo.
+echo Lese Skin.txt aus, falls vorhanden.
+echo.
 SET /p Skin=<Skin.txt
 
-if "%Skin%"=="Threshold" goto :Threshold
-if "%Skin%"=="Metro" goto :Metro
-if "%Skin%"=="skip" goto :Start
-if "%Skin%"=="kein" goto :Start
+if "%Skin%"=="Threshold" goto :Skin1
+if "%Skin%"=="Metro" goto :Skin2
+if "%Skin%"=="skip" goto :Skin3
+if "%Skin%"=="kein" goto :Skin3
 goto :SteamSkin
 
 :SteamSkin
@@ -122,16 +130,12 @@ echo   [2]    Metro for Steam Skin [Windows 8 Style Theme]
 echo   [3]    keinen [Standard Steam Skin]
 echo.
 
-set Skin=0
-set /p Skin="Bitte Auswahl eingeben: "
+:: Choices are 1,2 and 3, default choice is 4, timeout = 1 minute
+choice /c 1234 /d 4 /t 30
+goto Skin%errorlevel%
 
-if %Skin%==1 goto :Threshold
-if %Skin%==2 goto :Metro
-if %Skin%==3 goto :Start
-goto :Start
-
-:Threshold
-REM *********Installation neuester Version des Steam Skins - muss nachträglich noch in Steam Einstellungen ausgewählt werden!********
+:Skin1
+REM ****THRESHOLD*****Installation neuester Version des Steam Skins - muss nachträglich noch in Steam Einstellungen ausgewählt werden!********
 cd C:\Program Files\7-Zip\
 7z x C:\Users\%username%\Downloads\Threshold-Skin-master.zip -oC:\Users\%username%\Downloads\
 robocopy "C:\Users\%username%\Downloads\Threshold-Skin-master" "C:\Program Files (x86)\Steam\skins\Threshold" /MIR
@@ -139,12 +143,24 @@ xcopy /s /y "C:\Program Files (x86)\Steam\skins\Threshold\Customization\Sidebar 
 rd /s /q C:\Users\%username%\Downloads\Threshold-Skin-master
 goto :Start
 
-:Metro
-REM *********Installation des Steam Skins - muss nachträglich noch in Steam Einstellungen ausgewählt werden!********
+:Skin2
+REM *****METRO****Installation des Steam Skins - muss nachträglich noch in Steam Einstellungen ausgewählt werden!********
 cd C:\Program Files\7-Zip\
 7z x C:\Users\%username%\Downloads\4.2.4.zip -oC:\Users\%username%\Downloads\
 robocopy "C:\Users\%username%\Downloads\Metro 4.2.4" "C:\Program Files (x86)\Steam\skins\Metro" /MIR
 rd /s /q C:\Users\%username%\Downloads\Metro*
+goto :Start
+
+:Skin3
+REM *******Kein Skin wurde ausgewaehlt********
+goto :Start
+:Skin4
+REM *******Dummy - dient lediglich der Weiterleitung
+echo.
+echo Du warst wohl abwesend. Ich habe in der Zeit den Installationsprozess fortgesetzt und keinen Steam Skin installiert.
+echo.
+echo %TIME% Steam Skin Installation uebersprungen Aufgrund von Abwesenheit [Timeout]. >> WPI_Log.txt
+echo ########### >> WPI_Log.txt
 goto :Start
 
 :Start
@@ -157,12 +173,12 @@ cd C:\Users\%username%\Downloads\
 goto :Ermittelung
 
 :Ermittelung
-if "%SYSMODEL%"=="ASUS Z97-AR" goto :Z97-AR
-if "%SYSMODEL%"=="Clevo" goto :Clevo
-if "%SYSMODEL%"=="Precision T5500" goto :T5500
-if "%SYSMODEL%"=="Precision M6500" goto :M6500
-if "%SYSMODEL%"=="ASUS VIII" goto :VIII
-if "%SYSMODEL%"=="Latitude 7480" goto :RenamePC
+if "%SYSMODEL%"=="ASUS Z97-AR" goto :Z97-AR | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+if "%SYSMODEL%"=="Clevo" goto :Clevo | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+if "%SYSMODEL%"=="Precision T5500" goto :T5500 | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+if "%SYSMODEL%"=="Precision M6500" goto :M6500 | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+if "%SYSMODEL%"=="ASUS VIII" goto :VIII | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+if "%SYSMODEL%"=="Latitude 7480" goto :RenamePC | | echo %TIME% TESTGERAET wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
 goto :Auswahl
 
 :Auswahl
@@ -204,6 +220,7 @@ goto:Auswahl
 :Z97-AR
 echo ASUS Z97-AR wurde ermittelt oder ausgewaehlt!
 echo.
+net use z:\\192.168.178.21\public\share /user:FSeitz
 start http://dlcdnet.asus.com/pub/ASUS/misc/utils/AISuite_III_V10149_for_Z97.rar
 start http://dlcdnet.asus.com/pub/ASUS/misc/usb30/Asmedia_USB3_V116351.zip
 start http://dlcdnet.asus.com/pub/ASUS/misc/utils/Turbo_LAN_Win7-8-81-10_V10700.zip
@@ -218,12 +235,12 @@ cd C:\Program Files\7-Zip\
 7z x C:\Users\%username%\Downloads\Turbo_LAN_Win7-8-81-10_V10700.zip -oC:\Users\%username%\Downloads\Turbo_LAN_Win7-8-81-10_V10700\
 cd C:\Users\%username%\Downloads\
 start *.exe
-start C:\Users\%username%\Downloads\Asmedia_USB3_V116351\AsusSetup.exe
-start C:\Users\%username%\Downloads\Turbo_LAN_Win7-8-81-10_V10700\Turbo_LAN_Win7-8-81-10_V10700\AsusSetup.exe
-start C:\Users\%username%\Downloads\AISuite_III_V10149_for_Z97\AsusSetup.exe
-start C:\Users\%username%\Downloads\lenovo_artery_setup.exe
+start /wait C:\Users\%username%\Downloads\Asmedia_USB3_V116351\AsusSetup.exe
+start /wait C:\Users\%username%\Downloads\Turbo_LAN_Win7-8-81-10_V10700\Turbo_LAN_Win7-8-81-10_V10700\AsusSetup.exe
+start /wait C:\Users\%username%\Downloads\AISuite_III_V10149_for_Z97\AsusSetup.exe
+start /wait C:\Users\%username%\Downloads\lenovo_artery_setup.exe
 echo Bitte Treiber installieren, anschließend ...
-pause
+timeout /T 40
 del /q C:\Users\%username%\Downloads\*.exe
 del /q C:\Users\%username%\Downloads\*.zip
 del /q C:\Users\%username%\Downloads\*.rar
@@ -519,5 +536,7 @@ rd /s /q C:\Users\%username%\Downloads\CustomInstall\
 start https://discordler.github.io
 start https://central.bitdefender.com/
 start https://www.mydealz.de/search?q=Bitdefender
+echo %TIME% Installation abgeschlossen. >> WPI_Log.txt
+echo ######################################################################## >> WPI_Log.txt
 msg * "Installationen abgeschlossen! MS Office muss ggf. noch installiert werden. Steam Skin muss in Steam Einstellungen noch ausgewaehlt werden."
 exit
