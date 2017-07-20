@@ -1,5 +1,5 @@
 @echo off
-title Automatic Windows Post Installer by FaserF - V3.2.2
+title Automatic Windows Post Installer by FaserF - V3.2.3
 color 89
 
 :Default
@@ -174,10 +174,10 @@ goto :Ermittelung
 
 :Ermittelung
 if "%SYSMODEL%"=="All Series" goto :Z97-AR | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
-if "%SYSMODEL%"=="Clevo" goto :Clevo | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+if "%SYSMODEL%"=="W65_67SJ" goto :Clevo | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
 if "%SYSMODEL%"=="Precision T5500" goto :T5500 | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
 if "%SYSMODEL%"=="Precision M6500" goto :M6500 | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
-if "%SYSMODEL%"=="ASUS VIII" goto :VIII | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+if "%SYSMODEL%"=="System Product Name" goto :VIII | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
 if "%SYSMODEL%"=="Latitude 7480" goto :RenamePC | | echo %TIME% TESTGERAET wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
 goto :Auswahl
 
@@ -193,7 +193,7 @@ echo            Dein Geraet lautet: %SYSMODEL%
 echo.
 echo.
 echo   [1]    Asus Z97-AR / PC
-echo   [2]    Clevo W650SJ / Notebook
+echo   [2]    Clevo W65_67SJ / Notebook
 echo   [3]    Dell Precision T5500 / CAD PC
 echo   [4]    Dell Precision M6500 / CAD Notebook
 echo   [5]    Asus Maximus Ranger VIII / PC
@@ -372,8 +372,10 @@ start https://de.evga.com/precisionxoc/#download
 goto :RenamePC
 
 :Clevo
-echo Clevo Notebook wurde ermittelt oder ausgewaehlt!
+echo Clevo W65_67SJ Notebook wurde ermittelt oder ausgewaehlt!
 echo.
+net use z: \\192.168.178.21\public\share /user:FSeitz
+net use y: \\192.168.178.21\homes\FSeitz /user:FSeitz
 start https://d34vhvz8ul1ifj.cloudfront.net/Driver/VIA_HD_Audio_v11_1100f_Win10RS1_logo_11012016.zip
 start https://www.unifiedremote.com/download/windows
 start https://update.pushbullet.com/pushbullet_installer.exe
