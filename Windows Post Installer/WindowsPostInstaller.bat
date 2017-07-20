@@ -1,5 +1,5 @@
 @echo off
-title Automatic Windows Post Installer by FaserF - V3.2.1
+title Automatic Windows Post Installer by FaserF - V3.2.2
 color 89
 
 :Default
@@ -524,6 +524,8 @@ del /q C:\Users\%username%\Downloads\*.msi
 del /q C:\Users\%username%\Downloads\Skin.txt
 set NEWPCNAME=""
 set /p NEWPCNAME="Bitte neuen Computernamen eingeben: (Frei lassen um Namen zu behalten)"
+if [%NEWPCNAME%]=[] goto :Exit | echo %TIME% PC Name nicht geändert. >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+if [%NEWPCNAME%]=[ ] goto :Exit | echo %TIME% PC Name nicht geändert. >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
 
 start C:\Users\%username%\Downloads\CustomInstall\RenamePC.vbs %NEWPCNAME%
 timeout /T 1
