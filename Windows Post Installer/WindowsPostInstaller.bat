@@ -1,5 +1,5 @@
 @echo off
-title Automatic Windows Post Installer by FaserF - V3.2.0
+title Automatic Windows Post Installer by FaserF - V3.2.1
 color 89
 
 :Default
@@ -173,7 +173,7 @@ cd C:\Users\%username%\Downloads\
 goto :Ermittelung
 
 :Ermittelung
-if "%SYSMODEL%"=="ASUS Z97-AR" goto :Z97-AR | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+if "%SYSMODEL%"=="All Series" goto :Z97-AR | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
 if "%SYSMODEL%"=="Clevo" goto :Clevo | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
 if "%SYSMODEL%"=="Precision T5500" goto :T5500 | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
 if "%SYSMODEL%"=="Precision M6500" goto :M6500 | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
@@ -220,7 +220,8 @@ goto:Auswahl
 :Z97-AR
 echo ASUS Z97-AR wurde ermittelt oder ausgewaehlt!
 echo.
-net use z:\\192.168.178.21\public\share /user:FSeitz
+net use z: \\192.168.178.21\public\share /user:FSeitz
+net use y: \\192.168.178.21\homes\FSeitz /user:FSeitz
 start http://dlcdnet.asus.com/pub/ASUS/misc/utils/AISuite_III_V10149_for_Z97.rar
 start http://dlcdnet.asus.com/pub/ASUS/misc/usb30/Asmedia_USB3_V116351.zip
 start http://dlcdnet.asus.com/pub/ASUS/misc/utils/Turbo_LAN_Win7-8-81-10_V10700.zip
