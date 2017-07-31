@@ -65,6 +65,9 @@ Q: Das Programm sagt es kann das Verzeichnis deines Windows User names nicht fin
 A: Du darfst während der Windows Installation keinen User Name mit einem Leerzeichen wählen wie Max Mustermann.
 Nenne dich einfach nur mit dem Vornamen und zur Not später wieder in den Windows Einstellungen um!
 
+Q: Das Programm hat zu kurze Wartezeiten!
+A: Sorry, ich habe eine SSD als Vorlage genommen, wenn deine Festplatte eine HDD ist, dauern Installationsprozeduren leider länger.
+
 Solltest du weitere Probleme haben, bitte ich dich einfach auf meinem GitHub ein Ticket zu öffnen und ich werde mich darum kümmern.
 
 ## Weiteres
