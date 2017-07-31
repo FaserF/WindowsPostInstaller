@@ -1,5 +1,5 @@
 @echo off
-title Automatic Windows Post Installer by FaserF - V3.3.4
+title Automatic Windows Post Installer by FaserF - V3.3.5
 color 89
 
 :Default
@@ -643,6 +643,7 @@ timeout /T 1
 start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 timeout /T 1
+%TIME% PC in %NEWPCNAME% umbenannt. >> WPI_Log.txt
 goto :Exit
 
 :Exit
