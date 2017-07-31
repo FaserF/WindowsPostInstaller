@@ -1,5 +1,5 @@
 @echo off
-title Automatic Windows Post Installer by FaserF - V3.3.0
+title Automatic Windows Post Installer by FaserF - V3.3.1
 color 89
 
 :Default
@@ -54,10 +54,13 @@ timeout /T 1
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 timeout /T 1
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+goto :Vorermittelung
 
 :Vorermittelung
-if "%SYSMODEL%"=="Latitude 7480" goto :RenamePC | echo %TIME% Businessgeraet wurde automatisch ermittelt - Ueberspringe Steam & Steam Skin >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt | goto :Business
-if "%SYSMODEL%"=="Latitude 6530" goto :RenamePC | echo %TIME% Businessgeraet wurde automatisch ermittelt - Ueberspringe Steam & Steam Skin >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt | goto :Business
+if "%SYSMODEL%"=="Latitude 7480" goto :Business | echo %TIME% Businessgeraet wurde automatisch ermittelt - Ueberspringe Steam & Steam Skin >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+if "%SYSMODEL%"=="Latitude E6530" goto :Business | echo %TIME% Businessgeraet wurde automatisch ermittelt - Ueberspringe Steam & Steam Skin >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+if "%SYSMODEL%"=="Latitude E6520" goto :Business | echo %TIME% Businessgeraet wurde automatisch ermittelt - Ueberspringe Steam & Steam Skin >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+if "%SYSMODEL%"=="Latitude E6510" goto :Business | echo %TIME% Businessgeraet wurde automatisch ermittelt - Ueberspringe Steam & Steam Skin >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
 goto :PrivatGeraet
 
 :PrivatGeraet
@@ -555,8 +558,8 @@ start /min C:\Users\%username%\Downloads\DriverBoosterKey.txt
 echo Installationen gestartet. Abschluss aller Installationen geschieht im Hintergrund, nun werden Installations Files gelöscht und Geraetespezifische Daten Installiert ...
 
 :ErmittelungBusiness
-if "%SYSMODEL%"=="Latitude 6520" goto :E6520
-if "%SYSMODEL%"=="Latitude 6510" goto :E6510
+if "%SYSMODEL%"=="Latitude E6520" goto :E6520
+if "%SYSMODEL%"=="Latitude E6510" goto :E6510
 if "%SYSMODEL%"=="Precision T5500" goto :T5500
 if "%SYSMODEL%"=="Precision M6500" goto :M6500
 if "%SYSMODEL%"=="Latitude 7480" goto :RenamePC
