@@ -1,5 +1,5 @@
 @echo off
-title Automatic Windows Post Installer by FaserF - V3.3.3
+title Automatic Windows Post Installer by FaserF - V3.3.4
 color 89
 
 :Default
@@ -23,8 +23,12 @@ echo WshShell.SendKeys "{TAB}" >> "C:\Users\%username%\Downloads\CustomInstall\C
 echo WshShell.SendKeys "{TAB}" >> "C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs"
 echo WshShell.SendKeys " " >> "C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs"
 echo|set /p= "WScript.Quit" >> "C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs"
-REM *********Erstelle Script Datei um ENTER als Eingabe zu verschicken***********
+REM *********Erstelle Script Datei um Tasten als Eingabe zu verschicken***********
 echo >C:\Users\%username%\Downloads\CustomInstall\Enter.vbs set shell = CreateObject("WScript.Shell"):shell.SendKeys "{ENTER}"
+echo >C:\Users\%username%\Downloads\CustomInstall\Left.vbs set shell = CreateObject("WScript.Shell"):shell.SendKeys "{LEFT}"
+echo >C:\Users\%username%\Downloads\CustomInstall\Tab.vbs set shell = CreateObject("WScript.Shell"):shell.SendKeys "{TAB}"
+echo >C:\Users\%username%\Downloads\CustomInstall\Space.vbs set shell = CreateObject("WScript.Shell"):shell.SendKeys " "
+echo >C:\Users\%username%\Downloads\CustomInstall\AltF4.vbs set shell = CreateObject("WScript.Shell"):shell.SendKeys "%{f4}"
 REM *********Erstelle Script zum Windows Update starten*********
 echo Set automaticUpdates = CreateObject("Microsoft.Update.AutoUpdate") > "C:\Users\%username%\Downloads\CustomInstall\WinUpdate.vbs"
 echo automaticUpdates.DetectNow() >> "C:\Users\%username%\Downloads\CustomInstall\WinUpdate.vbs"
@@ -172,10 +176,6 @@ echo ########### >> WPI_Log.txt
 goto :Start
 
 :Start
-echo >C:\Users\%username%\Downloads\CustomInstall\Left.vbs set shell = CreateObject("WScript.Shell"):shell.SendKeys "{LEFT}"
-echo >C:\Users\%username%\Downloads\CustomInstall\Tab.vbs set shell = CreateObject("WScript.Shell"):shell.SendKeys "{TAB}"
-echo >C:\Users\%username%\Downloads\CustomInstall\Space.vbs set shell = CreateObject("WScript.Shell"):shell.SendKeys " "
-echo >C:\Users\%username%\Downloads\CustomInstall\AltF4.vbs set shell = CreateObject("WScript.Shell"):shell.SendKeys "%{f4}"
 del /q C:\Users\%username%\Downloads\*.zip
 cd C:\Users\%username%\Downloads\
 goto :Ermittelung
@@ -636,9 +636,9 @@ del /q C:\Users\%username%\Downloads\*.exe
 del /q C:\Users\%username%\Downloads\*.msi
 del /q C:\Users\%username%\Downloads\Skin.txt
 set NEWPCNAME=""
-set /p NEWPCNAME="Bitte neuen Computernamen eingeben: (Frei lassen um Namen zu behalten)"
-if [%NEWPCNAME%]=[] goto :Exit | echo %TIME% PC Name nicht geändert. >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
-if [%NEWPCNAME%]=[ ] goto :Exit | echo %TIME% PC Name nicht geändert. >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+set /p NEWPCNAME="Bitte neuen Computernamen eingeben (Frei lassen um Namen zu behalten): "
+if "%NEWPCNAME%"="" goto :Exit1
+if "%NEWPCNAME%"=" " goto :Exit1
 
 start C:\Users\%username%\Downloads\CustomInstall\RenamePC.vbs %NEWPCNAME%
 timeout /T 1
@@ -647,6 +647,8 @@ start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 timeout /T 1
 goto :Exit
 
+:Exit1
+echo %TIME% PC Name nicht geändert. Da Falsche Eingabe! >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
 :Exit
 rd /s /q C:\Users\%username%\Downloads\CustomInstall\
 start https://discordler.github.io
