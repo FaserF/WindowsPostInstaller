@@ -1,16 +1,28 @@
 # AUTOMATISCHE WINDOWS POST INSTALLATION
 
-## About
+## Beschreibung
 
-Dieses Tool wurde erstellt um Windows Neu Installationen zu vereinfachen.
-Es gibt eine Auswahl an Geräten, unter welchem man sein Gerät nenn, anschließend lädt es alle benötigten Programme für diesen PC herunter und installiert diese. Bei so vielen wie möglich wird die Installation im silent mode gestartet, sprich keine Aufforderungen um Installationspfad etc anzugeben. Es werden zudem auch die Treiber heruntergeladen und deren Installation gestartet.
-.zip Files werden automatisch extrahiert und gestartet. Der Steam Skin wird automatisch heruntergeladen und in den richtigen Steam Ordner kopiert.
-Div. Probleme bei automatischen downloads und Installationen wurden gefixt.
+Dieses Projekt hat denn Sinn die Windows Installation und besonders die Nachinstallation (Post Installation) nach Abschluss der Windows Installation auf dem PC zu vereinfachen.
+Das Tool ist in der Lage diverse Aufgaben abzuarbeiten wie u.a.:
+- Google Chrome Installation und Standard Browser konfigurieren (auch mit neuen Win10 kompatibel)
+- Installation von nützlichen Programmen
+- Automatische Hardware Erkennung und Treiber Installation
+- Auswahl zwischen 2 Steam Skins und automatische Installation
+- Windows Aktivierung
 
 ## Nutzung
 
-1. Windows Installationsdatenträger erstellen (am besten mit NTLite, um auch hier eine automatische Installation zu erhalten),
-2. Anschließend auf den Installationsstick zugreifen und dort in den Ordner 
+Wie kann ich das Programm nutzen?
+1. Lade dir eine Kopie von meinem GitHub herunter (https://github.com/FaserF/FaserFQuickTools/archive/master.zip)
+2. Erstelle einen Windows USB Stick (http://go.microsoft.com/fwlink/?LinkId=691209)
+3. Kopiere die autounattended.xml auf das Hauptverzeichnis deines USB Sticks
+4. Kopiere die Datei Get-WindowsPostInstaller.bat auf deinen USB Stick.
+5. Installiere Windows, indem du den USB Stick bootest
+6. Öffne, sobald du auf dem Desktop bist, deinen USB Stick Laufwerk und starte die Get-WinPostInstaller.bat
+7. Warte auf Abschluss des Downloads meiner neuesten Version des WinPostInstallers.exe
+8. Starte das Programm und klicke/tippe nur auf Aufforderung in den Installation Prozess nicht zu stören!
+
+2.1 OPTIONAL & Funktioniert bei mir noch nicht: Anschließend auf den Installationsstick zugreifen und dort in den Ordner 
 "\sources\$OEM$\$$\Setup\Scripts" 
 gehen. Hier erstellen wir eine Datei namens "SetupComplete.cmd", mit dem Inhalt (ohne 2.X ):
 
@@ -22,17 +34,38 @@ del /q /f "%0"
 exit
 ```
 
-3. Nun noch die Dateien "Get-WindowsPostInstaller.bat" von diesem Github ( https://github.com/FaserF/FaserFQuickTools/blob/master/Windows%20Post%20Installer/Get-WindowsPostInstaller.bat ) herunterladen und auf den Stick unter 
+2.2 Nun noch die Dateien "Get-WindowsPostInstaller.bat" von diesem Github ( https://github.com/FaserF/FaserFQuickTools/blob/master/Windows%20Post%20Installer/Get-WindowsPostInstaller.bat ) herunterladen und auf den Stick unter 
 "\sources\$OEM$\$$\Setup\Files" kopieren
+
+
+## Was machen die Programme?
+
+Autounattended.xml:
+Diese Datei wird von Windows während der Installation ausgelesen, es sagt Windows bestimmte Sachen automatisch zu erledigen während der Installation (keine EULA, Versuch Widnows zu aktivieren usw)
+
+WindowsPostInstaller.exe/bat
+Die Hauptdatei meines Projektes und der Großteil meiner Arbeit. Hier spielt sich das meiste ab. Mein Projekt wird in der .bat stetig fortgeführt und weiter entwickelt als Hobby Projekt und ist für jeden einsichtbar und steht zur weiter Nutzung bereit. Die .exe hat nur den Nutzen, dass der Download nicht von Edge und Chrome aus Sicherheitsgründen geblockt wird.
+
+Get-WindowsPostInstaller.bat
+Dieses Programm dient lediglich dazu, die neueste Version von GitHub herunter zu laden.
+Warum sollte ich nicht gleich die .exe auf meinen Stick kopieren? -> Weil die meisten ihren Windows Stick anschließend herum liegen lassen und irgend wann wieder verwenden. Nun wäre eine veraltete Version meines Tools auf deinem Stick.
 
 ## Unterstützte Geräte
 
-*Für Hauptinstallation werden alle Geräte unterstützt. Geräte Spezifische Features werden nur für folgende Geräte Supporte:
+*Für Hauptinstallation werden alle Geräte unterstützt. Geräte Spezifische Features werden nur für folgende Geräte unterstützt:
 - ASUS: Z97-AR; Maxmimus Ranger VIII, N53SN
 - Dell: T5500, M6500, E6510, E6520
-- Clevo: 
+- Clevo: W65_67SJ
 
-Du kannst natürlich dein Gerät selbst supporten und eintragen. Nimm dir einfach die fertige Batch Datei oder unseren Code und füge dein Gerät hinzu, es geht ganz einfach, da alles ja bereits für ein anderes Gerät in unserem Code steht.
+Du kannst natürlich dein Gerät selbst unterstützen und eintragen. Nimm dir einfach die fertige Batch Datei oder unseren Code und füge dein Gerät hinzu, es geht ganz einfach, da alles ja bereits für ein anderes Gerät in unserem Code steht. Wenn du dein Gerät in meiner offiziellen Liste finden möchtest, schicke mir den Code als Ticket auf meinem Github.
+
+## Probleme / Q&A
+
+Q: Das Programm sagt es kann das Verzeichnis deines Windows User names nicht finden.
+A: Du darfst während der Windows Installation keinen User Name mit einem Leerzeichen wählen wie Max Mustermann.
+Nenne dich einfach nur mit dem Vornamen und zur Not später wieder in den Windows Einstellungen um!
+
+Solltest du weitere Probleme haben, bitte ich dich einfach auf meinem GitHub ein Ticket zu öffnen und ich werde mich darum kümmern.
 
 ## Weiteres
 
