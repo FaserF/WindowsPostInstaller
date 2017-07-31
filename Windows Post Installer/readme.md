@@ -20,7 +20,9 @@ Wie kann ich das Programm nutzen?
 5. Installiere Windows, indem du den USB Stick bootest
 6. Öffne, sobald du auf dem Desktop bist, deinen USB Stick Laufwerk und starte die Get-WinPostInstaller.bat
 7. Warte auf Abschluss des Downloads meiner neuesten Version des WinPostInstallers.exe
-8. Starte das Programm und klicke/tippe nur auf Aufforderung in den Installation Prozess nicht zu stören!
+7.1 Wenn du die Steam Skin Installation auch automatisch machen lassen willst, ohne Nachfrage, erstelle vor dem Ausführen der .exe eine Date mit dem Namen "skin.txt" im Downloads Ordner und schreibe dort folgendes hinein:
+	Threshold oder Metro oder skip oder kein
+8. Starte das Programm und klicke/tippe nur bei Aufforderung in den Installation Prozess nicht zu stören!
 
 2.1 OPTIONAL & Funktioniert bei mir noch nicht: Anschließend auf den Installationsstick zugreifen und dort in den Ordner 
 "\sources\$OEM$\$$\Setup\Scripts" 
@@ -36,11 +38,6 @@ exit
 
 2.2 Nun noch die Dateien "Get-WindowsPostInstaller.bat" von diesem Github ( https://github.com/FaserF/FaserFQuickTools/blob/master/Windows%20Post%20Installer/Get-WindowsPostInstaller.bat ) herunterladen und auf den Stick unter 
 "\sources\$OEM$\$$\Setup\Files" kopieren
-
-Wenn du die Steam Skin Installation auch automatisch machen lassen willst, ohne Nachfrage, erstelle vor dem Ausführen der .exe eine Date mit dem Namen "skin.txt" im Downloads Ordner und schreibe dort folgendes hinein:
-Threshold
-Metro
-"skip" oder "kein"
 
 ## Was machen die Programme?
 
