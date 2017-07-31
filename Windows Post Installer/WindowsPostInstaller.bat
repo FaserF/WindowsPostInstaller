@@ -1,5 +1,5 @@
 @echo off
-title Automatic Windows Post Installer by FaserF - V3.3.5
+title Automatic Windows Post Installer by FaserF - V3.3.6
 color 89
 
 :Default
@@ -34,6 +34,16 @@ echo Set automaticUpdates = CreateObject("Microsoft.Update.AutoUpdate") > "C:\Us
 echo automaticUpdates.DetectNow() >> "C:\Users\%username%\Downloads\CustomInstall\WinUpdate.vbs"
 REM ********Lese Modellnummer aus, um richtige Programme & Treiber zuzuordnen*********
 for /f "tokens=2 delims==" %%I in ('wmic computersystem get model /format:list') do set "SYSMODEL=%%I"
+REM ********Erkenne Windows Version*********
+set WindowsVersion=Windows Version unbekannt
+for /f "tokens=4-5 delims=. " %%i in ('ver') do set VERSION=%%i.%%j
+if "%version%" == "6.3" set WindowsVersion=Windows 8
+if "%version%" == "6.1" set WindowsVersion=Windows 7
+if "%version%" == "10.0" set WindowsVersion=Windows 10
+echo %TIME%  %WindowsVersion% wurde automatisch ermittelt >> WPI_Log.txt 
+if "%WindowsVersion%" == "Windows 7" echo Treiber Support wird unter Windows 7 nicht Garantiert. >> WPI_Log.txt
+if "%WindowsVersion%" == "Windows Version unbekannt" echo Installierte Windows Version konnte nicht erkannt werden. Treiber Support wird nicht Garantiert. >> WPI_Log.txt
+echo ######################################################################## >> WPI_Log.txt
 cd C:\Users\%username%\Downloads\
 cls
 echo             ============================================================
@@ -47,6 +57,7 @@ echo            WICHTIG: NICHTS TIPPEN/ANKLICKEN, nur bei Aufforderung! Ansonste
 echo.
 echo.
 echo           SYSTEM MODELL: %SYSMODEL%
+echo           %WindowsVersion% laeuft auf diesem Geraet!
 start C:\Users\%username%\Downloads\CustomInstall\EdgeAutoDownload.reg
 timeout /T 1
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
