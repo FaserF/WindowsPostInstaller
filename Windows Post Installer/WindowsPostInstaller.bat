@@ -1,5 +1,5 @@
 @echo off
-title Automatic Windows Post Installer by FaserF - V3.3.1
+title Automatic Windows Post Installer by FaserF - V3.3.2
 color 89
 
 :Default
@@ -57,10 +57,10 @@ start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 goto :Vorermittelung
 
 :Vorermittelung
-if "%SYSMODEL%"=="Latitude 7480" goto :Business | echo %TIME% Businessgeraet wurde automatisch ermittelt - Ueberspringe Steam & Steam Skin >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
-if "%SYSMODEL%"=="Latitude E6530" goto :Business | echo %TIME% Businessgeraet wurde automatisch ermittelt - Ueberspringe Steam & Steam Skin >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
-if "%SYSMODEL%"=="Latitude E6520" goto :Business | echo %TIME% Businessgeraet wurde automatisch ermittelt - Ueberspringe Steam & Steam Skin >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
-if "%SYSMODEL%"=="Latitude E6510" goto :Business | echo %TIME% Businessgeraet wurde automatisch ermittelt - Ueberspringe Steam & Steam Skin >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+if "%SYSMODEL%"=="Latitude 7480" goto :Business | echo %TIME% Businessgeraet %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Steam und Steam Skin >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+if "%SYSMODEL%"=="Latitude E6530" goto :Business | echo %TIME% Businessgeraet %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Steam und Steam Skin >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+if "%SYSMODEL%"=="Latitude E6520" goto :Business | echo %TIME% Businessgeraet %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Steam und Steam Skin >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+if "%SYSMODEL%"=="Latitude E6510" goto :Business | echo %TIME% Businessgeraet %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Steam und Steam Skin >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
 goto :PrivatGeraet
 
 :PrivatGeraet
