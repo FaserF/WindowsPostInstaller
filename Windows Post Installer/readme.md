@@ -13,12 +13,12 @@ Das Tool ist in der Lage diverse Aufgaben abzuarbeiten wie u.a.:
 ## Nutzung
 
 Wie kann ich das Programm nutzen?
-1. Lade dir eine Kopie von meinem GitHub herunter
+1. Lade dir eine Kopie von meinem GitHub herunter (https://github.com/FaserF/FaserFQuickTools/archive/master.zip)
 2. Erstelle einen Windows USB Stick (http://go.microsoft.com/fwlink/?LinkId=691209)
 3. Kopiere die autounattended.xml auf das Hauptverzeichnis deines USB Sticks
-4. Kopiere die Datei GetWindowsPostInstaller.bat auf deinen USB Stick.
+4. Kopiere die Datei Get-WindowsPostInstaller.bat auf deinen USB Stick.
 5. Installiere Windows, indem du den USB Stick bootest
-6. Öffne, sobald du auf dem Desktop bist, deinen USB Stick Laufwerk und starte die GetWinPostInstaller.bat
+6. Öffne, sobald du auf dem Desktop bist, deinen USB Stick Laufwerk und starte die Get-WinPostInstaller.bat
 7. Warte auf Abschluss des Downloads meiner neuesten Version des WinPostInstallers.exe
 8. Starte das Programm und klicke/tippe nur auf Aufforderung in den Installation Prozess nicht zu stören!
 
@@ -46,7 +46,7 @@ Diese Datei wird von Windows während der Installation ausgelesen, es sagt Windo
 WindowsPostInstaller.exe/bat
 Die Hauptdatei meines Projektes und der Großteil meiner Arbeit. Hier spielt sich das meiste ab. Mein Projekt wird in der .bat stetig fortgeführt und weiter entwickelt als Hobby Projekt und ist für jeden einsichtbar und steht zur weiter Nutzung bereit. Die .exe hat nur den Nutzen, dass der Download nicht von Edge und Chrome aus Sicherheitsgründen geblockt wird.
 
-GetWindowsPostInstaller.bat
+Get-WindowsPostInstaller.bat
 Dieses Programm dient lediglich dazu, die neueste Version von GitHub herunter zu laden.
 Warum sollte ich nicht gleich die .exe auf meinen Stick kopieren? -> Weil die meisten ihren Windows Stick anschließend herum liegen lassen und irgend wann wieder verwenden. Nun wäre eine veraltete Version meines Tools auf deinem Stick.
 
@@ -55,9 +55,9 @@ Warum sollte ich nicht gleich die .exe auf meinen Stick kopieren? -> Weil die me
 *Für Hauptinstallation werden alle Geräte unterstützt. Geräte Spezifische Features werden nur für folgende Geräte unterstützt:
 - ASUS: Z97-AR; Maxmimus Ranger VIII, N53SN
 - Dell: T5500, M6500, E6510, E6520
-- Clevo: 
+- Clevo: W65_67SJ
 
-Du kannst natürlich dein Gerät selbst supporten und eintragen. Nimm dir einfach die fertige Batch Datei oder unseren Code und füge dein Gerät hinzu, es geht ganz einfach, da alles ja bereits für ein anderes Gerät in unserem Code steht.
+Du kannst natürlich dein Gerät selbst unterstützen und eintragen. Nimm dir einfach die fertige Batch Datei oder unseren Code und füge dein Gerät hinzu, es geht ganz einfach, da alles ja bereits für ein anderes Gerät in unserem Code steht. Wenn du dein Gerät in meiner offiziellen Liste finden möchtest, schicke mir den Code als Ticket auf meinem Github.
 
 ## Probleme / Q&A
 
