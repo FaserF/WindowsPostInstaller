@@ -37,6 +37,10 @@ exit
 2.2 Nun noch die Dateien "Get-WindowsPostInstaller.bat" von diesem Github ( https://github.com/FaserF/FaserFQuickTools/blob/master/Windows%20Post%20Installer/Get-WindowsPostInstaller.bat ) herunterladen und auf den Stick unter 
 "\sources\$OEM$\$$\Setup\Files" kopieren
 
+Wenn du die Steam Skin Installation auch automatisch machen lassen willst, ohne Nachfrage, erstelle vor dem Ausführen der .exe eine Date mit dem Namen "skin.txt" im Downloads Ordner und schreibe dort folgendes hinein:
+Threshold
+Metro
+"skip" oder "kein"
 
 ## Was machen die Programme?
 
