@@ -66,7 +66,10 @@ A: Du darfst während der Windows Installation keinen User Name mit einem Leerze
 Nenne dich einfach nur mit dem Vornamen und zur Not später wieder in den Windows Einstellungen um!
 
 Q: Das Programm hat zu kurze Wartezeiten!
-A: Sorry, ich habe eine SSD als Vorlage genommen, wenn deine Festplatte eine HDD ist, dauern Installationsprozeduren leider länger.
+A: Sorry, ich habe eine SSD als Vorlage genommen, wenn deine Festplatte eine HDD ist, dauern Installationsprozeduren leider länger, was mein Tool nicht erwartet.
+
+Q: Das Programm führt bestimmte Sachen nicht automatisch aus (Wie Administrator Nachfrage)
+A: Du nutzt die .bat Datei oder hast der .exe Admin Rechte verweigert. Mein Tool benötigt Administrator Rechte!
 
 Solltest du weitere Probleme haben, bitte ich dich einfach auf meinem GitHub ein Ticket zu öffnen und ich werde mich darum kümmern.
 
