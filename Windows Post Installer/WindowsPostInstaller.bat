@@ -1,5 +1,5 @@
 @echo off
-title Automatic Windows Post Installer by FaserF - V3.2.3
+title Automatic Windows Post Installer by FaserF - V3.3.0
 color 89
 
 :Default
@@ -55,13 +55,19 @@ start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 timeout /T 1
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 
+:Vorermittelung
+if "%SYSMODEL%"=="Latitude 7480" goto :RenamePC | echo %TIME% Businessgeraet wurde automatisch ermittelt - Ueberspringe Steam & Steam Skin >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt | goto :Business
+if "%SYSMODEL%"=="Latitude 6530" goto :RenamePC | echo %TIME% Businessgeraet wurde automatisch ermittelt - Ueberspringe Steam & Steam Skin >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt | goto :Business
+goto :PrivatGeraet
+
+:PrivatGeraet
 start /min https://ninite.com/7zip-chrome-steam/ninite.exe
 timeout /T 10
 REM *********Umbenennung da Leerzeichen im Namen********
 Ren "C:\Users\%username%\Downloads\Ninite 7Zip Chrome Steam Installer.exe" Ninite-Chrome-7zip-Steam.exe
 start Ninite-Chrome-7zip-Steam.exe
 echo Warte auf Fertigstellung von Chrome Installation! Wichtig!, dann
-timeout /T 60
+timeout /T 80
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 REM *********Default Browser wird in Chrome geändert und anschließende Wartezeit von ca 4 Sekunden********
 start C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs
@@ -76,14 +82,6 @@ start /min https://discordapp.com/api/download?platform=win
 start /min https://app.prntscr.com/build/setup-lightshot.exe
 start /min https://github.com/FaserF/FaserFQuickTools/releases/download/1.0/RenamePC.vbs
 echo Warte auf Beendigung der Downloads, dann ...
-REM ****Überprüfe ob User Steam Skin bereits geaehlt hat******
-if not Exist "Skin.txt" (
-echo %TIME% Skin.txt nicht gefunden >> WPI_Log.txt
-echo             Erstelle vor Start eine Skin.txt mit Inhalt des gewuenschten Steam Skins [Auswahl: Threshold , Metro , skip] >> WPI_Log.txt
-echo ######################################################################## >> WPI_Log.txt
-start /min WPI_Log.txt
-
-
 timeout /T 120
 taskkill /IM Chrome.exe /F
 move C:\Users\%username%\Downloads\RenamePC.vbs C:\Users\%username%\Downloads\CustomInstall\RenamePC.vbs
@@ -103,6 +101,13 @@ echo Driver Booster 4 Lizenz (läuft ab: 10.01.2018): 6BCA2-00A17-7B3E8-453B4 > 
 echo Alternative Driver Booster 4 Lizenz (läuft ab: 18.01.2018): 61B05-C956B-195E0-214B4 >> "C:\Users\%username%\Downloads\DriverBoosterKey.txt"
 start /min C:\Users\%username%\Downloads\DriverBoosterKey.txt
 echo Installationen gestartet. Abschluss aller Installationen geschieht im Hintergrund, nun werden Installations Files gelöscht und Steam Skin wird installiert ...
+
+REM ****Überprüfe ob User Steam Skin bereits gewaehlt hat******
+if not Exist "Skin.txt" (
+echo %TIME% Skin.txt nicht gefunden >> WPI_Log.txt
+echo             Erstelle vor Start eine Skin.txt mit Inhalt des gewuenschten Steam Skins [Auswahl: Threshold , Metro , skip] >> WPI_Log.txt
+echo ######################################################################## >> WPI_Log.txt
+start /min WPI_Log.txt
 
 :AutoSteamSkin
 echo.
@@ -178,7 +183,6 @@ if "%SYSMODEL%"=="W65_67SJ" goto :Clevo | echo %TIME% %SYSMODEL% wurde automatis
 if "%SYSMODEL%"=="Precision T5500" goto :T5500 | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
 if "%SYSMODEL%"=="Precision M6500" goto :M6500 | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
 if "%SYSMODEL%"=="System Product Name" goto :VIII | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
-if "%SYSMODEL%"=="Latitude 7480" goto :RenamePC | | echo %TIME% TESTGERAET wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
 goto :Auswahl
 
 :Auswahl
@@ -518,6 +522,113 @@ echo Installationen gestartet.
 echo Dialog schließt sich in 5 Sekunden und loescht Installationsfiles.
 timeout /T 5
 del /q C:\Users\%username%\Downloads\*.msi
+goto :RenamePC
+
+:Business
+start /min https://ninite.com/7zip-chrome/ninite.exe
+timeout /T 10
+REM *********Umbenennung da Leerzeichen im Namen********
+Ren "C:\Users\%username%\Downloads\Ninite 7Zip Chrome Installer.exe" Ninite-Chrome-7zip.exe
+start Ninite-Chrome-7zip.exe
+echo Warte auf Fertigstellung von Chrome Installation! Wichtig!, dann
+timeout /T 80
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+REM *********Default Browser wird in Chrome geändert und anschließende Wartezeit von ca 4 Sekunden********
+start C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs
+timeout /T 4
+taskkill /IM MicrosoftEdge.exe
+slmgr.vbs /ato
+start /min http://www.filehorse.com/download-driver-booster-free/download/
+start /min https://github.com/FaserF/FaserFQuickTools/releases/download/1.0/RenamePC.vbs
+echo Warte auf Beendigung der Downloads, dann ...
+timeout /T 60
+taskkill /IM Chrome.exe /F
+move C:\Users\%username%\Downloads\RenamePC.vbs C:\Users\%username%\Downloads\CustomInstall\RenamePC.vbs
+REM *********Starten der Driver Booster Installation, da driverbooster Version im Namen trägt********
+dir /b C:\Users\%username%\Downloads\ | find "booster" > driverbstr.tmp
+for /f %%d IN ('findstr booster driverbstr.tmp') do (
+start C:\Users\%username%\Downloads\%%d /VERYSILENT /SUPPRESSMSGBOXES /NORESTART )
+del driverbstr.tmp
+echo Driver Booster 4 Lizenz (läuft ab: 10.01.2018): 6BCA2-00A17-7B3E8-453B4 > "C:\Users\%username%\Downloads\DriverBoosterKey.txt"
+echo Alternative Driver Booster 4 Lizenz (läuft ab: 18.01.2018): 61B05-C956B-195E0-214B4 >> "C:\Users\%username%\Downloads\DriverBoosterKey.txt"
+start /min C:\Users\%username%\Downloads\DriverBoosterKey.txt
+echo Installationen gestartet. Abschluss aller Installationen geschieht im Hintergrund, nun werden Installations Files gelöscht und Geraetespezifische Daten Installiert ...
+
+:ErmittelungBusiness
+if "%SYSMODEL%"=="Latitude 6520" goto :E6520
+if "%SYSMODEL%"=="Latitude 6510" goto :E6510
+if "%SYSMODEL%"=="Precision T5500" goto :T5500
+if "%SYSMODEL%"=="Precision M6500" goto :M6500
+if "%SYSMODEL%"=="Latitude 7480" goto :RenamePC
+
+goto :Auswahl
+
+:AuswahlBusiness
+start /min https://github.com/FaserF/FaserFQuickTools/releases/download/1.0/RenamePC.vbs
+cls
+cd C:\Users\%username%\Downloads\
+echo             ================================================
+echo                               Automatische
+echo                   Treiber Installation by Fabian Seitz
+echo                              Fuer Windows 10
+echo             ================================================
+echo.
+echo            !!!!!!!INTERNET VERBINDUNG WIRD BENOETIGT!!!!!!!
+echo            Dein Geraet lautet: %SYSMODEL%
+echo.
+echo.
+echo   [1]    Latitude E6520 / Notebook
+echo   [2]    Latitude E6510 / Notebook
+echo   [3]    Precision M6500 / CAD Notebook
+echo   [4]    Precision T5500 / CAD PC
+echo.
+echo   [0]    EXIT / Abbruch
+echo.
+echo.
+
+set asw=0
+set /p asw="Bitte Auswahl eingeben: "
+
+if %asw%==1 goto :E6520
+if %asw%==2 goto :E6510
+if %asw%==3 goto :M6500
+if %asw%==4 goto :T5500
+
+if %asw%==0 goto :RenamePC
+if %asw%==exit goto :RenamePC
+
+echo Nächste Auswahl? Bitte eine Zahl von oben waehlen!
+goto:Auswahl
+
+:E6520
+start https://downloadmirror.intel.com/25977/eng/win64_153343.4425.exe
+start https://downloadmirror.intel.com/26653/eng/Wireless_19.50.1_PROSet64_Win10.exe
+start https://downloadmirror.intel.com/25016/eng/PROWinx64.exe
+start https://downloads.dell.com/FOLDER01669864M/1/Input_Driver_VW486_WN_8.1200.101.134_A07.EXE
+echo Warte auf Beendigung des Downloads, dann ...
+timeout /T 120
+start *.exe
+taskkill /IM Chrome.exe /F
+echo Installationen gestartet.
+pause
+echo Dialog schließt sich in 5 Sekunden und loescht Installationsfiles.
+del /q C:\Users\%username%\Downloads\*.exe
+timeout /T 5
+goto :RenamePC
+
+:E6510
+start https://downloadmirror.intel.com/21642/eng/PROWinx64.exe
+start https://downloadmirror.intel.com/26653/eng/Wireless_19.50.1_PROSet64_Win10.exe
+start https://downloads.dell.com/FOLDER01449251M/1/Input_Driver_GGY5W_WN_8.1200.101.127_A06.EXE
+echo Warte auf Beendigung des Downloads, dann ...
+timeout /T 120
+start *.exe
+taskkill /IM Chrome.exe /F
+echo Installationen gestartet.
+pause
+echo Dialog schließt sich in 5 Sekunden und loescht Installationsfiles.
+del /q C:\Users\%username%\Downloads\*.exe
+timeout /T 5
 goto :RenamePC
 
 :RenamePC
