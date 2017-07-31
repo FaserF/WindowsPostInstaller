@@ -1,5 +1,5 @@
 @echo off
-title Automatic Windows Post Installer by FaserF - V3.3.2
+title Automatic Windows Post Installer by FaserF - V3.3.3
 color 89
 
 :Default
@@ -57,11 +57,11 @@ start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 goto :Vorermittelung
 
 :Vorermittelung
-if "%SYSMODEL%"=="Latitude 7480" goto :Business | echo %TIME% Businessgeraet %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Steam und Steam Skin >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
-if "%SYSMODEL%"=="Latitude E6530" goto :Business | echo %TIME% Businessgeraet %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Steam und Steam Skin >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
-if "%SYSMODEL%"=="Latitude E6520" goto :Business | echo %TIME% Businessgeraet %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Steam und Steam Skin >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
-if "%SYSMODEL%"=="Latitude E6510" goto :Business | echo %TIME% Businessgeraet %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Steam und Steam Skin >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
-goto :PrivatGeraet
+if "%SYSMODEL%"=="Latitude 7480" goto :Business
+if "%SYSMODEL%"=="Latitude E6530" goto :Business
+if "%SYSMODEL%"=="Latitude E6520" goto :Business
+if "%SYSMODEL%"=="Latitude E6510" goto :Business
+goto :PrivatGeraet | echo %TIME% Privatgeraet %SYSMODEL% wurde automatisch ermittelt - Starte Steam und Steam Skin Download >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
 
 :PrivatGeraet
 start /min https://ninite.com/7zip-chrome-steam/ninite.exe
@@ -181,11 +181,11 @@ cd C:\Users\%username%\Downloads\
 goto :Ermittelung
 
 :Ermittelung
-if "%SYSMODEL%"=="All Series" goto :Z97-AR | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
-if "%SYSMODEL%"=="W65_67SJ" goto :Clevo | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
-if "%SYSMODEL%"=="Precision T5500" goto :T5500 | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
-if "%SYSMODEL%"=="Precision M6500" goto :M6500 | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
-if "%SYSMODEL%"=="System Product Name" goto :VIII | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+if "%SYSMODEL%"=="All Series" goto :Z97-AR
+if "%SYSMODEL%"=="W65_67SJ" goto :W65_67SJ
+if "%SYSMODEL%"=="Precision T5500" goto :T5500
+if "%SYSMODEL%"=="Precision M6500" goto :M6500
+if "%SYSMODEL%"=="System Product Name" goto :VIII
 goto :Auswahl
 
 :Auswahl
@@ -205,6 +205,7 @@ echo   [3]    Dell Precision T5500 / CAD PC
 echo   [4]    Dell Precision M6500 / CAD Notebook
 echo   [5]    Asus Maximus Ranger VIII / PC
 echo.
+echo   [B]    Businessgeraet
 echo   [0]    EXIT / Beenden
 echo.
 echo.
@@ -212,12 +213,13 @@ echo.
 set asw=0
 set /p asw="Bitte Auswahl eingeben: "
 
-if %asw%==1 goto :Z97-AR
-if %asw%==2 goto :Clevo
+if %asw%==1 goto :Z97-AR-Start
+if %asw%==2 goto :W65_67SJ-Start
 if %asw%==3 goto :T5500
 if %asw%==4 goto :M6500
 if %asw%==5 goto :VIII
 
+if %asw%==B goto :AuswahlBusiness
 if %asw%==0 goto :RenamePC
 if %asw%==exit goto :RenamePC
 
@@ -225,8 +227,8 @@ echo Nächste Auswahl? Bitte eine Zahl von oben waehlen!
 goto:Auswahl
 
 :Z97-AR
-echo ASUS Z97-AR wurde ermittelt oder ausgewaehlt!
-echo.
+echo ASUS Z97-AR wurde automatisch ermittelt | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+:Z97-AR-Start
 net use z: \\192.168.178.21\public\share /user:FSeitz
 net use y: \\192.168.178.21\homes\FSeitz /user:FSeitz
 start http://dlcdnet.asus.com/pub/ASUS/misc/utils/AISuite_III_V10149_for_Z97.rar
@@ -378,9 +380,9 @@ echo Dialog schließt sich in wenigen Sekunden und loescht Installationsfiles.
 start https://de.evga.com/precisionxoc/#download
 goto :RenamePC
 
-:Clevo
-echo Clevo W65_67SJ Notebook wurde ermittelt oder ausgewaehlt!
-echo.
+:W65_67SJ
+echo Clevo W65_67SJ wurde automatisch ermittelt | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+:W65_67SJ-Start
 net use z: \\192.168.178.21\public\share /user:FSeitz
 net use y: \\192.168.178.21\homes\FSeitz /user:FSeitz
 start https://d34vhvz8ul1ifj.cloudfront.net/Driver/VIA_HD_Audio_v11_1100f_Win10RS1_logo_11012016.zip
@@ -453,8 +455,8 @@ echo Dialog schließt sich in wenigen Sekunden und loescht Installationsfiles.
 goto :RenamePC
 
 :M6500
-echo Dell Precision M6500 wurde ermittelt oder ausgewaehlt!
-echo.
+echo Dell M6500 wurde automatisch ermittelt | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+:M6500-Start
 start http://www.driverscape.com/files/DriverToolkitInstaller.exe
 start https://www2.ati.com/drivers/firepro/mobile/dell-mobile-radeon-pro-software-enterprise-17.q1.1-apr3.exe
 start https://downloads.dell.com/input/PREM6500_DRVR_WIN_R280879.EXE
@@ -471,8 +473,8 @@ timeout /T 5
 goto :RenamePC
 
 :T5500
-echo Dell Precision T5500 wurde ermittelt oder ausgewaehlt!
-echo.
+echo Dell T5500 wurde automatisch ermittelt | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+:T5500-Start
 start http://www.nvidia.de/content/DriverDownload-March2009/confirmation.php?url=/Windows/Quadro_Certified/377.11/377.11-quadro-grid-desktop-notebook-win10-64bit-international-whql.exe&lang=de&type=Quadro
 start http://download.msi.com/uti_exe/vga/MSIAfterburnerSetup.zip
 echo Warte auf Beendigung des Downloads, dann ...
@@ -490,8 +492,8 @@ timeout /T 5
 goto :RenamePC
 
 :VIII
-echo ASUS Maximus Ranger VIII wurde ermittelt oder ausgewaehlt!
-echo.
+echo ASUS Maximus Ranger VIII wurde automatisch ermittelt | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+:VIII-Start
 start http://dlcdnet.asus.com/pub/ASUS/misc/utils/AISuite3_Win7-81-10_MaxVIII_Series_V10130.zip
 start http://dlcdnet.asus.com/pub/ASUS/misc/usb30/Asmedia_USB3_V116351.zip
 echo 1. Treiber Installation. Warte auf Beendigung der Downloads, dann ...
@@ -528,6 +530,7 @@ del /q C:\Users\%username%\Downloads\*.msi
 goto :RenamePC
 
 :Business
+echo Businessgeraet wurde ermittelt! | echo %TIME% Businessgeraet %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Steam und Steam Skin >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
 start /min https://ninite.com/7zip-chrome/ninite.exe
 timeout /T 10
 REM *********Umbenennung da Leerzeichen im Namen********
@@ -557,17 +560,13 @@ echo Alternative Driver Booster 4 Lizenz (läuft ab: 18.01.2018): 61B05-C956B-19
 start /min C:\Users\%username%\Downloads\DriverBoosterKey.txt
 echo Installationen gestartet. Abschluss aller Installationen geschieht im Hintergrund, nun werden Installations Files gelöscht und Geraetespezifische Daten Installiert ...
 
-:ErmittelungBusiness
 if "%SYSMODEL%"=="Latitude E6520" goto :E6520
 if "%SYSMODEL%"=="Latitude E6510" goto :E6510
 if "%SYSMODEL%"=="Precision T5500" goto :T5500
 if "%SYSMODEL%"=="Precision M6500" goto :M6500
 if "%SYSMODEL%"=="Latitude 7480" goto :RenamePC
 
-goto :Auswahl
-
 :AuswahlBusiness
-start /min https://github.com/FaserF/FaserFQuickTools/releases/download/1.0/RenamePC.vbs
 cls
 cd C:\Users\%username%\Downloads\
 echo             ================================================
@@ -583,7 +582,6 @@ echo.
 echo   [1]    Latitude E6520 / Notebook
 echo   [2]    Latitude E6510 / Notebook
 echo   [3]    Precision M6500 / CAD Notebook
-echo   [4]    Precision T5500 / CAD PC
 echo.
 echo   [0]    EXIT / Abbruch
 echo.
@@ -594,8 +592,7 @@ set /p asw="Bitte Auswahl eingeben: "
 
 if %asw%==1 goto :E6520
 if %asw%==2 goto :E6510
-if %asw%==3 goto :M6500
-if %asw%==4 goto :T5500
+if %asw%==3 goto :RenamePC
 
 if %asw%==0 goto :RenamePC
 if %asw%==exit goto :RenamePC
