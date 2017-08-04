@@ -17,13 +17,7 @@ Wie kann ich das Programm nutzen?
 7. Klicke nun auf page3.vbs
 8. Die Sim Karte sollte automatisch gekauft worden sein!
 
-## Probleme / Q&A
-
-Q: /
-A: /
-
-Solltest du weitere Probleme haben, bitte ich dich einfach auf meinem GitHub ein Ticket zu öffnen und ich werde mich darum kümmern.
 
 ## Weiteres
 
---
+Solltest du Probleme haben, bitte ich dich einfach auf meinem GitHub ein Ticket zu öffnen und ich werde mich darum kümmern.
