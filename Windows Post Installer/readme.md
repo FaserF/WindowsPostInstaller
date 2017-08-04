@@ -16,9 +16,9 @@ Wie kann ich das Programm nutzen?
 1. Lade dir eine Kopie von meinem GitHub herunter (https://github.com/FaserF/FaserFQuickTools/archive/master.zip)
 2. Erstelle einen Windows USB Stick (http://go.microsoft.com/fwlink/?LinkId=691209)
 3. Kopiere die autounattended.xml auf das Hauptverzeichnis deines USB Sticks
-4. Kopiere die Datei Get-WindowsPostInstaller.bat auf deinen USB Stick.
+4. Kopiere die Datei Get-WindowsPostInstaller.exe auf deinen USB Stick.
 5. Installiere Windows, indem du den USB Stick bootest
-6. Öffne, sobald du auf dem Desktop bist, deinen USB Stick Laufwerk und starte die Get-WinPostInstaller.bat
+6. Öffne, sobald du auf dem Desktop bist, deinen USB Stick Laufwerk und starte die Get-WinPostInstaller.exe
 7. Warte auf Abschluss des Downloads meiner neuesten Version des WinPostInstallers.exe
 8. Wenn du die Steam Skin Installation auch automatisch machen lassen willst, ohne Nachfrage, erstelle vor dem Ausführen der .exe eine Datei mit dem Namen "skin.txt" im Downloads Ordner und schreibe dort folgendes hinein:
 	Threshold oder Metro oder skip oder kein
@@ -50,6 +50,8 @@ Get-WindowsPostInstaller.bat
 Dieses Programm dient lediglich dazu, die neueste Version von GitHub herunter zu laden.
 Warum sollte ich nicht gleich die .exe auf meinen Stick kopieren? -> Weil die meisten ihren Windows Stick anschließend herum liegen lassen und irgend wann wieder verwenden. Nun wäre eine veraltete Version meines Tools auf deinem Stick.
 
+InstallDriver-Windows7.bat
+Diese Version ist für veraltete Geraete, welche mit Windows 7 isntalliert werden. Kaum Features & nur das nötigste. Verwendung wird nicht empofohlen!
 ## Unterstützte Geräte
 
 *Für Hauptinstallation werden alle Geräte unterstützt. Geräte Spezifische Features werden nur für folgende Geräte unterstützt:
