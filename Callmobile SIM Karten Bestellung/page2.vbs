@@ -5,6 +5,12 @@ WScript.Sleep 20
 
 WshShell.SendKeys "{TAB}"
 WScript.Sleep 20
+WshShell.SendKeys "{TAB}"
+WScript.Sleep 20
+WshShell.SendKeys "{TAB}"
+WScript.Sleep 20
+WshShell.SendKeys "{TAB}"
+WScript.Sleep 20
 set shell = CreateObject("WScript.Shell"):shell.SendKeys "Fabian"
 WScript.Sleep 20
 WshShell.SendKeys "{TAB}"

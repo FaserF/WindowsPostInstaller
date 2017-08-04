@@ -11,15 +11,16 @@ Wie kann ich das Programm nutzen?
 2. Gehe in den Ordner FaserFQuickTools\Callmobile SIM Karten Bestellung
 3. Gehe nun auf die Erste Seite deiner Bestellung (Auswahl der Rufnummer), aber klicke nichts an. Doppelklicke nun auf page1.vbs
 4. Du solltest nun automatisch auf die nächste Seite gelangen.
-5. Klicke hier in das Feld "Vorname" hinein und doppelklicke nun auf page2.vbs
+5. Doppelklicke nun auf page2.vbs
+5.1 Überprüfe deine Adresse (willst du nicht doch eine andere verwenden? :D)
 6. Klicke auf weiter.
 7. Klicke nun auf page3.vbs
-8. Klicke auf kaufen.
+8. Die Sim Karte sollte automatisch gekauft worden sein!
 
 ## Probleme / Q&A
 
-Q: Auf der 3. Seite wird ein Haken nicht gesetzt und es wird nicht automatisch gekauft
-A: Bekannter Bug. Muss noch gefixt werden!
+Q: /
+A: /
 
 Solltest du weitere Probleme haben, bitte ich dich einfach auf meinem GitHub ein Ticket zu öffnen und ich werde mich darum kümmern.
 
