@@ -11,19 +11,19 @@ WshShell.SendKeys "{TAB}"
 WScript.Sleep 20
 WshShell.SendKeys "{TAB}"
 WScript.Sleep 20
-set shell = CreateObject("WScript.Shell"):shell.SendKeys "Fabian"
+set shell = CreateObject("WScript.Shell"):shell.SendKeys "VName"
 WScript.Sleep 20
 WshShell.SendKeys "{TAB}"
 WScript.Sleep 20
-set shell = CreateObject("WScript.Shell"):shell.SendKeys "Seitz"
+set shell = CreateObject("WScript.Shell"):shell.SendKeys "NName"
 WScript.Sleep 20
 WshShell.SendKeys "{TAB}"
 WScript.Sleep 20
-set shell = CreateObject("WScript.Shell"):shell.SendKeys "26"
+set shell = CreateObject("WScript.Shell"):shell.SendKeys "01"
 WScript.Sleep 20
 WshShell.SendKeys "{TAB}"
 WScript.Sleep 20
-set shell = CreateObject("WScript.Shell"):shell.SendKeys "11"
+set shell = CreateObject("WScript.Shell"):shell.SendKeys "01"
 WScript.Sleep 20
 WshShell.SendKeys "{TAB}"
 WScript.Sleep 20
@@ -37,11 +37,11 @@ set shell = CreateObject("WScript.Shell"):shell.SendKeys "P"
 WScript.Sleep 20
 WshShell.SendKeys "{TAB}"
 WScript.Sleep 20
-set shell = CreateObject("WScript.Shell"):shell.SendKeys "LGNNVX7912"
+set shell = CreateObject("WScript.Shell"):shell.SendKeys "Ausweisnummer"
 WScript.Sleep 20
 WshShell.SendKeys "{TAB}"
 WScript.Sleep 20
-set shell = CreateObject("WScript.Shell"):shell.SendKeys "Peter-Rosegger-Straße"
+set shell = CreateObject("WScript.Shell"):shell.SendKeys "Straße"
 WScript.Sleep 20
 WshShell.SendKeys "{TAB}"
 WScript.Sleep 20
@@ -49,39 +49,39 @@ set shell = CreateObject("WScript.Shell"):shell.SendKeys "1C"
 WScript.Sleep 20
 WshShell.SendKeys "{TAB}"
 WScript.Sleep 20
-set shell = CreateObject("WScript.Shell"):shell.SendKeys "86316"
+set shell = CreateObject("WScript.Shell"):shell.SendKeys "80331"
 WScript.Sleep 20
 WshShell.SendKeys "{TAB}"
 WScript.Sleep 20
-set shell = CreateObject("WScript.Shell"):shell.SendKeys "Friedberg"
+set shell = CreateObject("WScript.Shell"):shell.SendKeys "Ort"
 WScript.Sleep 20
 WshShell.SendKeys "{TAB}"
 WScript.Sleep 20
-set shell = CreateObject("WScript.Shell"):shell.SendKeys "004915902242000"
+set shell = CreateObject("WScript.Shell"):shell.SendKeys "004912345567"
 WScript.Sleep 20
 WshShell.SendKeys "{TAB}"
 WScript.Sleep 20
-set shell = CreateObject("WScript.Shell"):shell.SendKeys "fabi.seitz@yahoo.de"
+set shell = CreateObject("WScript.Shell"):shell.SendKeys "deine@email.de"
 WScript.Sleep 20
 WshShell.SendKeys "{TAB}"
 WScript.Sleep 20
-set shell = CreateObject("WScript.Shell"):shell.SendKeys "fabi.seitz@yahoo.de"
+set shell = CreateObject("WScript.Shell"):shell.SendKeys "deine@email.de"
 WScript.Sleep 20
 WshShell.SendKeys "{TAB}"
 WScript.Sleep 20
-set shell = CreateObject("WScript.Shell"):shell.SendKeys "FaserF00"
+set shell = CreateObject("WScript.Shell"):shell.SendKeys "Hallo123!!"
 WScript.Sleep 20
 WshShell.SendKeys "{TAB}"
 WScript.Sleep 20
-set shell = CreateObject("WScript.Shell"):shell.SendKeys "FaserF00"
+set shell = CreateObject("WScript.Shell"):shell.SendKeys "Hallo123!!"
 WScript.Sleep 20
 WshShell.SendKeys "{TAB}"
 WScript.Sleep 20
-set shell = CreateObject("WScript.Shell"):shell.SendKeys "DE56720905000000587216"
+set shell = CreateObject("WScript.Shell"):shell.SendKeys "DIE_IBAN"
 WScript.Sleep 20
 WshShell.SendKeys "{TAB}"
 WScript.Sleep 20
-set shell = CreateObject("WScript.Shell"):shell.SendKeys "GENODEF1S03"
+set shell = CreateObject("WScript.Shell"):shell.SendKeys "DEINEBANKLEITZAHL"
 WScript.Sleep 20
 WshShell.SendKeys "{TAB}"
 WScript.Sleep 20
