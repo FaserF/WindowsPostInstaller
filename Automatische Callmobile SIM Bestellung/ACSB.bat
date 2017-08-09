@@ -1,6 +1,9 @@
 @echo off
-title Automatische Callmobile SIM Karten Bestellung by FaserF - V1.0.0
+title Automatische Callmobile SIM Karten Bestellung by FaserF - V0.9.0
 color 89
+
+REM *****Hier Hinweis, damit User weiß, dass Tool noch nicht fertig!****
+msg * "Tool ist noch nicht fertig. Automatische Erkennung funktioniert noch nicht! Bugs erwartet! Bitte momentan manuellen weg nutzen mit .vbs Dateien!!! "
 
 :Default
 md C:\Users\%username%\Downloads\ACSKB\
@@ -32,6 +35,8 @@ echo                           Settings.txt wurde nicht gefunden!
 echo             ============================================================
 echo.
 echo.
+echo.
+echo             Bitte jetzt in Browser wechseln, anschliessend wieder in dieses Tool wechseln! Wichtig!
 echo.
 
 set vname=leer
@@ -67,163 +72,197 @@ set /p blz="Bitte BLZ eingeben: "
 
 echo Seite 1 starten?
 pause
-goto:Start
+goto :Start
 
 :Exists
-echo exists
+echo             ============================================================
+echo                              Settings.txt wurde gefunden!
+echo                Nichts klicken! Tool führt Programm automatisch durch!
+echo             ============================================================
 SET /p Skin=<Skin.txt
 goto :Start
 
 :Start
 REM *********Erstelle Script Datei fuer Seite 1***********
-echo >C:\Users\%username%\Downloads\ACSKB\page1.vbs set WshShell = WScript.CreateObject("WScript.Shell")
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WshShell.SendKeys "%{TAB}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WScript.Sleep 20
+echo set WshShell = WScript.CreateObject("WScript.Shell") >C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WshShell.SendKeys "%{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
 
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WshShell.SendKeys "{TAB}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WshShell.SendKeys "{TAB}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WshShell.SendKeys "{TAB}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WshShell.SendKeys "{TAB}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WshShell.SendKeys "{TAB}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WshShell.SendKeys "{TAB}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WshShell.SendKeys "{TAB}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WshShell.SendKeys "{ENTER}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WScript.Sleep 200
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WshShell.SendKeys "{TAB}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WshShell.SendKeys "{TAB}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WshShell.SendKeys "{TAB}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WshShell.SendKeys "{TAB}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WshShell.SendKeys "{TAB}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WshShell.SendKeys "{TAB}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WshShell.SendKeys "{TAB}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WshShell.SendKeys "{TAB}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WshShell.SendKeys "{TAB}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WshShell.SendKeys "{TAB}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WshShell.SendKeys "{TAB}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WshShell.SendKeys "{TAB}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WshShell.SendKeys "{TAB}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WshShell.SendKeys "{TAB}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WshShell.SendKeys "{TAB}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WshShell.SendKeys "{TAB}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WshShell.SendKeys "{ENTER}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page1.vbs WScript.Sleep 6000
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WshShell.SendKeys "{ENTER}" >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WScript.Sleep 200 >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WshShell.SendKeys "{ENTER}" >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
+echo WScript.Sleep 6000 >>C:\Users\%username%\Downloads\ACSKB\page1.vbs
 
 REM *********Erstelle Script Datei fuer Seite 2***********
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs set WshShell = WScript.CreateObject("WScript.Shell")
+echo set WshShell = WScript.CreateObject("WScript.Shell")
 
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WshShell.SendKeys "%{TAB}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WScript.Sleep 20
+echo WshShell.SendKeys "%{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
 
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WshShell.SendKeys "{TAB}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WshShell.SendKeys "{TAB}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WshShell.SendKeys "{TAB}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WshShell.SendKeys "{TAB}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs set shell = CreateObject("WScript.Shell"):shell.SendKeys "%vname%"
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WshShell.SendKeys "{TAB}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs set shell = CreateObject("WScript.Shell"):shell.SendKeys "%nname%"
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WshShell.SendKeys "{TAB}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs set shell = CreateObject("WScript.Shell"):shell.SendKeys "%tag%"
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WshShell.SendKeys "{TAB}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs set shell = CreateObject("WScript.Shell"):shell.SendKeys "%monat%"
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WshShell.SendKeys "{TAB}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs set shell = CreateObject("WScript.Shell"):shell.SendKeys "%jahr%"
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WshShell.SendKeys "{TAB}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WshShell.SendKeys "{TAB}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs set shell = CreateObject("WScript.Shell"):shell.SendKeys "P"
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WshShell.SendKeys "{TAB}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs set shell = CreateObject("WScript.Shell"):shell.SendKeys "%ausweis%"
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WshShell.SendKeys "{TAB}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs set shell = CreateObject("WScript.Shell"):shell.SendKeys "%strasse%"
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WshShell.SendKeys "{TAB}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs set shell = CreateObject("WScript.Shell"):shell.SendKeys "%hausnr%"
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WshShell.SendKeys "{TAB}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs set shell = CreateObject("WScript.Shell"):shell.SendKeys "%plz%"
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WshShell.SendKeys "{TAB}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs set shell = CreateObject("WScript.Shell"):shell.SendKeys "%ort%"
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WshShell.SendKeys "{TAB}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs set shell = CreateObject("WScript.Shell"):shell.SendKeys "%telnr%"
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WshShell.SendKeys "{TAB}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs set shell = CreateObject("WScript.Shell"):shell.SendKeys "%email%"
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WshShell.SendKeys "{TAB}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs set shell = CreateObject("WScript.Shell"):shell.SendKeys "%email%"
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WshShell.SendKeys "{TAB}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs set shell = CreateObject("WScript.Shell"):shell.SendKeys "%pw%"
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WshShell.SendKeys "{TAB}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs set shell = CreateObject("WScript.Shell"):shell.SendKeys "%pw%"
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WshShell.SendKeys "{TAB}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs set shell = CreateObject("WScript.Shell"):shell.SendKeys "%iban%"
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WshShell.SendKeys "{TAB}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs set shell = CreateObject("WScript.Shell"):shell.SendKeys "%blz%"
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WshShell.SendKeys "{TAB}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WshShell.SendKeys "{TAB}"
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WScript.Sleep 20
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WshShell.SendKeys " "
-echo >>C:\Users\%username%\Downloads\ACSKB\page2.vbs WScript.Sleep 20
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo set shell = CreateObject("WScript.Shell"):shell.SendKeys "VName" >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo set shell = CreateObject("WScript.Shell"):shell.SendKeys "NName" >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo set shell = CreateObject("WScript.Shell"):shell.SendKeys "01" >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo set shell = CreateObject("WScript.Shell"):shell.SendKeys "01" >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo set shell = CreateObject("WScript.Shell"):shell.SendKeys "1998" >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo set shell = CreateObject("WScript.Shell"):shell.SendKeys "P" >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo set shell = CreateObject("WScript.Shell"):shell.SendKeys "Ausweisnummer" >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo set shell = CreateObject("WScript.Shell"):shell.SendKeys "Straße" >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo set shell = CreateObject("WScript.Shell"):shell.SendKeys "1C" >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo set shell = CreateObject("WScript.Shell"):shell.SendKeys "80331" >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo set shell = CreateObject("WScript.Shell"):shell.SendKeys "Ort" >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo set shell = CreateObject("WScript.Shell"):shell.SendKeys "004912345567" >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo set shell = CreateObject("WScript.Shell"):shell.SendKeys "deine@email.de" >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo set shell = CreateObject("WScript.Shell"):shell.SendKeys "deine@email.de" >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo set shell = CreateObject("WScript.Shell"):shell.SendKeys "Hallo123!!" >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo set shell = CreateObject("WScript.Shell"):shell.SendKeys "Hallo123!!" >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo set shell = CreateObject("WScript.Shell"):shell.SendKeys "DIE_IBAN" >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo set shell = CreateObject("WScript.Shell"):shell.SendKeys "DEINEBANKLEITZAHL" >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WshShell.SendKeys " " >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page2.vbs
 
+REM *********Erstelle Script Datei fuer Seite 3***********
+
+echo set WshShell = WScript.CreateObject("WScript.Shell") >>C:\Users\%username%\Downloads\ACSKB\page3.vbs
+
+echo WshShell.SendKeys "%{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page3.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page3.vbs
+
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page3.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page3.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page3.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page3.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page3.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page3.vbs
+echo WshShell.SendKeys " " >>C:\Users\%username%\Downloads\ACSKB\page3.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page3.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page3.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page3.vbs
+echo WshShell.SendKeys " " >>C:\Users\%username%\Downloads\ACSKB\page3.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page3.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page3.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page3.vbs
+echo WshShell.SendKeys " " >>C:\Users\%username%\Downloads\ACSKB\page3.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page3.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page3.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page3.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page3.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page3.vbs
+echo WshShell.SendKeys "{TAB}" >>C:\Users\%username%\Downloads\ACSKB\page3.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page3.vbs
+echo WshShell.SendKeys "{ENTER}" >>C:\Users\%username%\Downloads\ACSKB\page3.vbs
+echo WScript.Sleep 20 >>C:\Users\%username%\Downloads\ACSKB\page3.vbs
 
 start C:\Users\%username%\Downloads\ACSKB\page1.vbs
 echo weiter mit Seite 2
@@ -232,7 +271,8 @@ start C:\Users\%username%\Downloads\ACSKB\page2.vbs
 echo weiter mit Seite 3
 pause
 start C:\Users\%username%\Downloads\ACSKB\page3.vbs
-echo fertig
+echo Alles wurde ausgeführt, Taste drücken um Programm zu beenden....
+pause
 goto :Exit
 
 :Exit
