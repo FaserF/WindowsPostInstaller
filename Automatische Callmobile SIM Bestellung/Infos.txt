@@ -1,0 +1,16 @@
+﻿Bitte trage hier wie folgt deine Informationen ein (Ersetze dabei die Wörter mit den Infos, sodass NICHT Vorname: Fabian sonder nur Fabian in der Zeile steht!)
+Vorname
+Nachname
+Geburtstag
+Geburtsmonat
+Geburtsjahr
+Ausweisnummer
+Straße
+Hausnummer
+PLZ
+Ort
+Telefonnummer
+email
+Passwort
+IBAN
+BLZ
