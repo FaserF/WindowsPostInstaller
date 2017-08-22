@@ -1,5 +1,5 @@
 @echo off
-title Automatic Windows Post Installer by FaserF - V3.3.8
+title Automatic Windows Post Installer by FaserF - V3.4.0
 color 89
 
 :Default
@@ -85,7 +85,7 @@ REM *********Umbenennung da Leerzeichen im Namen********
 Ren "C:\Users\%username%\Downloads\Ninite 7Zip Chrome Steam Installer.exe" Ninite-Chrome-7zip-Steam.exe
 start Ninite-Chrome-7zip-Steam.exe
 echo Warte auf Fertigstellung von Chrome Installation! Wichtig!, dann
-timeout /T 80
+timeout /T 120
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 REM *********Default Browser wird in Chrome geändert und anschließende Wartezeit von ca 4 Sekunden********
 start C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs
@@ -134,11 +134,22 @@ echo Lese Skin.txt aus, falls vorhanden.
 echo.
 SET /p Skin=<Skin.txt
 
-if "%Skin%"=="Threshold" goto :Skin1 | echo %TIME% Threshold Skin wurde automatisch ermittelt - Installiere Skin >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
-if "%Skin%"=="Metro" goto :Skin2 | echo %TIME% Metro Skin wurde automatisch ermittelt - Installiere Skin >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
-if "%Skin%"=="skip" goto :Skin3 | echo %TIME% Standard Steam Skin wurde automatisch ermittelt - Installiere keinen Skin >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
-if "%Skin%"=="kein" goto :Skin3 | echo %TIME% Standard Steam Skin wurde automatisch ermittelt - Installiere keinen Skin >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+if "%Skin%"=="Threshold" echo %TIME% Threshold Skin wurde automatisch ermittelt - Installiere Skin >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+if "%Skin%"=="Threshold" goto :Skin1
+if "%Skin%"=="Metro" echo %TIME% Metro Skin wurde automatisch ermittelt - Installiere Skin >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+if "%Skin%"=="Metro" goto :Skin2
+if "%Skin%"=="skip" echo %TIME% Standard Steam Skin wurde automatisch ermittelt - Installiere keinen Skin >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+if "%Skin%"=="skip" goto :Skin3
+if "%Skin%"=="kein" echo %TIME% Standard Steam Skin wurde automatisch ermittelt - Installiere keinen Skin >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+if "%Skin%"=="kein" goto :Skin3
 goto :SteamSkin
+
+:SteamSkinAbwesend
+echo.
+echo              Du warst waehrend der Steam Skin Auswahl Abwesend, daher wirst du nun erneut gefragt.
+echo              Wenn du keinen Skin moechtest waehle "3"
+echo.
+pause
 
 :SteamSkin
 cls
@@ -160,23 +171,29 @@ goto Skin%errorlevel%
 
 :Skin1
 REM ****THRESHOLD*****Installation neuester Version des Steam Skins - muss nachträglich noch in Steam Einstellungen ausgewählt werden!********
+echo %TIME% Threshold Skin wird installiert >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
 cd C:\Program Files\7-Zip\
 7z x C:\Users\%username%\Downloads\Threshold-Skin-master.zip -oC:\Users\%username%\Downloads\
 robocopy "C:\Users\%username%\Downloads\Threshold-Skin-master" "C:\Program Files (x86)\Steam\skins\Threshold" /MIR
 xcopy /s /y "C:\Program Files (x86)\Steam\skins\Threshold\Customization\Sidebar Width\Collapsed Sidebar\resource" "C:\Program Files (x86)\Steam\skins\Threshold\resource"
 rd /s /q C:\Users\%username%\Downloads\Threshold-Skin-master
+if "%SkinAbwesend%"=="yes" goto :RenamePC1
 goto :Start
 
 :Skin2
 REM *****METRO****Installation des Steam Skins - muss nachträglich noch in Steam Einstellungen ausgewählt werden!********
+echo %TIME% Metro Skin wird installiert >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
 cd C:\Program Files\7-Zip\
 7z x C:\Users\%username%\Downloads\4.2.4.zip -oC:\Users\%username%\Downloads\
 robocopy "C:\Users\%username%\Downloads\Metro 4.2.4" "C:\Program Files (x86)\Steam\skins\Metro" /MIR
 rd /s /q C:\Users\%username%\Downloads\Metro*
+if "%SkinAbwesend%"=="yes" goto :RenamePC1
 goto :Start
 
 :Skin3
 REM *******Kein Skin wurde ausgewaehlt********
+echo %TIME% Kein Skin wird installiert >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+if "%SkinAbwesend%"=="yes" goto :RenamePC1
 goto :Start
 :Skin4
 REM *******Dummy - dient lediglich der Weiterleitung
@@ -185,6 +202,7 @@ echo Du warst wohl abwesend. Ich habe in der Zeit den Installationsprozess fortg
 echo.
 echo %TIME% Steam Skin Installation uebersprungen Aufgrund von Abwesenheit [Timeout]. >> WPI_Log.txt
 echo ########### >> WPI_Log.txt
+SET SkinAbwesend=yes
 goto :Start
 
 :Start
@@ -259,7 +277,7 @@ cd C:\Program Files\7-Zip\
 7z x C:\Users\%username%\Downloads\Asmedia_USB3_V116351.zip -oC:\Users\%username%\Downloads\Asmedia_USB3_V116351\
 7z x C:\Users\%username%\Downloads\Turbo_LAN_Win7-8-81-10_V10700.zip -oC:\Users\%username%\Downloads\Turbo_LAN_Win7-8-81-10_V10700\
 cd C:\Users\%username%\Downloads\
-start *.exe
+for /r "." %%a in (*.exe) do start "" "%%~fa"
 start /wait C:\Users\%username%\Downloads\Asmedia_USB3_V116351\AsusSetup.exe
 start /wait C:\Users\%username%\Downloads\Turbo_LAN_Win7-8-81-10_V10700\Turbo_LAN_Win7-8-81-10_V10700\AsusSetup.exe
 start /wait C:\Users\%username%\Downloads\AISuite_III_V10149_for_Z97\AsusSetup.exe
@@ -479,7 +497,7 @@ start https://downloads.dell.com/FOLDER01694314M/2/Network_Driver_3MNPT_WN_15.10
 start https://downloadcenter.intel.com/de/downloads/eula/20775/Intel-Chipsatz-Ger-tesoftware-INF-Update-Utility-?httpDown=https%3A%2F%2Fdownloadmirror.intel.com%2F20775%2Feng%2FSetupChipset.exe
 echo Warte auf Beendigung des Downloads, dann ...
 pause
-start *.exe
+for /r "." %%a in (*.exe) do start "" "%%~fa"
 taskkill /IM MicrosoftEdge.exe
 echo Installationen gestartet.
 echo Dialog schließt sich in 5 Sekunden und loescht Installationsfiles.
@@ -492,13 +510,12 @@ echo Dell M4700 wurde automatisch ermittelt | echo %TIME% %SYSMODEL% wurde autom
 :M4700-Start
 start http://www.nvidia.de/content/DriverDownload-March2009/confirmation.php?url=/Windows/Quadro_Certified/385.08/385.08-quadro-grid-desktop-notebook-win10-64bit-international-whql.exe&lang=de&type=Quadro
 start https://downloads.dell.com/FOLDER03465771M/1/Network_Driver_565N6_WN32_12.0.1.750_A03.EXE
+start https://downloads.dell.com/FOLDER03388567M/1/Input_Driver_YXX3D_WN32_10.1207.101.109_A03.EXE
+start http://www.nvidia.de/Download/index.aspx?lang=de
 start https://downloadcenter.intel.com/de/product/59471/Intel-Centrino-Advanced-N-6205-Dualband
-start https://downloads.dell.com/FOLDER03974196M/3/ControlVault_Setup_HTF2M_3.4.10.0_A41_ZPE.exe
-start https://downloads.dell.com/FOLDER03974224M/1/Security_Driver_HGX2G_WN64_3.4.8.14_A20.EXE
-start https://downloads.dell.com/FOLDER03059387M/1/Security_Driver_V6WJ1_WN32_1.1.4.238_A04.EXE
 echo Warte auf Beendigung des Downloads, dann ...
 pause
-start *.exe
+for /r "." %%a in (*.exe) do start "" "%%~fa"
 taskkill /IM MicrosoftEdge.exe
 echo Installationen gestartet.
 echo Dialog schließt sich in 5 Sekunden und loescht Installationsfiles.
@@ -517,7 +534,7 @@ cd C:\Program Files\7-Zip\
 7z x C:\Users\%username%\Downloads\MSIAfterburnerSetup.zip -oC:\Users\%username%\Downloads\
 7z x C:\Users\%username%\Downloads\4.3.0\MSIAfterburnerSetup430.rar -oC:\Users\%username%\Downloads\
 cd C:\Users\%username%\Downloads\
-start *.exe
+for /r "." %%a in (*.exe) do start "" "%%~fa"
 taskkill /IM MicrosoftEdge.exe
 echo Installationen gestartet.
 echo Dialog schließt sich in 5 Sekunden und loescht Installationsfiles.
@@ -536,7 +553,7 @@ cd C:\Program Files\7-Zip\
 7z x C:\Users\%username%\Downloads\AISuite3_Win7-81-10_MaxVIII_Series_V10130.zip -oC:\Users\%username%\Downloads\AISuite3_Win7-81-10_MaxVIII_Series_V10130\
 7z x C:\Users\%username%\Downloads\Asmedia_USB3_V116351.zip -oC:\Users\%username%\Downloads\Asmedia_USB3_V116351\
 cd C:\Users\%username%\Downloads\
-start *.exe
+for /r "." %%a in (*.exe) do start "" "%%~fa"
 start C:\Users\%username%\Downloads\Asmedia_USB3_V116351\AsusSetup.exe
 start C:\Users\%username%\Downloads\AISuite3_Win7-81-10_MaxVIII_Series_V10130\AsusSetup.exe
 echo Bitte Treiber installieren, anschließend ...
@@ -555,7 +572,7 @@ start https://ninite.com/notepadplusplus-putty/ninite.exe
 echo 2. Anwendungsinstallation. Warte auf Beendigung der Downloads, dann ...
 pause
 Ren "C:\Users\%username%\Downloads\Ninite Notepad PuTTY Installer.exe" Ninite-Putty-Notepad.exe
-start *.exe
+for /r "." %%a in (*.exe) do start "" "%%~fa"
 taskkill /IM MicrosoftEdge.exe
 echo Installationen gestartet.
 echo Dialog schließt sich in 5 Sekunden und loescht Installationsfiles.
@@ -642,7 +659,7 @@ start https://downloadmirror.intel.com/25016/eng/PROWinx64.exe
 start https://downloads.dell.com/FOLDER01669864M/1/Input_Driver_VW486_WN_8.1200.101.134_A07.EXE
 echo Warte auf Beendigung des Downloads, dann ...
 timeout /T 120
-start *.exe
+for /r "." %%a in (*.exe) do start "" "%%~fa"
 taskkill /IM Chrome.exe /F
 echo Installationen gestartet.
 pause
@@ -657,7 +674,7 @@ start https://downloadmirror.intel.com/26653/eng/Wireless_19.50.1_PROSet64_Win10
 start https://downloads.dell.com/FOLDER01449251M/1/Input_Driver_GGY5W_WN_8.1200.101.127_A06.EXE
 echo Warte auf Beendigung des Downloads, dann ...
 timeout /T 120
-start *.exe
+for /r "." %%a in (*.exe) do start "" "%%~fa"
 taskkill /IM Chrome.exe /F
 echo Installationen gestartet.
 pause
@@ -667,8 +684,10 @@ timeout /T 5
 goto :RenamePC
 
 :RenamePC
-del /q C:\Users\%username%\Downloads\*.exe
-del /q C:\Users\%username%\Downloads\*.msi
+if "%SkinAbwesend%"=="yes" goto :SteamSkinAbwesend
+:RenamePC1
+for /r "." %%a in (*.exe) do del /q "" "%%~fa"
+for /r "." %%a in (*.msi) do del /q "" "%%~fa"
 del /q C:\Users\%username%\Downloads\Skin.txt
 set NEWPCNAME=""
 set /p NEWPCNAME="Bitte neuen Computernamen eingeben: "
