@@ -1,5 +1,5 @@
 @echo off
-title Automatic Windows Post Installer by FaserF - V3.3.6
+title Automatic Windows Post Installer by FaserF - V3.3.7
 color 89
 
 :Default
@@ -196,6 +196,7 @@ if "%SYSMODEL%"=="All Series" goto :Z97-AR
 if "%SYSMODEL%"=="W65_67SJ" goto :W65_67SJ
 if "%SYSMODEL%"=="Precision T5500" goto :T5500
 if "%SYSMODEL%"=="Precision M6500" goto :M6500
+if "%SYSMODEL%"=="Precision M4700" goto :M4700
 if "%SYSMODEL%"=="System Product Name" goto :VIII
 goto :Auswahl
 
@@ -483,6 +484,25 @@ del /q C:\Users\%username%\Downloads\*.exe
 timeout /T 5
 goto :RenamePC
 
+:M4700
+echo Dell M4700 wurde automatisch ermittelt | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+:M4700-Start
+start http://www.nvidia.de/content/DriverDownload-March2009/confirmation.php?url=/Windows/Quadro_Certified/385.08/385.08-quadro-grid-desktop-notebook-win10-64bit-international-whql.exe&lang=de&type=Quadro
+start https://downloads.dell.com/FOLDER03465771M/1/Network_Driver_565N6_WN32_12.0.1.750_A03.EXE
+start https://downloadcenter.intel.com/de/product/59471/Intel-Centrino-Advanced-N-6205-Dualband
+start https://downloads.dell.com/FOLDER03974196M/3/ControlVault_Setup_HTF2M_3.4.10.0_A41_ZPE.exe
+start https://downloads.dell.com/FOLDER03974224M/1/Security_Driver_HGX2G_WN64_3.4.8.14_A20.EXE
+start https://downloads.dell.com/FOLDER03059387M/1/Security_Driver_V6WJ1_WN32_1.1.4.238_A04.EXE
+echo Warte auf Beendigung des Downloads, dann ...
+pause
+start *.exe
+taskkill /IM MicrosoftEdge.exe
+echo Installationen gestartet.
+echo Dialog schließt sich in 5 Sekunden und loescht Installationsfiles.
+del /q C:\Users\%username%\Downloads\*.exe
+timeout /T 5
+goto :RenamePC
+
 :T5500
 echo Dell T5500 wurde automatisch ermittelt | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
 :T5500-Start
@@ -575,6 +595,7 @@ if "%SYSMODEL%"=="Latitude E6520" goto :E6520
 if "%SYSMODEL%"=="Latitude E6510" goto :E6510
 if "%SYSMODEL%"=="Precision T5500" goto :T5500
 if "%SYSMODEL%"=="Precision M6500" goto :M6500
+if "%SYSMODEL%"=="Precision M4700" goto :M4700
 if "%SYSMODEL%"=="Latitude 7480" goto :RenamePC
 
 :AuswahlBusiness
