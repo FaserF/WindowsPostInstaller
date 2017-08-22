@@ -1,8 +1,9 @@
 @echo off
-title Automatic Windows Post Installer by FaserF - V3.3.7
+title Automatic Windows Post Installer by FaserF - V3.3.8
 color 89
 
 :Default
+cd C:\Users\%username%\Downloads\
 md C:\Users\%username%\Downloads\CustomInstall\
 echo                           Windows Post Installer - LOG > WPI_Log.txt
 echo             ============================================================ >> WPI_Log.txt
@@ -44,7 +45,6 @@ echo %TIME%  %WindowsVersion% wurde automatisch ermittelt >> WPI_Log.txt
 if "%WindowsVersion%" == "Windows 7" echo Treiber Support wird unter Windows 7 nicht Garantiert. >> WPI_Log.txt
 if "%WindowsVersion%" == "Windows Version unbekannt" echo Installierte Windows Version konnte nicht erkannt werden. Treiber Support wird nicht Garantiert. >> WPI_Log.txt
 echo ######################################################################## >> WPI_Log.txt
-cd C:\Users\%username%\Downloads\
 cls
 echo             ============================================================
 echo                                    Automatische
@@ -76,7 +76,7 @@ if "%SYSMODEL%"=="Latitude 7480" goto :Business
 if "%SYSMODEL%"=="Latitude E6530" goto :Business
 if "%SYSMODEL%"=="Latitude E6520" goto :Business
 if "%SYSMODEL%"=="Latitude E6510" goto :Business
-goto :PrivatGeraet | echo %TIME% Privatgeraet %SYSMODEL% wurde automatisch ermittelt - Starte Steam und Steam Skin Download >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+goto :PrivatGeraet | echo %TIME% Kein Businessgeraet ( %SYSMODEL% ) wurde automatisch ermittelt - Starte Steam und Steam Skin Download >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
 
 :PrivatGeraet
 start /min https://ninite.com/7zip-chrome-steam/ninite.exe
@@ -125,6 +125,7 @@ if not Exist "Skin.txt" (
 echo %TIME% Skin.txt nicht gefunden >> WPI_Log.txt
 echo             Erstelle vor Start eine Skin.txt mit Inhalt des gewuenschten Steam Skins [Auswahl: Threshold , Metro , skip] >> WPI_Log.txt
 echo ######################################################################## >> WPI_Log.txt
+)
 start /min WPI_Log.txt
 
 :AutoSteamSkin
@@ -133,10 +134,10 @@ echo Lese Skin.txt aus, falls vorhanden.
 echo.
 SET /p Skin=<Skin.txt
 
-if "%Skin%"=="Threshold" goto :Skin1
-if "%Skin%"=="Metro" goto :Skin2
-if "%Skin%"=="skip" goto :Skin3
-if "%Skin%"=="kein" goto :Skin3
+if "%Skin%"=="Threshold" goto :Skin1 | echo %TIME% Threshold Skin wurde automatisch ermittelt - Installiere Skin >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+if "%Skin%"=="Metro" goto :Skin2 | echo %TIME% Metro Skin wurde automatisch ermittelt - Installiere Skin >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+if "%Skin%"=="skip" goto :Skin3 | echo %TIME% Standard Steam Skin wurde automatisch ermittelt - Installiere keinen Skin >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+if "%Skin%"=="kein" goto :Skin3 | echo %TIME% Standard Steam Skin wurde automatisch ermittelt - Installiere keinen Skin >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
 goto :SteamSkin
 
 :SteamSkin
@@ -216,6 +217,7 @@ echo   [2]    Clevo W65_67SJ / Notebook
 echo   [3]    Dell Precision T5500 / CAD PC
 echo   [4]    Dell Precision M6500 / CAD Notebook
 echo   [5]    Asus Maximus Ranger VIII / PC
+echo   [6]    Dell Precision M4700 / CAD Notebook
 echo.
 echo   [B]    Businessgeraet
 echo   [0]    EXIT / Beenden
@@ -230,6 +232,7 @@ if %asw%==2 goto :W65_67SJ-Start
 if %asw%==3 goto :T5500
 if %asw%==4 goto :M6500
 if %asw%==5 goto :VIII
+if %asw%==6 goto :M4700
 
 if %asw%==B goto :AuswahlBusiness
 if %asw%==0 goto :RenamePC
