@@ -1,5 +1,5 @@
 @echo off
-title Automatic Windows Post Installer by FaserF - V3.4.0
+title Automatic Windows Post Installer by FaserF - V3.4.1
 color 89
 
 :Default
@@ -52,6 +52,12 @@ echo                   Treiber und Programm Installation by Fabian Seitz
 echo                             Thanks to @KaiSMR und @Bilalui
 echo             ============================================================
 echo.
+echo             Ueberpruefe Internet Verbindung.
+Ping www.google.nl -n 1 -w 1000
+if errorlevel 1 (set internet=Nicht mit dem Internet verbunden) else (set internet=Internet Verbindung aufgebaut)
+echo.
+echo %internet%
+if "%internet%" == "Nicht mit dem Internet verbunden" goto :NoInternet
 echo            Initialisiere Standard Installation
 echo            WICHTIG: NICHTS TIPPEN/ANKLICKEN, nur bei Aufforderung! Ansonsten Abbruch der Automatik.
 echo.
@@ -76,7 +82,7 @@ if "%SYSMODEL%"=="Latitude 7480" goto :Business
 if "%SYSMODEL%"=="Latitude E6530" goto :Business
 if "%SYSMODEL%"=="Latitude E6520" goto :Business
 if "%SYSMODEL%"=="Latitude E6510" goto :Business
-goto :PrivatGeraet | echo %TIME% Kein Businessgeraet ( %SYSMODEL% ) wurde automatisch ermittelt - Starte Steam und Steam Skin Download >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+goto :PrivatGeraet | echo %TIME% Kein Businessgeraet ( %SYSMODEL% ) wurde automatisch ermittelt - Starte Downloads >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
 
 :PrivatGeraet
 start /min https://ninite.com/7zip-chrome-steam/ninite.exe
@@ -682,6 +688,12 @@ echo Dialog schließt sich in 5 Sekunden und loescht Installationsfiles.
 del /q C:\Users\%username%\Downloads\*.exe
 timeout /T 5
 goto :RenamePC
+
+:NoInternet
+echo %TIME% Internet Verbindung konnte nicht hergestellt werden! Programm wird beendet. >> WPI_Log.txt
+msg * "Keine Internet Verbindung verfuegbar, Programm wird beendet!"
+rd /s /q C:\Users\%username%\Downloads\CustomInstall\
+exit
 
 :RenamePC
 if "%SkinAbwesend%"=="yes" goto :SteamSkinAbwesend
