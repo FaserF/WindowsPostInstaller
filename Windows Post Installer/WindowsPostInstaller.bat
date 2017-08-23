@@ -1,5 +1,6 @@
 @echo off
-title Automatic Windows Post Installer by FaserF - V3.4.1
+set WPIVersion=3.4.2
+title Automatic Windows Post Installer by FaserF - V%WPIVersion%
 color 89
 
 :Default
@@ -53,11 +54,12 @@ echo                             Thanks to @KaiSMR und @Bilalui
 echo             ============================================================
 echo.
 echo             Ueberpruefe Internet Verbindung.
-Ping www.google.nl -n 1 -w 1000
+Ping www.google.de -n 1 -w 1000
 if errorlevel 1 (set internet=Nicht mit dem Internet verbunden) else (set internet=Internet Verbindung aufgebaut)
 echo.
 echo %internet%
 if "%internet%" == "Nicht mit dem Internet verbunden" goto :NoInternet
+echo.
 echo            Initialisiere Standard Installation
 echo            WICHTIG: NICHTS TIPPEN/ANKLICKEN, nur bei Aufforderung! Ansonsten Abbruch der Automatik.
 echo.
@@ -82,11 +84,21 @@ if "%SYSMODEL%"=="Latitude 7480" goto :Business
 if "%SYSMODEL%"=="Latitude E6530" goto :Business
 if "%SYSMODEL%"=="Latitude E6520" goto :Business
 if "%SYSMODEL%"=="Latitude E6510" goto :Business
+if "%SYSMODEL%"=="Precision M4600" goto :Business
 goto :PrivatGeraet | echo %TIME% Kein Businessgeraet ( %SYSMODEL% ) wurde automatisch ermittelt - Starte Downloads >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
 
 :PrivatGeraet
 start /min https://ninite.com/7zip-chrome-steam/ninite.exe
+echo            Suche nach Updates
+echo.
+start https://github.com/FaserF/FaserFQuickTools/releases/download/1.0/LatestVersion.txt
 timeout /T 10
+SET /p LatestVersion=<LatestVersion.txt
+if %WPIVersion% gtr %LatestVersion% echo "Keine Updates gefunden!";
+if %LatestVersion% gtr %WPIVersion% echo "Du nutzt nicht die neueste Version. Bitte aktualisiere WPI auf Version %LatestVersion%";
+if %LatestVersion% gtr %WPIVersion% echo %TIME% Neue Version gefunden. Bitte aktualisiere auf Version %LatestVersion%. Deine Version ist %WPIVersion% >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+if %LatestVersion% gtr %WPIVersion% start https://github.com/FaserF/FaserFQuickTools/releases/latest | pause
+del /q C:\Users\%username%\Downloads\LatestVersion.txt
 REM *********Umbenennung da Leerzeichen im Namen********
 Ren "C:\Users\%username%\Downloads\Ninite 7Zip Chrome Steam Installer.exe" Ninite-Chrome-7zip-Steam.exe
 start Ninite-Chrome-7zip-Steam.exe
@@ -589,6 +601,16 @@ goto :RenamePC
 :Business
 echo Businessgeraet wurde ermittelt! | echo %TIME% Businessgeraet %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Steam und Steam Skin >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
 start /min https://ninite.com/7zip-chrome/ninite.exe
+echo            Suche nach Updates
+echo.
+start https://github.com/FaserF/FaserFQuickTools/releases/download/1.0/LatestVersion.txt
+timeout /T 10
+SET /p LatestVersion=<LatestVersion.txt
+if %WPIVersion% gtr %LatestVersion% echo "Keine Updates gefunden!";
+if %LatestVersion% gtr %WPIVersion% echo "Du nutzt nicht die neueste Version. Bitte aktualisiere WPI auf Version %LatestVersion%";
+if %LatestVersion% gtr %WPIVersion% echo %TIME% Neue Version gefunden. Bitte aktualisiere auf Version %LatestVersion%. Deine Version ist %WPIVersion%. >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+if %LatestVersion% gtr %WPIVersion% start https://github.com/FaserF/FaserFQuickTools/releases/latest | pause
+del /q C:\Users\%username%\Downloads\LatestVersion.txt
 timeout /T 10
 REM *********Umbenennung da Leerzeichen im Namen********
 Ren "C:\Users\%username%\Downloads\Ninite 7Zip Chrome Installer.exe" Ninite-Chrome-7zip.exe
