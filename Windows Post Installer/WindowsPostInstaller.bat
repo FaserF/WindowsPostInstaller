@@ -1,5 +1,5 @@
 @echo off
-set WPIVersion=3.4.3
+set WPIVersion=3.4.4
 title Automatic Windows Post Installer by FaserF - V%WPIVersion%
 color 89
 
@@ -116,6 +116,7 @@ start /min http://www.filehorse.com/download-nvidia-geforce-experience/download/
 start /min http://www.filehorse.com/download-driver-booster-free/download/
 start /min https://discordapp.com/api/download?platform=win
 start /min https://app.prntscr.com/build/setup-lightshot.exe
+start /min https://gallery.technet.microsoft.com/Manage-the-taskbar-remove-c3024e40/file/145807/1/ManageTaskbar-1.0.zip
 start /min https://github.com/FaserF/FaserFQuickTools/releases/download/1.0/RenamePC.vbs
 echo Warte auf Beendigung der Downloads, dann ...
 timeout /T 120
@@ -198,10 +199,9 @@ goto Skin%errorlevel%
 REM ****THRESHOLD*****Installation neuester Version des Steam Skins - muss nachträglich noch in Steam Einstellungen ausgewählt werden!********
 echo %TIME% Threshold Skin wird installiert >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
 cd C:\Program Files\7-Zip\
-7z x C:\Users\%username%\Downloads\Threshold-Skin-master.zip -oC:\Users\%username%\Downloads\
-robocopy "C:\Users\%username%\Downloads\Threshold-Skin-master" "C:\Program Files (x86)\Steam\skins\Threshold" /MIR
+7z x C:\Users\%username%\Downloads\Threshold-Skin-master.zip -oC:\Users\%username%\Downloads\CustomInstall\
+robocopy "C:\Users\%username%\Downloads\CustomInstall\Threshold-Skin-master" "C:\Program Files (x86)\Steam\skins\Threshold" /MIR
 xcopy /s /y "C:\Program Files (x86)\Steam\skins\Threshold\Customization\Sidebar Width\Collapsed Sidebar\resource" "C:\Program Files (x86)\Steam\skins\Threshold\resource"
-rd /s /q C:\Users\%username%\Downloads\Threshold-Skin-master
 if "%SkinAbwesend%"=="yes" goto :RenamePC1
 goto :Start
 
@@ -209,9 +209,8 @@ goto :Start
 REM *****METRO****Installation des Steam Skins - muss nachträglich noch in Steam Einstellungen ausgewählt werden!********
 echo %TIME% Metro Skin wird installiert >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
 cd C:\Program Files\7-Zip\
-7z x C:\Users\%username%\Downloads\4.2.4.zip -oC:\Users\%username%\Downloads\
-robocopy "C:\Users\%username%\Downloads\Metro 4.2.4" "C:\Program Files (x86)\Steam\skins\Metro" /MIR
-rd /s /q C:\Users\%username%\Downloads\Metro*
+7z x C:\Users\%username%\Downloads\4.2.4.zip -oC:\Users\%username%\Downloads\CustomInstall\
+robocopy "C:\Users\%username%\Downloads\CustomInstall\Metro 4.2.4" "C:\Program Files (x86)\Steam\skins\Metro" /MIR
 if "%SkinAbwesend%"=="yes" goto :RenamePC1
 goto :Start
 
@@ -237,7 +236,6 @@ SET SkinAbwesend=yes
 goto :Start
 
 :Start
-del /q C:\Users\%username%\Downloads\*.zip
 cd C:\Users\%username%\Downloads\
 goto :Ermittelung
 
@@ -315,9 +313,6 @@ start /wait C:\Users\%username%\Downloads\AISuite_III_V10149_for_Z97\AsusSetup.e
 start /wait C:\Users\%username%\Downloads\lenovo_artery_setup.exe
 echo Bitte Treiber installieren, anschließend ...
 timeout /T 40
-del /q C:\Users\%username%\Downloads\*.exe
-del /q C:\Users\%username%\Downloads\*.zip
-del /q C:\Users\%username%\Downloads\*.rar
 start https://www.unifiedremote.com/download/windows
 start https://update.pushbullet.com/pushbullet_installer.exe
 start http://ubi.li/4vxt9
@@ -637,6 +632,7 @@ timeout /T 4
 taskkill /IM MicrosoftEdge.exe
 slmgr.vbs /ato
 start /min http://www.filehorse.com/download-driver-booster-free/download/
+start /min https://gallery.technet.microsoft.com/Manage-the-taskbar-remove-c3024e40/file/145807/1/ManageTaskbar-1.0.zip
 start /min https://github.com/FaserF/FaserFQuickTools/releases/download/1.0/RenamePC.vbs
 echo Warte auf Beendigung der Downloads, dann ...
 timeout /T 60
@@ -735,6 +731,8 @@ if "%SkinAbwesend%"=="yes" goto :SteamSkinAbwesend
 :RenamePC1
 for /r "." %%a in (*.exe) do del /q "" "%%~fa"
 for /r "." %%a in (*.msi) do del /q "" "%%~fa"
+for /r "." %%a in (*.zip) do del /q "" "%%~fa"
+for /r "." %%a in (*.rar) do del /q "" "%%~fa"
 del /q C:\Users\%username%\Downloads\Skin.txt
 set NEWPCNAME=""
 set /p NEWPCNAME="Bitte neuen Computernamen eingeben: "
@@ -748,6 +746,18 @@ timeout /T 1
 goto :Exit
 
 :Exit
+cd C:\Program Files\7-Zip\
+7z x C:\Users\%username%\Downloads\ManageTaskbar-1.0.zip -oC:\Users\%username%\Downloads\CustomInstall\
+start C:\Users\fseitz\Downloads\CustomInstall\ManageTaskbar 1.0\TaskBar.cmd
+timeout /T 3
+echo Set oWS = WScript.CreateObject("WScript.Shell") > C:\Users\%username%\Downloads\CustomInstall\CreateShortcut.vbs
+echo sLinkFile = "C:\Users\%username%\Downloads\CustomInstall\Google Chrome.lnk" >> C:\Users\%username%\Downloads\CustomInstall\CreateShortcut.vbs
+echo Set oLink = oWS.CreateShortcut(sLinkFile) >> C:\Users\%username%\Downloads\CustomInstall\CreateShortcut.vbs
+echo oLink.TargetPath = "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" >> C:\Users\%username%\Downloads\CustomInstall\CreateShortcut.vbs
+echo oLink.Save >> C:\Users\%username%\Downloads\CustomInstall\CreateShortcut.vbs
+cscript C:\Users\%username%\Downloads\CustomInstall\CreateShortcut.vbs
+copy "C:\Users\%username%\Downloads\CustomInstall\Google Chrome.lnk" "%AppData%\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar\Google Chrome.lnk"
+
 rd /s /q C:\Users\%username%\Downloads\CustomInstall\
 start https://discordler.github.io
 start https://central.bitdefender.com/
