@@ -1,5 +1,5 @@
 @echo off
-set WPIVersion=3.4.2
+set WPIVersion=3.4.3
 title Automatic Windows Post Installer by FaserF - V%WPIVersion%
 color 89
 
@@ -148,6 +148,11 @@ start /min WPI_Log.txt
 
 :AutoSteamSkin
 echo.
+if "%SYSMODEL%"=="All Series" SET Skin=Threshold
+if "%SYSMODEL%"=="W65_67SJ" SET Skin=Threshold
+if "%SYSMODEL%"=="Precision T5500" SET Skin=Threshold
+if "%SYSMODEL%"=="Precision M6500" SET Skin=Threshold
+if "%SYSMODEL%"=="Precision M4700" SET Skin=Threshold
 echo Lese Skin.txt aus, falls vorhanden.
 echo.
 SET /p Skin=<Skin.txt
@@ -168,6 +173,7 @@ echo              Du warst waehrend der Steam Skin Auswahl Abwesend, daher wirst
 echo              Wenn du keinen Skin moechtest waehle "3"
 echo.
 pause
+goto :SteamSkin
 
 :SteamSkin
 cls
@@ -181,10 +187,11 @@ echo.
 echo   [1]    Threshold Skin [Windows 10 Style Theme]
 echo   [2]    Metro for Steam Skin [Windows 8 Style Theme]
 echo   [3]    keinen [Standard Steam Skin]
+echo   [4]    Deinstalliere Steam
 echo.
 
 :: Choices are 1,2 and 3, default choice is 4, timeout = 1 minute
-choice /c 1234 /d 4 /t 30
+choice /c 12345 /d 5 /t 30
 goto Skin%errorlevel%
 
 :Skin1
@@ -213,7 +220,13 @@ REM *******Kein Skin wurde ausgewaehlt********
 echo %TIME% Kein Skin wird installiert >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
 if "%SkinAbwesend%"=="yes" goto :RenamePC1
 goto :Start
+
 :Skin4
+echo %TIME% Steam wird deinstalliert >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+start C:\Program Files (x86)\Steam\uninstall.exe /S
+timeout /T 10
+
+:Skin5
 REM *******Dummy - dient lediglich der Weiterleitung
 echo.
 echo Du warst wohl abwesend. Ich habe in der Zeit den Installationsprozess fortgesetzt und keinen Steam Skin installiert.
