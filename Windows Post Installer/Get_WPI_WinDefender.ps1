@@ -4,4 +4,4 @@ start https://github.com/FaserF/FaserFQuickTools/releases/download/1.0/WindowsPo
 Start-Sleep -s 10
 Start-Process C:\Users\$env:UserName\Downloads\WindowsPostInstaller.exe -NoNewWindow -Wait
 Remove-MpPreference -ExclusionPath "C:\Users\$env:UserName\Downloads"
-pause
+exit
