@@ -1,16 +1,16 @@
 @echo off
-set WPIVersion=3.4.4
+set WPIVersion=3.5.0
 title Automatic Windows Post Installer by FaserF - V%WPIVersion%
 color 89
 
 :Default
 cd C:\Users\%username%\Downloads\
 md C:\Users\%username%\Downloads\CustomInstall\
-echo                           Windows Post Installer - LOG > WPI_Log.txt
-echo             ============================================================ >> WPI_Log.txt
-echo %TIME% Programm ist gestartet >> WPI_Log.txt
-echo             Probleme? https://github.com/FaserF/FaserFQuickTools/issues >> WPI_Log.txt
-echo ######################################################################## >> WPI_Log.txt
+echo                           Windows Post Installer - LOG > C:\Users\%username%\Desktop\WPI_Log.txt
+echo             ============================================================ >> C:\Users\%username%\Desktop\WPI_Log.txt
+echo %TIME% Programm ist gestartet >> C:\Users\%username%\Desktop\WPI_Log.txt
+echo             Probleme? https://github.com/FaserF/FaserFQuickTools/issues >> C:\Users\%username%\Desktop\WPI_Log.txt
+echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
 REM *********Erstelle reg Eintrag zur Deaktivierung der Edge Speichern Aufforderung********
 echo Windows Registry Editor Version 5.00 > "C:\Users\%username%\Downloads\CustomInstall\EdgeAutoDownload.reg"
 echo [HKEY_CURRENT_USER\SOFTWARE\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\Download] >> "C:\Users\%username%\Downloads\CustomInstall\EdgeAutoDownload.reg"
@@ -42,10 +42,10 @@ for /f "tokens=4-5 delims=. " %%i in ('ver') do set VERSION=%%i.%%j
 if "%version%" == "6.3" set WindowsVersion=Windows 8
 if "%version%" == "6.1" set WindowsVersion=Windows 7
 if "%version%" == "10.0" set WindowsVersion=Windows 10
-echo %TIME%  %WindowsVersion% wurde automatisch ermittelt >> WPI_Log.txt 
-if "%WindowsVersion%" == "Windows 7" echo Treiber Support wird unter Windows 7 nicht Garantiert. >> WPI_Log.txt
-if "%WindowsVersion%" == "Windows Version unbekannt" echo Installierte Windows Version konnte nicht erkannt werden. Treiber Support wird nicht Garantiert. >> WPI_Log.txt
-echo ######################################################################## >> WPI_Log.txt
+echo %TIME%  %WindowsVersion% wurde automatisch ermittelt >> C:\Users\%username%\Desktop\WPI_Log.txt 
+if "%WindowsVersion%" == "Windows 7" echo Treiber Support wird unter Windows 7 nicht Garantiert. >> C:\Users\%username%\Desktop\WPI_Log.txt
+if "%WindowsVersion%" == "Windows Version unbekannt" echo Installierte Windows Version konnte nicht erkannt werden. Treiber Support wird nicht Garantiert. >> C:\Users\%username%\Desktop\WPI_Log.txt
+echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
 cls
 echo             ============================================================
 echo                                    Automatische
@@ -85,20 +85,21 @@ if "%SYSMODEL%"=="Latitude E6530" goto :Business
 if "%SYSMODEL%"=="Latitude E6520" goto :Business
 if "%SYSMODEL%"=="Latitude E6510" goto :Business
 if "%SYSMODEL%"=="Precision M4600" goto :Business
-goto :PrivatGeraet | echo %TIME% Kein Businessgeraet ( %SYSMODEL% ) wurde automatisch ermittelt - Starte Downloads >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+goto :PrivatGeraet | echo %TIME% Kein Businessgeraet ( %SYSMODEL% ) wurde automatisch ermittelt - Starte Downloads >> C:\Users\%username%\Desktop\WPI_Log.txt | echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
 
 :PrivatGeraet
 start /min https://ninite.com/7zip-chrome-steam/ninite.exe
 echo            Suche nach Updates
 echo.
 start https://github.com/FaserF/FaserFQuickTools/releases/download/1.0/LatestVersion.txt
-timeout /T 10
+timeout /T 5
 SET /p LatestVersion=<LatestVersion.txt
-if %WPIVersion% gtr %LatestVersion% echo "Keine Updates gefunden!";
-if %LatestVersion% gtr %WPIVersion% echo "Du nutzt nicht die neueste Version. Bitte aktualisiere WPI auf Version %LatestVersion%";
-if %LatestVersion% gtr %WPIVersion% echo %TIME% Neue Version gefunden. Bitte aktualisiere auf Version %LatestVersion%. Deine Version ist %WPIVersion% >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+if %WPIVersion% gtr %LatestVersion% echo Keine Updates gefunden!
+if %LatestVersion% gtr %WPIVersion% echo Du nutzt nicht die neueste Version. Bitte aktualisiere WPI auf Version %LatestVersion%
+if %LatestVersion% gtr %WPIVersion% echo %TIME% Neue Version gefunden. Bitte aktualisiere auf Version %LatestVersion%. Deine Version ist %WPIVersion% >> C:\Users\%username%\Desktop\WPI_Log.txt | echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
 if %LatestVersion% gtr %WPIVersion% start https://github.com/FaserF/FaserFQuickTools/releases/latest | pause
 del /q C:\Users\%username%\Downloads\LatestVersion.txt
+
 REM *********Umbenennung da Leerzeichen im Namen********
 Ren "C:\Users\%username%\Downloads\Ninite 7Zip Chrome Steam Installer.exe" Ninite-Chrome-7zip-Steam.exe
 start Ninite-Chrome-7zip-Steam.exe
@@ -109,7 +110,6 @@ REM *********Default Browser wird in Chrome geändert und anschließende Warteze
 start C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs
 timeout /T 4
 taskkill /IM MicrosoftEdge.exe
-slmgr.vbs /ato
 start /min https://github.com/Edgarware/Threshold-Skin/archive/master.zip
 start /min http://www.metroforsteam.com/downloads/4.2.4.zip
 start /min http://www.filehorse.com/download-nvidia-geforce-experience/download/
@@ -141,11 +141,11 @@ echo Installationen gestartet. Abschluss aller Installationen geschieht im Hinte
 
 REM ****Überprüfe ob User Steam Skin bereits gewaehlt hat******
 if not Exist "Skin.txt" (
-echo %TIME% Skin.txt nicht gefunden >> WPI_Log.txt
-echo             Erstelle vor Start eine Skin.txt mit Inhalt des gewuenschten Steam Skins [Auswahl: Threshold , Metro , skip] >> WPI_Log.txt
-echo ######################################################################## >> WPI_Log.txt
+echo %TIME% Skin.txt nicht gefunden >> C:\Users\%username%\Desktop\WPI_Log.txt
+echo             Erstelle vor Start eine Skin.txt mit Inhalt des gewuenschten Steam Skins [Auswahl: Threshold , Metro , skip] >> C:\Users\%username%\Desktop\WPI_Log.txt
+echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
 )
-start /min WPI_Log.txt
+start /min C:\Users\%username%\Desktop\WPI_Log.txt
 
 :AutoSteamSkin
 echo.
@@ -158,13 +158,13 @@ echo Lese Skin.txt aus, falls vorhanden.
 echo.
 SET /p Skin=<Skin.txt
 
-if "%Skin%"=="Threshold" echo %TIME% Threshold Skin wurde automatisch ermittelt - Installiere Skin >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+if "%Skin%"=="Threshold" echo %TIME% Threshold Skin wurde automatisch ermittelt - Installiere Skin >> C:\Users\%username%\Desktop\WPI_Log.txt | echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
 if "%Skin%"=="Threshold" goto :Skin1
-if "%Skin%"=="Metro" echo %TIME% Metro Skin wurde automatisch ermittelt - Installiere Skin >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+if "%Skin%"=="Metro" echo %TIME% Metro Skin wurde automatisch ermittelt - Installiere Skin >> C:\Users\%username%\Desktop\WPI_Log.txt | echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
 if "%Skin%"=="Metro" goto :Skin2
-if "%Skin%"=="skip" echo %TIME% Standard Steam Skin wurde automatisch ermittelt - Installiere keinen Skin >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+if "%Skin%"=="skip" echo %TIME% Standard Steam Skin wurde automatisch ermittelt - Installiere keinen Skin >> C:\Users\%username%\Desktop\WPI_Log.txt | echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
 if "%Skin%"=="skip" goto :Skin3
-if "%Skin%"=="kein" echo %TIME% Standard Steam Skin wurde automatisch ermittelt - Installiere keinen Skin >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+if "%Skin%"=="kein" echo %TIME% Standard Steam Skin wurde automatisch ermittelt - Installiere keinen Skin >> C:\Users\%username%\Desktop\WPI_Log.txt | echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
 if "%Skin%"=="kein" goto :Skin3
 goto :SteamSkin
 
@@ -197,7 +197,7 @@ goto Skin%errorlevel%
 
 :Skin1
 REM ****THRESHOLD*****Installation neuester Version des Steam Skins - muss nachträglich noch in Steam Einstellungen ausgewählt werden!********
-echo %TIME% Threshold Skin wird installiert >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+echo %TIME% Threshold Skin wird installiert >> C:\Users\%username%\Desktop\WPI_Log.txt | echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
 cd C:\Program Files\7-Zip\
 7z x C:\Users\%username%\Downloads\Threshold-Skin-master.zip -oC:\Users\%username%\Downloads\CustomInstall\
 robocopy "C:\Users\%username%\Downloads\CustomInstall\Threshold-Skin-master" "C:\Program Files (x86)\Steam\skins\Threshold" /MIR
@@ -207,7 +207,7 @@ goto :Start
 
 :Skin2
 REM *****METRO****Installation des Steam Skins - muss nachträglich noch in Steam Einstellungen ausgewählt werden!********
-echo %TIME% Metro Skin wird installiert >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+echo %TIME% Metro Skin wird installiert >> C:\Users\%username%\Desktop\WPI_Log.txt | echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
 cd C:\Program Files\7-Zip\
 7z x C:\Users\%username%\Downloads\4.2.4.zip -oC:\Users\%username%\Downloads\CustomInstall\
 robocopy "C:\Users\%username%\Downloads\CustomInstall\Metro 4.2.4" "C:\Program Files (x86)\Steam\skins\Metro" /MIR
@@ -216,12 +216,12 @@ goto :Start
 
 :Skin3
 REM *******Kein Skin wurde ausgewaehlt********
-echo %TIME% Kein Skin wird installiert >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+echo %TIME% Kein Skin wird installiert >> C:\Users\%username%\Desktop\WPI_Log.txt | echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
 if "%SkinAbwesend%"=="yes" goto :RenamePC1
 goto :Start
 
 :Skin4
-echo %TIME% Steam wird deinstalliert >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+echo %TIME% Steam wird deinstalliert >> C:\Users\%username%\Desktop\WPI_Log.txt | echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
 start C:\Program Files (x86)\Steam\uninstall.exe /S
 timeout /T 10
 
@@ -230,8 +230,8 @@ REM *******Dummy - dient lediglich der Weiterleitung
 echo.
 echo Du warst wohl abwesend. Ich habe in der Zeit den Installationsprozess fortgesetzt und keinen Steam Skin installiert.
 echo.
-echo %TIME% Steam Skin Installation uebersprungen Aufgrund von Abwesenheit [Timeout]. >> WPI_Log.txt
-echo ########### >> WPI_Log.txt
+echo %TIME% Steam Skin Installation uebersprungen Aufgrund von Abwesenheit [Timeout]. >> C:\Users\%username%\Desktop\WPI_Log.txt
+echo ########### >> C:\Users\%username%\Desktop\WPI_Log.txt
 SET SkinAbwesend=yes
 goto :Start
 
@@ -289,7 +289,7 @@ echo Nächste Auswahl? Bitte eine Zahl von oben waehlen!
 goto:Auswahl
 
 :Z97-AR
-echo ASUS Z97-AR wurde automatisch ermittelt | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+echo ASUS Z97-AR wurde automatisch ermittelt | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> C:\Users\%username%\Desktop\WPI_Log.txt | echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
 :Z97-AR-Start
 net use z: \\192.168.178.21\public\share /user:FSeitz
 net use y: \\192.168.178.21\homes\FSeitz /user:FSeitz
@@ -440,7 +440,7 @@ start https://de.evga.com/precisionxoc/#download
 goto :RenamePC
 
 :W65_67SJ
-echo Clevo W65_67SJ wurde automatisch ermittelt | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+echo Clevo W65_67SJ wurde automatisch ermittelt | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> C:\Users\%username%\Desktop\WPI_Log.txt | echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
 :W65_67SJ-Start
 net use z: \\192.168.178.21\public\share /user:FSeitz
 net use y: \\192.168.178.21\homes\FSeitz /user:FSeitz
@@ -514,9 +514,8 @@ echo Dialog schließt sich in wenigen Sekunden und loescht Installationsfiles.
 goto :RenamePC
 
 :M6500
-echo Dell M6500 wurde automatisch ermittelt | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+echo Dell M6500 wurde automatisch ermittelt | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> C:\Users\%username%\Desktop\WPI_Log.txt | echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
 :M6500-Start
-start http://www.driverscape.com/files/DriverToolkitInstaller.exe
 start https://www2.ati.com/drivers/firepro/mobile/dell-mobile-radeon-pro-software-enterprise-17.q1.1-apr3.exe
 start https://downloads.dell.com/input/PREM6500_DRVR_WIN_R280879.EXE
 start https://downloads.dell.com/FOLDER01694314M/2/Network_Driver_3MNPT_WN_15.10.0.10_A06.EXE
@@ -532,7 +531,7 @@ timeout /T 5
 goto :RenamePC
 
 :M4700
-echo Dell M4700 wurde automatisch ermittelt | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+echo Dell M4700 wurde automatisch ermittelt | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> C:\Users\%username%\Desktop\WPI_Log.txt | echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
 :M4700-Start
 start http://www.nvidia.de/content/DriverDownload-March2009/confirmation.php?url=/Windows/Quadro_Certified/385.08/385.08-quadro-grid-desktop-notebook-win10-64bit-international-whql.exe&lang=de&type=Quadro
 start https://downloads.dell.com/FOLDER03465771M/1/Network_Driver_565N6_WN32_12.0.1.750_A03.EXE
@@ -550,7 +549,7 @@ timeout /T 5
 goto :RenamePC
 
 :T5500
-echo Dell T5500 wurde automatisch ermittelt | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+echo Dell T5500 wurde automatisch ermittelt | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> C:\Users\%username%\Desktop\WPI_Log.txt | echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
 :T5500-Start
 start http://www.nvidia.de/content/DriverDownload-March2009/confirmation.php?url=/Windows/Quadro_Certified/377.11/377.11-quadro-grid-desktop-notebook-win10-64bit-international-whql.exe&lang=de&type=Quadro
 start http://download.msi.com/uti_exe/vga/MSIAfterburnerSetup.zip
@@ -569,7 +568,7 @@ timeout /T 5
 goto :RenamePC
 
 :VIII
-echo ASUS Maximus Ranger VIII wurde automatisch ermittelt | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+echo ASUS Maximus Ranger VIII wurde automatisch ermittelt | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> C:\Users\%username%\Desktop\WPI_Log.txt | echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
 :VIII-Start
 start http://dlcdnet.asus.com/pub/ASUS/misc/utils/AISuite3_Win7-81-10_MaxVIII_Series_V10130.zip
 start http://dlcdnet.asus.com/pub/ASUS/misc/usb30/Asmedia_USB3_V116351.zip
@@ -607,7 +606,7 @@ del /q C:\Users\%username%\Downloads\*.msi
 goto :RenamePC
 
 :Business
-echo Businessgeraet wurde ermittelt! | echo %TIME% Businessgeraet %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Steam und Steam Skin >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+echo Businessgeraet wurde ermittelt! | echo %TIME% Businessgeraet %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Steam und Steam Skin >> C:\Users\%username%\Desktop\WPI_Log.txt | echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
 start /min https://ninite.com/7zip-chrome/ninite.exe
 echo            Suche nach Updates
 echo.
@@ -616,9 +615,10 @@ timeout /T 10
 SET /p LatestVersion=<LatestVersion.txt
 if %WPIVersion% gtr %LatestVersion% echo "Keine Updates gefunden!";
 if %LatestVersion% gtr %WPIVersion% echo "Du nutzt nicht die neueste Version. Bitte aktualisiere WPI auf Version %LatestVersion%";
-if %LatestVersion% gtr %WPIVersion% echo %TIME% Neue Version gefunden. Bitte aktualisiere auf Version %LatestVersion%. Deine Version ist %WPIVersion%. >> WPI_Log.txt | echo ######################################################################## >> WPI_Log.txt
+if %LatestVersion% gtr %WPIVersion% echo %TIME% Neue Version gefunden. Bitte aktualisiere auf Version %LatestVersion%. Deine Version ist %WPIVersion% >> C:\Users\%username%\Desktop\WPI_Log.txt | echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
 if %LatestVersion% gtr %WPIVersion% start https://github.com/FaserF/FaserFQuickTools/releases/latest | pause
 del /q C:\Users\%username%\Downloads\LatestVersion.txt
+
 timeout /T 10
 REM *********Umbenennung da Leerzeichen im Namen********
 Ren "C:\Users\%username%\Downloads\Ninite 7Zip Chrome Installer.exe" Ninite-Chrome-7zip.exe
@@ -630,7 +630,6 @@ REM *********Default Browser wird in Chrome geändert und anschließende Warteze
 start C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs
 timeout /T 4
 taskkill /IM MicrosoftEdge.exe
-slmgr.vbs /ato
 start /min http://www.filehorse.com/download-driver-booster-free/download/
 start /min https://gallery.technet.microsoft.com/Manage-the-taskbar-remove-c3024e40/file/145807/1/ManageTaskbar-1.0.zip
 start /min https://github.com/FaserF/FaserFQuickTools/releases/download/1.0/RenamePC.vbs
@@ -652,7 +651,6 @@ if "%SYSMODEL%"=="Latitude E6520" goto :E6520
 if "%SYSMODEL%"=="Latitude E6510" goto :E6510
 if "%SYSMODEL%"=="Precision T5500" goto :T5500
 if "%SYSMODEL%"=="Precision M6500" goto :M6500
-if "%SYSMODEL%"=="Precision M4700" goto :M4700
 if "%SYSMODEL%"=="Latitude 7480" goto :RenamePC
 
 :AuswahlBusiness
@@ -721,7 +719,7 @@ timeout /T 5
 goto :RenamePC
 
 :NoInternet
-echo %TIME% Internet Verbindung konnte nicht hergestellt werden! Programm wird beendet. >> WPI_Log.txt
+echo %TIME% Internet Verbindung konnte nicht hergestellt werden! Programm wird beendet. >> C:\Users\%username%\Desktop\WPI_Log.txt
 msg * "Keine Internet Verbindung verfuegbar, Programm wird beendet!"
 rd /s /q C:\Users\%username%\Downloads\CustomInstall\
 exit
@@ -729,10 +727,6 @@ exit
 :RenamePC
 if "%SkinAbwesend%"=="yes" goto :SteamSkinAbwesend
 :RenamePC1
-for /r "." %%a in (*.exe) do del /q "" "%%~fa"
-for /r "." %%a in (*.msi) do del /q "" "%%~fa"
-for /r "." %%a in (*.zip) do del /q "" "%%~fa"
-for /r "." %%a in (*.rar) do del /q "" "%%~fa"
 del /q C:\Users\%username%\Downloads\Skin.txt
 set NEWPCNAME=""
 set /p NEWPCNAME="Bitte neuen Computernamen eingeben: "
@@ -742,13 +736,15 @@ timeout /T 1
 start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 timeout /T 1
-%TIME% PC in %NEWPCNAME% umbenannt. >> WPI_Log.txt
+%TIME% PC in %NEWPCNAME% umbenannt. >> C:\Users\%username%\Desktop\WPI_Log.txt
 goto :Exit
 
 :Exit
 cd C:\Program Files\7-Zip\
 7z x C:\Users\%username%\Downloads\ManageTaskbar-1.0.zip -oC:\Users\%username%\Downloads\CustomInstall\
-start C:\Users\fseitz\Downloads\CustomInstall\ManageTaskbar 1.0\TaskBar.cmd
+cd C:\Users\%username%\Downloads\
+rename "C:\Users\fseitz\Downloads\CustomInstall\ManageTaskbar 1.0" "ManageTaskbar"
+start "C:\Users\fseitz\Downloads\CustomInstall\ManageTaskbar\TaskBar.cmd"
 timeout /T 3
 echo Set oWS = WScript.CreateObject("WScript.Shell") > C:\Users\%username%\Downloads\CustomInstall\CreateShortcut.vbs
 echo sLinkFile = "C:\Users\%username%\Downloads\CustomInstall\Google Chrome.lnk" >> C:\Users\%username%\Downloads\CustomInstall\CreateShortcut.vbs
@@ -759,10 +755,15 @@ cscript C:\Users\%username%\Downloads\CustomInstall\CreateShortcut.vbs
 copy "C:\Users\%username%\Downloads\CustomInstall\Google Chrome.lnk" "%AppData%\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar\Google Chrome.lnk"
 
 rd /s /q C:\Users\%username%\Downloads\CustomInstall\
+for /r "." %%a in (*.exe) do del /q "" "%%~fa"
+for /r "." %%a in (*.msi) do del /q "" "%%~fa"
+for /r "." %%a in (*.zip) do del /q "" "%%~fa"
+for /r "." %%a in (*.rar) do del /q "" "%%~fa"
 start https://discordler.github.io
 start https://central.bitdefender.com/
 start https://www.mydealz.de/search?q=Bitdefender
-echo %TIME% Installation abgeschlossen. >> WPI_Log.txt
-echo ######################################################################## >> WPI_Log.txt
-msg * "Installationen abgeschlossen! MS Office muss ggf. noch installiert werden. Steam Skin muss in Steam Einstellungen noch ausgewaehlt werden."
+echo %TIME% Installation abgeschlossen. >> C:\Users\%username%\Desktop\WPI_Log.txt
+echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
+msg * "Installationen abgeschlossen! MS Office muss ggf. noch installiert werden. Steam Skin muss in Steam Einstellungen noch ausgewaehlt werden. Damit die Taskbar aktualisiert wird ist ein Neustart erforderlich."
+slmgr.vbs /ato
 exit
