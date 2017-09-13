@@ -1,5 +1,5 @@
 @echo off
-set WPIVersion=3.5.0
+set WPIVersion=3.5.1
 title Automatic Windows Post Installer by FaserF - V%WPIVersion%
 color 89
 
@@ -551,7 +551,6 @@ goto :RenamePC
 :T5500
 echo Dell T5500 wurde automatisch ermittelt | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> C:\Users\%username%\Desktop\WPI_Log.txt | echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
 :T5500-Start
-start http://www.nvidia.de/content/DriverDownload-March2009/confirmation.php?url=/Windows/Quadro_Certified/377.11/377.11-quadro-grid-desktop-notebook-win10-64bit-international-whql.exe&lang=de&type=Quadro
 start http://download.msi.com/uti_exe/vga/MSIAfterburnerSetup.zip
 echo Warte auf Beendigung des Downloads, dann ...
 pause
