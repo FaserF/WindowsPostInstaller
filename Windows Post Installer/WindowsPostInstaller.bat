@@ -92,7 +92,7 @@ start /min https://ninite.com/7zip-chrome-steam/ninite.exe
 echo            Suche nach Updates
 echo.
 start https://github.com/FaserF/FaserFQuickTools/releases/download/1.0/LatestVersion.txt
-timeout /T 5
+timeout /T 25
 SET /p LatestVersion=<LatestVersion.txt
 if %WPIVersion% gtr %LatestVersion% echo Keine Updates gefunden!
 if %LatestVersion% gtr %WPIVersion% echo Du nutzt nicht die neueste Version. Bitte aktualisiere WPI auf Version %LatestVersion%
@@ -151,7 +151,7 @@ start /min C:\Users\%username%\Desktop\WPI_Log.txt
 echo.
 if "%SYSMODEL%"=="All Series" SET Skin=Threshold
 if "%SYSMODEL%"=="W65_67SJ" SET Skin=Threshold
-if "%SYSMODEL%"=="Precision T5500" SET Skin=Threshold
+if "%SYSMODEL%"=="Precision WorkStation T5500" SET Skin=Threshold
 if "%SYSMODEL%"=="Precision M6500" SET Skin=Threshold
 if "%SYSMODEL%"=="Precision M4700" SET Skin=Threshold
 echo Lese Skin.txt aus, falls vorhanden.
@@ -242,7 +242,7 @@ goto :Ermittelung
 :Ermittelung
 if "%SYSMODEL%"=="All Series" goto :Z97-AR
 if "%SYSMODEL%"=="W65_67SJ" goto :W65_67SJ
-if "%SYSMODEL%"=="Precision T5500" goto :T5500
+if "%SYSMODEL%"=="Precision WorkStation T5500" goto :T5500
 if "%SYSMODEL%"=="Precision M6500" goto :M6500
 if "%SYSMODEL%"=="Precision M4700" goto :M4700
 if "%SYSMODEL%"=="System Product Name" goto :VIII
