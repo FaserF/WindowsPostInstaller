@@ -1,9 +1,11 @@
 @echo off
-set WPIVersion=3.5.1
+set WPIVersion=3.6.0
 title Automatic Windows Post Installer by FaserF - V%WPIVersion%
 color 89
 
 :Default
+echo Programm starten?
+pause
 cd C:\Users\%username%\Downloads\
 md C:\Users\%username%\Downloads\CustomInstall\
 echo                           Windows Post Installer - LOG > C:\Users\%username%\Desktop\WPI_Log.txt
@@ -19,7 +21,7 @@ REM *********Erstelle reg Eintrag um Google Chrome Standard Browser zu machen***
 echo Set WshShell = WScript.CreateObject("WScript.Shell") > "C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs"
 echo WshShell.Run "%%windir%%\system32\control.exe /name Microsoft.DefaultPrograms /page pageDefaultProgram\pageAdvancedSettings?pszAppName=google%%20chrome" >> "C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs"
 echo WScript.Sleep 1200 >> "C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs"
-echo WshShell.SendKeys "{TAB}" >> "C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs"
+echo WshShell.SendKeys "{TAB}" >> "C:\Users\%username%\Downloads\CustomInstall\DefaultBrowser.vbs"
 echo WshShell.SendKeys " " >> "C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs"
 echo WshShell.SendKeys "{TAB}" >> "C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs"
 echo WshShell.SendKeys "{TAB}" >> "C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs"
@@ -108,8 +110,8 @@ timeout /T 120
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 REM *********Default Browser wird in Chrome geändert und anschließende Wartezeit von ca 4 Sekunden********
 start C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs
+echo Mache Chrome zum Standard Browser....
 timeout /T 4
-taskkill /IM MicrosoftEdge.exe
 start /min https://github.com/Edgarware/Threshold-Skin/archive/master.zip
 start /min http://www.metroforsteam.com/downloads/4.2.4.zip
 start /min http://www.filehorse.com/download-nvidia-geforce-experience/download/
@@ -520,10 +522,10 @@ start https://www2.ati.com/drivers/firepro/mobile/dell-mobile-radeon-pro-softwar
 start https://downloads.dell.com/input/PREM6500_DRVR_WIN_R280879.EXE
 start https://downloads.dell.com/FOLDER01694314M/2/Network_Driver_3MNPT_WN_15.10.0.10_A06.EXE
 start https://downloadcenter.intel.com/de/downloads/eula/20775/Intel-Chipsatz-Ger-tesoftware-INF-Update-Utility-?httpDown=https%3A%2F%2Fdownloadmirror.intel.com%2F20775%2Feng%2FSetupChipset.exe
+start https://downloads.dell.com/chipset/PREM6500_DRVR_WIN_R247353.EXE
 echo Warte auf Beendigung des Downloads, dann ...
 pause
 for /r "." %%a in (*.exe) do start "" "%%~fa"
-taskkill /IM MicrosoftEdge.exe
 echo Installationen gestartet.
 echo Dialog schließt sich in 5 Sekunden und loescht Installationsfiles.
 del /q C:\Users\%username%\Downloads\*.exe
@@ -533,7 +535,6 @@ goto :RenamePC
 :M4700
 echo Dell M4700 wurde automatisch ermittelt | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> C:\Users\%username%\Desktop\WPI_Log.txt | echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
 :M4700-Start
-start http://www.nvidia.de/content/DriverDownload-March2009/confirmation.php?url=/Windows/Quadro_Certified/385.08/385.08-quadro-grid-desktop-notebook-win10-64bit-international-whql.exe&lang=de&type=Quadro
 start https://downloads.dell.com/FOLDER03465771M/1/Network_Driver_565N6_WN32_12.0.1.750_A03.EXE
 start https://downloads.dell.com/FOLDER03388567M/1/Input_Driver_YXX3D_WN32_10.1207.101.109_A03.EXE
 start http://www.nvidia.de/Download/index.aspx?lang=de
@@ -541,7 +542,6 @@ start https://downloadcenter.intel.com/de/product/59471/Intel-Centrino-Advanced-
 echo Warte auf Beendigung des Downloads, dann ...
 pause
 for /r "." %%a in (*.exe) do start "" "%%~fa"
-taskkill /IM MicrosoftEdge.exe
 echo Installationen gestartet.
 echo Dialog schließt sich in 5 Sekunden und loescht Installationsfiles.
 del /q C:\Users\%username%\Downloads\*.exe
@@ -559,7 +559,6 @@ cd C:\Program Files\7-Zip\
 7z x C:\Users\%username%\Downloads\4.3.0\MSIAfterburnerSetup430.rar -oC:\Users\%username%\Downloads\
 cd C:\Users\%username%\Downloads\
 for /r "." %%a in (*.exe) do start "" "%%~fa"
-taskkill /IM MicrosoftEdge.exe
 echo Installationen gestartet.
 echo Dialog schließt sich in 5 Sekunden und loescht Installationsfiles.
 del /q C:\Users\%username%\Downloads\*.exe
@@ -597,7 +596,7 @@ echo 2. Anwendungsinstallation. Warte auf Beendigung der Downloads, dann ...
 pause
 Ren "C:\Users\%username%\Downloads\Ninite Notepad PuTTY Installer.exe" Ninite-Putty-Notepad.exe
 for /r "." %%a in (*.exe) do start "" "%%~fa"
-taskkill /IM MicrosoftEdge.exe
+
 echo Installationen gestartet.
 echo Dialog schließt sich in 5 Sekunden und loescht Installationsfiles.
 timeout /T 5
@@ -628,7 +627,7 @@ start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 REM *********Default Browser wird in Chrome geändert und anschließende Wartezeit von ca 4 Sekunden********
 start C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs
 timeout /T 4
-taskkill /IM MicrosoftEdge.exe
+
 start /min http://www.filehorse.com/download-driver-booster-free/download/
 start /min https://gallery.technet.microsoft.com/Manage-the-taskbar-remove-c3024e40/file/145807/1/ManageTaskbar-1.0.zip
 start /min https://github.com/FaserF/FaserFQuickTools/releases/download/1.0/RenamePC.vbs
