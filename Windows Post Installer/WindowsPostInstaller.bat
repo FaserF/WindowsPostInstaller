@@ -15,6 +15,7 @@ if "%internet%" == "Nicht mit dem Internet verbunden" goto :NoInternet
 echo Programm wirklich starten?
 pause
 cd C:\Users\%username%\Downloads\
+rd /s /q C:\Users\%username%\Downloads\CustomInstall\
 md C:\Users\%username%\Downloads\CustomInstall\
 echo                           Windows Post Installer - LOG > C:\Users\%username%\Desktop\WPI_Log.txt
 echo             ============================================================ >> C:\Users\%username%\Desktop\WPI_Log.txt
@@ -94,15 +95,15 @@ goto :PrivatGeraet | echo %TIME% Kein Businessgeraet ( %SYSMODEL% ) wurde automa
 
 :PrivatGeraet
 start /min https://ninite.com/7zip-chrome-steam/ninite.exe
+start /min https://github.com/FaserF/FaserFQuickTools/releases/download/1.0/WPI.zip
 echo            Suche nach Updates
 echo.
-start /min https://github.com/FaserF/FaserFQuickTools/releases/download/1.0/WPI.zip
 timeout /T 25
 cd C:\Program Files\7-Zip\
 7z x C:\Users\%username%\Downloads\WPI.zip -oC:\Users\%username%\Downloads\CustomInstall\ > NUL:
 cd C:\Users\%username%\Downloads\
 SET /p LatestVersion=<C:\Users\%username%\Downloads\CustomInstall\LatestVersion.txt
-if %WPIVersion% gtr %LatestVersion% echo Keine Updates gefunden!
+if %WPIVersion% geq %LatestVersion% echo Keine Updates gefunden!
 if %LatestVersion% gtr %WPIVersion% msg * "Du nutzt nicht die neueste Version. Bitte aktualisiere WPI auf Version %LatestVersion%"
 if %LatestVersion% gtr %WPIVersion% echo %TIME% Neue Version gefunden. Bitte aktualisiere auf Version %LatestVersion%. Deine Version ist %WPIVersion%. Anwendung wird beendet! >> C:\Users\%username%\Desktop\WPI_Log.txt | echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
 if %LatestVersion% gtr %WPIVersion% start https://github.com/FaserF/FaserFQuickTools/releases/latest | exit
