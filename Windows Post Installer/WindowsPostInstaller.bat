@@ -1,12 +1,19 @@
 @echo off
 set WPIVersion=3.6.2
+set Description=Automatic Windows Post Installer (Software, Driver, ...) for a fresh Windows Installation.
 title Automatic Windows Post Installer by FaserF - V%WPIVersion%
 color 89
 
 :Default
-TASKLIST | FINDSTR /I "Windows Post Installer"
-if "%ERRORLEVEL%"=="0" msg * "WPI laeuft bereits. Programm wird beendet."
-if "%ERRORLEVEL%"=="0" exit
+echo %Description%
+REM TASKLIST | FINDSTR /I "Windows Post Installer"
+REM if "%ERRORLEVEL%"=="0" msg * "WPI laeuft bereits. Programm wird beendet."
+REM if "%ERRORLEVEL%"=="0" exit
+ping www.google.de -n 1 | find "TTL" > nul
+if errorlevel 1 (set internet=Nicht mit dem Internet verbunden) else (set internet=Internet Verbindung aufgebaut)
+if "%internet%" == "Nicht mit dem Internet verbunden" goto :NoInternet
+echo Programm wirklich starten?
+pause
 cd C:\Users\%username%\Downloads\
 md C:\Users\%username%\Downloads\CustomInstall\
 echo                           Windows Post Installer - LOG > C:\Users\%username%\Desktop\WPI_Log.txt
@@ -56,16 +63,12 @@ echo                   Treiber und Programm Installation by Fabian Seitz
 echo                             Thanks to @KaiSMR und @Bilalui
 echo             ============================================================
 echo.
-ping www.google.de -n 1 | find "TTL" > nul
-if errorlevel 1 (set internet=Nicht mit dem Internet verbunden) else (set internet=Internet Verbindung aufgebaut)
-echo.
-echo %internet%
-if "%internet%" == "Nicht mit dem Internet verbunden" goto :NoInternet
 echo.
 echo            Initialisiere Standard Installation
-echo            WICHTIG: NICHTS TIPPEN/ANKLICKEN, nur bei Aufforderung! Ansonsten Abbruch der Automatik.
+echo            WICHTIG: NICHTS TIPPEN/ANKLICKEN, nur bei Aufforderung! Ansonsten evtl Abbruch der Automatik.
 echo.
 echo.
+echo           %internet%
 echo           SYSTEM MODELL: %SYSMODEL%
 echo           %WindowsVersion% laeuft auf diesem Geraet!
 start C:\Users\%username%\Downloads\CustomInstall\EdgeAutoDownload.reg
