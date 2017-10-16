@@ -1,5 +1,5 @@
 @echo off
-set WPIVersion=3.6.0
+set WPIVersion=3.6.1
 title Automatic Windows Post Installer by FaserF - V%WPIVersion%
 color 89
 
@@ -55,8 +55,7 @@ echo                   Treiber und Programm Installation by Fabian Seitz
 echo                             Thanks to @KaiSMR und @Bilalui
 echo             ============================================================
 echo.
-echo             Ueberpruefe Internet Verbindung.
-Ping www.google.de -n 1 -w 1000
+ping www.google.de -n 1 | find "TTL" > nul
 if errorlevel 1 (set internet=Nicht mit dem Internet verbunden) else (set internet=Internet Verbindung aufgebaut)
 echo.
 echo %internet%
@@ -93,14 +92,16 @@ goto :PrivatGeraet | echo %TIME% Kein Businessgeraet ( %SYSMODEL% ) wurde automa
 start /min https://ninite.com/7zip-chrome-steam/ninite.exe
 echo            Suche nach Updates
 echo.
-start https://github.com/FaserF/FaserFQuickTools/releases/download/1.0/LatestVersion.txt
+start /min https://github.com/FaserF/FaserFQuickTools/releases/download/1.0/WPI.zip
 timeout /T 25
-SET /p LatestVersion=<LatestVersion.txt
+cd C:\Program Files\7-Zip\
+7z x C:\Users\%username%\Downloads\WPI.zip -oC:\Users\%username%\Downloads\CustomInstall\ > NUL:
+cd C:\Users\%username%\Downloads\
+SET /p LatestVersion=<C:\Users\%username%\Downloads\CustomInstall\LatestVersion.txt
 if %WPIVersion% gtr %LatestVersion% echo Keine Updates gefunden!
-if %LatestVersion% gtr %WPIVersion% echo Du nutzt nicht die neueste Version. Bitte aktualisiere WPI auf Version %LatestVersion%
-if %LatestVersion% gtr %WPIVersion% echo %TIME% Neue Version gefunden. Bitte aktualisiere auf Version %LatestVersion%. Deine Version ist %WPIVersion% >> C:\Users\%username%\Desktop\WPI_Log.txt | echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
-if %LatestVersion% gtr %WPIVersion% start https://github.com/FaserF/FaserFQuickTools/releases/latest | pause
-del /q C:\Users\%username%\Downloads\LatestVersion.txt
+if %LatestVersion% gtr %WPIVersion% msg * "Du nutzt nicht die neueste Version. Bitte aktualisiere WPI auf Version %LatestVersion%"
+if %LatestVersion% gtr %WPIVersion% echo %TIME% Neue Version gefunden. Bitte aktualisiere auf Version %LatestVersion%. Deine Version ist %WPIVersion%. Anwendung wird beendet! >> C:\Users\%username%\Desktop\WPI_Log.txt | echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
+if %LatestVersion% gtr %WPIVersion% start https://github.com/FaserF/FaserFQuickTools/releases/latest | exit
 
 REM *********Umbenennung da Leerzeichen im Namen********
 Ren "C:\Users\%username%\Downloads\Ninite 7Zip Chrome Steam Installer.exe" Ninite-Chrome-7zip-Steam.exe
@@ -118,8 +119,7 @@ start /min http://www.filehorse.com/download-nvidia-geforce-experience/download/
 start /min http://www.filehorse.com/download-driver-booster-free/download/
 start /min https://discordapp.com/api/download?platform=win
 start /min https://app.prntscr.com/build/setup-lightshot.exe
-start /min https://gallery.technet.microsoft.com/Manage-the-taskbar-remove-c3024e40/file/145807/1/ManageTaskbar-1.0.zip
-start /min https://github.com/FaserF/FaserFQuickTools/releases/download/1.0/RenamePC.vbs
+REM start /min https://gallery.technet.microsoft.com/Manage-the-taskbar-remove-c3024e40/file/145807/1/ManageTaskbar-1.0.zip
 echo Warte auf Beendigung der Downloads, dann ...
 timeout /T 120
 taskkill /IM Chrome.exe /F
@@ -201,7 +201,7 @@ goto Skin%errorlevel%
 REM ****THRESHOLD*****Installation neuester Version des Steam Skins - muss nachträglich noch in Steam Einstellungen ausgewählt werden!********
 echo %TIME% Threshold Skin wird installiert >> C:\Users\%username%\Desktop\WPI_Log.txt | echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
 cd C:\Program Files\7-Zip\
-7z x C:\Users\%username%\Downloads\Threshold-Skin-master.zip -oC:\Users\%username%\Downloads\CustomInstall\
+7z x C:\Users\%username%\Downloads\Threshold-Skin-master.zip -oC:\Users\%username%\Downloads\CustomInstall\ > NUL:
 robocopy "C:\Users\%username%\Downloads\CustomInstall\Threshold-Skin-master" "C:\Program Files (x86)\Steam\skins\Threshold" /MIR
 xcopy /s /y "C:\Program Files (x86)\Steam\skins\Threshold\Customization\Sidebar Width\Collapsed Sidebar\resource" "C:\Program Files (x86)\Steam\skins\Threshold\resource"
 if "%SkinAbwesend%"=="yes" goto :RenamePC1
@@ -211,7 +211,7 @@ goto :Start
 REM *****METRO****Installation des Steam Skins - muss nachträglich noch in Steam Einstellungen ausgewählt werden!********
 echo %TIME% Metro Skin wird installiert >> C:\Users\%username%\Desktop\WPI_Log.txt | echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
 cd C:\Program Files\7-Zip\
-7z x C:\Users\%username%\Downloads\4.2.4.zip -oC:\Users\%username%\Downloads\CustomInstall\
+7z x C:\Users\%username%\Downloads\4.2.4.zip -oC:\Users\%username%\Downloads\CustomInstall\ > NUL:
 robocopy "C:\Users\%username%\Downloads\CustomInstall\Metro 4.2.4" "C:\Program Files (x86)\Steam\skins\Metro" /MIR
 if "%SkinAbwesend%"=="yes" goto :RenamePC1
 goto :Start
@@ -304,9 +304,9 @@ start http://download.lenovo.com/consumer/monitor/lenovo_artery_setup.exe
 echo 1. Treiber Installation. Warte auf Beendigung der Downloads, dann ...
 timeout /T 120
 cd C:\Program Files\7-Zip\
-7z x C:\Users\%username%\Downloads\AISuite_III_V10149_for_Z97.rar -oC:\Users\%username%\Downloads\AISuite_III_V10149_for_Z97\
-7z x C:\Users\%username%\Downloads\Asmedia_USB3_V116351.zip -oC:\Users\%username%\Downloads\Asmedia_USB3_V116351\
-7z x C:\Users\%username%\Downloads\Turbo_LAN_Win7-8-81-10_V10700.zip -oC:\Users\%username%\Downloads\Turbo_LAN_Win7-8-81-10_V10700\
+7z x C:\Users\%username%\Downloads\AISuite_III_V10149_for_Z97.rar -oC:\Users\%username%\Downloads\AISuite_III_V10149_for_Z97\ > NUL:
+7z x C:\Users\%username%\Downloads\Asmedia_USB3_V116351.zip -oC:\Users\%username%\Downloads\Asmedia_USB3_V116351\ > NUL:
+7z x C:\Users\%username%\Downloads\Turbo_LAN_Win7-8-81-10_V10700.zip -oC:\Users\%username%\Downloads\Turbo_LAN_Win7-8-81-10_V10700\ > NUL:
 cd C:\Users\%username%\Downloads\
 for /r "." %%a in (*.exe) do start "" "%%~fa"
 start /wait C:\Users\%username%\Downloads\Asmedia_USB3_V116351\AsusSetup.exe
@@ -457,7 +457,7 @@ start https://web.whatsapp.com/desktop/windows/release/x64/WhatsAppSetup.exe
 echo Warte auf Beendigung des Downloads, dann ...
 timeout /T 120
 cd C:\Program Files\7-Zip\
-7z x C:\Users\%username%\Downloads\VIA_HD_Audio_v11_1100f_Win10RS1_logo_11012016.zip -oC:\Users\%username%\Downloads\
+7z x C:\Users\%username%\Downloads\VIA_HD_Audio_v11_1100f_Win10RS1_logo_11012016.zip -oC:\Users\%username%\Downloads\ > NUL:
 cd C:\Users\%username%\Downloads\
 start C:\Users\%username%\Downloads\UplayInstaller.exe /S
 start C:\Users\%username%\Downloads\OriginThinSetup.exe /VERYSILENT /SUPPRESSMSGBOXES /NORESTART
@@ -555,8 +555,8 @@ start http://download.msi.com/uti_exe/vga/MSIAfterburnerSetup.zip
 echo Warte auf Beendigung des Downloads, dann ...
 pause
 cd C:\Program Files\7-Zip\
-7z x C:\Users\%username%\Downloads\MSIAfterburnerSetup.zip -oC:\Users\%username%\Downloads\
-7z x C:\Users\%username%\Downloads\4.3.0\MSIAfterburnerSetup430.rar -oC:\Users\%username%\Downloads\
+7z x C:\Users\%username%\Downloads\MSIAfterburnerSetup.zip -oC:\Users\%username%\Downloads\ > NUL:
+7z x C:\Users\%username%\Downloads\4.3.0\MSIAfterburnerSetup430.rar -oC:\Users\%username%\Downloads\ > NUL:
 cd C:\Users\%username%\Downloads\
 for /r "." %%a in (*.exe) do start "" "%%~fa"
 echo Installationen gestartet.
@@ -573,8 +573,8 @@ start http://dlcdnet.asus.com/pub/ASUS/misc/usb30/Asmedia_USB3_V116351.zip
 echo 1. Treiber Installation. Warte auf Beendigung der Downloads, dann ...
 pause
 cd C:\Program Files\7-Zip\
-7z x C:\Users\%username%\Downloads\AISuite3_Win7-81-10_MaxVIII_Series_V10130.zip -oC:\Users\%username%\Downloads\AISuite3_Win7-81-10_MaxVIII_Series_V10130\
-7z x C:\Users\%username%\Downloads\Asmedia_USB3_V116351.zip -oC:\Users\%username%\Downloads\Asmedia_USB3_V116351\
+7z x C:\Users\%username%\Downloads\AISuite3_Win7-81-10_MaxVIII_Series_V10130.zip -oC:\Users\%username%\Downloads\AISuite3_Win7-81-10_MaxVIII_Series_V10130\ > NUL:
+7z x C:\Users\%username%\Downloads\Asmedia_USB3_V116351.zip -oC:\Users\%username%\Downloads\Asmedia_USB3_V116351\ > NUL:
 cd C:\Users\%username%\Downloads\
 for /r "." %%a in (*.exe) do start "" "%%~fa"
 start C:\Users\%username%\Downloads\Asmedia_USB3_V116351\AsusSetup.exe
@@ -738,12 +738,12 @@ timeout /T 1
 goto :Exit
 
 :Exit
-cd C:\Program Files\7-Zip\
-7z x C:\Users\%username%\Downloads\ManageTaskbar-1.0.zip -oC:\Users\%username%\Downloads\CustomInstall\
-cd C:\Users\%username%\Downloads\
-rename "C:\Users\fseitz\Downloads\CustomInstall\ManageTaskbar 1.0" "ManageTaskbar"
-start "C:\Users\fseitz\Downloads\CustomInstall\ManageTaskbar\TaskBar.cmd"
-timeout /T 3
+REM cd C:\Program Files\7-Zip\
+REM 7z x C:\Users\%username%\Downloads\ManageTaskbar-1.0.zip -oC:\Users\%username%\Downloads\CustomInstall\
+REM cd C:\Users\%username%\Downloads\
+REM rename "C:\Users\fseitz\Downloads\CustomInstall\ManageTaskbar 1.0" "ManageTaskbar"
+REM start "C:\Users\fseitz\Downloads\CustomInstall\ManageTaskbar\TaskBar.cmd"
+REM timeout /T 3
 echo Set oWS = WScript.CreateObject("WScript.Shell") > C:\Users\%username%\Downloads\CustomInstall\CreateShortcut.vbs
 echo sLinkFile = "C:\Users\%username%\Downloads\CustomInstall\Google Chrome.lnk" >> C:\Users\%username%\Downloads\CustomInstall\CreateShortcut.vbs
 echo Set oLink = oWS.CreateShortcut(sLinkFile) >> C:\Users\%username%\Downloads\CustomInstall\CreateShortcut.vbs
