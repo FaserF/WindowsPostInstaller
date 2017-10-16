@@ -78,3 +78,4 @@ Solltest du weitere Probleme haben, bitte ich dich einfach auf meinem GitHub ein
 ## Weiteres
 
 Unterstützte Sprachen: Deutsch-German
+Empfohlenes Programm für Windows ISO: Ntlite (Das Programm lässt dich die ISO nach deinen Bedürfnissen anpassen, vorinstallierte Apps entfernen & mehr!)
