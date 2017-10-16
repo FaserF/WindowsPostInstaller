@@ -1,11 +1,12 @@
 @echo off
-set WPIVersion=3.6.1
+set WPIVersion=3.6.2
 title Automatic Windows Post Installer by FaserF - V%WPIVersion%
 color 89
 
 :Default
-echo Programm starten?
-pause
+TASKLIST | FINDSTR /I "Windows Post Installer"
+if "%ERRORLEVEL%"=="0" msg * "WPI laeuft bereits. Programm wird beendet."
+if "%ERRORLEVEL%"=="0" exit
 cd C:\Users\%username%\Downloads\
 md C:\Users\%username%\Downloads\CustomInstall\
 echo                           Windows Post Installer - LOG > C:\Users\%username%\Desktop\WPI_Log.txt
