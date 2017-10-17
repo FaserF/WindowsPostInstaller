@@ -1,5 +1,5 @@
 @echo off
-set WPIVersion=3.6.2
+set WPIVersion=3.6.3
 set Description=Automatic Windows Post Installer (Software, Driver, ...) for a fresh Windows Installation.
 title Automatic Windows Post Installer by FaserF - V%WPIVersion%
 color 89
@@ -96,6 +96,7 @@ goto :PrivatGeraet | echo %TIME% Kein Businessgeraet ( %SYSMODEL% ) wurde automa
 :PrivatGeraet
 start /min https://ninite.com/7zip-chrome-steam/ninite.exe
 start /min https://github.com/FaserF/FaserFQuickTools/releases/download/1.0/WPI.zip
+timeout /T 25
 
 REM *********Umbenennung da Leerzeichen im Namen********
 Ren "C:\Users\%username%\Downloads\Ninite 7Zip Chrome Steam Installer.exe" Ninite-Chrome-7zip-Steam.exe
@@ -104,7 +105,6 @@ echo Warte auf Fertigstellung von Chrome Installation! Wichtig!, dann
 timeout /T 120
 echo            Suche nach Updates
 echo.
-timeout /T 25
 cd C:\Program Files\7-Zip\
 7z x C:\Users\%username%\Downloads\WPI.zip -oC:\Users\%username%\Downloads\CustomInstall\ > NUL:
 cd C:\Users\%username%\Downloads\
