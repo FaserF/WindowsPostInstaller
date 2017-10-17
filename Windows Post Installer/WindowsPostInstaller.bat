@@ -1,5 +1,5 @@
 @echo off
-set WPIVersion=3.6.3
+set WPIVersion=3.6.4
 set Description=Automatic Windows Post Installer (Software, Driver, ...) for a fresh Windows Installation.
 title Automatic Windows Post Installer by FaserF - V%WPIVersion%
 color 89
@@ -73,15 +73,15 @@ echo           %internet%
 echo           SYSTEM MODELL: %SYSMODEL%
 echo           %WindowsVersion% laeuft auf diesem Geraet!
 start C:\Users\%username%\Downloads\CustomInstall\EdgeAutoDownload.reg
-timeout /T 1
+timeout /T 1 > NUL:
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-timeout /T 1
+timeout /T 1 > NUL:
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 
 start C:\Users\%username%\Downloads\CustomInstall\WinUpdate.vbs
-timeout /T 1
+timeout /T 1 > NUL:
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-timeout /T 1
+timeout /T 1 > NUL:
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 goto :Vorermittelung
 
@@ -118,7 +118,7 @@ start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 REM *********Default Browser wird in Chrome geändert und anschließende Wartezeit von ca 4 Sekunden********
 start C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs
 echo Mache Chrome zum Standard Browser....
-timeout /T 4
+timeout /T 4 > NUL:
 start /min https://github.com/Edgarware/Threshold-Skin/archive/master.zip
 start /min http://www.metroforsteam.com/downloads/4.2.4.zip
 start /min http://www.filehorse.com/download-nvidia-geforce-experience/download/
@@ -346,7 +346,7 @@ dir /b C:\Users\%username%\Downloads\ | find "ServerSetup" > UnifiedRemote.tmp
 for /f %%u IN ('findstr ServerSetup UnifiedRemote.tmp') do (
 start C:\Users\%username%\Downloads\%%u )
 del UnifiedRemote.tmp
-timeout /T 1
+timeout /T 1 > NUL:
 start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Tab.vbs
@@ -357,42 +357,42 @@ start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-timeout /T 13
+timeout /T 13 > NUL:
 start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-timeout /T 3
+timeout /T 3 > NUL:
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 REM *******Starte Pushbullet Automatische Installation******
 start C:\Users\%username%\Downloads\pushbullet_installer.exe
-timeout /T 1
+timeout /T 1 > NUL:
 start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-timeout /T 1
+timeout /T 1 > NUL:
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-timeout /T 2
+timeout /T 2 > NUL:
 start C:\Users\%username%\Downloads\CustomInstall\Space.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 REM *****Starte AlbumArt Automatische Installation*******
 start C:\Users\%username%\Downloads\AlbumArtDownloaderXUI-1.02.exe
-timeout /T 1
+timeout /T 1 > NUL:
 start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-timeout /T 1
+timeout /T 1 > NUL:
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-timeout /T 2
+timeout /T 2 > NUL:
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 REM *****Starte Phoner Lite Installation*******
 start C:\Users\%username%\Downloads\PhonerLiteSetup.exe
-timeout /T 1
+timeout /T 1 > NUL:
 start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-timeout /T 1
+timeout /T 1 > NUL:
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
@@ -401,7 +401,7 @@ start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Space.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-timeout /T 3
+timeout /T 3 > NUL:
 start C:\Users\%username%\Downloads\CustomInstall\Space.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 REM *****Starte Epic Games Installation*******
@@ -412,10 +412,10 @@ del EpicGamesLauncherInstaller.tmp
 
 start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-timeout /T 1
+timeout /T 1 > NUL:
 start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-timeout /T 1
+timeout /T 1 > NUL:
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 timeout /T 15
 REM *****Starte Logitech Automatische Installation*******
@@ -438,7 +438,7 @@ start C:\Users\%username%\Downloads\Ninite-Notepad.exe
 
 REM *****Starte Battlenet Installation*******
 start C:\Users\%username%\Downloads\Battle.net_Setup.exe
-timeout /T 1
+timeout /T 1 > NUL:
 start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 timeout /T 30
@@ -737,10 +737,10 @@ set NEWPCNAME=""
 set /p NEWPCNAME="Bitte neuen Computernamen eingeben: "
 
 start C:\Users\%username%\Downloads\CustomInstall\RenamePC.vbs %NEWPCNAME%
-timeout /T 1
+timeout /T 1 > NUL:
 start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-timeout /T 1
+timeout /T 1 > NUL:
 %TIME% PC in %NEWPCNAME% umbenannt. >> C:\Users\%username%\Desktop\WPI_Log.txt
 goto :Exit
 
@@ -750,7 +750,7 @@ REM 7z x C:\Users\%username%\Downloads\ManageTaskbar-1.0.zip -oC:\Users\%usernam
 REM cd C:\Users\%username%\Downloads\
 REM rename "C:\Users\fseitz\Downloads\CustomInstall\ManageTaskbar 1.0" "ManageTaskbar"
 REM start "C:\Users\fseitz\Downloads\CustomInstall\ManageTaskbar\TaskBar.cmd"
-REM timeout /T 3
+REM timeout /T 3 > NUL:
 echo Set oWS = WScript.CreateObject("WScript.Shell") > C:\Users\%username%\Downloads\CustomInstall\CreateShortcut.vbs
 echo sLinkFile = "C:\Users\%username%\Downloads\CustomInstall\Google Chrome.lnk" >> C:\Users\%username%\Downloads\CustomInstall\CreateShortcut.vbs
 echo Set oLink = oWS.CreateShortcut(sLinkFile) >> C:\Users\%username%\Downloads\CustomInstall\CreateShortcut.vbs
