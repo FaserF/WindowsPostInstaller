@@ -96,6 +96,12 @@ goto :PrivatGeraet | echo %TIME% Kein Businessgeraet ( %SYSMODEL% ) wurde automa
 :PrivatGeraet
 start /min https://ninite.com/7zip-chrome-steam/ninite.exe
 start /min https://github.com/FaserF/FaserFQuickTools/releases/download/1.0/WPI.zip
+
+REM *********Umbenennung da Leerzeichen im Namen********
+Ren "C:\Users\%username%\Downloads\Ninite 7Zip Chrome Steam Installer.exe" Ninite-Chrome-7zip-Steam.exe
+start Ninite-Chrome-7zip-Steam.exe
+echo Warte auf Fertigstellung von Chrome Installation! Wichtig!, dann
+timeout /T 120
 echo            Suche nach Updates
 echo.
 timeout /T 25
@@ -108,11 +114,6 @@ if %LatestVersion% gtr %WPIVersion% msg * "Du nutzt nicht die neueste Version. B
 if %LatestVersion% gtr %WPIVersion% echo %TIME% Neue Version gefunden. Bitte aktualisiere auf Version %LatestVersion%. Deine Version ist %WPIVersion%. Anwendung wird beendet! >> C:\Users\%username%\Desktop\WPI_Log.txt | echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
 if %LatestVersion% gtr %WPIVersion% start https://github.com/FaserF/FaserFQuickTools/releases/latest | exit
 
-REM *********Umbenennung da Leerzeichen im Namen********
-Ren "C:\Users\%username%\Downloads\Ninite 7Zip Chrome Steam Installer.exe" Ninite-Chrome-7zip-Steam.exe
-start Ninite-Chrome-7zip-Steam.exe
-echo Warte auf Fertigstellung von Chrome Installation! Wichtig!, dann
-timeout /T 120
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 REM *********Default Browser wird in Chrome geändert und anschließende Wartezeit von ca 4 Sekunden********
 start C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs
@@ -159,6 +160,7 @@ echo.
 if "%SYSMODEL%"=="All Series" SET Skin=Threshold
 if "%SYSMODEL%"=="W65_67SJ" SET Skin=Threshold
 if "%SYSMODEL%"=="Precision WorkStation T5500" SET Skin=Threshold
+if "%SYSMODEL%"=="Precision T5500" SET Skin=Threshold
 if "%SYSMODEL%"=="Precision M6500" SET Skin=Threshold
 if "%SYSMODEL%"=="Precision M4700" SET Skin=Threshold
 echo Lese Skin.txt aus, falls vorhanden.
