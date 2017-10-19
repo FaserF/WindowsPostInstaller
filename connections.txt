@@ -1,0 +1,97 @@
+http://alexa.amazon.de/spa/index.html#settings/dialogs
+
+Default-0:about:blank
+Default-1:about:blank
+Default-2:about:blank
+Default-3:about:blank
+Default-20:https://www.google.de/
+
+Phrase:Who sang
+Phrase:Who sings
+Phrase:Play
+Phrase:Youtube
+NEWURL-1:https://www.youtube.de/results?search_query=[SEARCH]
+
+Phrase:What is
+Phrase:When is
+Phrase:Who is
+NEWURL-0:http://www.google.de
+NEWURL-1:about:blank
+NEWURL-2:about:blank
+NEWURL-3:about:blank
+
+Phrase:Wer ist
+NEWURL-20:https://www.google.de/?gws_rd=ssl#q=[SEARCH]
+
+Phrase:soundcloud
+Phrase:alexa soundcloud
+NEWURL-100:E:\WebExtractor\soundcloud.cmd
+
+Phrase:zwei
+Phrase:überspringe das lied am computer
+NEWURL-100:E:\WebExtractor\soundcloud-next.vbs
+
+Phrase:netflix
+Phrase:starte netflix am computer
+Phrase:alexa netflix
+NEWURL-100:E:\WebExtractor\netflix.cmd
+
+Phrase:computer lautsprecher
+Phrase:computerlautsprecher
+Phrase:alexa computer lautsprecher
+NEWURL-100:E:\WebExtractor\speaker.cmd
+
+Phrase:computer lauter
+Phrase:alexa computer lauter
+NEWURL-100:E:\WebExtractor\louder.cmd
+
+Phrase:computer leiser
+Phrase:alexa computer leiser
+NEWURL-100:E:\WebExtractor\quieter.cmd
+
+Phrase:tab schließen
+Phrase:alexa tab schließen
+Phrase:schließe den tab
+Phrase:schließe den top
+NEWURL-100:E:\WebExtractor\Tab-schließen.vbs
+
+Phrase:computer stopp
+Phrase:pause
+Phrase:alexa computer stopp
+Phrase:alexa pause
+NEWURL-100:E:\WebExtractor\pause.vbs
+
+Opening a folder or launching a PC application. See website for more features.
+Phrase:Die Besten
+Phrase:Starte Playlist am Computer
+Phrase:Starte Playlist am p. c.
+NEWURL-100:C:\Users\fabia\OneDrive\Musik\_MixedPlaylist.m3u
+
+Opening a folder or launching a PC application. See website for more features.
+Phrase:starte d.j.
+NEWURL-100:E:\WebExtractor\YouDJ.lnk
+
+Opening a folder or launching a PC application. See website for more features.
+Phrase:fahre den computer herunter
+Phrase:runterfahren
+Phrase:alexa runterfahren
+NEWURL-100:E:\WebExtractor\shutdown.cmd
+
+Opening a folder or launching a PC application. See website for more features.
+Phrase:Start den p. c. neu
+Phrase:Starte den computer neu
+Phrase:neu starten
+Phrase:Alexa neu starten
+NEWURL-100:E:\WebExtractor\restart.cmd
+
+Opening a folder or launching a PC application. See website for more features.
+Phrase:setze den p. c. in ruhezustand
+Phrase:setze den computer in ruhezustand
+Phrase:ruhezustand
+NEWURL-100:E:\WebExtractor\hibernate.cmd
+
+
+Change names to match your device names. Any Phrases and actions listed below each name means that you must speak into that actual device for the actions to be launched.
+ZONE:Lounge Echo
+ZONE:Bedroom Dot
+ZONE:Office Dot
