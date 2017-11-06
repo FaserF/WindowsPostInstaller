@@ -1,5 +1,5 @@
 @echo off
-set WPIVersion=3.6.4
+set WPIVersion=3.6.5
 set Description=Automatic Windows Post Installer (Software, Driver, ...) for a fresh Windows Installation.
 title Automatic Windows Post Installer by FaserF - V%WPIVersion%
 color 89
@@ -334,8 +334,11 @@ start https://launcher-public-service-prod06.ol.epicgames.com/launcher/api/insta
 start http://www.phoner.de/PhonerLiteSetup.exe
 start https://download01.logi.com/web/ftp/pub/techsupport/gaming/LGS_8.91.48_x64_Logitech.exe
 start https://ninite.com/notepadplusplus/ninite.exe
+start https://central.github.com/deployments/desktop/desktop/latest/win32
+start https://www.sparda.de/secureapp-pc/medien/spardasecureapp_p.exe
+start https://github.com/nefarius/ScpToolkit/releases/download/v1.6.133.15324/ScpToolkit_Setup.exe
 echo 2. Anwendungsinstallation. Warte auf Beendigung der Downloads, dann ...
-timeout /T 120
+timeout /T 180
 
 start C:\Users\%username%\Downloads\UplayInstaller.exe /S
 start C:\Users\%username%\Downloads\OriginThinSetup.exe /VERYSILENT /SUPPRESSMSGBOXES /NORESTART
@@ -443,6 +446,13 @@ start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 timeout /T 30
 
+start GitHubDesktopSetup.exe
+start spardasecureapp_p.exe
+start ScpToolkit_Setup.exe
+echo https://discordler.github.io/other/PS3.html >> C:\Users\%username%\Desktop\SCP.txt
+start /min C:\Users\%username%\Desktop\SCP.txt
+pause
+
 taskkill /IM Chrome.exe /F
 echo Dialog schließt sich in wenigen Sekunden und loescht Installationsfiles.
 start https://de.evga.com/precisionxoc/#download
@@ -542,14 +552,78 @@ goto :RenamePC
 :M4700
 echo Dell M4700 wurde automatisch ermittelt | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> C:\Users\%username%\Desktop\WPI_Log.txt | echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
 :M4700-Start
+net use z: \\192.168.178.21\public\share /user:FSeitz
+net use y: \\192.168.178.21\homes\FSeitz /user:FSeitz
 start https://downloads.dell.com/FOLDER03465771M/1/Network_Driver_565N6_WN32_12.0.1.750_A03.EXE
 start https://downloads.dell.com/FOLDER03388567M/1/Input_Driver_YXX3D_WN32_10.1207.101.109_A03.EXE
-start http://www.nvidia.de/Download/index.aspx?lang=de
 start https://downloadcenter.intel.com/de/product/59471/Intel-Centrino-Advanced-N-6205-Dualband
+start https://www.unifiedremote.com/download/windows
+start https://update.pushbullet.com/pushbullet_installer.exe
+start http://ubi.li/4vxt9
+start http://www.dm.origin.com/download
+start https://www.xdlab.ru/files/tagscan-6.0.20-setup.exe
+start https://downloads.sourceforge.net/project/album-art/album-art-xui/AlbumArtDownloaderXUI-1.02.exe?r=&ts=1500286400&use_mirror=netcologne
+start https://web.whatsapp.com/desktop/windows/release/x64/WhatsAppSetup.exe
 echo Warte auf Beendigung des Downloads, dann ...
+timeout /T 180
+start C:\Users\%username%\Downloads\UplayInstaller.exe /S
+start C:\Users\%username%\Downloads\OriginThinSetup.exe /VERYSILENT /SUPPRESSMSGBOXES /NORESTART
+start C:\Users\%username%\Downloads\tagscan-6.0.22-setup.exe /VERYSILENT /SUPPRESSMSGBOXES /NORESTART
+start C:\Users\%username%\Downloads\WhatsAppSetup.exe /VERYSILENT /SUPPRESSMSGBOXES /NORESTART
+REM *****Starte Unified Remote Automatische Installation*******
+dir /b C:\Users\%username%\Downloads\ | find "ServerSetup" > UnifiedRemote.tmp
+for /f %%u IN ('findstr ServerSetup UnifiedRemote.tmp') do (
+start C:\Users\%username%\Downloads\%%u )
+del UnifiedRemote.tmp
+timeout /T 1
+start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Tab.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+timeout /T 13
+start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+timeout /T 3
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+REM *******Starte Pushbullet Automatische Installation******
+start C:\Users\%username%\Downloads\pushbullet_installer.exe
+timeout /T 1
+start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+timeout /T 1
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+timeout /T 2
+start C:\Users\%username%\Downloads\CustomInstall\Space.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+REM *****Starte AlbumArt Automatische Installation*******
+start C:\Users\%username%\Downloads\AlbumArtDownloaderXUI-1.02.exe
+timeout /T 1
+start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+timeout /T 1
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+timeout /T 2
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+timeout /T 2
+
+start Network_Driver_565N6_WN32_12.0.1.750_A03.EXE
+start Input_Driver_YXX3D_WN32_10.1207.101.109_A03.EXE
+start Intel-Centrino-Advanced-N-6205-Dualband
+
+echo Alle Installationen gestartet. Warte auf Abschluss.
 pause
-for /r "." %%a in (*.exe) do start "" "%%~fa"
-echo Installationen gestartet.
 echo Dialog schließt sich in 5 Sekunden und loescht Installationsfiles.
 del /q C:\Users\%username%\Downloads\*.exe
 timeout /T 5
@@ -766,7 +840,7 @@ for /r "." %%a in (*.zip) do del /q "" "%%~fa"
 for /r "." %%a in (*.rar) do del /q "" "%%~fa"
 start https://discordler.github.io
 start https://central.bitdefender.com/
-start https://www.mydealz.de/search?q=Bitdefender
+start https://github.com/mRemoteNG/mRemoteNG/releases/latest
 echo %TIME% Installation abgeschlossen. >> C:\Users\%username%\Desktop\WPI_Log.txt
 echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
 msg * "Installationen abgeschlossen! MS Office muss ggf. noch installiert werden. Steam Skin muss in Steam Einstellungen noch ausgewaehlt werden. Damit die Taskbar aktualisiert wird ist ein Neustart erforderlich."
