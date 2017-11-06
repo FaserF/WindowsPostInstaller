@@ -341,7 +341,6 @@ timeout /T 180
 
 start C:\Users\%username%\Downloads\UplayInstaller.exe /S
 start C:\Users\%username%\Downloads\OriginThinSetup.exe /VERYSILENT /SUPPRESSMSGBOXES /NORESTART
-start C:\Users\%username%\Downloads\tagscan-6.0.22-setup.exe /VERYSILENT /SUPPRESSMSGBOXES /NORESTART
 start C:\Users\%username%\Downloads\WhatsAppSetup.exe /VERYSILENT /SUPPRESSMSGBOXES /NORESTART
 REM *****Starte Unified Remote Automatische Installation*******
 dir /b C:\Users\%username%\Downloads\ | find "ServerSetup" > UnifiedRemote.tmp
@@ -444,6 +443,12 @@ timeout /T 1 > NUL:
 start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 timeout /T 30
+
+REM *********Starten der TagScan Installation, da Version im Namen trägt********
+dir /b C:\Users\%username%\Downloads\ | find "Tagscan" > tagscaninstall.tmp
+for /f %%f IN ('findstr Tagscan tagscaninstall.tmp') do (
+start C:\Users\%username%\Downloads\%%f /VERYSILENT /SUPPRESSMSGBOXES /NORESTART )
+del tagscaninstall.tmp
 
 start GitHubDesktopSetup.exe
 start spardasecureapp_p.exe
@@ -573,7 +578,6 @@ echo Warte auf Beendigung des Downloads, dann ...
 timeout /T 180
 start C:\Users\%username%\Downloads\UplayInstaller.exe /S
 start C:\Users\%username%\Downloads\OriginThinSetup.exe /VERYSILENT /SUPPRESSMSGBOXES /NORESTART
-start C:\Users\%username%\Downloads\tagscan-6.0.22-setup.exe /VERYSILENT /SUPPRESSMSGBOXES /NORESTART
 start C:\Users\%username%\Downloads\WhatsAppSetup.exe /VERYSILENT /SUPPRESSMSGBOXES /NORESTART
 REM *****Starte Unified Remote Automatische Installation*******
 dir /b C:\Users\%username%\Downloads\ | find "ServerSetup" > UnifiedRemote.tmp
@@ -622,6 +626,12 @@ start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 timeout /T 2
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 timeout /T 2
+
+REM *********Starten der Installation, da Version im Namen trägt********
+dir /b C:\Users\%username%\Downloads\ | find "Tagscan" > tagscaninstall.tmp
+for /f %%f IN ('findstr Tagscan tagscaninstall.tmp') do (
+start C:\Users\%username%\Downloads\%%f /VERYSILENT /SUPPRESSMSGBOXES /NORESTART )
+del tagscaninstall.tmp
 
 start Network_Driver_565N6_WN32_12.0.1.750_A03.EXE
 start Input_Driver_YXX3D_WN32_10.1207.101.109_A03.EXE
