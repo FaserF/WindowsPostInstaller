@@ -451,8 +451,14 @@ start spardasecureapp_p.exe
 start ScpToolkit_Setup.exe
 echo https://discordler.github.io/other/PS3.html >> C:\Users\%username%\Desktop\SCP.txt
 start /min C:\Users\%username%\Desktop\SCP.txt
+echo "!!!!!!!!!!!!!!"
+echo "!!!!!!!!!!!!!!!Installiere als nächstes von Laufwerk F:, bitte stelle Sicher, dass die Namen richtig vergeben sind!!!!!!!!!!!!!!!!!!!"
+echo "!!!!!!!!!!!!!!"
 pause
 
+xcopy /s /y "F:\Cracks\YouDJ\YouDJ Desktop" "C:\Program Files (x86)\YouDJ Desktop\"
+xcopy /s /y "F:\Cracks\YouDJ\User Data" "C:\Users\%username%\AppData\Local\YouDJ Desktop App\"
+start "F:\Cracks\Microsoft Office und Windows Crack\MicrosoftOffice 2016 Pro Plus + Crack\Microsoft Office Professional Plus 2016 x64-x86\office\setup64.exe"
 taskkill /IM Chrome.exe /F
 echo Dialog schließt sich in wenigen Sekunden und loescht Installationsfiles.
 start https://de.evga.com/precisionxoc/#download
