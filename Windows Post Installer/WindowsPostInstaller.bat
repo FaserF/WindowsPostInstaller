@@ -30,6 +30,8 @@ echo Set WshShell = WScript.CreateObject("WScript.Shell") > "C:\Users\%username%
 echo WshShell.Run "%%windir%%\system32\control.exe /name Microsoft.DefaultPrograms /page pageDefaultProgram\pageAdvancedSettings?pszAppName=google%%20chrome" >> "C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs"
 echo WScript.Sleep 1200 >> "C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs"
 echo WshShell.SendKeys "{TAB}" >> "C:\Users\%username%\Downloads\CustomInstall\DefaultBrowser.vbs"
+REM *** Eigentlich nur 1x TAB aber momentan BUG
+echo WshShell.SendKeys "{TAB}" >> "C:\Users\%username%\Downloads\CustomInstall\DefaultBrowser.vbs"
 echo WshShell.SendKeys " " >> "C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs"
 echo WshShell.SendKeys "{TAB}" >> "C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs"
 echo WshShell.SendKeys "{TAB}" >> "C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs"
@@ -95,7 +97,7 @@ goto :PrivatGeraet | echo %TIME% Kein Businessgeraet ( %SYSMODEL% ) wurde automa
 :PrivatGeraet
 start /min https://ninite.com/7zip-chrome-steam/ninite.exe
 start /min https://github.com/FaserF/FaserFQuickTools/releases/download/1.0/WPI.zip
-timeout /T 25
+timeout /T 25 
 
 REM *********Umbenennung da Leerzeichen im Namen********
 Ren "C:\Users\%username%\Downloads\Ninite 7Zip Chrome Steam Installer.exe" Ninite-Chrome-7zip-Steam.exe
@@ -299,8 +301,6 @@ goto:Auswahl
 :Z97-AR
 echo ASUS Z97-AR wurde automatisch ermittelt | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> C:\Users\%username%\Desktop\WPI_Log.txt | echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
 :Z97-AR-Start
-net use z: \\192.168.178.21\public\share /user:FSeitz
-net use y: \\192.168.178.21\homes\FSeitz /user:FSeitz
 start http://dlcdnet.asus.com/pub/ASUS/misc/utils/AISuite_III_V10149_for_Z97.rar
 start http://dlcdnet.asus.com/pub/ASUS/misc/usb30/Asmedia_USB3_V116351.zip
 start http://dlcdnet.asus.com/pub/ASUS/misc/utils/Turbo_LAN_Win7-8-81-10_V10700.zip
@@ -464,6 +464,8 @@ xcopy /s /y "F:\Cracks\YouDJ\YouDJ Desktop" "C:\Program Files (x86)\YouDJ Deskto
 xcopy /s /y "F:\Cracks\YouDJ\User Data" "C:\Users\%username%\AppData\Local\YouDJ Desktop App\"
 start "F:\Cracks\Microsoft Office und Windows Crack\MicrosoftOffice 2016 Pro Plus + Crack\Microsoft Office Professional Plus 2016 x64-x86\office\setup64.exe"
 taskkill /IM Chrome.exe /F
+REM net use z: \\192.168.178.21\public\share /user:FSeitz
+REM net use y: \\192.168.178.21\homes\FSeitz /user:FSeitz
 echo Dialog schließt sich in wenigen Sekunden und loescht Installationsfiles.
 start https://de.evga.com/precisionxoc/#download
 goto :RenamePC
