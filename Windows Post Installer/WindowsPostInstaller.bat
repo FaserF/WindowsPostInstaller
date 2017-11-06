@@ -29,9 +29,7 @@ REM *********Erstelle reg Eintrag um Google Chrome Standard Browser zu machen***
 echo Set WshShell = WScript.CreateObject("WScript.Shell") > "C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs"
 echo WshShell.Run "%%windir%%\system32\control.exe /name Microsoft.DefaultPrograms /page pageDefaultProgram\pageAdvancedSettings?pszAppName=google%%20chrome" >> "C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs"
 echo WScript.Sleep 1200 >> "C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs"
-echo WshShell.SendKeys "{TAB}" >> "C:\Users\%username%\Downloads\CustomInstall\DefaultBrowser.vbs"
-REM *** Eigentlich nur 1x TAB aber momentan BUG
-echo WshShell.SendKeys "{TAB}" >> "C:\Users\%username%\Downloads\CustomInstall\DefaultBrowser.vbs"
+echo WshShell.SendKeys "{TAB}" >> "C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs"
 echo WshShell.SendKeys " " >> "C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs"
 echo WshShell.SendKeys "{TAB}" >> "C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs"
 echo WshShell.SendKeys "{TAB}" >> "C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs"
@@ -119,7 +117,7 @@ start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 REM *********Default Browser wird in Chrome geändert und anschließende Wartezeit von ca 4 Sekunden********
 start C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs
 echo Mache Chrome zum Standard Browser....
-timeout /T 8 > NUL
+timeout /T 3 > NUL
 start /min https://github.com/Edgarware/Threshold-Skin/archive/master.zip
 start /min http://www.metroforsteam.com/downloads/4.2.4.zip
 start /min http://www.filehorse.com/download-nvidia-geforce-experience/download/
@@ -308,13 +306,12 @@ start http://dlgbit.winfuture.de/21d53ef186363366551a0c51f5c7363e/58f5f505/softw
 start http://www.intel.de/content/www/de/de/support/network-and-i-o/wireless-networking/intel-wireless-products/intel-wireless-7200-series/intel-dual-band-wireless-ac-7260.html
 start http://download.lenovo.com/consumer/monitor/lenovo_artery_setup.exe
 echo 1. Treiber Installation. Warte auf Beendigung der Downloads, dann ...
-timeout /T 120
+timeout /T 180
 cd C:\Program Files\7-Zip\
 7z x C:\Users\%username%\Downloads\AISuite_III_V10149_for_Z97.rar -oC:\Users\%username%\Downloads\AISuite_III_V10149_for_Z97\ > NUL:
 7z x C:\Users\%username%\Downloads\Asmedia_USB3_V116351.zip -oC:\Users\%username%\Downloads\Asmedia_USB3_V116351\ > NUL:
 7z x C:\Users\%username%\Downloads\Turbo_LAN_Win7-8-81-10_V10700.zip -oC:\Users\%username%\Downloads\Turbo_LAN_Win7-8-81-10_V10700\ > NUL:
 cd C:\Users\%username%\Downloads\
-for /r "." %%a in (*.exe) do start "" "%%~fa"
 start /wait C:\Users\%username%\Downloads\Asmedia_USB3_V116351\AsusSetup.exe
 start /wait C:\Users\%username%\Downloads\Turbo_LAN_Win7-8-81-10_V10700\Turbo_LAN_Win7-8-81-10_V10700\AsusSetup.exe
 start /wait C:\Users\%username%\Downloads\AISuite_III_V10149_for_Z97\AsusSetup.exe
@@ -410,7 +407,6 @@ dir /b C:\Users\%username%\Downloads\ | find "EpicGamesLauncherInstaller" > Epic
 for /f %%e IN ('findstr EpicGamesLauncherInstaller EpicGamesLauncherInstaller.tmp') do (
 start C:\Users\%username%\Downloads\%%e )
 del EpicGamesLauncherInstaller.tmp
-
 start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 timeout /T 1 > NUL:
@@ -418,22 +414,22 @@ start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 timeout /T 1 > NUL:
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-timeout /T 15
+timeout /T 15 > NUL:
 REM *****Starte Logitech Automatische Installation*******
 dir /b C:\Users\%username%\Downloads\ | find "Logitech" > Logitech.tmp
 for /f %%l IN ('findstr Logitech Logitech.tmp') do (
 start C:\Users\%username%\Downloads\%%l )
 del Logitech.tmp
-timeout /T 10
+timeout /T 10 > NUL:
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 timeout /T 60
 start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Tab.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-timeout /T 1
+timeout /T 1 > NUL:
 start C:\Users\%username%\Downloads\CustomInstall\AltF4.vbs
-
+timeout /T 3 > NUL:
 Ren "C:\Users\%username%\Downloads\Ninite Notepad Installer.exe" Ninite-Notepad.exe
 start C:\Users\%username%\Downloads\Ninite-Notepad.exe
 
