@@ -1,8 +1,7 @@
 @echo off
-set WPIVersion=3.6.5
+set WPIVersion=3.6.6
 set Description=Automatic Windows Post Installer (Software, Driver, ...) for a fresh Windows Installation.
 title Automatic Windows Post Installer by FaserF - V%WPIVersion%
-color 89
 
 :Default
 echo %Description%
@@ -118,7 +117,7 @@ start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 REM *********Default Browser wird in Chrome geändert und anschließende Wartezeit von ca 4 Sekunden********
 start C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs
 echo Mache Chrome zum Standard Browser....
-timeout /T 4 > NUL:
+timeout /T 8 > NUL
 start /min https://github.com/Edgarware/Threshold-Skin/archive/master.zip
 start /min http://www.metroforsteam.com/downloads/4.2.4.zip
 start /min http://www.filehorse.com/download-nvidia-geforce-experience/download/
