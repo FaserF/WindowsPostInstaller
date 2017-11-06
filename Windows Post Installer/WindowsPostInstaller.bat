@@ -305,7 +305,7 @@ start http://dlcdnet.asus.com/pub/ASUS/misc/utils/Turbo_LAN_Win7-8-81-10_V10700.
 start http://dlgbit.winfuture.de/21d53ef186363366551a0c51f5c7363e/58f5f505/software/realtek/2.81/0008-64bit_Win7_Win8_Win81_Win10_R281.exe
 start http://www.intel.de/content/www/de/de/support/network-and-i-o/wireless-networking/intel-wireless-products/intel-wireless-7200-series/intel-dual-band-wireless-ac-7260.html
 start http://download.lenovo.com/consumer/monitor/lenovo_artery_setup.exe
-echo 1. Treiber Installation. Warte auf Beendigung der Downloads, dann ...
+echo Treiber Installation. Warte auf Beendigung der Downloads, dann ...
 timeout /T 180
 cd C:\Program Files\7-Zip\
 7z x C:\Users\%username%\Downloads\AISuite_III_V10149_for_Z97.rar -oC:\Users\%username%\Downloads\AISuite_III_V10149_for_Z97\ > NUL:
@@ -333,7 +333,7 @@ start https://ninite.com/notepadplusplus/ninite.exe
 start https://central.github.com/deployments/desktop/desktop/latest/win32
 start https://www.sparda.de/secureapp-pc/medien/spardasecureapp_p.exe
 start https://github.com/nefarius/ScpToolkit/releases/download/v1.6.133.15324/ScpToolkit_Setup.exe
-echo 2. Anwendungsinstallation. Warte auf Beendigung der Downloads, dann ...
+echo Anwendungsinstallation. Warte auf Beendigung der Downloads, dann ...
 timeout /T 180
 
 start C:\Users\%username%\Downloads\UplayInstaller.exe /S
