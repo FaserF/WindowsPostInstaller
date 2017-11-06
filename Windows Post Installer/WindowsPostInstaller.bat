@@ -9,7 +9,7 @@ echo %Description%
 REM TASKLIST | FINDSTR /I "Windows Post Installer"
 REM if "%ERRORLEVEL%"=="0" msg * "WPI laeuft bereits. Programm wird beendet."
 REM if "%ERRORLEVEL%"=="0" exit
-ping www.google.de -n 1 | find "TTL" > nul
+ping www.google.de -n 1 > nul
 if errorlevel 1 (set internet=Nicht mit dem Internet verbunden) else (set internet=Internet Verbindung aufgebaut)
 if "%internet%" == "Nicht mit dem Internet verbunden" goto :NoInternet
 echo Programm wirklich starten?
