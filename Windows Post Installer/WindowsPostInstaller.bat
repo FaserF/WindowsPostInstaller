@@ -1,5 +1,5 @@
 @echo off
-set WPIVersion=3.7.0
+set WPIVersion=3.7.1
 set Description=Automatic Windows Post Installer (Software, Driver, ...) for a fresh Windows Installation.
 title Automatic Windows Post Installer by FaserF - V%WPIVersion%
 
@@ -25,6 +25,10 @@ REM *********Erstelle reg Eintrag zur Deaktivierung der Edge Speichern Aufforder
 echo Windows Registry Editor Version 5.00 > "C:\Users\%username%\Downloads\CustomInstall\EdgeAutoDownload.reg"
 echo [HKEY_CURRENT_USER\SOFTWARE\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\Download] >> "C:\Users\%username%\Downloads\CustomInstall\EdgeAutoDownload.reg"
 echo "EnableSavePrompt"=dword:00000000 >> "C:\Users\%username%\Downloads\CustomInstall\EdgeAutoDownload.reg"
+REM *********Erstelle reg Eintrag zur Deaktivierung von Installationen der Windows SPAM Apps (Spiele, etc...)********
+echo Windows Registry Editor Version 5.00 > "C:\Users\%username%\Downloads\CustomInstall\DisableAutoDownloadApps.reg"
+echo [HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\CloudContent] >> "C:\Users\%username%\Downloads\CustomInstall\DisableAutoDownloadApps.reg"
+echo "DisableWindowsConsumerFeatures"=dword:00000001 >> "C:\Users\%username%\Downloads\CustomInstall\DisableAutoDownloadApps.reg"
 REM *********Erstelle reg Eintrag um Google Chrome Standard Browser zu machen********
 echo Set WshShell = WScript.CreateObject("WScript.Shell") > "C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs"
 echo WshShell.Run "%%windir%%\system32\control.exe /name Microsoft.DefaultPrograms /page pageDefaultProgram\pageAdvancedSettings?pszAppName=google%%20chrome" >> "C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs"
@@ -72,6 +76,16 @@ echo           %internet%
 echo           SYSTEM MODELL: %SYSMODEL%
 echo           %WindowsVersion% laeuft auf diesem Geraet!
 start C:\Users\%username%\Downloads\CustomInstall\EdgeAutoDownload.reg
+timeout /T 1 > NUL:
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+timeout /T 1 > NUL:
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+
+start C:\Users\%username%\Downloads\CustomInstall\DisableAutoDownloadApps.reg
+timeout /T 1 > NUL:
+start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
+timeout /T 1 > NUL:
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 timeout /T 1 > NUL:
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 timeout /T 1 > NUL:
