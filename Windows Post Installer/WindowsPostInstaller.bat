@@ -1,5 +1,5 @@
 @echo off
-set WPIVersion=3.6.6
+set WPIVersion=3.7.0
 set Description=Automatic Windows Post Installer (Software, Driver, ...) for a fresh Windows Installation.
 title Automatic Windows Post Installer by FaserF - V%WPIVersion%
 
@@ -95,7 +95,7 @@ goto :PrivatGeraet | echo %TIME% Kein Businessgeraet ( %SYSMODEL% ) wurde automa
 :PrivatGeraet
 start /min https://ninite.com/7zip-chrome-steam/ninite.exe
 start /min https://github.com/FaserF/FaserFQuickTools/releases/download/1.0/WPI.zip
-timeout /T 25 
+timeout /T 25 > NUL:
 
 REM *********Umbenennung da Leerzeichen im Namen********
 Ren "C:\Users\%username%\Downloads\Ninite 7Zip Chrome Steam Installer.exe" Ninite-Chrome-7zip-Steam.exe
@@ -152,7 +152,6 @@ echo %TIME% Skin.txt nicht gefunden >> C:\Users\%username%\Desktop\WPI_Log.txt
 echo             Erstelle vor Start eine Skin.txt mit Inhalt des gewuenschten Steam Skins [Auswahl: Threshold , Metro , skip] >> C:\Users\%username%\Desktop\WPI_Log.txt
 echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
 )
-start /min C:\Users\%username%\Desktop\WPI_Log.txt
 
 :AutoSteamSkin
 echo.
@@ -230,8 +229,9 @@ goto :Start
 
 :Skin4
 echo %TIME% Steam wird deinstalliert >> C:\Users\%username%\Desktop\WPI_Log.txt | echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
-start C:\Program Files (x86)\Steam\uninstall.exe /S
-timeout /T 10
+cmd /c "C:\Program Files (x86)\Steam\uninstall.exe" /S
+timeout /T 10 > NUL:
+goto :Start
 
 :Skin5
 REM *******Dummy - dient lediglich der Weiterleitung
@@ -249,7 +249,7 @@ goto :Ermittelung
 
 :Ermittelung
 if "%SYSMODEL%"=="All Series" goto :Z97-AR
-if "%SYSMODEL%"=="W65_67SJ" goto :W65_67SJ
+if "%SYSMODEL%"=="Latitude E7450" goto :E7450
 if "%SYSMODEL%"=="Precision WorkStation T5500" goto :T5500
 if "%SYSMODEL%"=="Precision M6500" goto :M6500
 if "%SYSMODEL%"=="Precision M4700" goto :M4700
@@ -268,7 +268,7 @@ echo            Dein Geraet lautet: %SYSMODEL%
 echo.
 echo.
 echo   [1]    Asus Z97-AR / PC
-echo   [2]    Clevo W65_67SJ / Notebook
+echo   [2]    Dell Latitude E7450 / Ultrabook
 echo   [3]    Dell Precision T5500 / CAD PC
 echo   [4]    Dell Precision M6500 / CAD Notebook
 echo   [5]    Asus Maximus Ranger VIII / PC
@@ -283,11 +283,11 @@ set asw=0
 set /p asw="Bitte Auswahl eingeben: "
 
 if %asw%==1 goto :Z97-AR-Start
-if %asw%==2 goto :W65_67SJ-Start
-if %asw%==3 goto :T5500
-if %asw%==4 goto :M6500
+if %asw%==2 goto :E7450-Start
+if %asw%==3 goto :T5500-Start
+if %asw%==4 goto :M6500-Start
 if %asw%==5 goto :VIII
-if %asw%==6 goto :M4700
+if %asw%==6 goto :M4700-Start
 
 if %asw%==B goto :AuswahlBusiness
 if %asw%==0 goto :RenamePC
@@ -466,26 +466,22 @@ echo Dialog schließt sich in wenigen Sekunden und loescht Installationsfiles.
 start https://de.evga.com/precisionxoc/#download
 goto :RenamePC
 
-:W65_67SJ
-echo Clevo W65_67SJ wurde automatisch ermittelt | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> C:\Users\%username%\Desktop\WPI_Log.txt | echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
-:W65_67SJ-Start
+:E7450
+echo Latitude E7450 wurde automatisch ermittelt | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> C:\Users\%username%\Desktop\WPI_Log.txt | echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
+:E7450-Start
 net use z: \\192.168.178.21\public\share /user:FSeitz
 net use y: \\192.168.178.21\homes\FSeitz /user:FSeitz
-start https://d34vhvz8ul1ifj.cloudfront.net/Driver/VIA_HD_Audio_v11_1100f_Win10RS1_logo_11012016.zip
+start https://downloads.dell.com/FOLDER04408227M/2/Realtek-High-Definition-Audio-Driver_331N1_WIN_6.0.1.6122_A08.EXE
+start https://downloads.dell.com/FOLDER03974224M/1/Security_Driver_HGX2G_WN64_3.4.8.14_A20.EXE
+start https://downloads.dell.com/FOLDER04646043M/1/Intel-HD-Graphics-4000-5000-500-P500-series-Driver_V887R_WIN_20.19.15.4835_A06.EXE
+start https://downloads.dell.com/FOLDER04210938M/3/Dell-Touchpad-Driver_9HG8R_WIN_10.2207.101.108_A00_02.EXE
 start https://www.unifiedremote.com/download/windows
 start https://update.pushbullet.com/pushbullet_installer.exe
-start http://ubi.li/4vxt9
-start http://www.dm.origin.com/download
 start https://www.xdlab.ru/files/tagscan-6.0.20-setup.exe
 start https://downloads.sourceforge.net/project/album-art/album-art-xui/AlbumArtDownloaderXUI-1.02.exe?r=&ts=1500286400&use_mirror=netcologne
 start https://web.whatsapp.com/desktop/windows/release/x64/WhatsAppSetup.exe
 echo Warte auf Beendigung des Downloads, dann ...
 timeout /T 120
-cd C:\Program Files\7-Zip\
-7z x C:\Users\%username%\Downloads\VIA_HD_Audio_v11_1100f_Win10RS1_logo_11012016.zip -oC:\Users\%username%\Downloads\ > NUL:
-cd C:\Users\%username%\Downloads\
-start C:\Users\%username%\Downloads\UplayInstaller.exe /S
-start C:\Users\%username%\Downloads\OriginThinSetup.exe /VERYSILENT /SUPPRESSMSGBOXES /NORESTART
 start C:\Users\%username%\Downloads\tagscan-6.0.22-setup.exe /VERYSILENT /SUPPRESSMSGBOXES /NORESTART
 start C:\Users\%username%\Downloads\WhatsAppSetup.exe /VERYSILENT /SUPPRESSMSGBOXES /NORESTART
 REM *****Starte Unified Remote Automatische Installation*******
@@ -493,7 +489,7 @@ dir /b C:\Users\%username%\Downloads\ | find "ServerSetup" > UnifiedRemote.tmp
 for /f %%u IN ('findstr ServerSetup UnifiedRemote.tmp') do (
 start C:\Users\%username%\Downloads\%%u )
 del UnifiedRemote.tmp
-timeout /T 1
+timeout /T 1 > NUL:
 start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Tab.vbs
@@ -504,39 +500,17 @@ start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-timeout /T 13
-start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-timeout /T 3
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-REM *******Starte Pushbullet Automatische Installation******
-start C:\Users\%username%\Downloads\pushbullet_installer.exe
-timeout /T 1
-start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-timeout /T 1
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-timeout /T 2
-start C:\Users\%username%\Downloads\CustomInstall\Space.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-REM *****Starte AlbumArt Automatische Installation*******
-start C:\Users\%username%\Downloads\AlbumArtDownloaderXUI-1.02.exe
-timeout /T 1
-start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-timeout /T 1
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-timeout /T 2
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-
-start C:\Users\%username%\Downloads\v11_1100f_Win10RS1_logo_11012016\SETUP.EXE
+timeout /T 1 > NUL:
+start C:\Users\%username%\Downloads\Dell-Touchpad-Driver_9HG8R_WIN_10.2207.101.108_A00_02.EXE
+timeout /T 1 > NUL:
+start C:\Users\%username%\Downloads\Realtek-High-Definition-Audio-Driver_331N1_WIN_6.0.1.6122_A08.EXE
+timeout /T 1 > NUL:
+start C:\Users\%username%\Downloads\Security_Driver_HGX2G_WN64_3.4.8.14_A20.EXE
+timeout /T 1 > NUL:
+start C:\Users\%username%\Downloads\Intel-HD-Graphics-4000-5000-500-P500-series-Driver_V887R_WIN_20.19.15.4835_A06.EXE
 taskkill /IM Chrome.exe /F
+timeout /T 1 > NUL:
+start https://downloadcenter.intel.com/de/product/83635/Intel-Dualband-Wireless-AC-7265
 echo Dialog schließt sich in wenigen Sekunden und loescht Installationsfiles.
 goto :RenamePC
 
@@ -554,7 +528,7 @@ for /r "." %%a in (*.exe) do start "" "%%~fa"
 echo Installationen gestartet.
 echo Dialog schließt sich in 5 Sekunden und loescht Installationsfiles.
 del /q C:\Users\%username%\Downloads\*.exe
-timeout /T 5
+timeout /T 5 > NUL:
 goto :RenamePC
 
 :M4700
@@ -564,7 +538,7 @@ net use z: \\192.168.178.21\public\share /user:FSeitz
 net use y: \\192.168.178.21\homes\FSeitz /user:FSeitz
 start https://downloads.dell.com/FOLDER03465771M/1/Network_Driver_565N6_WN32_12.0.1.750_A03.EXE
 start https://downloads.dell.com/FOLDER03388567M/1/Input_Driver_YXX3D_WN32_10.1207.101.109_A03.EXE
-start https://downloadcenter.intel.com/de/product/59471/Intel-Centrino-Advanced-N-6205-Dualband
+start https://downloads.dell.com/FOLDER03974224M/1/Security_Driver_HGX2G_WN64_3.4.8.14_A20.EXE
 start https://www.unifiedremote.com/download/windows
 start https://update.pushbullet.com/pushbullet_installer.exe
 start http://ubi.li/4vxt9
@@ -582,7 +556,7 @@ dir /b C:\Users\%username%\Downloads\ | find "ServerSetup" > UnifiedRemote.tmp
 for /f %%u IN ('findstr ServerSetup UnifiedRemote.tmp') do (
 start C:\Users\%username%\Downloads\%%u )
 del UnifiedRemote.tmp
-timeout /T 1
+timeout /T 1 > NUL:
 start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Tab.vbs
@@ -593,37 +567,6 @@ start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-timeout /T 13
-start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-timeout /T 3
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-REM *******Starte Pushbullet Automatische Installation******
-start C:\Users\%username%\Downloads\pushbullet_installer.exe
-timeout /T 1
-start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-timeout /T 1
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-timeout /T 2
-start C:\Users\%username%\Downloads\CustomInstall\Space.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-REM *****Starte AlbumArt Automatische Installation*******
-start C:\Users\%username%\Downloads\AlbumArtDownloaderXUI-1.02.exe
-timeout /T 1
-start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-timeout /T 1
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-timeout /T 2
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-timeout /T 2
 
 REM *********Starten der Installation, da Version im Namen trägt********
 dir /b C:\Users\%username%\Downloads\ | find "Tagscan" > tagscaninstall.tmp
@@ -633,13 +576,14 @@ del tagscaninstall.tmp
 
 start Network_Driver_565N6_WN32_12.0.1.750_A03.EXE
 start Input_Driver_YXX3D_WN32_10.1207.101.109_A03.EXE
-start Intel-Centrino-Advanced-N-6205-Dualband
+start Security_Driver_HGX2G_WN64_3.4.8.14_A20.EXE
 
 echo Alle Installationen gestartet. Warte auf Abschluss.
 pause
 echo Dialog schließt sich in 5 Sekunden und loescht Installationsfiles.
 del /q C:\Users\%username%\Downloads\*.exe
 timeout /T 5
+start https://downloadcenter.intel.com/de/product/59471/Intel-Centrino-Advanced-N-6205-Dualband
 goto :RenamePC
 
 :T5500
@@ -854,7 +798,9 @@ for /r "." %%a in (*.rar) do del /q "" "%%~fa"
 start https://discordler.github.io
 start https://central.bitdefender.com/
 start https://github.com/mRemoteNG/mRemoteNG/releases/latest
+cmd /c "C:\Program Files (x86)\NVIDIA Corporation\NVIDIA GeForce Experience\NVIDIA GeForce Experience.exe"
 echo %TIME% Installation abgeschlossen. >> C:\Users\%username%\Desktop\WPI_Log.txt
+start /min C:\Users\%username%\Desktop\WPI_Log.txt
 echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
 msg * "Installationen abgeschlossen! MS Office muss ggf. noch installiert werden. Steam Skin muss in Steam Einstellungen noch ausgewaehlt werden. Damit die Taskbar aktualisiert wird ist ein Neustart erforderlich."
 slmgr.vbs /ato
