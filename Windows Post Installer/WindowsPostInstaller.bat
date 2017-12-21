@@ -1,7 +1,8 @@
 @echo off
-set WPIVersion=3.7.1
+set WPIVersion=3.7.2
+set datum=21.12.2017
 set Description=Automatic Windows Post Installer (Software, Driver, ...) for a fresh Windows Installation.
-title Automatic Windows Post Installer by FaserF - V%WPIVersion%
+title Automatic Windows Post Installer by FaserF - V%WPIVersion% - Datum: %datum%
 
 :Default
 echo %Description%
@@ -504,13 +505,13 @@ timeout /T 1 > NUL:
 Ren "C:\Users\%username%\Downloads\Sublime Text Build 3143 x64 Setup.exe" Sublime-Text.exe
 start Sublime-Text.exe
 timeout /T 1 > NUL:
-start C:\Users\%username%\Downloads\Dell-Touchpad-Driver_9HG8R_WIN_10.2207.101.108_A00_02.EXE
+start C:\Users\%username%\Downloads\Dell-Touchpad-Driver_9HG8R_WIN_10.2207.101.108_A00_02.EXE /s
 timeout /T 1 > NUL:
-start C:\Users\%username%\Downloads\Realtek-High-Definition-Audio-Driver_331N1_WIN_6.0.1.6122_A08.EXE
+start C:\Users\%username%\Downloads\Realtek-High-Definition-Audio-Driver_331N1_WIN_6.0.1.6122_A08.EXE /s
 timeout /T 1 > NUL:
-start C:\Users\%username%\Downloads\Security_Driver_HGX2G_WN64_3.4.8.14_A20.EXE
+start C:\Users\%username%\Downloads\Security_Driver_HGX2G_WN64_3.4.8.14_A20.EXE /s
 timeout /T 1 > NUL:
-start C:\Users\%username%\Downloads\Intel-HD-Graphics-4000-5000-500-P500-series-Driver_V887R_WIN_20.19.15.4835_A06.EXE
+start C:\Users\%username%\Downloads\Intel-HD-Graphics-4000-5000-500-P500-series-Driver_V887R_WIN_20.19.15.4835_A06.EXE /s
 taskkill /IM Chrome.exe /F
 timeout /T 1 > NUL:
 start https://downloadcenter.intel.com/de/product/83635/Intel-Dualband-Wireless-AC-7265
@@ -531,7 +532,7 @@ start https://downloadcenter.intel.com/de/downloads/eula/20775/Intel-Chipsatz-Ge
 start https://downloads.dell.com/chipset/PREM6500_DRVR_WIN_R247353.EXE
 echo Warte auf Beendigung des Downloads, dann ...
 pause
-for /r "." %%a in (*.exe) do start "" "%%~fa"
+for /r "." %%a in (*.exe /s) do start "" "%%~fa"
 echo Installationen gestartet.
 echo Dialog schließt sich in 5 Sekunden und loescht Installationsfiles.
 del /q C:\Users\%username%\Downloads\*.exe
@@ -585,9 +586,9 @@ for /f %%f IN ('findstr Tagscan tagscaninstall.tmp') do (
 start C:\Users\%username%\Downloads\%%f /VERYSILENT /SUPPRESSMSGBOXES /NORESTART )
 del tagscaninstall.tmp
 
-start Network_Driver_565N6_WN32_12.0.1.750_A03.EXE
-start Input_Driver_YXX3D_WN32_10.1207.101.109_A03.EXE
-start Security_Driver_HGX2G_WN64_3.4.8.14_A20.EXE
+start Network_Driver_565N6_WN32_12.0.1.750_A03.EXE /s
+start Input_Driver_YXX3D_WN32_10.1207.101.109_A03.EXE /s
+start Security_Driver_HGX2G_WN64_3.4.8.14_A20.EXE /s
 timeout /T 5 > NUL:
 start https://downloadcenter.intel.com/de/product/59471/Intel-Centrino-Advanced-N-6205-Dualband
 timeout /T 1 > NUL:
