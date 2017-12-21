@@ -1,5 +1,5 @@
 @echo off
-set WPIVersion=1.0.1.1
+set WPIVersion=1.0.1.2
 set datum=21.12.2017
 set Description=Automatic Windows Post Installer (Software, Driver, ...) for a fresh Windows Installation.
 set usbpath=D
@@ -14,8 +14,6 @@ ping www.google.de -n 1 > nul
 if errorlevel 1 (set internet=Nicht mit dem Internet verbunden) else (set internet=Internet Verbindung aufgebaut)
 if "%internet%" == "Nicht mit dem Internet verbunden" goto :NoInternet
 :Start
-echo Programm wirklich starten?
-pause
 cd C:\Users\%username%\Downloads\
 rd /s /q C:\Users\%username%\Downloads\CustomInstall\
 md C:\Users\%username%\Downloads\CustomInstall\
