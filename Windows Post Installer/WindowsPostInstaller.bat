@@ -458,7 +458,7 @@ echo https://discordler.github.io/other/PS3.html >> C:\Users\%username%\Desktop\
 start /min C:\Users\%username%\Desktop\SCP.txt
 taskkill /IM Chrome.exe /F
 set /p path=Installiere weitere Anwendungen, bitte gib den Laufwerksbuchstaben an (z.B. F):
-start "%path%:\Cracks\YouDJ\InstallYouDJCrack.cmd
+start "%path%:\Cracks\YouDJ\InstallYouDJCrack.bat
 start "%path%:\Cracks\Microsoft Office und Windows Crack\MicrosoftOffice 2016 Pro Plus + Crack\Microsoft Office Professional Plus 2016 x64-x86\office\setup64.exe"
 REM net use z: \\192.168.178.21\public\share /user:FSeitz
 REM net use y: \\192.168.178.21\homes\FSeitz /user:FSeitz
@@ -517,7 +517,7 @@ timeout /T 1 > NUL:
 start https://downloadcenter.intel.com/de/product/83635/Intel-Dualband-Wireless-AC-7265
 timeout /T 1 > NUL:
 set /p path=Installiere weitere Anwendungen (YouDJ,Office). Bitte gib den Laufwerksbuchstaben an (z.B. E):
-start "%path%:\Cracks\YouDJ\InstallYouDJCrack.cmd
+start "%path%:\Cracks\YouDJ\InstallYouDJCrack.bat
 start "%path%:\Cracks\Microsoft Office und Windows Crack\MicrosoftOffice 2016 Pro Plus + Crack\Microsoft Office Professional Plus 2016 x64-x86\office\setup64.exe"
 
 goto :RenamePC
@@ -593,7 +593,7 @@ timeout /T 5 > NUL:
 start https://downloadcenter.intel.com/de/product/59471/Intel-Centrino-Advanced-N-6205-Dualband
 timeout /T 1 > NUL:
 set /p path=Installiere weitere Anwendungen (YouDJ,Office). Bitte gib den Laufwerksbuchstaben an (z.B. E):
-start "%path%:\Cracks\YouDJ\InstallYouDJCrack.cmd
+start "%path%:\Cracks\YouDJ\InstallYouDJCrack.bat
 start "%path%:\Cracks\Microsoft Office und Windows Crack\MicrosoftOffice 2016 Pro Plus + Crack\Microsoft Office Professional Plus 2016 x64-x86\office\setup64.exe"
 echo Alle Installationen gestartet. Warte auf Abschluss.
 pause
