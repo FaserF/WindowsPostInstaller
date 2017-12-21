@@ -698,8 +698,8 @@ for /r "." %%a in (*.rar) do del /q "" "%%~fa"
 start https://github.com/mRemoteNG/mRemoteNG/releases/latest
 cmd /c "C:\Program Files (x86)\NVIDIA Corporation\NVIDIA GeForce Experience\NVIDIA GeForce Experience.exe"
 echo %TIME% Installation abgeschlossen. >> C:\Users\%username%\Desktop\WPI_Log.txt
-start /min C:\Users\%username%\Desktop\WPI_Log.txt
 echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
+start /min C:\Users\%username%\Desktop\WPI_Log.txt
 msg * "Installationen abgeschlossen! MS Office muss ggf. noch installiert werden. Steam Skin muss in Steam Einstellungen noch ausgewaehlt werden. Damit die Taskbar aktualisiert wird ist ein Neustart erforderlich."
 slmgr.vbs /ato
 exit
