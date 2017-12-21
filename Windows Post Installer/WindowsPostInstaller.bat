@@ -679,8 +679,8 @@ goto :Exit
 REM cd C:\Program Files\7-Zip\
 REM 7z x C:\Users\%username%\Downloads\ManageTaskbar-1.0.zip -oC:\Users\%username%\Downloads\CustomInstall\
 REM cd C:\Users\%username%\Downloads\
-REM rename "C:\Users\fseitz\Downloads\CustomInstall\ManageTaskbar 1.0" "ManageTaskbar"
-REM start "C:\Users\fseitz\Downloads\CustomInstall\ManageTaskbar\TaskBar.cmd"
+REM rename "C:\Users\%username%\Downloads\CustomInstall\ManageTaskbar 1.0" "ManageTaskbar"
+REM start "C:\Users\%username%\Downloads\CustomInstall\ManageTaskbar\TaskBar.cmd"
 REM timeout /T 3 > NUL:
 echo Set oWS = WScript.CreateObject("WScript.Shell") > C:\Users\%username%\Downloads\CustomInstall\CreateShortcut.vbs
 echo sLinkFile = "C:\Users\%username%\Downloads\CustomInstall\Google Chrome.lnk" >> C:\Users\%username%\Downloads\CustomInstall\CreateShortcut.vbs
