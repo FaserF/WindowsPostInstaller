@@ -96,17 +96,7 @@ timeout /T 1 > NUL:
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 timeout /T 1 > NUL:
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-goto :Vorermittelung
 
-:Vorermittelung
-if "%SYSMODEL%"=="Latitude 7480" goto :Business
-if "%SYSMODEL%"=="Latitude E6530" goto :Business
-if "%SYSMODEL%"=="Latitude E6520" goto :Business
-if "%SYSMODEL%"=="Latitude E6510" goto :Business
-if "%SYSMODEL%"=="Precision M4600" goto :Business
-goto :PrivatGeraet | echo %TIME% Kein Businessgeraet ( %SYSMODEL% ) wurde automatisch ermittelt - Starte Downloads >> C:\Users\%username%\Desktop\WPI_Log.txt | echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
-
-:PrivatGeraet
 start /min https://ninite.com/7zip-chrome-steam/ninite.exe
 start /min https://github.com/FaserF/FaserFQuickTools/releases/download/1.0/WPI.zip
 timeout /T 25 > NUL:
@@ -155,9 +145,6 @@ start C:\Users\%username%\Downloads\%%f /s )
 del nvidiainstall.tmp
 start DiscordSetup.exe /ANYSWITCH
 start setup-lightshot.exe /VERYSILENT /SUPPRESSMSGBOXES /NORESTART
-echo Driver Booster 4 Lizenz (läuft ab: 10.01.2018): 6BCA2-00A17-7B3E8-453B4 > "C:\Users\%username%\Downloads\DriverBoosterKey.txt"
-echo Alternative Driver Booster 4 Lizenz (läuft ab: 18.01.2018): 61B05-C956B-195E0-214B4 >> "C:\Users\%username%\Downloads\DriverBoosterKey.txt"
-start /min C:\Users\%username%\Downloads\DriverBoosterKey.txt
 echo Installationen gestartet. Abschluss aller Installationen geschieht im Hintergrund, nun werden Installations Files gelöscht und Steam Skin wird installiert ...
 
 REM ****Überprüfe ob User Steam Skin bereits gewaehlt hat******
@@ -170,10 +157,9 @@ echo ######################################################################## >>
 :AutoSteamSkin
 echo.
 if "%SYSMODEL%"=="All Series" SET Skin=Threshold
-if "%SYSMODEL%"=="W65_67SJ" SET Skin=Threshold
+if "%SYSMODEL%"=="Latitude E7450" SET Skin=deinstallieren
 if "%SYSMODEL%"=="Precision WorkStation T5500" SET Skin=Threshold
 if "%SYSMODEL%"=="Precision T5500" SET Skin=Threshold
-if "%SYSMODEL%"=="Precision M6500" SET Skin=Threshold
 if "%SYSMODEL%"=="Precision M4700" SET Skin=Threshold
 echo Lese Skin.txt aus, falls vorhanden.
 echo.
@@ -187,6 +173,8 @@ if "%Skin%"=="skip" echo %TIME% Standard Steam Skin wurde automatisch ermittelt 
 if "%Skin%"=="skip" goto :Skin3
 if "%Skin%"=="kein" echo %TIME% Standard Steam Skin wurde automatisch ermittelt - Installiere keinen Skin >> C:\Users\%username%\Desktop\WPI_Log.txt | echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
 if "%Skin%"=="kein" goto :Skin3
+if "%Skin%"=="deinstallieren" echo %TIME% Steam deinstallieren wurde automatisch ermittelt - Deinstalliere Steam >> C:\Users\%username%\Desktop\WPI_Log.txt | echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
+if "%Skin%"=="deinstallieren" goto :Skin4
 goto :SteamSkin
 
 :SteamSkinAbwesend
@@ -212,7 +200,7 @@ echo   [3]    keinen [Standard Steam Skin]
 echo   [4]    Deinstalliere Steam
 echo.
 
-:: Choices are 1,2 and 3, default choice is 4, timeout = 1 minute
+:: Choices are 1,2 and 3, default choice is 5, timeout = 0,5 minutes
 choice /c 12345 /d 5 /t 30
 goto Skin%errorlevel%
 
@@ -288,7 +276,6 @@ echo   [4]    Dell Precision M6500 / CAD Notebook
 echo   [5]    Asus Maximus Ranger VIII / PC
 echo   [6]    Dell Precision M4700 / CAD Notebook
 echo.
-echo   [B]    Businessgeraet
 echo   [0]    EXIT / Beenden
 echo.
 echo.
@@ -303,12 +290,11 @@ if %asw%==4 goto :M6500-Start
 if %asw%==5 goto :VIII
 if %asw%==6 goto :M4700-Start
 
-if %asw%==B goto :AuswahlBusiness
 if %asw%==0 goto :RenamePC
 if %asw%==exit goto :RenamePC
 
 echo Nächste Auswahl? Bitte eine Zahl von oben waehlen!
-goto:Auswahl
+goto :Auswahl
 
 :Z97-AR
 echo ASUS Z97-AR wurde automatisch ermittelt | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> C:\Users\%username%\Desktop\WPI_Log.txt | echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
@@ -347,6 +333,7 @@ start https://ninite.com/notepadplusplus/ninite.exe
 start https://central.github.com/deployments/desktop/desktop/latest/win32
 start https://www.sparda.de/secureapp-pc/medien/spardasecureapp_p.exe
 start https://github.com/nefarius/ScpToolkit/releases/download/v1.6.133.15324/ScpToolkit_Setup.exe
+start https://download.sublimetext.com/Sublime%20Text%20Build%203143%20x64%20Setup.exe
 echo Anwendungsinstallation. Warte auf Beendigung der Downloads, dann ...
 timeout /T 180
 
@@ -463,20 +450,18 @@ del tagscaninstall.tmp
 start GitHubDesktopSetup.exe
 start spardasecureapp_p.exe
 start ScpToolkit_Setup.exe
+start GitHubDesktopSetup.exe
+Ren "C:\Users\%username%\Downloads\Sublime Text Build 3143 x64 Setup.exe" Sublime-Text.exe
+start Sublime-Text.exe
 echo https://discordler.github.io/other/PS3.html >> C:\Users\%username%\Desktop\SCP.txt
 start /min C:\Users\%username%\Desktop\SCP.txt
-echo "!!!!!!!!!!!!!!"
-echo "!!!!!!!!!!!!!!!Installiere als nächstes von Laufwerk F:, bitte stelle Sicher, dass die Namen richtig vergeben sind!!!!!!!!!!!!!!!!!!!"
-echo "!!!!!!!!!!!!!!"
-pause
-
-xcopy /s /y "F:\Cracks\YouDJ\YouDJ Desktop" "C:\Program Files (x86)\YouDJ Desktop\"
-xcopy /s /y "F:\Cracks\YouDJ\User Data" "C:\Users\%username%\AppData\Local\YouDJ Desktop App\"
-start "F:\Cracks\Microsoft Office und Windows Crack\MicrosoftOffice 2016 Pro Plus + Crack\Microsoft Office Professional Plus 2016 x64-x86\office\setup64.exe"
 taskkill /IM Chrome.exe /F
+set /p path=Installiere weitere Anwendungen, bitte gib den Laufwerksbuchstaben an (z.B. F):
+start "%path%:\Cracks\YouDJ\InstallYouDJCrack.cmd
+start "%path%:\Cracks\Microsoft Office und Windows Crack\MicrosoftOffice 2016 Pro Plus + Crack\Microsoft Office Professional Plus 2016 x64-x86\office\setup64.exe"
 REM net use z: \\192.168.178.21\public\share /user:FSeitz
 REM net use y: \\192.168.178.21\homes\FSeitz /user:FSeitz
-echo Dialog schließt sich in wenigen Sekunden und loescht Installationsfiles.
+
 start https://de.evga.com/precisionxoc/#download
 goto :RenamePC
 
@@ -494,6 +479,7 @@ start https://update.pushbullet.com/pushbullet_installer.exe
 start https://www.xdlab.ru/files/tagscan-6.0.20-setup.exe
 start https://downloads.sourceforge.net/project/album-art/album-art-xui/AlbumArtDownloaderXUI-1.02.exe?r=&ts=1500286400&use_mirror=netcologne
 start https://web.whatsapp.com/desktop/windows/release/x64/WhatsAppSetup.exe
+start https://download.sublimetext.com/Sublime%20Text%20Build%203143%20x64%20Setup.exe
 echo Warte auf Beendigung des Downloads, dann ...
 timeout /T 120
 start C:\Users\%username%\Downloads\tagscan-6.0.22-setup.exe /VERYSILENT /SUPPRESSMSGBOXES /NORESTART
@@ -515,6 +501,9 @@ start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 timeout /T 1 > NUL:
+Ren "C:\Users\%username%\Downloads\Sublime Text Build 3143 x64 Setup.exe" Sublime-Text.exe
+start Sublime-Text.exe
+timeout /T 1 > NUL:
 start C:\Users\%username%\Downloads\Dell-Touchpad-Driver_9HG8R_WIN_10.2207.101.108_A00_02.EXE
 timeout /T 1 > NUL:
 start C:\Users\%username%\Downloads\Realtek-High-Definition-Audio-Driver_331N1_WIN_6.0.1.6122_A08.EXE
@@ -525,7 +514,11 @@ start C:\Users\%username%\Downloads\Intel-HD-Graphics-4000-5000-500-P500-series-
 taskkill /IM Chrome.exe /F
 timeout /T 1 > NUL:
 start https://downloadcenter.intel.com/de/product/83635/Intel-Dualband-Wireless-AC-7265
-echo Dialog schließt sich in wenigen Sekunden und loescht Installationsfiles.
+timeout /T 1 > NUL:
+set /p path=Installiere weitere Anwendungen (YouDJ,Office). Bitte gib den Laufwerksbuchstaben an (z.B. E):
+start "%path%:\Cracks\YouDJ\InstallYouDJCrack.cmd
+start "%path%:\Cracks\Microsoft Office und Windows Crack\MicrosoftOffice 2016 Pro Plus + Crack\Microsoft Office Professional Plus 2016 x64-x86\office\setup64.exe"
+
 goto :RenamePC
 
 :M6500
@@ -560,6 +553,7 @@ start http://www.dm.origin.com/download
 start https://www.xdlab.ru/files/tagscan-6.0.20-setup.exe
 start https://downloads.sourceforge.net/project/album-art/album-art-xui/AlbumArtDownloaderXUI-1.02.exe?r=&ts=1500286400&use_mirror=netcologne
 start https://web.whatsapp.com/desktop/windows/release/x64/WhatsAppSetup.exe
+start https://download.sublimetext.com/Sublime%20Text%20Build%203143%20x64%20Setup.exe
 echo Warte auf Beendigung des Downloads, dann ...
 timeout /T 180
 start C:\Users\%username%\Downloads\UplayInstaller.exe /S
@@ -581,6 +575,9 @@ start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+timeout /T 1 > NUL:
+Ren "C:\Users\%username%\Downloads\Sublime Text Build 3143 x64 Setup.exe" Sublime-Text.exe
+start Sublime-Text.exe
 
 REM *********Starten der Installation, da Version im Namen trägt********
 dir /b C:\Users\%username%\Downloads\ | find "Tagscan" > tagscaninstall.tmp
@@ -591,13 +588,15 @@ del tagscaninstall.tmp
 start Network_Driver_565N6_WN32_12.0.1.750_A03.EXE
 start Input_Driver_YXX3D_WN32_10.1207.101.109_A03.EXE
 start Security_Driver_HGX2G_WN64_3.4.8.14_A20.EXE
-
+timeout /T 5 > NUL:
+start https://downloadcenter.intel.com/de/product/59471/Intel-Centrino-Advanced-N-6205-Dualband
+timeout /T 1 > NUL:
+set /p path=Installiere weitere Anwendungen (YouDJ,Office). Bitte gib den Laufwerksbuchstaben an (z.B. E):
+start "%path%:\Cracks\YouDJ\InstallYouDJCrack.cmd
+start "%path%:\Cracks\Microsoft Office und Windows Crack\MicrosoftOffice 2016 Pro Plus + Crack\Microsoft Office Professional Plus 2016 x64-x86\office\setup64.exe"
 echo Alle Installationen gestartet. Warte auf Abschluss.
 pause
 echo Dialog schließt sich in 5 Sekunden und loescht Installationsfiles.
-del /q C:\Users\%username%\Downloads\*.exe
-timeout /T 5
-start https://downloadcenter.intel.com/de/product/59471/Intel-Centrino-Advanced-N-6205-Dualband
 goto :RenamePC
 
 :T5500
@@ -655,119 +654,6 @@ timeout /T 5
 del /q C:\Users\%username%\Downloads\*.msi
 goto :RenamePC
 
-:Business
-echo Businessgeraet wurde ermittelt! | echo %TIME% Businessgeraet %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Steam und Steam Skin >> C:\Users\%username%\Desktop\WPI_Log.txt | echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
-start /min https://ninite.com/7zip-chrome/ninite.exe
-echo            Suche nach Updates
-echo.
-start https://github.com/FaserF/FaserFQuickTools/releases/download/1.0/LatestVersion.txt
-timeout /T 10
-SET /p LatestVersion=<LatestVersion.txt
-if %WPIVersion% gtr %LatestVersion% echo "Keine Updates gefunden!";
-if %LatestVersion% gtr %WPIVersion% echo "Du nutzt nicht die neueste Version. Bitte aktualisiere WPI auf Version %LatestVersion%";
-if %LatestVersion% gtr %WPIVersion% echo %TIME% Neue Version gefunden. Bitte aktualisiere auf Version %LatestVersion%. Deine Version ist %WPIVersion% >> C:\Users\%username%\Desktop\WPI_Log.txt | echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
-if %LatestVersion% gtr %WPIVersion% start https://github.com/FaserF/FaserFQuickTools/releases/latest | pause
-del /q C:\Users\%username%\Downloads\LatestVersion.txt
-
-timeout /T 10
-REM *********Umbenennung da Leerzeichen im Namen********
-Ren "C:\Users\%username%\Downloads\Ninite 7Zip Chrome Installer.exe" Ninite-Chrome-7zip.exe
-start Ninite-Chrome-7zip.exe
-echo Warte auf Fertigstellung von Chrome Installation! Wichtig!, dann
-timeout /T 80
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-REM *********Default Browser wird in Chrome geändert und anschließende Wartezeit von ca 4 Sekunden********
-start C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs
-timeout /T 4
-
-start /min http://www.filehorse.com/download-driver-booster-free/download/
-start /min https://gallery.technet.microsoft.com/Manage-the-taskbar-remove-c3024e40/file/145807/1/ManageTaskbar-1.0.zip
-start /min https://github.com/FaserF/FaserFQuickTools/releases/download/1.0/RenamePC.vbs
-echo Warte auf Beendigung der Downloads, dann ...
-timeout /T 60
-taskkill /IM Chrome.exe /F
-move C:\Users\%username%\Downloads\RenamePC.vbs C:\Users\%username%\Downloads\CustomInstall\RenamePC.vbs
-REM *********Starten der Driver Booster Installation, da driverbooster Version im Namen trägt********
-dir /b C:\Users\%username%\Downloads\ | find "booster" > driverbstr.tmp
-for /f %%d IN ('findstr booster driverbstr.tmp') do (
-start C:\Users\%username%\Downloads\%%d /VERYSILENT /SUPPRESSMSGBOXES /NORESTART )
-del driverbstr.tmp
-echo Driver Booster 4 Lizenz (läuft ab: 10.01.2018): 6BCA2-00A17-7B3E8-453B4 > "C:\Users\%username%\Downloads\DriverBoosterKey.txt"
-echo Alternative Driver Booster 4 Lizenz (läuft ab: 18.01.2018): 61B05-C956B-195E0-214B4 >> "C:\Users\%username%\Downloads\DriverBoosterKey.txt"
-start /min C:\Users\%username%\Downloads\DriverBoosterKey.txt
-echo Installationen gestartet. Abschluss aller Installationen geschieht im Hintergrund, nun werden Installations Files gelöscht und Geraetespezifische Daten Installiert ...
-
-if "%SYSMODEL%"=="Latitude E6520" goto :E6520
-if "%SYSMODEL%"=="Latitude E6510" goto :E6510
-if "%SYSMODEL%"=="Precision T5500" goto :T5500
-if "%SYSMODEL%"=="Precision M6500" goto :M6500
-if "%SYSMODEL%"=="Latitude 7480" goto :RenamePC
-
-:AuswahlBusiness
-cls
-cd C:\Users\%username%\Downloads\
-echo             ================================================
-echo                               Automatische
-echo                   Treiber Installation by Fabian Seitz
-echo                              Fuer Windows 10
-echo             ================================================
-echo.
-echo            !!!!!!!INTERNET VERBINDUNG WIRD BENOETIGT!!!!!!!
-echo            Dein Geraet lautet: %SYSMODEL%
-echo.
-echo.
-echo   [1]    Latitude E6520 / Notebook
-echo   [2]    Latitude E6510 / Notebook
-echo   [3]    Precision M6500 / CAD Notebook
-echo.
-echo   [0]    EXIT / Abbruch
-echo.
-echo.
-
-set asw=0
-set /p asw="Bitte Auswahl eingeben: "
-
-if %asw%==1 goto :E6520
-if %asw%==2 goto :E6510
-if %asw%==3 goto :RenamePC
-
-if %asw%==0 goto :RenamePC
-if %asw%==exit goto :RenamePC
-
-echo Nächste Auswahl? Bitte eine Zahl von oben waehlen!
-goto:Auswahl
-
-:E6520
-start https://downloadmirror.intel.com/25977/eng/win64_153343.4425.exe
-start https://downloadmirror.intel.com/26653/eng/Wireless_19.50.1_PROSet64_Win10.exe
-start https://downloadmirror.intel.com/25016/eng/PROWinx64.exe
-start https://downloads.dell.com/FOLDER01669864M/1/Input_Driver_VW486_WN_8.1200.101.134_A07.EXE
-echo Warte auf Beendigung des Downloads, dann ...
-timeout /T 120
-for /r "." %%a in (*.exe) do start "" "%%~fa"
-taskkill /IM Chrome.exe /F
-echo Installationen gestartet.
-pause
-echo Dialog schließt sich in 5 Sekunden und loescht Installationsfiles.
-del /q C:\Users\%username%\Downloads\*.exe
-timeout /T 5
-goto :RenamePC
-
-:E6510
-start https://downloadmirror.intel.com/21642/eng/PROWinx64.exe
-start https://downloadmirror.intel.com/26653/eng/Wireless_19.50.1_PROSet64_Win10.exe
-start https://downloads.dell.com/FOLDER01449251M/1/Input_Driver_GGY5W_WN_8.1200.101.127_A06.EXE
-echo Warte auf Beendigung des Downloads, dann ...
-timeout /T 120
-for /r "." %%a in (*.exe) do start "" "%%~fa"
-taskkill /IM Chrome.exe /F
-echo Installationen gestartet.
-pause
-echo Dialog schließt sich in 5 Sekunden und loescht Installationsfiles.
-del /q C:\Users\%username%\Downloads\*.exe
-timeout /T 5
-goto :RenamePC
-
 :NoInternet
 echo %TIME% Internet Verbindung konnte nicht hergestellt werden! Programm wird beendet. >> C:\Users\%username%\Desktop\WPI_Log.txt
 msg * "Keine Internet Verbindung verfuegbar, Programm wird beendet!"
@@ -803,14 +689,12 @@ echo oLink.TargetPath = "C:\Program Files (x86)\Google\Chrome\Application\chrome
 echo oLink.Save >> C:\Users\%username%\Downloads\CustomInstall\CreateShortcut.vbs
 cscript C:\Users\%username%\Downloads\CustomInstall\CreateShortcut.vbs
 copy "C:\Users\%username%\Downloads\CustomInstall\Google Chrome.lnk" "%AppData%\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar\Google Chrome.lnk"
-
+echo Dialog schließt sich in wenigen Sekunden und loescht Installationsfiles.
 rd /s /q C:\Users\%username%\Downloads\CustomInstall\
 for /r "." %%a in (*.exe) do del /q "" "%%~fa"
 for /r "." %%a in (*.msi) do del /q "" "%%~fa"
 for /r "." %%a in (*.zip) do del /q "" "%%~fa"
 for /r "." %%a in (*.rar) do del /q "" "%%~fa"
-start https://discordler.github.io
-start https://central.bitdefender.com/
 start https://github.com/mRemoteNG/mRemoteNG/releases/latest
 cmd /c "C:\Program Files (x86)\NVIDIA Corporation\NVIDIA GeForce Experience\NVIDIA GeForce Experience.exe"
 echo %TIME% Installation abgeschlossen. >> C:\Users\%username%\Desktop\WPI_Log.txt
