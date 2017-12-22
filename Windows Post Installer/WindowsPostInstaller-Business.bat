@@ -1,6 +1,6 @@
 @echo off
-set WPIVersion=1.0.1.3
-set datum=21.12.2017
+set WPIVersion=1.0.1.4
+set datum=22.12.2017
 set Description=Automatic Windows Post Installer (Software, Driver, ...) for a fresh Windows Installation.
 set usbpath=%CD%
 title Automatic Windows Post Installer (Business) by Fabian Seitz - V%WPIVersion% - Datum: %datum%
@@ -30,16 +30,6 @@ REM *********Erstelle reg Eintrag zur Deaktivierung von Installationen der Windo
 echo Windows Registry Editor Version 5.00 > "C:\Users\%username%\Downloads\CustomInstall\DisableAutoDownloadApps.reg"
 echo [HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\CloudContent] >> "C:\Users\%username%\Downloads\CustomInstall\DisableAutoDownloadApps.reg"
 echo "DisableWindowsConsumerFeatures"=dword:00000001 >> "C:\Users\%username%\Downloads\CustomInstall\DisableAutoDownloadApps.reg"
-REM *********Erstelle reg Eintrag um Google Chrome Standard Browser zu machen********
-echo Set WshShell = WScript.CreateObject("WScript.Shell") > "C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs"
-echo WshShell.Run "%%windir%%\system32\control.exe /name Microsoft.DefaultPrograms /page pageDefaultProgram\pageAdvancedSettings?pszAppName=google%%20chrome" >> "C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs"
-echo WScript.Sleep 1200 >> "C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs"
-echo WshShell.SendKeys "{TAB}" >> "C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs"
-echo WshShell.SendKeys " " >> "C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs"
-echo WshShell.SendKeys "{TAB}" >> "C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs"
-echo WshShell.SendKeys "{TAB}" >> "C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs"
-echo WshShell.SendKeys " " >> "C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs"
-echo|set /p= "WScript.Quit" >> "C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs"
 REM *********Erstelle Script Datei um Tasten als Eingabe zu verschicken***********
 echo >C:\Users\%username%\Downloads\CustomInstall\Enter.vbs set shell = CreateObject("WScript.Shell"):shell.SendKeys "{ENTER}"
 echo >C:\Users\%username%\Downloads\CustomInstall\Left.vbs set shell = CreateObject("WScript.Shell"):shell.SendKeys "{LEFT}"
@@ -73,16 +63,22 @@ echo            WICHTIG: NICHTS TIPPEN/ANKLICKEN, nur bei Aufforderung! Ansonste
 echo.
 echo.
 echo           %internet%
-echo           SYSTEM MODELL: %SYSMODEL%
-
-SET supported=Geraet wird nicht offiziell unterstuetzt
-if "%SYSMODEL%"=="Latitude E6440" SET supported=Notebook wird offiziell unterstuetzt von diesem Programm
-if "%SYSMODEL%"=="Latitude E7440" SET supported=Notebook wird offiziell unterstuetzt von diesem Programm
-if "%SYSMODEL%"=="Latitude E7450" SET supported=Notebook wird offiziell unterstuetzt von diesem Programm
-echo           %supported%
 echo           %WindowsVersion% laeuft auf diesem Geraet!
+echo           SYSTEM MODELL: %SYSMODEL%
 echo.
 
+SET supported=-
+if "%SYSMODEL%"=="Latitude E6440" SET supported=Notebook wird offiziell unterstuetzt von diesem Programm | goto :PreInstall
+if "%SYSMODEL%"=="Latitude E7440" SET supported=Notebook wird offiziell unterstuetzt von diesem Programm | goto :PreInstall
+if "%SYSMODEL%"=="Latitude E7450" SET supported=Notebook wird offiziell unterstuetzt von diesem Programm | goto :PreInstall
+echo "Geraet wird nicht offiziell unterstuetzt!"
+echo "Falls du dennoch fortfahren moechtest bestaetige dies mit einer Taste!"
+pause
+
+:PreInstall
+echo           %supported%
+echo.
+pause
 start C:\Users\%username%\Downloads\CustomInstall\EdgeAutoDownload.reg
 timeout /T 1 > NUL:
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
@@ -106,8 +102,9 @@ start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 timeout /T 1 > NUL:
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 
+REM cd %SystemRoot%\system32\WindowsPowerShell\v1.0\
+REM PowerShell -NoProfile -ExecutionPolicy Bypass -Command "& '%usbpath%uninstall-preinstalledapps.ps1'"
 cd C:\Users\%username%\Downloads\
-REM set /p usbpath="Bitte USB Laufwerksbuchstaben angeben (z.B. D): "
 goto :Install
 
 :Install
