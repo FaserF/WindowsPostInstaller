@@ -1,5 +1,5 @@
 @echo off
-set WPIVersion=3.7.3a
+set WPIVersion=3.7.3b
 set datum=23.12.2017
 set Description=Automatic Windows Post Installer (Software, Driver, ...) for a fresh Windows Installation.
 title Automatic Windows Post Installer by FaserF - V%WPIVersion% - Datum: %datum%
@@ -605,6 +605,7 @@ goto :RenamePC
 echo Dell T5500 wurde automatisch ermittelt | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> C:\Users\%username%\Desktop\WPI_Log.txt | echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
 :T5500-Start
 start http://download.msi.com/uti_exe/vga/MSIAfterburnerSetup.zip
+start https://ftp.csl-computer.com/pub/drivers/Bluetooth/23997-USB_Mini_Bluetooth_Dongle_Nano/CSR_Harmony_SW_Stack.zip
 echo Warte auf Beendigung des Downloads, dann ...
 pause
 cd C:\Program Files\7-Zip\
