@@ -1,6 +1,6 @@
 @echo off
-set WPIVersion=3.7.2
-set datum=21.12.2017
+set WPIVersion=3.7.3
+set datum=23.12.2017
 set Description=Automatic Windows Post Installer (Software, Driver, ...) for a fresh Windows Installation.
 title Automatic Windows Post Installer by FaserF - V%WPIVersion% - Datum: %datum%
 
@@ -26,7 +26,7 @@ REM *********Erstelle reg Eintrag zur Deaktivierung der Edge Speichern Aufforder
 echo Windows Registry Editor Version 5.00 > "C:\Users\%username%\Downloads\CustomInstall\EdgeAutoDownload.reg"
 echo [HKEY_CURRENT_USER\SOFTWARE\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\Download] >> "C:\Users\%username%\Downloads\CustomInstall\EdgeAutoDownload.reg"
 echo "EnableSavePrompt"=dword:00000000 >> "C:\Users\%username%\Downloads\CustomInstall\EdgeAutoDownload.reg"
-REM *********Erstelle reg Eintrag zur Deaktivierung von Installationen der Windows SPAM Apps (Spiele, etc...)********
+REM *********Erstelle reg Eintrag zur Deaktivierung von Installationen der Windows SPAM Apps ********
 echo Windows Registry Editor Version 5.00 > "C:\Users\%username%\Downloads\CustomInstall\DisableAutoDownloadApps.reg"
 echo [HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\CloudContent] >> "C:\Users\%username%\Downloads\CustomInstall\DisableAutoDownloadApps.reg"
 echo "DisableWindowsConsumerFeatures"=dword:00000001 >> "C:\Users\%username%\Downloads\CustomInstall\DisableAutoDownloadApps.reg"
@@ -82,21 +82,13 @@ start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 timeout /T 1 > NUL:
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 
-start C:\Users\%username%\Downloads\CustomInstall\DisableAutoDownloadApps.reg
-timeout /T 1 > NUL:
-start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
-timeout /T 1 > NUL:
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-timeout /T 1 > NUL:
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-timeout /T 1 > NUL:
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-
 start C:\Users\%username%\Downloads\CustomInstall\WinUpdate.vbs
 timeout /T 1 > NUL:
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 timeout /T 1 > NUL:
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+
+echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Starte Downloads >> C:\Users\%username%\Desktop\WPI_Log.txt | echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
 
 start /min https://ninite.com/7zip-chrome-steam/ninite.exe
 start /min https://github.com/FaserF/FaserFQuickTools/releases/download/1.0/WPI.zip
@@ -122,7 +114,7 @@ start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 REM *********Default Browser wird in Chrome geändert und anschließende Wartezeit von ca 4 Sekunden********
 start C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs
 echo Mache Chrome zum Standard Browser....
-timeout /T 3 > NUL
+timeout /T 4 > NUL
 start /min https://github.com/Edgarware/Threshold-Skin/archive/master.zip
 start /min http://www.metroforsteam.com/downloads/4.2.4.zip
 start /min http://www.filehorse.com/download-nvidia-geforce-experience/download/
@@ -451,18 +443,16 @@ del tagscaninstall.tmp
 start GitHubDesktopSetup.exe
 start spardasecureapp_p.exe
 start ScpToolkit_Setup.exe
-start GitHubDesktopSetup.exe
 Ren "C:\Users\%username%\Downloads\Sublime Text Build 3143 x64 Setup.exe" Sublime-Text.exe
 start Sublime-Text.exe
 echo https://discordler.github.io/other/PS3.html >> C:\Users\%username%\Desktop\SCP.txt
 start /min C:\Users\%username%\Desktop\SCP.txt
 taskkill /IM Chrome.exe /F
-set /p path=Installiere weitere Anwendungen, bitte gib den Laufwerksbuchstaben an (z.B. F):
-start "%path%:\Cracks\YouDJ\InstallYouDJCrack.bat
+set /p path=Installiere weitere Anwendungen, bitte gib den Laufwerksbuchstaben an z.B. F
+start "%path%:\Cracks\YouDJ\InstallYouDJCrack.exe"
 start "%path%:\Cracks\Microsoft Office und Windows Crack\MicrosoftOffice 2016 Pro Plus + Crack\Microsoft Office Professional Plus 2016 x64-x86\office\setup64.exe"
 REM net use z: \\192.168.178.21\public\share /user:FSeitz
 REM net use y: \\192.168.178.21\homes\FSeitz /user:FSeitz
-
 start https://de.evga.com/precisionxoc/#download
 goto :RenamePC
 
@@ -471,10 +461,10 @@ echo Latitude E7450 wurde automatisch ermittelt | echo %TIME% %SYSMODEL% wurde a
 :E7450-Start
 net use z: \\192.168.178.21\public\share /user:FSeitz
 net use y: \\192.168.178.21\homes\FSeitz /user:FSeitz
-start https://downloads.dell.com/FOLDER04408227M/2/Realtek-High-Definition-Audio-Driver_331N1_WIN_6.0.1.6122_A08.EXE
-start https://downloads.dell.com/FOLDER03974224M/1/Security_Driver_HGX2G_WN64_3.4.8.14_A20.EXE
-start https://downloads.dell.com/FOLDER04646043M/1/Intel-HD-Graphics-4000-5000-500-P500-series-Driver_V887R_WIN_20.19.15.4835_A06.EXE
-start https://downloads.dell.com/FOLDER04210938M/3/Dell-Touchpad-Driver_9HG8R_WIN_10.2207.101.108_A00_02.EXE
+start https://downloads.dell.com/FOLDER04408227M/2/Realtek-High-Definition-Audio-Driver_331N1_WIN_6.0.1.6122_A08.EXE /s
+start https://downloads.dell.com/FOLDER03974224M/1/Security_Driver_HGX2G_WN64_3.4.8.14_A20.EXE /s
+start https://downloads.dell.com/FOLDER04646043M/1/Intel-HD-Graphics-4000-5000-500-P500-series-Driver_V887R_WIN_20.19.15.4835_A06.EXE /s
+start https://downloads.dell.com/FOLDER04210938M/3/Dell-Touchpad-Driver_9HG8R_WIN_10.2207.101.108_A00_02.EXE /s
 start https://www.unifiedremote.com/download/windows
 start https://update.pushbullet.com/pushbullet_installer.exe
 start https://www.xdlab.ru/files/tagscan-6.0.20-setup.exe
@@ -501,6 +491,11 @@ start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+timeout /T 2
+
+start C:\Users\%username%\Downloads\pushbullet_installer.exe
+start C:\Users\%username%\Downloads\AlbumArtDownloaderXUI-1.02.exe
+
 timeout /T 1 > NUL:
 Ren "C:\Users\%username%\Downloads\Sublime Text Build 3143 x64 Setup.exe" Sublime-Text.exe
 start Sublime-Text.exe
@@ -512,14 +507,15 @@ timeout /T 1 > NUL:
 start C:\Users\%username%\Downloads\Security_Driver_HGX2G_WN64_3.4.8.14_A20.EXE /s
 timeout /T 1 > NUL:
 start C:\Users\%username%\Downloads\Intel-HD-Graphics-4000-5000-500-P500-series-Driver_V887R_WIN_20.19.15.4835_A06.EXE /s
+
 taskkill /IM Chrome.exe /F
+
 timeout /T 1 > NUL:
 start https://downloadcenter.intel.com/de/product/83635/Intel-Dualband-Wireless-AC-7265
 timeout /T 1 > NUL:
-set /p path=Installiere weitere Anwendungen (YouDJ,Office). Bitte gib den Laufwerksbuchstaben an (z.B. E):
-start "%path%:\Cracks\YouDJ\InstallYouDJCrack.bat
+set /p path=Installiere weitere Anwendungen, bitte gib den Laufwerksbuchstaben an z.B. F:
+start "%path%:\Cracks\YouDJ\InstallYouDJCrack.exe"
 start "%path%:\Cracks\Microsoft Office und Windows Crack\MicrosoftOffice 2016 Pro Plus + Crack\Microsoft Office Professional Plus 2016 x64-x86\office\setup64.exe"
-
 goto :RenamePC
 
 :M6500
@@ -534,7 +530,6 @@ echo Warte auf Beendigung des Downloads, dann ...
 pause
 for /r "." %%a in (*.exe /s) do start "" "%%~fa"
 echo Installationen gestartet.
-echo Dialog schließt sich in 5 Sekunden und loescht Installationsfiles.
 del /q C:\Users\%username%\Downloads\*.exe
 timeout /T 5 > NUL:
 goto :RenamePC
@@ -547,6 +542,7 @@ net use y: \\192.168.178.21\homes\FSeitz /user:FSeitz
 start https://downloads.dell.com/FOLDER03465771M/1/Network_Driver_565N6_WN32_12.0.1.750_A03.EXE
 start https://downloads.dell.com/FOLDER03388567M/1/Input_Driver_YXX3D_WN32_10.1207.101.109_A03.EXE
 start https://downloads.dell.com/FOLDER03974224M/1/Security_Driver_HGX2G_WN64_3.4.8.14_A20.EXE
+start https://downloadcenter.intel.com/de/product/59471/Intel-Centrino-Advanced-N-6205-Dualband
 start https://www.unifiedremote.com/download/windows
 start https://update.pushbullet.com/pushbullet_installer.exe
 start http://ubi.li/4vxt9
@@ -576,7 +572,10 @@ start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-timeout /T 1 > NUL:
+timeout /T 3 > NUL:
+start C:\Users\%username%\Downloads\pushbullet_installer.exe
+start C:\Users\%username%\Downloads\AlbumArtDownloaderXUI-1.02.exe
+
 Ren "C:\Users\%username%\Downloads\Sublime Text Build 3143 x64 Setup.exe" Sublime-Text.exe
 start Sublime-Text.exe
 
@@ -589,15 +588,17 @@ del tagscaninstall.tmp
 start Network_Driver_565N6_WN32_12.0.1.750_A03.EXE /s
 start Input_Driver_YXX3D_WN32_10.1207.101.109_A03.EXE /s
 start Security_Driver_HGX2G_WN64_3.4.8.14_A20.EXE /s
-timeout /T 5 > NUL:
-start https://downloadcenter.intel.com/de/product/59471/Intel-Centrino-Advanced-N-6205-Dualband
-timeout /T 1 > NUL:
-set /p path=Installiere weitere Anwendungen (YouDJ,Office). Bitte gib den Laufwerksbuchstaben an (z.B. E):
-start "%path%:\Cracks\YouDJ\InstallYouDJCrack.bat
-start "%path%:\Cracks\Microsoft Office und Windows Crack\MicrosoftOffice 2016 Pro Plus + Crack\Microsoft Office Professional Plus 2016 x64-x86\office\setup64.exe"
+start Intel-Centrino-Advanced-N-6205-Dualband
+
 echo Alle Installationen gestartet. Warte auf Abschluss.
 pause
-echo Dialog schließt sich in 5 Sekunden und loescht Installationsfiles.
+
+set /p path=Installiere weitere Anwendungen, bitte gib den Laufwerksbuchstaben an z.B. F:
+start "%path%:\Cracks\YouDJ\InstallYouDJCrack.exe"
+start "%path%:\Cracks\Microsoft Office und Windows Crack\MicrosoftOffice 2016 Pro Plus + Crack\Microsoft Office Professional Plus 2016 x64-x86\office\setup64.exe"
+
+del /q C:\Users\%username%\Downloads\*.exe
+timeout /T 5
 goto :RenamePC
 
 :T5500
@@ -612,7 +613,6 @@ cd C:\Program Files\7-Zip\
 cd C:\Users\%username%\Downloads\
 for /r "." %%a in (*.exe) do start "" "%%~fa"
 echo Installationen gestartet.
-echo Dialog schließt sich in 5 Sekunden und loescht Installationsfiles.
 del /q C:\Users\%username%\Downloads\*.exe
 timeout /T 5
 goto :RenamePC
@@ -650,7 +650,6 @@ Ren "C:\Users\%username%\Downloads\Ninite Notepad PuTTY Installer.exe" Ninite-Pu
 for /r "." %%a in (*.exe) do start "" "%%~fa"
 
 echo Installationen gestartet.
-echo Dialog schließt sich in 5 Sekunden und loescht Installationsfiles.
 timeout /T 5
 del /q C:\Users\%username%\Downloads\*.msi
 goto :RenamePC
@@ -690,7 +689,7 @@ echo oLink.TargetPath = "C:\Program Files (x86)\Google\Chrome\Application\chrome
 echo oLink.Save >> C:\Users\%username%\Downloads\CustomInstall\CreateShortcut.vbs
 cscript C:\Users\%username%\Downloads\CustomInstall\CreateShortcut.vbs
 copy "C:\Users\%username%\Downloads\CustomInstall\Google Chrome.lnk" "%AppData%\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar\Google Chrome.lnk"
-echo Dialog schließt sich in wenigen Sekunden und loescht Installationsfiles.
+echo Dialog schließt sich in 5 Sekunden und loescht Installationsfiles.
 rd /s /q C:\Users\%username%\Downloads\CustomInstall\
 for /r "." %%a in (*.exe) do del /q "" "%%~fa"
 for /r "." %%a in (*.msi) do del /q "" "%%~fa"
