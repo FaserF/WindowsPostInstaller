@@ -21,12 +21,28 @@
 			</OEMInformation>
 			<OOBE>
 				<HideEULAPage>true</HideEULAPage>
-				<HideLocalAccountScreen>false</HideLocalAccountScreen>
-				<HideOnlineAccountScreens>false</HideOnlineAccountScreens>
+				<HideOEMRegistrationScreen>true</HideOEMRegistrationScreen>
+				<HideOnlineAccountScreens>true</HideOnlineAccountScreens>
 				<HideWirelessSetupInOOBE>false</HideWirelessSetupInOOBE>
 				<NetworkLocation>Home</NetworkLocation>
+				<SkipUserOOBE>true</SkipUserOOBE>
+				<SkipMachineOOBE>true</SkipMachineOOBE>
 				<ProtectYourPC>1</ProtectYourPC>
 			</OOBE>
+			<UserAccounts>
+				<LocalAccounts>
+				<LocalAccount wcm:action="add">
+				<Password>
+				<Value></Value>
+				<PlainText>true</PlainText>
+				</Password>
+				<Description></Description>
+				<DisplayName>Fabian Seitz</DisplayName>
+				<Group>Administrators</Group>
+				<Name>fabia</Name>
+				</LocalAccount>
+				</LocalAccounts>
+			</UserAccounts>
 		</component>
 	</settings>
 	<settings pass="specialize">
