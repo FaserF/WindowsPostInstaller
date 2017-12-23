@@ -1,5 +1,5 @@
 @echo off
-set WPIVersion=3.7.5
+set WPIVersion=3.7.6
 set datum=23.12.2017
 set Description=Automatic Windows Post Installer (Software, Driver, ...) for a fresh Windows Installation.
 title Automatic Windows Post Installer by FaserF - V%WPIVersion% - Datum: %datum%
@@ -588,14 +588,17 @@ echo ASUS Maximus Ranger VIII wurde automatisch ermittelt | echo %TIME% %SYSMODE
 :VIII-Start
 start http://dlcdnet.asus.com/pub/ASUS/misc/utils/AISuite3_Win7-81-10_MaxVIII_Series_V10130.zip
 start http://dlcdnet.asus.com/pub/ASUS/misc/usb30/Asmedia_USB3_V116351.zip
+start http://dlcdnet.asus.com/pub/ASUS/Audio_Card/Xonar_DGX/DGX_8_1_8_1823_Windows10.zip
 echo 1. Treiber Installation. Warte auf Beendigung der Downloads, dann ...
 timeout /T 60
 cd C:\Program Files\7-Zip\
 7z x C:\Users\%username%\Downloads\AISuite3_Win7-81-10_MaxVIII_Series_V10130.zip -oC:\Users\%username%\Downloads\AISuite3_Win7-81-10_MaxVIII_Series_V10130\ > NUL:
+7z x C:\Users\%username%\Downloads\DGX_8_1_8_1823_Windows10.zip -oC:\Users\%username%\Downloads\DGX_8_1_8_1823_Windows10\ > NUL:
 7z x C:\Users\%username%\Downloads\Asmedia_USB3_V116351.zip -oC:\Users\%username%\Downloads\Asmedia_USB3_V116351\ > NUL:
 cd C:\Users\%username%\Downloads\
 start C:\Users\%username%\Downloads\Asmedia_USB3_V116351\AsusSetup.exe
 start C:\Users\%username%\Downloads\AISuite3_Win7-81-10_MaxVIII_Series_V10130\AsusSetup.exe
+start C:\Users\%username%\Downloads\DGX_8_1_8_1823_Windows10\Setup.exe
 echo Bitte Treiber installieren, anschließend ...
 timeout /T 200
 
@@ -610,6 +613,8 @@ start https://launcher-public-service-prod06.ol.epicgames.com/launcher/api/insta
 start https://github.com/nefarius/ScpToolkit/releases/download/v1.6.133.15324/ScpToolkit_Setup.exe
 start https://download.sublimetext.com/Sublime%20Text%20Build%203143%20x64%20Setup.exe
 start https://download01.logi.com/web/ftp/pub/techsupport/gaming/LGS_8.92.67_x86_Logitech.exe
+start http://ngwin.com/download/latest/picpick_inst.exe
+start https://deu.windscribe.com/install/desktop/windows
 start https://github.com/FaserF/ControlPCWithVoice/archive/master.zip
 echo 2. Anwendungsinstallation. Warte auf Beendigung der Downloads, dann ...
 timeout /T 180
@@ -638,8 +643,9 @@ start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 timeout /T 3 > NUL:
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-REM *******Starte Pushbullet Automatische Installation******
 start C:\Users\%username%\Downloads\pushbullet_installer.exe
+start C:\Users\%username%\Downloads\picpick_inst.exe /S
+start C:\Users\%username%\Downloads\Windscribe.exe
 
 REM *****Starte Epic Games Installation*******
 dir /b C:\Users\%username%\Downloads\ | find "EpicGamesLauncherInstaller" > EpicGamesLauncherInstaller.tmp
