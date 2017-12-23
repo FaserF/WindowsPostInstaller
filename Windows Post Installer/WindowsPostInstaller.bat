@@ -1,5 +1,5 @@
 @echo off
-set WPIVersion=3.7.3b
+set WPIVersion=3.7.4
 set datum=23.12.2017
 set Description=Automatic Windows Post Installer (Software, Driver, ...) for a fresh Windows Installation.
 title Automatic Windows Post Installer by FaserF - V%WPIVersion% - Datum: %datum%
@@ -154,6 +154,7 @@ if "%SYSMODEL%"=="Latitude E7450" SET Skin=deinstallieren
 if "%SYSMODEL%"=="Precision WorkStation T5500" SET Skin=Threshold
 if "%SYSMODEL%"=="Precision T5500" SET Skin=Threshold
 if "%SYSMODEL%"=="Precision M4700" SET Skin=Threshold
+if "%SYSMODEL%"=="System Product Name" SET Skin=Metro
 echo Lese Skin.txt aus, falls vorhanden.
 echo.
 SET /p Skin=<Skin.txt
@@ -368,65 +369,22 @@ start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 timeout /T 2 > NUL:
 start C:\Users\%username%\Downloads\CustomInstall\Space.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-REM *****Starte AlbumArt Automatische Installation*******
+
 start C:\Users\%username%\Downloads\AlbumArtDownloaderXUI-1.02.exe
-timeout /T 1 > NUL:
-start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-timeout /T 1 > NUL:
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-timeout /T 2 > NUL:
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-REM *****Starte Phoner Lite Installation*******
 start C:\Users\%username%\Downloads\PhonerLiteSetup.exe
-timeout /T 1 > NUL:
-start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-timeout /T 1 > NUL:
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Space.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-timeout /T 3 > NUL:
-start C:\Users\%username%\Downloads\CustomInstall\Space.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 REM *****Starte Epic Games Installation*******
 dir /b C:\Users\%username%\Downloads\ | find "EpicGamesLauncherInstaller" > EpicGamesLauncherInstaller.tmp
 for /f %%e IN ('findstr EpicGamesLauncherInstaller EpicGamesLauncherInstaller.tmp') do (
 start C:\Users\%username%\Downloads\%%e )
 del EpicGamesLauncherInstaller.tmp
-start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-timeout /T 1 > NUL:
-start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-timeout /T 1 > NUL:
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-timeout /T 15 > NUL:
 REM *****Starte Logitech Automatische Installation*******
 dir /b C:\Users\%username%\Downloads\ | find "Logitech" > Logitech.tmp
 for /f %%l IN ('findstr Logitech Logitech.tmp') do (
 start C:\Users\%username%\Downloads\%%l )
 del Logitech.tmp
-timeout /T 10 > NUL:
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-timeout /T 60
-start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Tab.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-timeout /T 1 > NUL:
-start C:\Users\%username%\Downloads\CustomInstall\AltF4.vbs
-timeout /T 3 > NUL:
 Ren "C:\Users\%username%\Downloads\Ninite Notepad Installer.exe" Ninite-Notepad.exe
 start C:\Users\%username%\Downloads\Ninite-Notepad.exe
-
+timeout /T 2 > NUL:
 REM *****Starte Battlenet Installation*******
 start C:\Users\%username%\Downloads\Battle.net_Setup.exe
 timeout /T 1 > NUL:
@@ -444,7 +402,7 @@ start GitHubDesktopSetup.exe
 start spardasecureapp_p.exe
 start ScpToolkit_Setup.exe
 Ren "C:\Users\%username%\Downloads\Sublime Text Build 3143 x64 Setup.exe" Sublime-Text.exe
-start Sublime-Text.exe
+start Sublime-Text.exe /VERYSILENT /NORESTART /TASKS="contextentry"
 echo https://discordler.github.io/other/PS3.html >> C:\Users\%username%\Desktop\SCP.txt
 start /min C:\Users\%username%\Desktop\SCP.txt
 taskkill /IM Chrome.exe /F
@@ -498,7 +456,7 @@ start C:\Users\%username%\Downloads\AlbumArtDownloaderXUI-1.02.exe
 
 timeout /T 1 > NUL:
 Ren "C:\Users\%username%\Downloads\Sublime Text Build 3143 x64 Setup.exe" Sublime-Text.exe
-start Sublime-Text.exe
+start Sublime-Text.exe /VERYSILENT /NORESTART /TASKS="contextentry"
 timeout /T 1 > NUL:
 start C:\Users\%username%\Downloads\Dell-Touchpad-Driver_9HG8R_WIN_10.2207.101.108_A00_02.EXE /s
 timeout /T 1 > NUL:
@@ -577,7 +535,7 @@ start C:\Users\%username%\Downloads\pushbullet_installer.exe
 start C:\Users\%username%\Downloads\AlbumArtDownloaderXUI-1.02.exe
 
 Ren "C:\Users\%username%\Downloads\Sublime Text Build 3143 x64 Setup.exe" Sublime-Text.exe
-start Sublime-Text.exe
+start Sublime-Text.exe /VERYSILENT /NORESTART /TASKS="contextentry"
 
 REM *********Starten der Installation, da Version im Namen trägt********
 dir /b C:\Users\%username%\Downloads\ | find "Tagscan" > tagscaninstall.tmp
@@ -623,35 +581,90 @@ echo ASUS Maximus Ranger VIII wurde automatisch ermittelt | echo %TIME% %SYSMODE
 start http://dlcdnet.asus.com/pub/ASUS/misc/utils/AISuite3_Win7-81-10_MaxVIII_Series_V10130.zip
 start http://dlcdnet.asus.com/pub/ASUS/misc/usb30/Asmedia_USB3_V116351.zip
 echo 1. Treiber Installation. Warte auf Beendigung der Downloads, dann ...
-pause
+timeout /T 60
 cd C:\Program Files\7-Zip\
 7z x C:\Users\%username%\Downloads\AISuite3_Win7-81-10_MaxVIII_Series_V10130.zip -oC:\Users\%username%\Downloads\AISuite3_Win7-81-10_MaxVIII_Series_V10130\ > NUL:
 7z x C:\Users\%username%\Downloads\Asmedia_USB3_V116351.zip -oC:\Users\%username%\Downloads\Asmedia_USB3_V116351\ > NUL:
 cd C:\Users\%username%\Downloads\
-for /r "." %%a in (*.exe) do start "" "%%~fa"
 start C:\Users\%username%\Downloads\Asmedia_USB3_V116351\AsusSetup.exe
 start C:\Users\%username%\Downloads\AISuite3_Win7-81-10_MaxVIII_Series_V10130\AsusSetup.exe
 echo Bitte Treiber installieren, anschließend ...
-pause
-del /q C:\Users\%username%\Downloads\*.exe
-del /q C:\Users\%username%\Downloads\*.zip
-del /q C:\Users\%username%\Downloads\*.rar
+timeout /T 200
+
 start https://www.unifiedremote.com/download/windows
 start https://update.pushbullet.com/pushbullet_installer.exe
 start http://ubi.li/4vxt9
 start http://www.dm.origin.com/download
-start https://www.xdlab.ru/files/tagscan-6.0.20-setup.exe
+start https://www.xdlab.ru/files/tagscan-6.0.22-setup.exe
 start https://web.whatsapp.com/desktop/windows/release/x64/WhatsAppSetup.exe
+start https://www.battle.net/download/getInstallerForGame?os=win&locale=deDE&version=LIVE&gameProgram=BATTLENET_APP
+start https://launcher-public-service-prod06.ol.epicgames.com/launcher/api/installer/download/EpicGamesLauncherInstaller.msi
+start https://github.com/nefarius/ScpToolkit/releases/download/v1.6.133.15324/ScpToolkit_Setup.exe
+start https://download.sublimetext.com/Sublime%20Text%20Build%203143%20x64%20Setup.exe
 start https://download01.logi.com/web/ftp/pub/techsupport/gaming/LGS_8.92.67_x86_Logitech.exe
-start https://ninite.com/notepadplusplus-putty/ninite.exe
 echo 2. Anwendungsinstallation. Warte auf Beendigung der Downloads, dann ...
-pause
-Ren "C:\Users\%username%\Downloads\Ninite Notepad PuTTY Installer.exe" Ninite-Putty-Notepad.exe
-for /r "." %%a in (*.exe) do start "" "%%~fa"
+timeout /T 180
 
-echo Installationen gestartet.
-timeout /T 5
-del /q C:\Users\%username%\Downloads\*.msi
+start C:\Users\%username%\Downloads\UplayInstaller.exe /S
+start C:\Users\%username%\Downloads\OriginThinSetup.exe /VERYSILENT /SUPPRESSMSGBOXES /NORESTART
+start C:\Users\%username%\Downloads\WhatsAppSetup.exe /VERYSILENT /SUPPRESSMSGBOXES /NORESTART
+REM *****Starte Unified Remote Automatische Installation*******
+dir /b C:\Users\%username%\Downloads\ | find "ServerSetup" > UnifiedRemote.tmp
+for /f %%u IN ('findstr ServerSetup UnifiedRemote.tmp') do (
+start C:\Users\%username%\Downloads\%%u )
+del UnifiedRemote.tmp
+timeout /T 1 > NUL:
+start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Tab.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+timeout /T 13 > NUL:
+start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+timeout /T 3 > NUL:
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+REM *******Starte Pushbullet Automatische Installation******
+start C:\Users\%username%\Downloads\pushbullet_installer.exe
+
+REM *****Starte Epic Games Installation*******
+dir /b C:\Users\%username%\Downloads\ | find "EpicGamesLauncherInstaller" > EpicGamesLauncherInstaller.tmp
+for /f %%e IN ('findstr EpicGamesLauncherInstaller EpicGamesLauncherInstaller.tmp') do (
+start C:\Users\%username%\Downloads\%%e )
+del EpicGamesLauncherInstaller.tmp
+REM *****Starte Logitech Automatische Installation*******
+dir /b C:\Users\%username%\Downloads\ | find "Logitech" > Logitech.tmp
+for /f %%l IN ('findstr Logitech Logitech.tmp') do (
+start C:\Users\%username%\Downloads\%%l )
+del Logitech.tmp
+timeout /T 2 > NUL:
+REM *****Starte Battlenet Installation*******
+start C:\Users\%username%\Downloads\Battle.net_Setup.exe
+timeout /T 1 > NUL:
+start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
+start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+timeout /T 5 > NUL:
+
+REM *********Starten der TagScan Installation, da Version im Namen trägt********
+dir /b C:\Users\%username%\Downloads\ | find "Tagscan" > tagscaninstall.tmp
+for /f %%f IN ('findstr Tagscan tagscaninstall.tmp') do (
+start C:\Users\%username%\Downloads\%%f /VERYSILENT /SUPPRESSMSGBOXES /NORESTART )
+del tagscaninstall.tmp
+
+start ScpToolkit_Setup.exe
+Ren "C:\Users\%username%\Downloads\Sublime Text Build 3143 x64 Setup.exe" Sublime-Text.exe
+start Sublime-Text.exe /VERYSILENT /NORESTART /TASKS="contextentry"
+echo https://discordler.github.io/other/PS3.html >> C:\Users\%username%\Desktop\SCP.txt
+start /min C:\Users\%username%\Desktop\SCP.txt
+taskkill /IM Chrome.exe /F
+
+echo Alle Installationen gestartet.
+timeout /T 60
 goto :RenamePC
 
 :NoInternet
@@ -672,7 +685,7 @@ timeout /T 1 > NUL:
 start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 timeout /T 1 > NUL:
-%TIME% PC in %NEWPCNAME% umbenannt. >> C:\Users\%username%\Desktop\WPI_Log.txt
+echo %TIME% PC in %NEWPCNAME% umbenannt. >> C:\Users\%username%\Desktop\WPI_Log.txt
 goto :Exit
 
 :Exit
