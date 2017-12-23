@@ -1,5 +1,5 @@
 @echo off
-set WPIVersion=3.7.4
+set WPIVersion=3.7.5
 set datum=23.12.2017
 set Description=Automatic Windows Post Installer (Software, Driver, ...) for a fresh Windows Installation.
 title Automatic Windows Post Installer by FaserF - V%WPIVersion% - Datum: %datum%
@@ -328,6 +328,7 @@ start https://central.github.com/deployments/desktop/desktop/latest/win32
 start https://www.sparda.de/secureapp-pc/medien/spardasecureapp_p.exe
 start https://github.com/nefarius/ScpToolkit/releases/download/v1.6.133.15324/ScpToolkit_Setup.exe
 start https://download.sublimetext.com/Sublime%20Text%20Build%203143%20x64%20Setup.exe
+start https://github.com/FaserF/ControlPCWithVoice/archive/master.zip
 echo Anwendungsinstallation. Warte auf Beendigung der Downloads, dann ...
 timeout /T 180
 
@@ -397,6 +398,13 @@ dir /b C:\Users\%username%\Downloads\ | find "Tagscan" > tagscaninstall.tmp
 for /f %%f IN ('findstr Tagscan tagscaninstall.tmp') do (
 start C:\Users\%username%\Downloads\%%f /VERYSILENT /SUPPRESSMSGBOXES /NORESTART )
 del tagscaninstall.tmp
+
+REM *********Installiere Voice Control Script für Google Home von FaserF********
+cd C:\Program Files\7-Zip\
+7z x C:\Users\%username%\Downloads\ControlPCWithVoice-master.zip -oC:\Users\%username%\Downloads\ > NUL:
+cd C:\Users\%username%\Downloads\
+if not exist "C:\Scripts" mkdir C:\Scripts
+xcopy /s /y "C:\Users\%username%\Downloads\ControlPCWithVoice-master" "C:\Scripts" > NUL:
 
 start GitHubDesktopSetup.exe
 start spardasecureapp_p.exe
@@ -602,6 +610,7 @@ start https://launcher-public-service-prod06.ol.epicgames.com/launcher/api/insta
 start https://github.com/nefarius/ScpToolkit/releases/download/v1.6.133.15324/ScpToolkit_Setup.exe
 start https://download.sublimetext.com/Sublime%20Text%20Build%203143%20x64%20Setup.exe
 start https://download01.logi.com/web/ftp/pub/techsupport/gaming/LGS_8.92.67_x86_Logitech.exe
+start https://github.com/FaserF/ControlPCWithVoice/archive/master.zip
 echo 2. Anwendungsinstallation. Warte auf Beendigung der Downloads, dann ...
 timeout /T 180
 
@@ -655,6 +664,13 @@ dir /b C:\Users\%username%\Downloads\ | find "Tagscan" > tagscaninstall.tmp
 for /f %%f IN ('findstr Tagscan tagscaninstall.tmp') do (
 start C:\Users\%username%\Downloads\%%f /VERYSILENT /SUPPRESSMSGBOXES /NORESTART )
 del tagscaninstall.tmp
+
+REM *********Installiere Voice Control Script für Google Home von FaserF********
+cd C:\Program Files\7-Zip\
+7z x C:\Users\%username%\Downloads\ControlPCWithVoice-master.zip -oC:\Users\%username%\Downloads\ > NUL:
+cd C:\Users\%username%\Downloads\
+if not exist "C:\Scripts" mkdir C:\Scripts
+xcopy /s /y "C:\Users\%username%\Downloads\ControlPCWithVoice-master" "C:\Scripts" > NUL:
 
 start ScpToolkit_Setup.exe
 Ren "C:\Users\%username%\Downloads\Sublime Text Build 3143 x64 Setup.exe" Sublime-Text.exe
