@@ -1,5 +1,5 @@
 @echo off
-set WPIVersion=3.7.3
+set WPIVersion=3.7.3a
 set datum=23.12.2017
 set Description=Automatic Windows Post Installer (Software, Driver, ...) for a fresh Windows Installation.
 title Automatic Windows Post Installer by FaserF - V%WPIVersion% - Datum: %datum%
@@ -611,9 +611,8 @@ cd C:\Program Files\7-Zip\
 7z x C:\Users\%username%\Downloads\MSIAfterburnerSetup.zip -oC:\Users\%username%\Downloads\ > NUL:
 7z x C:\Users\%username%\Downloads\4.3.0\MSIAfterburnerSetup430.rar -oC:\Users\%username%\Downloads\ > NUL:
 cd C:\Users\%username%\Downloads\
-for /r "." %%a in (*.exe) do start "" "%%~fa"
+start MSIAfterburnerSetup430.exe
 echo Installationen gestartet.
-del /q C:\Users\%username%\Downloads\*.exe
 timeout /T 5
 goto :RenamePC
 
@@ -696,10 +695,10 @@ for /r "." %%a in (*.msi) do del /q "" "%%~fa"
 for /r "." %%a in (*.zip) do del /q "" "%%~fa"
 for /r "." %%a in (*.rar) do del /q "" "%%~fa"
 start https://github.com/mRemoteNG/mRemoteNG/releases/latest
-cmd /c "C:\Program Files (x86)\NVIDIA Corporation\NVIDIA GeForce Experience\NVIDIA GeForce Experience.exe"
 echo %TIME% Installation abgeschlossen. >> C:\Users\%username%\Desktop\WPI_Log.txt
 echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
 start /min C:\Users\%username%\Desktop\WPI_Log.txt
 msg * "Installationen abgeschlossen! MS Office muss ggf. noch installiert werden. Steam Skin muss in Steam Einstellungen noch ausgewaehlt werden. Damit die Taskbar aktualisiert wird ist ein Neustart erforderlich."
 slmgr.vbs /ato
+cmd /c "C:\Program Files (x86)\NVIDIA Corporation\NVIDIA GeForce Experience\NVIDIA GeForce Experience.exe"
 exit
