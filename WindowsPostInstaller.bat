@@ -340,36 +340,7 @@ for /f %%u IN ('findstr ServerSetup UnifiedRemote.tmp') do (
 start C:\Users\%username%\Downloads\%%u )
 del UnifiedRemote.tmp
 timeout /T 1 > NUL:
-start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Tab.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-timeout /T 13 > NUL:
-start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-timeout /T 3 > NUL:
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-REM *******Starte Pushbullet Automatische Installation******
 start C:\Users\%username%\Downloads\pushbullet_installer.exe
-timeout /T 1 > NUL:
-start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-timeout /T 1 > NUL:
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-timeout /T 2 > NUL:
-start C:\Users\%username%\Downloads\CustomInstall\Space.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-
 start C:\Users\%username%\Downloads\AlbumArtDownloaderXUI-1.02.exe
 start C:\Users\%username%\Downloads\PhonerLiteSetup.exe
 REM *****Starte Epic Games Installation*******
@@ -445,17 +416,6 @@ dir /b C:\Users\%username%\Downloads\ | find "ServerSetup" > UnifiedRemote.tmp
 for /f %%u IN ('findstr ServerSetup UnifiedRemote.tmp') do (
 start C:\Users\%username%\Downloads\%%u )
 del UnifiedRemote.tmp
-timeout /T 1 > NUL:
-start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Tab.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 timeout /T 2
 
 start C:\Users\%username%\Downloads\pushbullet_installer.exe
@@ -527,17 +487,6 @@ for /f %%u IN ('findstr ServerSetup UnifiedRemote.tmp') do (
 start C:\Users\%username%\Downloads\%%u )
 del UnifiedRemote.tmp
 timeout /T 1 > NUL:
-start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Tab.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-timeout /T 3 > NUL:
 start C:\Users\%username%\Downloads\pushbullet_installer.exe
 start C:\Users\%username%\Downloads\AlbumArtDownloaderXUI-1.02.exe
 
@@ -627,21 +576,6 @@ for /f %%u IN ('findstr ServerSetup UnifiedRemote.tmp') do (
 start C:\Users\%username%\Downloads\%%u )
 del UnifiedRemote.tmp
 timeout /T 1 > NUL:
-start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Tab.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-timeout /T 13 > NUL:
-start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
-timeout /T 3 > NUL:
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 start C:\Users\%username%\Downloads\pushbullet_installer.exe
 start C:\Users\%username%\Downloads\picpick_inst.exe /S
 start C:\Users\%username%\Downloads\Windscribe.exe
