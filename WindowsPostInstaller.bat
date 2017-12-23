@@ -138,7 +138,7 @@ start C:\Users\%username%\Downloads\%%f /s )
 del nvidiainstall.tmp
 start DiscordSetup.exe /ANYSWITCH
 start setup-lightshot.exe /VERYSILENT /SUPPRESSMSGBOXES /NORESTART
-echo Installationen gestartet. Abschluss aller Installationen geschieht im Hintergrund, nun werden Installations Files gelöscht und Steam Skin wird installiert ...
+echo Installationen gestartet. Abschluss aller Installationen geschieht im Hintergrund, nun wird Steam Skin installiert ...
 
 REM ****Überprüfe ob User Steam Skin bereits gewaehlt hat******
 if not Exist "Skin.txt" (
