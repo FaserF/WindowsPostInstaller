@@ -1,5 +1,5 @@
 @echo off
-set WPIVersion=3.7.6
+set WPIVersion=3.7.7
 set datum=23.12.2017
 set Description=Automatic Windows Post Installer (Software, Driver, ...) for a fresh Windows Installation.
 title Automatic Windows Post Installer by FaserF - V%WPIVersion% - Datum: %datum%
@@ -110,7 +110,6 @@ if %LatestVersion% gtr %WPIVersion% msg * "Du nutzt nicht die neueste Version. B
 if %LatestVersion% gtr %WPIVersion% echo %TIME% Neue Version gefunden. Bitte aktualisiere auf Version %LatestVersion%. Deine Version ist %WPIVersion%. Anwendung wird beendet! >> C:\Users\%username%\Desktop\WPI_Log.txt | echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
 if %LatestVersion% gtr %WPIVersion% start https://github.com/FaserF/WindowsPostInstaller/releases/latest | exit
 
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 REM *********Default Browser wird in Chrome geändert und anschließende Wartezeit von ca 4 Sekunden********
 start C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs
 echo Mache Chrome zum Standard Browser....
