@@ -20,7 +20,7 @@ md C:\Users\%username%\Downloads\CustomInstall\
 echo                           Windows Post Installer - LOG > C:\Users\%username%\Desktop\WPI_Log.txt
 echo             ============================================================ >> C:\Users\%username%\Desktop\WPI_Log.txt
 echo %TIME% Programm ist gestartet >> C:\Users\%username%\Desktop\WPI_Log.txt
-echo             Probleme? https://github.com/FaserF/FaserFQuickTools/issues >> C:\Users\%username%\Desktop\WPI_Log.txt
+echo             Probleme? https://github.com/FaserF/WindowsPostInstaller/issues >> C:\Users\%username%\Desktop\WPI_Log.txt
 echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
 REM *********Erstelle reg Eintrag zur Deaktivierung der Edge Speichern Aufforderung********
 echo Windows Registry Editor Version 5.00 > "C:\Users\%username%\Downloads\CustomInstall\EdgeAutoDownload.reg"
@@ -91,7 +91,7 @@ start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Starte Downloads >> C:\Users\%username%\Desktop\WPI_Log.txt | echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
 
 start /min https://ninite.com/7zip-chrome-steam/ninite.exe
-start /min https://github.com/FaserF/FaserFQuickTools/releases/download/1.0/WPI.zip
+start /min https://github.com/FaserF/WindowsPostInstaller/releases/download/1.0/WPI.zip
 timeout /T 25 > NUL:
 
 REM *********Umbenennung da Leerzeichen im Namen********
@@ -108,7 +108,7 @@ SET /p LatestVersion=<C:\Users\%username%\Downloads\CustomInstall\LatestVersion.
 if %WPIVersion% geq %LatestVersion% echo Keine Updates gefunden!
 if %LatestVersion% gtr %WPIVersion% msg * "Du nutzt nicht die neueste Version. Bitte aktualisiere WPI auf Version %LatestVersion%"
 if %LatestVersion% gtr %WPIVersion% echo %TIME% Neue Version gefunden. Bitte aktualisiere auf Version %LatestVersion%. Deine Version ist %WPIVersion%. Anwendung wird beendet! >> C:\Users\%username%\Desktop\WPI_Log.txt | echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
-if %LatestVersion% gtr %WPIVersion% start https://github.com/FaserF/FaserFQuickTools/releases/latest | exit
+if %LatestVersion% gtr %WPIVersion% start https://github.com/FaserF/WindowsPostInstaller/releases/latest | exit
 
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
 REM *********Default Browser wird in Chrome geändert und anschließende Wartezeit von ca 4 Sekunden********
