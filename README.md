@@ -13,30 +13,17 @@ Das Tool ist in der Lage diverse Aufgaben abzuarbeiten wie u.a.:
 ## Nutzung
 
 Wie kann ich das Programm nutzen?
-1. Lade dir eine Kopie von meinem GitHub herunter (https://github.com/FaserF/FaserFQuickTools/archive/master.zip)
+1. Lade dir WindowsPostInstaller von meinem GitHub herunter (https://github.com/FaserF/WindowsPostInstaller/releases/latest)
 2. Erstelle einen Windows USB Stick (http://go.microsoft.com/fwlink/?LinkId=691209)
-3. Kopiere die autounattended.xml auf das Hauptverzeichnis deines USB Sticks
-4. Kopiere die Datei Get-WindowsPostInstaller.exe auf deinen USB Stick.
+3. Kopiere die autounattended.xml auf das Hauptverzeichnis deines USB Sticks (https://github.com/FaserF/WindowsPostInstaller/tree/master/autounattend)
+4. Kopiere die Datei WindowsPostInstaller.exe auf deinen USB Stick.
 5. Installiere Windows, indem du den USB Stick bootest
-6. Öffne, sobald du auf dem Desktop bist, deinen USB Stick Laufwerk und starte die Get-WinPostInstaller.exe
-7. Warte auf Abschluss des Downloads meiner neuesten Version des WinPostInstallers.exe
+6. Öffne, sobald du auf dem Desktop bist, deinen USB Stick Laufwerk und starte die WindowsPostInstaller.exe
+7. Warte auf Abschluss des Downloads meiner neuesten Version des WindowsPostInstaller.exe
 8. Wenn du die Steam Skin Installation auch automatisch machen lassen willst, ohne Nachfrage, erstelle vor dem Ausführen der .exe eine Datei mit dem Namen "skin.txt" im Downloads Ordner und schreibe dort folgendes hinein:
-	Threshold oder Metro oder skip oder kein
+	Threshold oder Metro oder skip oder kein oder deinstallieren
 9. Starte das Programm und klicke/tippe nur bei Aufforderung in den Installation Prozess nicht zu stören!
 
-2.1 OPTIONAL & Funktioniert bei mir noch nicht: Anschließend auf den Installationsstick zugreifen und dort in den Ordner 
-"\sources\$OEM$\$$\Setup\Scripts" 
-gehen. Hier erstellen wir eine Datei namens "SetupComplete.cmd", mit dem Inhalt (ohne 2.X ):
-```
-@echo off 
-xcopy /s /y "%WINDIR%\Setup\Files\Get-WindowsPostInstaller.bat" "C:\Users\%username%\Downloads\Get-WindowsPostInstaller.bat"
-rd /q /s "%WINDIR%\Setup\Files" 
-del /q /f "%0"
-exit
-```
-
-2.2 Nun noch die Dateien "Get-WindowsPostInstaller.bat" von diesem Github ( https://github.com/FaserF/FaserFQuickTools/blob/master/Windows%20Post%20Installer/Get-WindowsPostInstaller.bat ) herunterladen und auf den Stick unter 
-"\sources\$OEM$\$$\Setup\Files" kopieren
 
 ## Was machen die Programme?
 
@@ -46,24 +33,24 @@ Diese Datei wird von Windows während der Installation ausgelesen, es sagt Windo
 WindowsPostInstaller.exe/bat
 Die Hauptdatei meines Projektes und der Großteil meiner Arbeit. Hier spielt sich das meiste ab. Mein Projekt wird in der .bat stetig fortgeführt und weiter entwickelt als Hobby Projekt und ist für jeden einsichtbar und steht zur weiter Nutzung bereit. Die .exe hat nur den Nutzen, dass der Download nicht von Edge und Chrome aus Sicherheitsgründen geblockt wird.
 
-Get-WindowsPostInstaller.bat
-Dieses Programm dient lediglich dazu, die neueste Version von GitHub herunter zu laden.
+Get_WPI_WinDefender.zip
+Dieses Programm dient lediglich dazu, die neueste Version von GitHub herunter zu laden und WindowsDefender zu umgehen, da mein Script teilweise fälschlicherweise als Virus erkannt wird.
 Warum sollte ich nicht gleich die .exe auf meinen Stick kopieren? -> Weil die meisten ihren Windows Stick anschließend herum liegen lassen und irgend wann wieder verwenden. Nun wäre eine veraltete Version meines Tools auf deinem Stick.
 
-InstallDriver-Windows7.bat
-Diese Version ist für veraltete Geraete, welche mit Windows 7 isntalliert werden. Kaum Features & nur das nötigste. Verwendung wird nicht empofohlen!
+WindowsPostInstaller-Business.bat
+Dies ist eine Modifizierte Version meines Scripts, speziell für Firmengeräte. Hier ist ein vereinfachter Installationsprozess und weiteres vorhanden.
+
 ## Unterstützte Geräte
 
 *Für Hauptinstallation werden alle Geräte unterstützt. Geräte Spezifische Features werden nur für folgende Geräte unterstützt:
-- ASUS: Z97-AR; Maxmimus Ranger VIII, N53SN
-- Dell: T5500, M6500, E6510, E6520
-- Clevo: W65_67SJ
+- ASUS: Z97-AR; Maxmimus Ranger VIII
+- Dell: T5500, M6500, M4700, E7450
 
 Du kannst natürlich dein Gerät selbst unterstützen und eintragen. Nimm dir einfach die fertige Batch Datei oder unseren Code und füge dein Gerät hinzu, es geht ganz einfach, da alles ja bereits für ein anderes Gerät in unserem Code steht. Wenn du dein Gerät in meiner offiziellen Liste finden möchtest, schicke mir den Code als Ticket auf meinem Github.
 
 ## Probleme / Q&A
 
-Q: Das Programm sagt es kann das Verzeichnis deines Windows User names nicht finden.
+Q: Das Programm sagt es kann das Verzeichnis deines Windows User Namen nicht finden.
 A: Du darfst während der Windows Installation keinen User Name mit einem Leerzeichen wählen wie Max Mustermann.
 Nenne dich einfach nur mit dem Vornamen und zur Not später wieder in den Windows Einstellungen um!
 
