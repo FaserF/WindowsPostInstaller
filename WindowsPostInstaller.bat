@@ -397,16 +397,17 @@ echo Latitude E7450 wurde automatisch ermittelt | echo %TIME% %SYSMODEL% wurde a
 :E7450-Start
 net use z: \\192.168.178.21\public\share /user:FSeitz
 net use y: \\192.168.178.21\homes\FSeitz /user:FSeitz
-start https://downloads.dell.com/FOLDER04408227M/2/Realtek-High-Definition-Audio-Driver_331N1_WIN_6.0.1.6122_A08.EXE /s
-start https://downloads.dell.com/FOLDER03974224M/1/Security_Driver_HGX2G_WN64_3.4.8.14_A20.EXE /s
-start https://downloads.dell.com/FOLDER04646043M/1/Intel-HD-Graphics-4000-5000-500-P500-series-Driver_V887R_WIN_20.19.15.4835_A06.EXE /s
-start https://downloads.dell.com/FOLDER04210938M/3/Dell-Touchpad-Driver_9HG8R_WIN_10.2207.101.108_A00_02.EXE /s
+start https://downloads.dell.com/FOLDER04408227M/2/Realtek-High-Definition-Audio-Driver_331N1_WIN_6.0.1.6122_A08.EXE
+start https://downloads.dell.com/FOLDER03974224M/1/Security_Driver_HGX2G_WN64_3.4.8.14_A20.EXE
+start https://downloads.dell.com/FOLDER04646043M/1/Intel-HD-Graphics-4000-5000-500-P500-series-Driver_V887R_WIN_20.19.15.4835_A06.EXE
+start https://downloads.dell.com/FOLDER04210938M/3/Dell-Touchpad-Driver_9HG8R_WIN_10.2207.101.108_A00_02.EXE
 start https://www.unifiedremote.com/download/windows
 start https://update.pushbullet.com/pushbullet_installer.exe
 start https://www.xdlab.ru/files/tagscan-6.0.20-setup.exe
 start https://downloads.sourceforge.net/project/album-art/album-art-xui/AlbumArtDownloaderXUI-1.02.exe?r=&ts=1500286400&use_mirror=netcologne
 start https://web.whatsapp.com/desktop/windows/release/x64/WhatsAppSetup.exe
 start https://download.sublimetext.com/Sublime%20Text%20Build%203143%20x64%20Setup.exe
+start https://central.github.com/deployments/desktop/desktop/latest/win32
 echo Warte auf Beendigung des Downloads, dann ...
 timeout /T 120
 start C:\Users\%username%\Downloads\tagscan-6.0.22-setup.exe /VERYSILENT /SUPPRESSMSGBOXES /NORESTART
@@ -420,6 +421,7 @@ timeout /T 2
 
 start C:\Users\%username%\Downloads\pushbullet_installer.exe
 start C:\Users\%username%\Downloads\AlbumArtDownloaderXUI-1.02.exe
+start C:\Users\%username%\Downloads\GitHubDesktopSetup.exe
 
 timeout /T 1 > NUL:
 Ren "C:\Users\%username%\Downloads\Sublime Text Build 3143 x64 Setup.exe" Sublime-Text.exe
@@ -438,7 +440,7 @@ taskkill /IM Chrome.exe /F
 timeout /T 1 > NUL:
 start https://downloadcenter.intel.com/de/product/83635/Intel-Dualband-Wireless-AC-7265
 timeout /T 1 > NUL:
-set /p path=Installiere weitere Anwendungen, bitte gib den Laufwerksbuchstaben an z.B. F:
+set /p path=Installiere weitere Anwendungen, bitte gib den Laufwerksbuchstaben an z.B. Z:
 start "%path%:\Cracks\YouDJ\InstallYouDJCrack.exe"
 start "%path%:\Cracks\Microsoft Office und Windows Crack\MicrosoftOffice 2016 Pro Plus + Crack\Microsoft Office Professional Plus 2016 x64-x86\office\setup64.exe"
 goto :RenamePC
