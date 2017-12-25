@@ -1,6 +1,6 @@
 @echo off
 set WPIVersion=3.7.7
-set datum=23.12.2017
+set datum=25.12.2017
 set Description=Automatic Windows Post Installer (Software, Driver, ...) for a fresh Windows Installation.
 title Automatic Windows Post Installer by FaserF - V%WPIVersion% - Datum: %datum%
 
@@ -114,6 +114,7 @@ REM *********Default Browser wird in Chrome geändert und anschließende Warteze
 start C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs
 echo Mache Chrome zum Standard Browser....
 timeout /T 4 > NUL
+echo %TIME% Beginne Standard Programm Installation >> C:\Users\%username%\Desktop\WPI_Log.txt
 start /min https://github.com/Edgarware/Threshold-Skin/archive/master.zip
 start /min http://www.metroforsteam.com/downloads/4.2.4.zip
 start /min http://www.filehorse.com/download-nvidia-geforce-experience/download/
@@ -316,7 +317,7 @@ start https://update.pushbullet.com/pushbullet_installer.exe
 start http://ubi.li/4vxt9
 start http://www.dm.origin.com/download
 start https://www.xdlab.ru/files/tagscan-6.0.22-setup.exe
-start https://downloads.sourceforge.net/project/album-art/album-art-xui/AlbumArtDownloaderXUI-1.02.exe?r=&ts=1500286400&use_mirror=netcologne
+start https://downloads.sourceforge.net/project/album-art/album-art-xui/AlbumArtDownloaderXUI-1.02.exe
 start https://web.whatsapp.com/desktop/windows/release/x64/WhatsAppSetup.exe
 start https://www.battle.net/download/getInstallerForGame?os=win&locale=deDE&version=LIVE&gameProgram=BATTLENET_APP
 start https://launcher-public-service-prod06.ol.epicgames.com/launcher/api/installer/download/EpicGamesLauncherInstaller.msi
@@ -385,8 +386,8 @@ echo https://discordler.github.io/other/PS3.html >> C:\Users\%username%\Desktop\
 start /min C:\Users\%username%\Desktop\SCP.txt
 taskkill /IM Chrome.exe /F
 set /p path=Installiere weitere Anwendungen, bitte gib den Laufwerksbuchstaben an z.B. F
-start "%path%:\Cracks\YouDJ\InstallYouDJCrack.exe"
-start "%path%:\Cracks\Microsoft Office und Windows Crack\MicrosoftOffice 2016 Pro Plus + Crack\Microsoft Office Professional Plus 2016 x64-x86\office\setup64.exe"
+start %path%:\Cracks\YouDJ\InstallYouDJCrack.exe
+start %path%:\Cracks\Microsoft Office und Windows Crack\MicrosoftOffice 2016 Pro Plus + Crack\Microsoft Office Professional Plus 2016 x64-x86\office\setup64.exe
 REM net use z: \\192.168.178.21\public\share /user:FSeitz
 REM net use y: \\192.168.178.21\homes\FSeitz /user:FSeitz
 start https://de.evga.com/precisionxoc/#download
@@ -395,6 +396,7 @@ goto :RenamePC
 :E7450
 echo Latitude E7450 wurde automatisch ermittelt | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> C:\Users\%username%\Desktop\WPI_Log.txt | echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
 :E7450-Start
+echo Verbinde mit Netzlaufwerk
 net use z: \\192.168.178.21\public\share /user:FSeitz
 net use y: \\192.168.178.21\homes\FSeitz /user:FSeitz
 start https://downloads.dell.com/FOLDER04408227M/2/Realtek-High-Definition-Audio-Driver_331N1_WIN_6.0.1.6122_A08.EXE
@@ -404,7 +406,7 @@ start https://downloads.dell.com/FOLDER04210938M/3/Dell-Touchpad-Driver_9HG8R_WI
 start https://www.unifiedremote.com/download/windows
 start https://update.pushbullet.com/pushbullet_installer.exe
 start https://www.xdlab.ru/files/tagscan-6.0.20-setup.exe
-start https://downloads.sourceforge.net/project/album-art/album-art-xui/AlbumArtDownloaderXUI-1.02.exe?r=&ts=1500286400&use_mirror=netcologne
+start https://downloads.sourceforge.net/project/album-art/album-art-xui/AlbumArtDownloaderXUI-1.02.exe
 start https://web.whatsapp.com/desktop/windows/release/x64/WhatsAppSetup.exe
 start https://download.sublimetext.com/Sublime%20Text%20Build%203143%20x64%20Setup.exe
 start https://central.github.com/deployments/desktop/desktop/latest/win32
@@ -440,9 +442,10 @@ taskkill /IM Chrome.exe /F
 timeout /T 1 > NUL:
 start https://downloadcenter.intel.com/de/product/83635/Intel-Dualband-Wireless-AC-7265
 timeout /T 1 > NUL:
+echo %TIME% Treiber und Programm Installation abgeschlossen (Silent Mode!) >> C:\Users\%username%\Desktop\WPI_Log.txt
 set /p path=Installiere weitere Anwendungen, bitte gib den Laufwerksbuchstaben an z.B. Z:
-start "%path%:\Cracks\YouDJ\InstallYouDJCrack.exe"
-start "%path%:\Cracks\Microsoft Office und Windows Crack\MicrosoftOffice 2016 Pro Plus + Crack\Microsoft Office Professional Plus 2016 x64-x86\office\setup64.exe"
+start %path%:\Cracks\YouDJ\InstallYouDJCrack.exe
+start %path%:\Cracks\Microsoft Office und Windows Crack\MicrosoftOffice 2016 Pro Plus + Crack\Microsoft Office Professional Plus 2016 x64-x86\office\setup64.exe
 goto :RenamePC
 
 :M6500
@@ -475,7 +478,7 @@ start https://update.pushbullet.com/pushbullet_installer.exe
 start http://ubi.li/4vxt9
 start http://www.dm.origin.com/download
 start https://www.xdlab.ru/files/tagscan-6.0.20-setup.exe
-start https://downloads.sourceforge.net/project/album-art/album-art-xui/AlbumArtDownloaderXUI-1.02.exe?r=&ts=1500286400&use_mirror=netcologne
+start https://downloads.sourceforge.net/project/album-art/album-art-xui/AlbumArtDownloaderXUI-1.02.exe
 start https://web.whatsapp.com/desktop/windows/release/x64/WhatsAppSetup.exe
 start https://download.sublimetext.com/Sublime%20Text%20Build%203143%20x64%20Setup.exe
 echo Warte auf Beendigung des Downloads, dann ...
@@ -510,8 +513,8 @@ echo Alle Installationen gestartet. Warte auf Abschluss.
 pause
 
 set /p path=Installiere weitere Anwendungen, bitte gib den Laufwerksbuchstaben an z.B. F:
-start "%path%:\Cracks\YouDJ\InstallYouDJCrack.exe"
-start "%path%:\Cracks\Microsoft Office und Windows Crack\MicrosoftOffice 2016 Pro Plus + Crack\Microsoft Office Professional Plus 2016 x64-x86\office\setup64.exe"
+start %path%:\Cracks\YouDJ\InstallYouDJCrack.exe
+start %path%:\Cracks\Microsoft Office und Windows Crack\MicrosoftOffice 2016 Pro Plus + Crack\Microsoft Office Professional Plus 2016 x64-x86\office\setup64.exe
 
 del /q C:\Users\%username%\Downloads\*.exe
 timeout /T 5
