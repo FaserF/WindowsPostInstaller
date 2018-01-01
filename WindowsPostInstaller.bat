@@ -204,7 +204,7 @@ echo %TIME% Threshold Skin wird installiert >> C:\Users\%username%\Desktop\WPI_L
 cd C:\Program Files\7-Zip\
 7z x C:\Users\%username%\Downloads\Threshold-Skin-master.zip -oC:\Users\%username%\Downloads\CustomInstall\ > NUL:
 robocopy "C:\Users\%username%\Downloads\CustomInstall\Threshold-Skin-master" "C:\Program Files (x86)\Steam\skins\Threshold" /MIR
-xcopy /s /y "C:\Program Files (x86)\Steam\skins\Threshold\Customization\Sidebar Width\Collapsed Sidebar\resource" "C:\Program Files (x86)\Steam\skins\Threshold\resource"
+xcopy /s /y "C:\Program Files (x86)\Steam\skins\Threshold\Customization\Collapsed Sidebar\resource" "C:\Program Files (x86)\Steam\skins\Threshold\resource"
 if "%SkinAbwesend%"=="yes" goto :RenamePC1
 goto :Start
 
