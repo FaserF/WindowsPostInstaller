@@ -1,6 +1,6 @@
 @echo off
-set WPIVersion=1.0.1.4
-set datum=22.12.2017
+set WPIVersion=1.0.2.0
+set datum=15.01.2018
 set Description=Automatic Windows Post Installer (Software, Driver, ...) for a fresh Windows Installation.
 set usbpath=%CD%
 title Automatic Windows Post Installer (Business) by Fabian Seitz - V%WPIVersion% - Datum: %datum%
@@ -67,10 +67,10 @@ echo           %WindowsVersion% laeuft auf diesem Geraet!
 echo           SYSTEM MODELL: %SYSMODEL%
 echo.
 
-SET supported=-
-if "%SYSMODEL%"=="Latitude E6440" SET supported=Notebook wird offiziell unterstuetzt von diesem Programm | goto :PreInstall
-if "%SYSMODEL%"=="Latitude E7440" SET supported=Notebook wird offiziell unterstuetzt von diesem Programm | goto :PreInstall
-if "%SYSMODEL%"=="Latitude E7450" SET supported=Notebook wird offiziell unterstuetzt von diesem Programm | goto :PreInstall
+SET supported=Beginne Installation der Treiber
+if "%SYSMODEL%"=="Latitude E6440" SET supported=Notebook wird offiziell unterstuetzt von diesem Programm && goto :PreInstall
+if "%SYSMODEL%"=="Latitude E7440" SET supported=Notebook wird offiziell unterstuetzt von diesem Programm && goto :PreInstall
+if "%SYSMODEL%"=="Latitude E7450" SET supported=Notebook wird offiziell unterstuetzt von diesem Programm && goto :PreInstall
 echo "Geraet wird nicht offiziell unterstuetzt!"
 echo "Falls du dennoch fortfahren moechtest bestaetige dies mit einer Taste!"
 pause
@@ -78,7 +78,6 @@ pause
 :PreInstall
 echo           %supported%
 echo.
-pause
 start C:\Users\%username%\Downloads\CustomInstall\EdgeAutoDownload.reg
 timeout /T 1 > NUL:
 start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
@@ -112,48 +111,56 @@ echo %SYSMODEL% wurde automatisch ermittelt | echo %TIME% %SYSMODEL% wurde autom
 :Install-Start
 echo Errorlevelerklärungen: 0 (erfolgreich), 1 (fehlgeschlagen), 2 (Neustart erforderlich), 3 (gleiche Version bereits installiert), 5 (dieser Treiber ist fuer ein anderes Geraet), 9059 (Datei wurde nicht gefunden) >> %usbpath%WPI_Log.txt | echo ######################################################################## >> %usbpath%WPI_Log.txt
 
+:WLAN
 REM *********Starten der WLAN Installation********
 echo "Starte WLAN Treiber im Silent Mode"
-start /d "%usbpath%_Driver\%SYSMODEL%\" Wifi.exe -s -norestart
-echo "Errorlevel (0 erfolgreich, 1 fehlgeschlagen) %errorlevel%" | echo WLAN Errorlevel: %errorlevel% >> %usbpath%WPI_Log.txt
+if exist "%usbpath%_Driver\%SYSMODEL%\Wifi.exe" (start /d "%usbpath%_Driver\%SYSMODEL%\" Wifi.exe -s -norestart) else (echo "WIFI Treiber nicht hinterlegt, wird uebersprungen" && goto :Fingerprint)
+echo "Errorlevel (0 erfolgreich, 1 fehlgeschlagen) %errorlevel%" && echo WLAN Errorlevel: %errorlevel% >> %usbpath%WPI_Log.txt
 timeout /T 3 > NUL:
 
+:Fingerprint
 REM *********Starten der Fingerprint Installation********
 echo "Starte Fingerprint Treiber im Silent Mode"
-start /d "%usbpath%_Driver\%SYSMODEL%\" Fingerprint.EXE /s
-echo "Errorlevel (0 erfolgreich, 1 fehlgeschlagen) %errorlevel%" | echo Fingerprint Errorlevel: %errorlevel% >> %usbpath%WPI_Log.txt
+if exist "%usbpath%_Driver\%SYSMODEL%\Fingerprint.EXE" (start /d "%usbpath%_Driver\%SYSMODEL%\" Fingerprint.EXE /s) else (echo "Fingerprint Treiber nicht hinterlegt, wird uebersprungen" && goto :Touchpad)
+echo "Errorlevel (0 erfolgreich, 1 fehlgeschlagen) %errorlevel%" && echo Fingerprint Errorlevel: %errorlevel% >> %usbpath%WPI_Log.txt
 timeout /T 2 > NUL:
 
+:Touchpad
 REM *********Starten der Touchpad Installation********
 echo "Starte Touchpad Treiber im Silent Mode"
-start /d "%usbpath%_Driver\%SYSMODEL%\" Touchpad.EXE /s /f
-echo "Errorlevel (0 erfolgreich, 1 fehlgeschlagen) %errorlevel%" | echo Touchpad Errorlevel: %errorlevel% >> %usbpath%WPI_Log.txt
+if exist "%usbpath%_Driver\%SYSMODEL%\Touchpad.EXE" (start /d "%usbpath%_Driver\%SYSMODEL%\" Touchpad.EXE /s /f) else (echo "Touchpad Treiber nicht hinterlegt, wird uebersprungen" && goto :Video)
+echo "Errorlevel (0 erfolgreich, 1 fehlgeschlagen) %errorlevel%" && echo Touchpad Errorlevel: %errorlevel% >> %usbpath%WPI_Log.txt
 timeout /T 2 > NUL:
 
-REM *********Starten der Grafik Installation********
+:Video
+REM *********Starten der Grafikkarten Installation********
 echo "Starte Intel Grafik Treiber im Silent Mode"
-start /d "%usbpath%_Driver\%SYSMODEL%\" Video.EXE /s
-echo "Errorlevel (0 erfolgreich, 1 fehlgeschlagen) %errorlevel%" | echo Grafik Errorlevel: %errorlevel% >> %usbpath%WPI_Log.txt
+if exist "%usbpath%_Driver\%SYSMODEL%\Video.EXE" (start /d "%usbpath%_Driver\%SYSMODEL%\" Video.EXE /s) else (echo "Video Treiber nicht hinterlegt, wird uebersprungen" && goto :Audio)
+echo "Errorlevel (0 erfolgreich, 1 fehlgeschlagen) %errorlevel%" && echo Grafik Errorlevel: %errorlevel% >> %usbpath%WPI_Log.txt
 timeout /T 5 > NUL:
 
+:Audio
 REM *********Starten der Audio Installation********
 echo "Starte Audio Treiber im Silent Mode"
-start /d "%usbpath%_Driver\%SYSMODEL%\" Audio.EXE /s
-echo "Errorlevel (0 erfolgreich, 1 fehlgeschlagen) %errorlevel%" | echo Audio Errorlevel: %errorlevel% >> %usbpath%WPI_Log.txt
+if exist "%usbpath%_Driver\%SYSMODEL%\Audio.EXE" (start /d "%usbpath%_Driver\%SYSMODEL%\" Audio.EXE /s) else (echo "Audio Treiber nicht hinterlegt, wird uebersprungen" && goto :Mobilfunk)
+echo "Errorlevel (0 erfolgreich, 1 fehlgeschlagen) %errorlevel%" && echo Audio Errorlevel: %errorlevel% >> %usbpath%WPI_Log.txt
 timeout /T 5 > NUL:
 
+:Mobilfunk
 REM *********Starten der Mobilfunk Installation********
 echo "Starte Mobilfunk Treiber im Silent Mode"
-start /d "%usbpath%_Driver\%SYSMODEL%\" Mobilfunk.EXE /s
-echo "Errorlevel (0 erfolgreich, 1 fehlgeschlagen) %errorlevel%" | echo Mobilfunk Errorlevel: %errorlevel% >> %usbpath%WPI_Log.txt
+if exist "%usbpath%_Driver\%SYSMODEL%\Mobilfunk.EXE" (start /d "%usbpath%_Driver\%SYSMODEL%\" Mobilfunk.EXE /s) else (echo "Mobilfunk Treiber nicht hinterlegt, wird uebersprungen" && goto :Bluetooth)
+echo "Errorlevel (0 erfolgreich, 1 fehlgeschlagen) %errorlevel%" && echo Mobilfunk Errorlevel: %errorlevel% >> %usbpath%WPI_Log.txt
 timeout /T 3 > NUL:
 
+:Bluetooth
 REM *********Starten der Bluetooth Installation********
 echo "Starte Intel Grafik Treiber im Silent Mode"
-start /d "%usbpath%_Driver\%SYSMODEL%\" Bluetooth.exe -s -norestart
-echo "Errorlevel (0 erfolgreich, 1 fehlgeschlagen) %errorlevel%" | echo Bluetooth Errorlevel: %errorlevel% >> %usbpath%WPI_Log.txt
+if exist "%usbpath%_Driver\%SYSMODEL%\Bluetooth.exe" (start /d "%usbpath%_Driver\%SYSMODEL%\" Bluetooth.exe -s -norestart) else (echo "Bluetooth Treiber nicht hinterlegt, wird uebersprungen" && goto :DriverFinish)
+echo "Errorlevel (0 erfolgreich, 1 fehlgeschlagen) %errorlevel%" && echo Bluetooth Errorlevel: %errorlevel% >> %usbpath%WPI_Log.txt
 timeout /T 5 > NUL:
 
+:DriverFinish
 goto :Exit
 
 :NoInternet
@@ -173,4 +180,5 @@ REM *********Starten der BIOS Update Installation********
 start /d "%usbpath%_Driver\%SYSMODEL%\" BIOS.exe
 echo "Starte BIOS Update"
 slmgr.vbs /ato
+start /min %usbpath%WPI_Log.txt
 exit
