@@ -1,5 +1,5 @@
 @echo off
-set WPIVersion=1.0.2.0
+set WPIVersion=1.0.2.1
 set datum=15.01.2018
 set Description=Automatic Windows Post Installer (Software, Driver, ...) for a fresh Windows Installation.
 set usbpath=%CD%
@@ -20,7 +20,7 @@ md C:\Users\%username%\Downloads\CustomInstall\
 echo                           Windows Post Installer - LOG > %usbpath%WPI_Log.txt
 echo             ============================================================ >> %usbpath%WPI_Log.txt
 echo %TIME% Programm ist gestartet >> %usbpath%WPI_Log.txt
-echo             Probleme? https://github.com/FaserF/FaserFQuickTools/issues >> %usbpath%WPI_Log.txt
+echo             Probleme? https://github.com/FaserF/WindowsPostInstaller/issues >> %usbpath%WPI_Log.txt
 echo ######################################################################## >> %usbpath%WPI_Log.txt
 REM *********Erstelle reg Eintrag zur Deaktivierung der Edge Speichern Aufforderung********
 echo Windows Registry Editor Version 5.00 > "C:\Users\%username%\Downloads\CustomInstall\EdgeAutoDownload.reg"
@@ -114,7 +114,7 @@ echo Errorlevelerklärungen: 0 (erfolgreich), 1 (fehlgeschlagen), 2 (Neustart er
 :WLAN
 REM *********Starten der WLAN Installation********
 echo "Starte WLAN Treiber im Silent Mode"
-if exist "%usbpath%_Driver\%SYSMODEL%\Wifi.exe" (start /d "%usbpath%_Driver\%SYSMODEL%\" Wifi.exe -s -norestart) else (echo "WIFI Treiber nicht hinterlegt, wird uebersprungen" && goto :Fingerprint)
+if exist "%usbpath%_Driver\%SYSMODEL%\Wifi.exe" (start /d "%usbpath%_Driver\%SYSMODEL%\" Wifi.exe /s -s -norestart) else (echo "WIFI Treiber nicht hinterlegt, wird uebersprungen" && goto :Fingerprint)
 echo "Errorlevel (0 erfolgreich, 1 fehlgeschlagen) %errorlevel%" && echo WLAN Errorlevel: %errorlevel% >> %usbpath%WPI_Log.txt
 timeout /T 3 > NUL:
 
@@ -142,23 +142,30 @@ timeout /T 5 > NUL:
 :Audio
 REM *********Starten der Audio Installation********
 echo "Starte Audio Treiber im Silent Mode"
-if exist "%usbpath%_Driver\%SYSMODEL%\Audio.EXE" (start /d "%usbpath%_Driver\%SYSMODEL%\" Audio.EXE /s) else (echo "Audio Treiber nicht hinterlegt, wird uebersprungen" && goto :Mobilfunk)
+if exist "%usbpath%_Driver\%SYSMODEL%\Audio.EXE" (start /d "%usbpath%_Driver\%SYSMODEL%\" Audio.EXE /s) else (echo "Audio Treiber nicht hinterlegt, wird uebersprungen" && goto :Bluetooth)
 echo "Errorlevel (0 erfolgreich, 1 fehlgeschlagen) %errorlevel%" && echo Audio Errorlevel: %errorlevel% >> %usbpath%WPI_Log.txt
+timeout /T 5 > NUL:
+
+:Bluetooth
+REM *********Starten der Bluetooth Installation********
+echo "Starte Intel Grafik Treiber im Silent Mode"
+if exist "%usbpath%_Driver\%SYSMODEL%\Bluetooth.exe" (start /d "%usbpath%_Driver\%SYSMODEL%\" Bluetooth.exe /s -s -norestart) else (echo "Bluetooth Treiber nicht hinterlegt, wird uebersprungen" && goto :Powermanagement)
+echo "Errorlevel (0 erfolgreich, 1 fehlgeschlagen) %errorlevel%" && echo Bluetooth Errorlevel: %errorlevel% >> %usbpath%WPI_Log.txt
+timeout /T 5 > NUL:
+
+:Powermanagement
+REM *********Starten der Powermanagement Installation********
+echo "Starte Dell Powermanagement Installation im Silent Mode"
+if exist "%usbpath%_Driver\%SYSMODEL%\Bluetooth.exe" (start /d "%usbpath%_Driver\%SYSMODEL%\" Powermanagement.exe /s) else (echo "Dell Powermanagement nicht hinterlegt, wird uebersprungen" && goto :Mobilfunk)
+echo "Errorlevel (0 erfolgreich, 1 fehlgeschlagen) %errorlevel%" && echo Bluetooth Errorlevel: %errorlevel% >> %usbpath%WPI_Log.txt
 timeout /T 5 > NUL:
 
 :Mobilfunk
 REM *********Starten der Mobilfunk Installation********
 echo "Starte Mobilfunk Treiber im Silent Mode"
-if exist "%usbpath%_Driver\%SYSMODEL%\Mobilfunk.EXE" (start /d "%usbpath%_Driver\%SYSMODEL%\" Mobilfunk.EXE /s) else (echo "Mobilfunk Treiber nicht hinterlegt, wird uebersprungen" && goto :Bluetooth)
+if exist "%usbpath%_Driver\%SYSMODEL%\Mobilfunk.EXE" (start /d "%usbpath%_Driver\%SYSMODEL%\" Mobilfunk.EXE /s) else (echo "Mobilfunk Treiber nicht hinterlegt, wird uebersprungen" && goto :DriverFinish)
 echo "Errorlevel (0 erfolgreich, 1 fehlgeschlagen) %errorlevel%" && echo Mobilfunk Errorlevel: %errorlevel% >> %usbpath%WPI_Log.txt
-timeout /T 3 > NUL:
-
-:Bluetooth
-REM *********Starten der Bluetooth Installation********
-echo "Starte Intel Grafik Treiber im Silent Mode"
-if exist "%usbpath%_Driver\%SYSMODEL%\Bluetooth.exe" (start /d "%usbpath%_Driver\%SYSMODEL%\" Bluetooth.exe -s -norestart) else (echo "Bluetooth Treiber nicht hinterlegt, wird uebersprungen" && goto :DriverFinish)
-echo "Errorlevel (0 erfolgreich, 1 fehlgeschlagen) %errorlevel%" && echo Bluetooth Errorlevel: %errorlevel% >> %usbpath%WPI_Log.txt
-timeout /T 5 > NUL:
+timeout /T 30 > NUL:
 
 :DriverFinish
 goto :Exit
