@@ -1,6 +1,6 @@
 @echo off
-set WPIVersion=1.0.2.2
-set datum=15.01.2018
+set WPIVersion=1.0.3.0
+set datum=16.01.2018
 set Description=Automatic Windows Post Installer (Software, Driver, ...) for a fresh Windows Installation.
 set usbpath=%CD%
 title Automatic Windows Post Installer (Business) by Fabian Seitz - V%WPIVersion% - Datum: %datum%
@@ -14,31 +14,34 @@ ping www.google.de -n 1 > nul
 if errorlevel 1 (set internet=Nicht mit dem Internet verbunden) else (set internet=Internet Verbindung aufgebaut)
 if "%internet%" == "Nicht mit dem Internet verbunden" goto :NoInternet
 :Start
-cd C:\Users\%username%\Downloads\
-rd /s /q C:\Users\%username%\Downloads\CustomInstall\
-md C:\Users\%username%\Downloads\CustomInstall\
+cd %usbpath%
 echo                           Windows Post Installer - LOG > %usbpath%WPI_Log.txt
 echo             ============================================================ >> %usbpath%WPI_Log.txt
 echo %TIME% Programm ist gestartet >> %usbpath%WPI_Log.txt
 echo             Probleme? https://github.com/FaserF/WindowsPostInstaller/issues >> %usbpath%WPI_Log.txt
 echo ######################################################################## >> %usbpath%WPI_Log.txt
+if exist "%usbpath%CustomInstall\" got :Detect
+:CustomInstall
+echo Temp Ordner nicht vorhanden. Wird nun erstellt. >> %usbpath%WPI_Log.txt
+md %usbpath%CustomInstall\
 REM *********Erstelle reg Eintrag zur Deaktivierung der Edge Speichern Aufforderung********
-echo Windows Registry Editor Version 5.00 > "C:\Users\%username%\Downloads\CustomInstall\EdgeAutoDownload.reg"
-echo [HKEY_CURRENT_USER\SOFTWARE\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\Download] >> "C:\Users\%username%\Downloads\CustomInstall\EdgeAutoDownload.reg"
-echo "EnableSavePrompt"=dword:00000000 >> "C:\Users\%username%\Downloads\CustomInstall\EdgeAutoDownload.reg"
+echo Windows Registry Editor Version 5.00 > "%usbpath%CustomInstall\EdgeAutoDownload.reg"
+echo [HKEY_CURRENT_USER\SOFTWARE\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\Download] >> "%usbpath%CustomInstall\EdgeAutoDownload.reg"
+echo "EnableSavePrompt"=dword:00000000 >> "%usbpath%CustomInstall\EdgeAutoDownload.reg"
 REM *********Erstelle reg Eintrag zur Deaktivierung von Installationen der Windows SPAM Apps (Spiele, etc...)********
-echo Windows Registry Editor Version 5.00 > "C:\Users\%username%\Downloads\CustomInstall\DisableAutoDownloadApps.reg"
-echo [HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\CloudContent] >> "C:\Users\%username%\Downloads\CustomInstall\DisableAutoDownloadApps.reg"
-echo "DisableWindowsConsumerFeatures"=dword:00000001 >> "C:\Users\%username%\Downloads\CustomInstall\DisableAutoDownloadApps.reg"
+echo Windows Registry Editor Version 5.00 > "%usbpath%CustomInstall\DisableAutoDownloadApps.reg"
+echo [HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\CloudContent] >> "%usbpath%CustomInstall\DisableAutoDownloadApps.reg"
+echo "DisableWindowsConsumerFeatures"=dword:00000001 >> "%usbpath%CustomInstall\DisableAutoDownloadApps.reg"
 REM *********Erstelle Script Datei um Tasten als Eingabe zu verschicken***********
-echo >C:\Users\%username%\Downloads\CustomInstall\Enter.vbs set shell = CreateObject("WScript.Shell"):shell.SendKeys "{ENTER}"
-echo >C:\Users\%username%\Downloads\CustomInstall\Left.vbs set shell = CreateObject("WScript.Shell"):shell.SendKeys "{LEFT}"
-echo >C:\Users\%username%\Downloads\CustomInstall\Tab.vbs set shell = CreateObject("WScript.Shell"):shell.SendKeys "{TAB}"
-echo >C:\Users\%username%\Downloads\CustomInstall\Space.vbs set shell = CreateObject("WScript.Shell"):shell.SendKeys " "
-echo >C:\Users\%username%\Downloads\CustomInstall\AltF4.vbs set shell = CreateObject("WScript.Shell"):shell.SendKeys "%{f4}"
+echo >%usbpath%CustomInstall\Enter.vbs set shell = CreateObject("WScript.Shell"):shell.SendKeys "{ENTER}"
+echo >%usbpath%CustomInstall\Left.vbs set shell = CreateObject("WScript.Shell"):shell.SendKeys "{LEFT}"
+echo >%usbpath%CustomInstall\Tab.vbs set shell = CreateObject("WScript.Shell"):shell.SendKeys "{TAB}"
+echo >%usbpath%CustomInstall\Space.vbs set shell = CreateObject("WScript.Shell"):shell.SendKeys " "
+echo >%usbpath%CustomInstall\AltF4.vbs set shell = CreateObject("WScript.Shell"):shell.SendKeys "%{f4}"
 REM *********Erstelle Script zum Windows Update starten*********
-echo Set automaticUpdates = CreateObject("Microsoft.Update.AutoUpdate") > "C:\Users\%username%\Downloads\CustomInstall\WinUpdate.vbs"
-echo automaticUpdates.DetectNow() >> "C:\Users\%username%\Downloads\CustomInstall\WinUpdate.vbs"
+echo Set automaticUpdates = CreateObject("Microsoft.Update.AutoUpdate") > "%usbpath%CustomInstall\WinUpdate.vbs"
+echo automaticUpdates.DetectNow() >> "%usbpath%CustomInstall\WinUpdate.vbs"
+:Detect
 REM ********Lese Modellnummer aus, um richtige Programme & Treiber zuzuordnen*********
 for /f "tokens=2 delims==" %%I in ('wmic computersystem get model /format:list') do set "SYSMODEL=%%I"
 REM ********Erkenne Windows Version*********
@@ -78,32 +81,32 @@ pause
 :PreInstall
 echo           %supported%
 echo.
-start C:\Users\%username%\Downloads\CustomInstall\EdgeAutoDownload.reg
+start %usbpath%CustomInstall\EdgeAutoDownload.reg
 timeout /T 1 > NUL:
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start %usbpath%CustomInstall\Enter.vbs
 timeout /T 1 > NUL:
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start %usbpath%CustomInstall\Enter.vbs
 timeout /T 1 > NUL:
 
-start C:\Users\%username%\Downloads\CustomInstall\DisableAutoDownloadApps.reg
+start %usbpath%CustomInstall\DisableAutoDownloadApps.reg
 timeout /T 1 > NUL:
-start C:\Users\%username%\Downloads\CustomInstall\Left.vbs
+start %usbpath%CustomInstall\Left.vbs
 timeout /T 1 > NUL:
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start %usbpath%CustomInstall\Enter.vbs
 timeout /T 1 > NUL:
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start %usbpath%CustomInstall\Enter.vbs
 timeout /T 1 > NUL:
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start %usbpath%CustomInstall\Enter.vbs
 
-start C:\Users\%username%\Downloads\CustomInstall\WinUpdate.vbs
+start %usbpath%CustomInstall\WinUpdate.vbs
 timeout /T 1 > NUL:
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start %usbpath%CustomInstall\Enter.vbs
 timeout /T 1 > NUL:
-start C:\Users\%username%\Downloads\CustomInstall\Enter.vbs
+start %usbpath%CustomInstall\Enter.vbs
 
 REM cd %SystemRoot%\system32\WindowsPowerShell\v1.0\
 REM PowerShell -NoProfile -ExecutionPolicy Bypass -Command "& '%usbpath%uninstall-preinstalledapps.ps1'"
-cd C:\Users\%username%\Downloads\
+cd %usbpath%
 goto :Install
 
 :Install
@@ -177,7 +180,7 @@ goto :Start
 
 :Exit
 echo Dialog schließt sich in wenigen Sekunden und loescht lokale Installationsfiles.
-rd /s /q C:\Users\%username%\Downloads\CustomInstall\
+REM rd /s /q %usbpath%CustomInstall\
 echo ######################################################################## >> %usbpath%WPI_Log.txt
 echo %TIME% Installation abgeschlossen. BIOS Update gestartet. >> %usbpath%WPI_Log.txt
 echo ######################################################################## >> %usbpath%WPI_Log.txt
