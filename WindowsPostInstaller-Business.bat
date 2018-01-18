@@ -1,5 +1,5 @@
 @echo off
-set WPIVersion=1.0.5.3
+set WPIVersion=1.0.5.4
 set datum=18.01.2018
 set Description=Automatic Windows Post Installer (Software, Driver, ...) for a fresh Windows Installation.
 set usbpath=%CD%
@@ -71,10 +71,9 @@ echo           SYSTEM MODELL: %SYSMODEL%
 echo.
 
 SET supported=Beginne Installation der Treiber
-if "%SYSMODEL%"=="Latitude E6440" SET supported=Notebook wird offiziell unterstuetzt von diesem Programm && goto :PreInstall
-if "%SYSMODEL%"=="Latitude E7440" SET supported=Notebook wird offiziell unterstuetzt von diesem Programm && goto :PreInstall
-if "%SYSMODEL%"=="Latitude E7450" SET supported=Notebook wird offiziell unterstuetzt von diesem Programm && goto :PreInstall
-echo "Geraet wird nicht offiziell unterstuetzt!"
+if exist "%usbpath%_Driver\%SYSMODEL%\" SET supported=Treiber fuer dieses Notebook existieren auf USB Stick && goto :PreInstall
+if exist "%usbpath%\_Driver\%SYSMODEL%\" SET supported=Treiber fuer dieses Notebook existieren auf USB Stick && goto :PreInstall
+echo "Es sind keine Treiber fuer dieses Notebook Modell auf dem USB Stick vorhanden!"
 echo "Falls du dennoch fortfahren moechtest bestaetige dies mit einer Taste!"
 pause
 
