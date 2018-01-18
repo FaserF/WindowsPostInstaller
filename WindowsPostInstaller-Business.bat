@@ -1,25 +1,25 @@
 @echo off
-set WPIVersion=1.0.5.1
+set WPIVersion=1.0.5.3
 set datum=18.01.2018
 set Description=Automatic Windows Post Installer (Software, Driver, ...) for a fresh Windows Installation.
 set usbpath=%CD%
-title Automatic Windows Post Installer (Business) by Fabian Seitz - V%WPIVersion% - Datum: %datum%
+REM TASKLIST | FINDSTR /I "Automatic Windows Post Installer"
+REM if "%ERRORLEVEL%"=="0" msg * "WPI laeuft bereits. Programm wird beendet." && exit
+title Automatic Windows Post Installer (Business) - WPI by Fabian Seitz - V%WPIVersion% - Datum: %datum%
 
 :Default
 echo %Description%
-REM TASKLIST | FINDSTR /I "Windows Post Installer"
-REM if "%ERRORLEVEL%"=="0" msg * "WPI laeuft bereits. Programm wird beendet."
-REM if "%ERRORLEVEL%"=="0" exit
-ping www.google.de -n 1 > nul
-if errorlevel 1 (set internet=Nicht mit dem Internet verbunden) else (set internet=Internet Verbindung aufgebaut)
-if "%internet%" == "Nicht mit dem Internet verbunden" goto :NoInternet
-:Start
 cd %usbpath%
 echo                           Windows Post Installer - LOG > %usbpath%WPI_Log.txt
 echo             ============================================================ >> %usbpath%WPI_Log.txt
 echo %TIME% Programm ist gestartet >> %usbpath%WPI_Log.txt
 echo             Probleme? https://github.com/FaserF/WindowsPostInstaller/issues >> %usbpath%WPI_Log.txt
 echo ######################################################################## >> %usbpath%WPI_Log.txt
+ping www.google.de -n 1 > nul
+if errorlevel 1 (set internet=Nicht mit dem Internet verbunden) else (set internet=Internet Verbindung aufgebaut)
+if "%internet%" == "Nicht mit dem Internet verbunden" goto :NoInternet
+
+:Start
 if exist "%usbpath%CustomInstall\" goto :Detect
 :CustomInstall
 echo Temp Ordner nicht vorhanden. Wird nun erstellt. >> %usbpath%WPI_Log.txt
@@ -82,6 +82,7 @@ pause
 echo           %supported%
 echo.
 
+echo "Starte Scripte..."
 start %usbpath%CustomInstall\EdgeAutoDownload.reg
 timeout /T 1 > NUL:
 start %usbpath%CustomInstall\Enter.vbs
@@ -182,9 +183,8 @@ goto :Exit
 
 :NoInternet
 echo %TIME% Internet Verbindung konnte nicht hergestellt werden! Versuche automatisch mit RMA-5Ghz zu verbinden, ansonsten wird Programm offline fortgesetzt. >> %usbpath%WPI_Log.txt
-msg * "Keine Internet Verbindung verfuegbar, versuche automatisch mit RMA-5Ghz zu verbinden, ansonsten wird Programm offline fortgesetzt."
-echo "Verbinde mit WLAN aus Config \CustomInstall\connectwifi.xml"
-netsh wlan add profile filename="%usbpath%CustomInstall\connectwifi.xml"
+echo "Keine Internet Verbindung verfuegbar, versuche automatisch mit RMA-5Ghz zu verbinden, ansonsten wird Programm offline fortgesetzt."
+if exist "%usbpath%CustomInstall\connectwifi.xml" (echo "Verbinde mit WLAN aus Config \CustomInstall\connectwifi.xml" && netsh wlan add profile filename="%usbpath%CustomInstall\connectwifi.xml") else (echo "\CustomInstall\connectwifi.xml existiert nicht. WLAN wird nicht automatisch verbunden.")
 timeout /T 2 > NUL:
 goto :Start
 
