@@ -1,5 +1,5 @@
 @echo off
-set WPIVersion=1.0.5.4
+set WPIVersion=1.0.5.5
 set datum=18.01.2018
 set Description=Automatic Windows Post Installer (Software, Driver, ...) for a fresh Windows Installation.
 set usbpath=%CD%
@@ -124,7 +124,7 @@ goto :Mobilfunk
 
 :WLAN2
 REM *********Starten der WLAN Installation********
-if exist "%usbpath%_Driver\WiFi_Intel_All\Setup.exe" (echo "Starte allgemeinen Intel WLAN Treiber im Silent Mode" && start /d "%usbpath%_Driver\WiFi_Intel_All" Setup.exe -s -norestart) else (echo "Intel WIFI Treiber nicht hinterlegt, wird uebersprungen" && goto :Mobilfunk)
+if exist "%usbpath%_Driver\WiFi_Intel_All\Setup.exe" (echo "Starte allgemeinen Intel WLAN Treiber im Silent Mode" && start /d "%usbpath%_Driver\WiFi_Intel_All\" Setup.exe -s -norestart) else (echo "Intel WIFI Treiber nicht hinterlegt, wird uebersprungen" && goto :Mobilfunk)
 echo "Errorlevel (0 erfolgreich, 1 fehlgeschlagen) %errorlevel%" && echo WLAN Errorlevel: %errorlevel% >> %usbpath%WPI_Log.txt
 timeout /T 3 > NUL:
 
