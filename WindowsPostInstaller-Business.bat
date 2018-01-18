@@ -194,7 +194,6 @@ rd /s /q C:\Dell\UpdatePackage\log\
 echo ######################################################################## >> %usbpath%WPI_Log.txt
 echo %TIME% Installation abgeschlossen. BIOS Update gestartet. >> %usbpath%WPI_Log.txt
 echo ######################################################################## >> %usbpath%WPI_Log.txt
-start /min %usbpath%WPI_Log.txt
 msg * "Installationen abgeschlossen! Damit die Treiber aktualisiert werden ist ein Neustart erforderlich. BIOS Update wird nun gestartet wenn vorhanden."
 REM *********Starten der BIOS Update Installation********
 start /d "%usbpath%_Driver\%SYSMODEL%\" BIOS.exe
