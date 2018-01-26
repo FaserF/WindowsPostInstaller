@@ -1,5 +1,5 @@
 @echo off
-set WPIVersion=1.0.5.6
+set WPIVersion=1.0.5.7
 set datum=26.01.2018
 set Description=Automatic Windows Post Installer (Software, Driver, ...) for a fresh Windows Installation.
 set usbpath=%CD%
@@ -174,7 +174,7 @@ timeout /T 5 > NUL:
 :Powermanagement
 REM *********Starten der Powermanagement Installation********
 echo "Starte Dell Powermanagement Installation im Silent Mode"
-if exist "%usbpath%_Driver\%SYSMODEL%\Powermanagement.EXE" (start /d "%usbpath%_Driver\%SYSMODEL%\" Powermanagement.exe /s) else (echo "Dell Powermanagement nicht hinterlegt, wird uebersprungen" && goto :DriverFinish)
+if exist "%usbpath%_Driver\Powermanagement.EXE" (start /d "%usbpath%_Driver\" Powermanagement.exe /s) else (echo "Dell Powermanagement nicht hinterlegt, wird uebersprungen" && goto :DriverFinish)
 echo "Errorlevel (0 erfolgreich, 1 fehlgeschlagen) %errorlevel%" && echo Bluetooth Errorlevel: %errorlevel% >> %usbpath%WPI_Log.txt
 timeout /T 2 > NUL:
 
