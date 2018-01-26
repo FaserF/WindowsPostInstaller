@@ -1,6 +1,6 @@
 @echo off
-set WPIVersion=1.0.5.5
-set datum=18.01.2018
+set WPIVersion=1.0.5.6
+set datum=26.01.2018
 set Description=Automatic Windows Post Installer (Software, Driver, ...) for a fresh Windows Installation.
 set usbpath=%CD%
 REM TASKLIST | FINDSTR /I "Automatic Windows Post Installer"
@@ -124,8 +124,9 @@ goto :Mobilfunk
 
 :WLAN2
 REM *********Starten der WLAN Installation********
-if exist "%usbpath%_Driver\WiFi_Intel_All\Setup.exe" (echo "Starte allgemeinen Intel WLAN Treiber im Silent Mode" && start /d "%usbpath%_Driver\WiFi_Intel_All\" Setup.exe -s -norestart) else (echo "Intel WIFI Treiber nicht hinterlegt, wird uebersprungen" && goto :Mobilfunk)
+if exist "%usbpath%_Driver\WiFi_Intel_All\Setup.exe" (echo "Starte allgemeinen Intel WLAN Treiber im Silent Mode" && cd "%usbpath%_Driver\WiFi_Intel_All\" && start /d "%usbpath%_Driver\WiFi_Intel_All\" Setup.exe -s -norestart) else (echo "Intel WIFI Treiber nicht hinterlegt, wird uebersprungen" && goto :Mobilfunk)
 echo "Errorlevel (0 erfolgreich, 1 fehlgeschlagen) %errorlevel%" && echo WLAN Errorlevel: %errorlevel% >> %usbpath%WPI_Log.txt
+cd %usbpath%
 timeout /T 3 > NUL:
 
 :Mobilfunk
@@ -173,7 +174,7 @@ timeout /T 5 > NUL:
 :Powermanagement
 REM *********Starten der Powermanagement Installation********
 echo "Starte Dell Powermanagement Installation im Silent Mode"
-if exist "%usbpath%_Driver\%SYSMODEL%\Powermanagement.exe" (start /d "%usbpath%_Driver\%SYSMODEL%\" Powermanagement.exe /s) else (echo "Dell Powermanagement nicht hinterlegt, wird uebersprungen" && goto :DriverFinish)
+if exist "%usbpath%_Driver\%SYSMODEL%\Powermanagement.EXE" (start /d "%usbpath%_Driver\%SYSMODEL%\" Powermanagement.exe /s) else (echo "Dell Powermanagement nicht hinterlegt, wird uebersprungen" && goto :DriverFinish)
 echo "Errorlevel (0 erfolgreich, 1 fehlgeschlagen) %errorlevel%" && echo Bluetooth Errorlevel: %errorlevel% >> %usbpath%WPI_Log.txt
 timeout /T 2 > NUL:
 
