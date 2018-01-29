@@ -1,5 +1,5 @@
 @echo off
-set WPIVersion=3.8.0
+set WPIVersion=3.8.1
 set datum=29.01.2018
 set Description=Automatic Windows Post Installer (Software, Driver, ...) for a fresh Windows Installation.
 set usbpath=%CD%
@@ -107,14 +107,14 @@ cd C:\Program Files\7-Zip\
 7z x C:\Users\%username%\Downloads\WPI.zip -oC:\Users\%username%\Downloads\CustomInstall\ > NUL:
 cd C:\Users\%username%\Downloads\
 SET /p LatestVersion=<C:\Users\%username%\Downloads\CustomInstall\LatestVersion.txt
-if %WPIVersion% geq %LatestVersion% echo Keine Updates gefunden!
+if %WPIVersion% geq %LatestVersion% echo Keine Updates gefunden! && echo Es wurden keine WPI Updates gefunden! >> C:\Users\%username%\Desktop\WPI_Log.txt
 if %LatestVersion% gtr %WPIVersion% msg * "Du nutzt nicht die neueste Version. Bitte aktualisiere WPI auf Version %LatestVersion%"
-if %LatestVersion% gtr %WPIVersion% echo %TIME% Neue Version gefunden. Bitte aktualisiere auf Version %LatestVersion%. Deine Version ist %WPIVersion%. Anwendung wird beendet! >> C:\Users\%username%\Desktop\WPI_Log.txt | echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
+if %LatestVersion% gtr %WPIVersion% echo %TIME% Neue Version gefunden. Bitte aktualisiere auf Version %LatestVersion%. Deine Version ist %WPIVersion%. Anwendung wird beendet! >> C:\Users\%username%\Desktop\WPI_Log.txt && echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
 if %LatestVersion% gtr %WPIVersion% start https://github.com/FaserF/WindowsPostInstaller/releases/latest | exit
 
 REM *********Default Browser wird in Chrome geändert und anschließende Wartezeit von ca 4 Sekunden********
 start C:\Users\%username%\Downloads\CustomInstall\ChromeDefaultBrowser.vbs
-echo Mache Chrome zum Standard Browser....
+echo Mache Chrome zum Standard Browser.... && Chrome wird zum Standard Browser gemacht >> C:\Users\%username%\Desktop\WPI_Log.txt
 timeout /T 4 > NUL
 echo %TIME% Beginne Standard Programm Installation >> C:\Users\%username%\Desktop\WPI_Log.txt
 start /min https://github.com/Edgarware/Threshold-Skin/archive/master.zip
