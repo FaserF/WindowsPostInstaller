@@ -40,11 +40,25 @@ Warum sollte ich nicht gleich die .exe auf meinen Stick kopieren? -> Weil die me
 WindowsPostInstaller-Business.bat
 Dies ist eine Modifizierte Version meines Scripts, speziell für Firmengeräte. Hier ist ein vereinfachter Installationsprozess und weiteres vorhanden.
 
+## Welche Programme werden installiert?
+# Hauptinstallation (wird auf jedem Gerät installiert)
+Google Chrome (wird als Standard Browser gesetzt)
+7Zip
+Steam (optional, kann auch während oder vor dem Start des Scritps abgewählt werden)
+Steam Skin deiner Wahl
+Driver Booster
+Nvidia GeforceExperience
+Discord
+Lightshot
+
+# Geraete spezifische Programme
+Ab hier ist es deine Wahl was installiert werden soll, mein Script ist nach meinen Bedürfnissen angepasst, willst du dein eigenes Gerät hinzufügen, kannst du das genau so machen wie du willst
+
 ## Unterstützte Geräte
 
 *Für Hauptinstallation werden alle Geräte unterstützt. Geräte Spezifische Features werden nur für folgende Geräte unterstützt:
 - ASUS: Z97-AR; Maxmimus Ranger VIII
-- Dell: T5500, M6500, M4700, E7450
+- Dell: T5500, M6500, M4700, E7450, E7440
 
 Du kannst natürlich dein Gerät selbst unterstützen und eintragen. Nimm dir einfach die fertige Batch Datei oder unseren Code und füge dein Gerät hinzu, es geht ganz einfach, da alles ja bereits für ein anderes Gerät in unserem Code steht. Wenn du dein Gerät in meiner offiziellen Liste finden möchtest, schicke mir den Code als Ticket auf meinem Github.
 
