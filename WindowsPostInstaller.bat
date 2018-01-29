@@ -1,14 +1,16 @@
 @echo off
-set WPIVersion=3.7.8
+set WPIVersion=3.8.0
 set datum=29.01.2018
 set Description=Automatic Windows Post Installer (Software, Driver, ...) for a fresh Windows Installation.
+set usbpath=%CD%
 title Automatic Windows Post Installer by FaserF - V%WPIVersion% - Datum: %datum%
+echo %Description%
 
 :Default
-echo %Description%
 REM TASKLIST | FINDSTR /I "Windows Post Installer"
 REM if "%ERRORLEVEL%"=="0" msg * "WPI laeuft bereits. Programm wird beendet."
 REM if "%ERRORLEVEL%"=="0" exit
+if "%internet%" == "Nicht mit dem Internet verbunden" msg * "Konnte keine Internet Verbindung herstellen, Programm wird beendet" && exit
 ping www.google.de -n 1 > nul
 if errorlevel 1 (set internet=Nicht mit dem Internet verbunden) else (set internet=Internet Verbindung aufgebaut)
 if "%internet%" == "Nicht mit dem Internet verbunden" goto :NoInternet
@@ -664,10 +666,11 @@ timeout /T 60
 goto :RenamePC
 
 :NoInternet
-echo %TIME% Internet Verbindung konnte nicht hergestellt werden! Programm wird beendet. >> C:\Users\%username%\Desktop\WPI_Log.txt
-msg * "Keine Internet Verbindung verfuegbar, Programm wird beendet!"
-rd /s /q C:\Users\%username%\Downloads\CustomInstall\
-exit
+echo %TIME% Internet Verbindung konnte nicht hergestellt werden! Versuche automatisch mit WLAN zu verbinden, ansonsten wird Programm beendet. >> %usbpath%WPI_Log.txt
+echo "Keine Internet Verbindung verfuegbar, versuche automatisch mit WLAN zu verbinden, ansonsten wird Programm beendet."
+if exist "%usbpath%connectwifi.xml" (echo "Verbinde mit WLAN aus Config \CustomInstall\connectwifi.xml" && netsh wlan add profile filename="%usbpath%connectwifi.xml") else (echo "\connectwifi.xml existiert nicht. WLAN wird nicht automatisch verbunden.")
+timeout /T 2 > NUL:
+goto :Default
 
 :RenamePC
 if "%SkinAbwesend%"=="yes" goto :SteamSkinAbwesend
