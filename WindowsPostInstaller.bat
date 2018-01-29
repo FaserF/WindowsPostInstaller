@@ -1,6 +1,6 @@
 @echo off
-set WPIVersion=3.7.7
-set datum=25.12.2017
+set WPIVersion=3.7.8
+set datum=29.01.2018
 set Description=Automatic Windows Post Installer (Software, Driver, ...) for a fresh Windows Installation.
 title Automatic Windows Post Installer by FaserF - V%WPIVersion% - Datum: %datum%
 
@@ -96,7 +96,7 @@ timeout /T 25 > NUL:
 
 REM *********Umbenennung da Leerzeichen im Namen********
 Ren "C:\Users\%username%\Downloads\Ninite 7Zip Chrome Steam Installer.exe" Ninite-Chrome-7zip-Steam.exe
-start Ninite-Chrome-7zip-Steam.exe
+start C:\Users\%username%\Downloads\Ninite-Chrome-7zip-Steam.exe
 echo Warte auf Fertigstellung von Chrome Installation! Wichtig!, dann
 timeout /T 120
 echo            Suche nach Updates
