@@ -1,5 +1,5 @@
 @echo off
-set WPIVersion=3.8.1
+set WPIVersion=3.8.2
 set datum=29.01.2018
 set Description=Automatic Windows Post Installer (Software, Driver, ...) for a fresh Windows Installation.
 set usbpath=%CD%
@@ -10,9 +10,9 @@ echo %Description%
 REM TASKLIST | FINDSTR /I "Windows Post Installer"
 REM if "%ERRORLEVEL%"=="0" msg * "WPI laeuft bereits. Programm wird beendet."
 REM if "%ERRORLEVEL%"=="0" exit
-if "%internet%" == "Nicht mit dem Internet verbunden" msg * "Konnte keine Internet Verbindung herstellen, Programm wird beendet" && exit
 ping www.google.de -n 1 > nul
 if errorlevel 1 (set internet=Nicht mit dem Internet verbunden) else (set internet=Internet Verbindung aufgebaut)
+if "%internet%" == "Nicht mit dem Internet verbunden" ( if "%internet2%" == "ja" ( msg * "Nicht mit Internet verbunden und keine connectwifi.xml gefunden, es wird eine Internetverbindung benoetigt!" && exit ))
 if "%internet%" == "Nicht mit dem Internet verbunden" goto :NoInternet
 echo Programm wirklich starten?
 pause
@@ -119,7 +119,7 @@ timeout /T 4 > NUL
 echo %TIME% Beginne Standard Programm Installation >> C:\Users\%username%\Desktop\WPI_Log.txt
 start /min https://github.com/Edgarware/Threshold-Skin/archive/master.zip
 start /min http://www.metroforsteam.com/downloads/4.2.4.zip
-start /min http://www.filehorse.com/download-nvidia-geforce-experience/download/
+start /min https://www.techspot.com/downloads/5752-geforce-experience.html
 start /min http://www.filehorse.com/download-driver-booster-free/download/
 start /min https://discordapp.com/api/download?platform=win
 start /min https://app.prntscr.com/build/setup-lightshot.exe
@@ -301,8 +301,6 @@ echo ASUS Z97-AR wurde automatisch ermittelt | echo %TIME% %SYSMODEL% wurde auto
 :Z97-AR-Start
 start http://dlcdnet.asus.com/pub/ASUS/misc/utils/AISuite_III_V10149_for_Z97.rar
 start http://dlcdnet.asus.com/pub/ASUS/misc/usb30/Asmedia_USB3_V116351.zip
-start http://dlcdnet.asus.com/pub/ASUS/misc/utils/Turbo_LAN_Win7-8-81-10_V10700.zip
-start http://dlgbit.winfuture.de/21d53ef186363366551a0c51f5c7363e/58f5f505/software/realtek/2.81/0008-64bit_Win7_Win8_Win81_Win10_R281.exe
 start http://www.intel.de/content/www/de/de/support/network-and-i-o/wireless-networking/intel-wireless-products/intel-wireless-7200-series/intel-dual-band-wireless-ac-7260.html
 start http://download.lenovo.com/consumer/monitor/lenovo_artery_setup.exe
 echo Treiber Installation. Warte auf Beendigung der Downloads, dann ...
@@ -310,14 +308,12 @@ timeout /T 180
 cd C:\Program Files\7-Zip\
 7z x C:\Users\%username%\Downloads\AISuite_III_V10149_for_Z97.rar -oC:\Users\%username%\Downloads\AISuite_III_V10149_for_Z97\ > NUL:
 7z x C:\Users\%username%\Downloads\Asmedia_USB3_V116351.zip -oC:\Users\%username%\Downloads\Asmedia_USB3_V116351\ > NUL:
-7z x C:\Users\%username%\Downloads\Turbo_LAN_Win7-8-81-10_V10700.zip -oC:\Users\%username%\Downloads\Turbo_LAN_Win7-8-81-10_V10700\ > NUL:
 cd C:\Users\%username%\Downloads\
-start /wait C:\Users\%username%\Downloads\Asmedia_USB3_V116351\AsusSetup.exe
-start /wait C:\Users\%username%\Downloads\Turbo_LAN_Win7-8-81-10_V10700\Turbo_LAN_Win7-8-81-10_V10700\AsusSetup.exe
-start /wait C:\Users\%username%\Downloads\AISuite_III_V10149_for_Z97\AsusSetup.exe
-start /wait C:\Users\%username%\Downloads\lenovo_artery_setup.exe
+start /wait C:\Users\%username%\Downloads\Asmedia_USB3_V116351\AsusSetup.exe /s -s
+start /wait C:\Users\%username%\Downloads\AISuite_III_V10149_for_Z97\AsusSetup.exe /s -s
+start /wait C:\Users\%username%\Downloads\lenovo_artery_setup.exe /s -s
 echo Bitte Treiber installieren, anschließend ...
-timeout /T 40
+timeout /T 10
 start https://www.unifiedremote.com/download/windows
 start https://update.pushbullet.com/pushbullet_installer.exe
 start http://ubi.li/4vxt9
@@ -670,6 +666,7 @@ echo %TIME% Internet Verbindung konnte nicht hergestellt werden! Versuche automa
 echo "Keine Internet Verbindung verfuegbar, versuche automatisch mit WLAN zu verbinden, ansonsten wird Programm beendet."
 if exist "%usbpath%connectwifi.xml" (echo "Verbinde mit WLAN aus Config \CustomInstall\connectwifi.xml" && netsh wlan add profile filename="%usbpath%connectwifi.xml") else (echo "\connectwifi.xml existiert nicht. WLAN wird nicht automatisch verbunden.")
 timeout /T 2 > NUL:
+set internet2=ja
 goto :Default
 
 :RenamePC
@@ -689,7 +686,7 @@ goto :Exit
 
 :Exit
 REM cd C:\Program Files\7-Zip\
-REM 7z x C:\Users\%username%\Downloads\ManageTaskbar-1.0.zip -oC:\Users\%username%\Downloads\CustomInstall\
+REM 7z x C:\Users\%username%\Downloads\ManageTaskbar-1.0.zip -oC:\Users\%username%\Downloads\CustomInstall\ > NUL:
 REM cd C:\Users\%username%\Downloads\
 REM rename "C:\Users\%username%\Downloads\CustomInstall\ManageTaskbar 1.0" "ManageTaskbar"
 REM start "C:\Users\%username%\Downloads\CustomInstall\ManageTaskbar\TaskBar.cmd"
