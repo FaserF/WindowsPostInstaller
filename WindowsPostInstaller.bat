@@ -151,6 +151,7 @@ echo ######################################################################## >>
 echo.
 if "%SYSMODEL%"=="All Series" SET Skin=Threshold
 if "%SYSMODEL%"=="Latitude E7450" SET Skin=deinstallieren
+if "%SYSMODEL%"=="Latitude E7440" SET Skin=deinstallieren
 if "%SYSMODEL%"=="Precision WorkStation T5500" SET Skin=Threshold
 if "%SYSMODEL%"=="Precision T5500" SET Skin=Threshold
 if "%SYSMODEL%"=="Precision M4700" SET Skin=Threshold
@@ -246,6 +247,7 @@ goto :Ermittelung
 :Ermittelung
 if "%SYSMODEL%"=="All Series" goto :Z97-AR
 if "%SYSMODEL%"=="Latitude E7450" goto :E7450
+if "%SYSMODEL%"=="Latitude E7440" goto :E7440
 if "%SYSMODEL%"=="Precision WorkStation T5500" goto :T5500
 if "%SYSMODEL%"=="Precision M6500" goto :M6500
 if "%SYSMODEL%"=="Precision M4700" goto :M4700
@@ -264,11 +266,12 @@ echo            Dein Geraet lautet: %SYSMODEL%
 echo.
 echo.
 echo   [1]    Asus Z97-AR / PC
-echo   [2]    Dell Latitude E7450 / Ultrabook
+echo   [2]    Dell Latitude E7450 / Schwarzer Ultrabook
 echo   [3]    Dell Precision T5500 / CAD PC
 echo   [4]    Dell Precision M6500 / CAD Notebook
 echo   [5]    Asus Maximus Ranger VIII / PC
 echo   [6]    Dell Precision M4700 / CAD Notebook
+echo   [7]    Dell Latitude E7440 / Silberner Ultrabook
 echo.
 echo   [0]    EXIT / Beenden
 echo.
@@ -283,6 +286,7 @@ if %asw%==3 goto :T5500-Start
 if %asw%==4 goto :M6500-Start
 if %asw%==5 goto :VIII
 if %asw%==6 goto :M4700-Start
+if %asw%==7 goto :E7440-Start
 
 if %asw%==0 goto :RenamePC
 if %asw%==exit goto :RenamePC
@@ -327,8 +331,8 @@ start https://ninite.com/notepadplusplus/ninite.exe
 start https://central.github.com/deployments/desktop/desktop/latest/win32
 start https://www.sparda.de/secureapp-pc/medien/spardasecureapp_p.exe
 start https://github.com/nefarius/ScpToolkit/releases/download/v1.6.133.15324/ScpToolkit_Setup.exe
+start http://www.push2run.com/Push2RunSetup.exe
 start https://download.sublimetext.com/Sublime%20Text%20Build%203143%20x64%20Setup.exe
-start https://github.com/FaserF/ControlPCWithVoice/archive/master.zip
 echo Anwendungsinstallation. Warte auf Beendigung der Downloads, dann ...
 timeout /T 180
 
@@ -370,16 +374,10 @@ for /f %%f IN ('findstr Tagscan tagscaninstall.tmp') do (
 start C:\Users\%username%\Downloads\%%f /VERYSILENT /SUPPRESSMSGBOXES /NORESTART )
 del tagscaninstall.tmp
 
-REM *********Installiere Voice Control Script für Google Home von FaserF********
-cd C:\Program Files\7-Zip\
-7z x C:\Users\%username%\Downloads\ControlPCWithVoice-master.zip -oC:\Users\%username%\Downloads\ > NUL:
-cd C:\Users\%username%\Downloads\
-if not exist "C:\Scripts" mkdir C:\Scripts
-xcopy /s /y "C:\Users\%username%\Downloads\ControlPCWithVoice-master" "C:\Scripts" > NUL:
-
 start GitHubDesktopSetup.exe
 start spardasecureapp_p.exe
 start ScpToolkit_Setup.exe
+start Push2RunSetup.exe
 Ren "C:\Users\%username%\Downloads\Sublime Text Build 3143 x64 Setup.exe" Sublime-Text.exe
 start Sublime-Text.exe /VERYSILENT /NORESTART /TASKS="contextentry"
 echo https://discordler.github.io/other/PS3.html >> C:\Users\%username%\Desktop\SCP.txt
@@ -446,6 +444,50 @@ echo %TIME% Treiber und Programm Installation abgeschlossen (Silent Mode!) >> C:
 set /p path=Installiere weitere Anwendungen, bitte gib den Laufwerksbuchstaben an z.B. Z:
 start %path%:\Cracks\YouDJ\InstallYouDJCrack.exe
 start %path%:\Cracks\Microsoft Office und Windows Crack\MicrosoftOffice 2016 Pro Plus + Crack\Microsoft Office Professional Plus 2016 x64-x86\office\setup64.exe
+goto :RenamePC
+
+:E7440
+echo Latitude E7450 wurde automatisch ermittelt | echo %TIME% %SYSMODEL% wurde automatisch ermittelt - Ueberspringe Geraeteauswahl >> C:\Users\%username%\Desktop\WPI_Log.txt | echo ######################################################################## >> C:\Users\%username%\Desktop\WPI_Log.txt
+:E7440-Start
+start https://downloads.dell.com/FOLDER03070038M/1/Audio_Driver_5P33P_WN32_6.0.1.6070_A00.EXE
+start https://downloads.dell.com/FOLDER03974224M/1/Security_Driver_HGX2G_WN64_3.4.8.14_A20.EXE
+start https://downloads.dell.com/FOLDER04646043M/1/Intel-HD-Graphics-4000-5000-500-P500-series-Driver_V887R_WIN_20.19.15.4835_A06.EXE
+start https://downloads.dell.com/FOLDER04210938M/3/Dell-Touchpad-Driver_9HG8R_WIN_10.2207.101.108_A00_02.EXE
+start https://www.unifiedremote.com/download/windows
+start https://update.pushbullet.com/pushbullet_installer.exe
+start https://www.xdlab.ru/files/tagscan-6.0.20-setup.exe
+start https://web.whatsapp.com/desktop/windows/release/x64/WhatsAppSetup.exe
+start https://download.sublimetext.com/Sublime%20Text%20Build%203143%20x64%20Setup.exe
+echo Warte auf Beendigung des Downloads, dann ...
+timeout /T 120
+start C:\Users\%username%\Downloads\tagscan-6.0.22-setup.exe /VERYSILENT /SUPPRESSMSGBOXES /NORESTART
+start C:\Users\%username%\Downloads\WhatsAppSetup.exe /VERYSILENT /SUPPRESSMSGBOXES /NORESTART
+REM *****Starte Unified Remote Automatische Installation*******
+dir /b C:\Users\%username%\Downloads\ | find "ServerSetup" > UnifiedRemote.tmp
+for /f %%u IN ('findstr ServerSetup UnifiedRemote.tmp') do (
+start C:\Users\%username%\Downloads\%%u )
+del UnifiedRemote.tmp
+timeout /T 2
+start C:\Users\%username%\Downloads\pushbullet_installer.exe
+
+timeout /T 1 > NUL:
+Ren "C:\Users\%username%\Downloads\Sublime Text Build 3143 x64 Setup.exe" Sublime-Text.exe
+start Sublime-Text.exe /VERYSILENT /NORESTART /TASKS="contextentry"
+timeout /T 1 > NUL:
+start C:\Users\%username%\Downloads\Dell-Touchpad-Driver_9HG8R_WIN_10.2207.101.108_A00_02.EXE /s
+timeout /T 1 > NUL:
+start C:\Users\%username%\Downloads\Audio_Driver_5P33P_WN32_6.0.1.6070_A00.EXE /s
+timeout /T 1 > NUL:
+start C:\Users\%username%\Downloads\Security_Driver_HGX2G_WN64_3.4.8.14_A20.EXE /s
+timeout /T 1 > NUL:
+start C:\Users\%username%\Downloads\Intel-HD-Graphics-4000-5000-500-P500-series-Driver_V887R_WIN_20.19.15.4835_A06.EXE /s
+
+taskkill /IM Chrome.exe /F
+
+timeout /T 1 > NUL:
+start https://downloadcenter.intel.com/de/product/83635/Intel-Dualband-Wireless-AC-7265
+timeout /T 1 > NUL:
+echo %TIME% Treiber und Programm Installation abgeschlossen (Silent Mode!) >> C:\Users\%username%\Desktop\WPI_Log.txt
 goto :RenamePC
 
 :M6500
@@ -568,7 +610,7 @@ start https://download.sublimetext.com/Sublime%20Text%20Build%203143%20x64%20Set
 start https://download01.logi.com/web/ftp/pub/techsupport/gaming/LGS_8.92.67_x86_Logitech.exe
 start http://ngwin.com/download/latest/picpick_inst.exe
 start https://deu.windscribe.com/install/desktop/windows
-start https://github.com/FaserF/ControlPCWithVoice/archive/master.zip
+start http://www.push2run.com/Push2RunSetup.exe
 echo 2. Anwendungsinstallation. Warte auf Beendigung der Downloads, dann ...
 timeout /T 180
 
@@ -609,14 +651,8 @@ for /f %%f IN ('findstr Tagscan tagscaninstall.tmp') do (
 start C:\Users\%username%\Downloads\%%f /VERYSILENT /SUPPRESSMSGBOXES /NORESTART )
 del tagscaninstall.tmp
 
-REM *********Installiere Voice Control Script für Google Home von FaserF********
-cd C:\Program Files\7-Zip\
-7z x C:\Users\%username%\Downloads\ControlPCWithVoice-master.zip -oC:\Users\%username%\Downloads\ > NUL:
-cd C:\Users\%username%\Downloads\
-if not exist "C:\Scripts" mkdir C:\Scripts
-xcopy /s /y "C:\Users\%username%\Downloads\ControlPCWithVoice-master" "C:\Scripts" > NUL:
-
 start ScpToolkit_Setup.exe
+start Push2RunSetup.exe
 Ren "C:\Users\%username%\Downloads\Sublime Text Build 3143 x64 Setup.exe" Sublime-Text.exe
 start Sublime-Text.exe /VERYSILENT /NORESTART /TASKS="contextentry"
 echo https://discordler.github.io/other/PS3.html >> C:\Users\%username%\Desktop\SCP.txt
