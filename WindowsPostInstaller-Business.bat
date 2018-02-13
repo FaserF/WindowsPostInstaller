@@ -1,6 +1,6 @@
 @echo off
-set WPIVersion=1.0.5.7
-set datum=26.01.2018
+set WPIVersion=1.0.5.8
+set datum=13.02.2018
 set Description=Automatic Windows Post Installer (Software, Driver, ...) for a fresh Windows Installation.
 set usbpath=%CD%
 REM TASKLIST | FINDSTR /I "Automatic Windows Post Installer"
@@ -167,15 +167,22 @@ timeout /T 5 > NUL:
 :Bluetooth
 REM *********Starten der Bluetooth Installation********
 echo "Starte Intel Grafik Treiber im Silent Mode"
-if exist "%usbpath%_Driver\%SYSMODEL%\Bluetooth.exe" (start /d "%usbpath%_Driver\%SYSMODEL%\" Bluetooth.exe /s -s -norestart) else (echo "Bluetooth Treiber nicht hinterlegt, wird uebersprungen" && goto :Powermanagement)
+if exist "%usbpath%_Driver\%SYSMODEL%\Bluetooth.exe" (start /d "%usbpath%_Driver\%SYSMODEL%\" Bluetooth.exe /s -s -norestart) else (echo "Bluetooth Treiber nicht hinterlegt, wird uebersprungen" && goto :AirplaneMode)
 echo "Errorlevel (0 erfolgreich, 1 fehlgeschlagen) %errorlevel%" && echo Bluetooth Errorlevel: %errorlevel% >> %usbpath%WPI_Log.txt
 timeout /T 5 > NUL:
+
+:AirplaneMode
+REM *********Starten der Powermanagement Installation********
+echo "Starte Dell AirplaneMode Switch Installation im Silent Mode"
+if exist "%usbpath%_Driver\AirplaneMode.EXE" (start /d "%usbpath%_Driver\" AirplaneMode.exe /s) else (echo "Dell AirplaneMode Switch nicht hinterlegt, wird uebersprungen" && goto :Powermanagement)
+echo "Errorlevel (0 erfolgreich, 1 fehlgeschlagen) %errorlevel%" && echo AirplaneMode Errorlevel: %errorlevel% >> %usbpath%WPI_Log.txt
+timeout /T 2 > NUL:
 
 :Powermanagement
 REM *********Starten der Powermanagement Installation********
 echo "Starte Dell Powermanagement Installation im Silent Mode"
 if exist "%usbpath%_Driver\Powermanagement.EXE" (start /d "%usbpath%_Driver\" Powermanagement.exe /s) else (echo "Dell Powermanagement nicht hinterlegt, wird uebersprungen" && goto :DriverFinish)
-echo "Errorlevel (0 erfolgreich, 1 fehlgeschlagen) %errorlevel%" && echo Bluetooth Errorlevel: %errorlevel% >> %usbpath%WPI_Log.txt
+echo "Errorlevel (0 erfolgreich, 1 fehlgeschlagen) %errorlevel%" && echo Powermanagement Errorlevel: %errorlevel% >> %usbpath%WPI_Log.txt
 timeout /T 2 > NUL:
 
 :DriverFinish
