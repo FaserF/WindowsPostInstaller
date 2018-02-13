@@ -174,7 +174,7 @@ timeout /T 5 > NUL:
 :AirplaneMode
 REM *********Starten der Powermanagement Installation********
 echo "Starte Dell AirplaneMode Switch Installation im Silent Mode"
-if exist "%usbpath%_Driver\AirplaneMode.EXE" (start /d "%usbpath%_Driver\" AirplaneMode.exe /s) else (echo "Dell AirplaneMode Switch nicht hinterlegt, wird uebersprungen" && goto :Powermanagement)
+if exist "%usbpath%_Driver\%SYSMODEL%\AirplaneMode.EXE" (start /d "%usbpath%_Driver\%SYSMODEL%\" AirplaneMode.exe /s) else (echo "Dell AirplaneMode Switch nicht hinterlegt, wird uebersprungen" && goto :Powermanagement)
 echo "Errorlevel (0 erfolgreich, 1 fehlgeschlagen) %errorlevel%" && echo AirplaneMode Errorlevel: %errorlevel% >> %usbpath%WPI_Log.txt
 timeout /T 2 > NUL:
 
