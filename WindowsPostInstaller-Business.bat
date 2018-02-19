@@ -1,6 +1,6 @@
 @echo off
-set WPIVersion=1.0.5.8
-set datum=13.02.2018
+set WPIVersion=1.0.5.9
+set datum=16.02.2018
 set Description=Automatic Windows Post Installer (Software, Driver, ...) for a fresh Windows Installation.
 set usbpath=%CD%
 REM TASKLIST | FINDSTR /I "Automatic Windows Post Installer"
@@ -54,7 +54,7 @@ echo %TIME%  %WindowsVersion% wurde automatisch ermittelt >> %usbpath%WPI_Log.tx
 if "%WindowsVersion%" == "Windows 7" echo Treiber Support wird unter Windows 7 nicht Garantiert. >> %usbpath%WPI_Log.txt
 if "%WindowsVersion%" == "Windows Version unbekannt" echo Installierte Windows Version konnte nicht erkannt werden. Treiber Support wird nicht Garantiert. >> %usbpath%WPI_Log.txt
 echo ######################################################################## >> %usbpath%WPI_Log.txt
-cls
+echo.
 echo             ============================================================
 echo                    Automatische Treiber und Programm Installation
 echo                          fuer PARI GmbH von Fabian Seitz
