@@ -1,6 +1,39 @@
+::[Bat To Exe Converter]
+::
+::YAwzoRdxOk+EWAjk
+::fBw5plQjdCyDJH2F4Ec+FB1HSQ2WJleeCbYJ5e31+/m7kl8SU/A+dYLS36abLucv3UzqcZk6xUpVi98lAghMfx6nax0InmdMsmuSJPeToBvIRFud50c8HnddhGzewiI4b7M=
+::YAwzuBVtJxjWCl3EqQJgSA==
+::ZR4luwNxJguZRRnk
+::Yhs/ulQjdF+5
+::cxAkpRVqdFKZSDk=
+::cBs/ulQjdF+5
+::ZR41oxFsdFKZSDk=
+::eBoioBt6dFKZSDk=
+::cRo6pxp7LAbNWATEpCI=
+::egkzugNsPRvcWATEpCI=
+::dAsiuh18IRvcCxnZtBJQ
+::cRYluBh/LU+EWAnk
+::YxY4rhs+aU+IeA==
+::cxY6rQJ7JhzQF1fEqQJhZksaGkrSXA==
+::ZQ05rAF9IBncCkqN+0xwdVsFAlTMaiXqZg==
+::ZQ05rAF9IAHYFVzEqQIHIRVQQxORDGSpEpwS+/z64+aCsAA/QfE2dorIydQ=
+::eg0/rx1wNQPfEVWB+kM9LVsJDGQ=
+::fBEirQZwNQPfEVWB+kM9LVsJDGQ=
+::cRolqwZ3JBvQF1fEqQIRPQ9bQQWWNWj6MbwS7Ofs/Kq3rV4JFMsxa5va1riPNOkc5CU=
+::dhA7uBVwLU+EWH+F9ksxJltnSQ2WJiv3RoU92sG7yOeFii0=
+::YQ03rBFzNR3SWATElA==
+::dhAmsQZ3MwfNWATE0kMyIRpaDDeHNX+gRvhc2MnJxqqgr081NA==
+::ZQ0/vhVqMQ3MEVWAtB9wSA==
+::Zg8zqx1/OA3MEVWAtB9wSA==
+::dhA7pRFwIByZRRnk
+::Zh4grVQjdCyDJH2F4Ec+FB1HSQ2WJleeCbYJ5e31+/m7kl8SU/A+dYLS36abLucv3UzqcZk6xUpVi98lAghMfx6nax0InmdMsmuSJPeToBvIRFud50c8Hnc5pXbDhSU+c8Amn9sGsw==
+::YB416Ek+ZW8=
+::
+::
+::978f952a14a936cc963da21a135fa983
 @echo off
-set WPIVersion=1.0.5.9
-set datum=16.02.2018
+set WPIVersion=1.0.6.0
+set datum=19.02.2018
 set Description=Automatic Windows Post Installer (Software, Driver, ...) for a fresh Windows Installation.
 set usbpath=%CD%
 REM TASKLIST | FINDSTR /I "Automatic Windows Post Installer"
@@ -176,6 +209,13 @@ REM *********Starten der Powermanagement Installation********
 echo "Starte Dell AirplaneMode Switch Installation im Silent Mode"
 if exist "%usbpath%_Driver\%SYSMODEL%\AirplaneMode.EXE" (start /d "%usbpath%_Driver\%SYSMODEL%\" AirplaneMode.exe /s) else (echo "Dell AirplaneMode Switch nicht hinterlegt, wird uebersprungen" && goto :Powermanagement)
 echo "Errorlevel (0 erfolgreich, 1 fehlgeschlagen) %errorlevel%" && echo AirplaneMode Errorlevel: %errorlevel% >> %usbpath%WPI_Log.txt
+timeout /T 2 > NUL:
+
+:Updater
+REM *********Starten der Dell Command Updater Installation********
+echo "Starte Dell Command Updater Installation im Silent Mode"
+if exist "%usbpath%_Driver\Updater.EXE" (start /d "%usbpath%_Driver\" Updater.exe /s) else (echo "Dell Command Updater nicht hinterlegt, wird uebersprungen" && goto :DriverFinish)
+echo "Errorlevel (0 erfolgreich, 1 fehlgeschlagen) %errorlevel%" && echo Dell Updater Errorlevel: %errorlevel% >> %usbpath%WPI_Log.txt
 timeout /T 2 > NUL:
 
 :Powermanagement
